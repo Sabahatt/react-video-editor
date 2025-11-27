@@ -22,33 +22,23 @@ export async function processFileUpload(
   callbacks: UploadCallbacks
 ): Promise<any> {
   try {
-    // Get presigned URL
+    // Use local upload endpoint
+    const formData = new FormData();
+    formData.append("file", file);
+
     const {
       data: { uploads }
-    } = await axios.post(
-      "/api/uploads/presign",
-      {
-        userId: "PJ1nkaufw0hZPyhN7bWCP",
-        fileNames: [file.name]
-      },
-      {
-        headers: { "Content-Type": "application/json" }
-      }
-    );
-
-    const uploadInfo = uploads[0];
-
-    // Upload file with progress tracking
-    await axios.put(uploadInfo.presignedUrl, file, {
-      headers: { "Content-Type": uploadInfo.contentType },
+    } = await axios.post("/api/uploads/local", formData, {
+      headers: { "Content-Type": "multipart/form-data" },
       onUploadProgress: (progressEvent) => {
         const percent = Math.round(
           (progressEvent.loaded * 100) / (progressEvent.total || 1)
         );
         callbacks.onProgress(uploadId, percent);
-      },
-      validateStatus: () => true
+      }
     });
+
+    const uploadInfo = uploads[0];
 
     // Construct upload data from uploadInfo
     const uploadData = {

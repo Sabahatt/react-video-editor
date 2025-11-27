@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:designcombo.dev)",
+      "WebFetch(domain:www.remotion.dev)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

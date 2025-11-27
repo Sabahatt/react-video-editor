@@ -1,0 +1,68 @@
+Project Context: React Video Editor with Local Remotion Rendering
+
+  Overview
+
+  This is a forked React video editor from https://github.com/designcombo/react-video-editor. It uses:
+  - Next.js 15 (App Router)
+  - Remotion for video preview (@remotion/player) and rendering
+  - DesignCombo SDK (@designcombo/state, @designcombo/timeline, @designcombo/transitions, @designcombo/types) for       
+  editor state management
+  - Zustand for state management
+  - pnpm as package manager
+
+  Local Rendering Implementation
+
+  We implemented local video rendering using Remotion to avoid dependency on DesignCombo's cloud API (COMBO_SK key).    
+   Key files:
+
+  Remotion Setup:
+  - remotion.config.ts - Remotion CLI config
+  - src/remotion/root.tsx - Entry point with registerRoot()
+  - src/remotion/index.tsx - Composition registration with calculateMetadata
+  - src/features/editor/player/render-composition.tsx - Props-based composition for headless rendering (accepts data    
+   as props instead of using Zustand store)
+
+  API Routes:
+  - src/app/api/render-local/route.ts - POST to start render, GET to check status
+  - src/app/api/render-local/[id]/route.ts - Status polling endpoint
+  - src/lib/render-jobs.ts - Shared job state using globalThis pattern
+
+  State Management:
+  - src/features/editor/store/use-download-state.ts - Updated with renderMode ("local" | "cloud"),
+  startLocalExport(), and startExport() that routes based on mode
+
+  Config:
+  - next.config.ts - Added serverExternalPackages for Remotion packages to prevent webpack bundling issues
+  - package.json - Added scripts: remotion:studio, remotion:render
+
+  Architecture Notes
+
+  1. The editor's Composition component (src/features/editor/player/composition.tsx) uses Zustand store directly        
+  2. For Remotion CLI rendering, we created RenderComposition that accepts props instead
+  3. The RenderCompositionProps interface has an index signature [key: string]: unknown for Remotion compatibility      
+  4. Render jobs are stored in a global Map (use Redis/DB for production)
+  5. Rendered videos output to public/renders/ and are served at /renders/{jobId}.mp4
+
+  Key Data Types
+
+  interface RenderCompositionProps {
+    fps: number;
+    width: number;
+    height: number;
+    trackItemIds: string[];
+    trackItemsMap: Record<string, ITrackItem>;
+    transitionIds: string[];
+    transitionsMap: Record<string, ITransition>;
+    background?: { type: "color" | "image"; value: string };
+  }
+
+  Requirements
+
+  - FFmpeg must be installed for Remotion rendering
+  - First render is slow (~30s) due to bundling; subsequent renders are faster
+
+  Original Cloud API (if needed)
+
+  - Requires COMBO_SK env variable (DesignCombo API key)
+  - Uses api.designcombo.dev endpoints
+  - Set renderMode: "cloud" to use
