@@ -21,6 +21,11 @@ const Player = () => {
       className={`h-full w-full bg-[${background.value}]`}
       fps={30}
       overflowVisible
+      numberOfSharedAudioTags={0}
+      errorFallback={({ error }) => {
+        console.error("Player render error:", error);
+        return <div>Error: {error.message}</div>;
+      }}
     />
   );
 };

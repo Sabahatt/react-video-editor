@@ -4,7 +4,7 @@ import { BoxAnim, ContentAnim, MaskAnim } from "@designcombo/animations";
 import { calculateContainerStyles, calculateMediaStyles } from "../styles";
 import { getAnimations } from "../../utils/get-animations";
 import { calculateFrames } from "../../utils/frames";
-import { OffthreadVideo } from "remotion";
+import { OffthreadVideo, Video as RemotionVideo, getRemotionEnvironment } from "remotion";
 
 export const Video = ({
   item,
@@ -31,6 +31,12 @@ export const Video = ({
   const { durationInFrames } = calculateFrames(item.display, fps);
   const currentFrame = (frame || 0) - (item.display.from * fps) / 1000;
 
+  // Calculate trim values - if not set, use full duration based on display
+  const trimFrom = item.trim?.from ?? 0;
+  const trimTo = item.trim?.to ?? (item.display.to - item.display.from);
+  const startFromFrame = Math.round((trimFrom / 1000) * fps);
+  const endAtFrame = Math.round((trimTo / 1000) * fps) || undefined;
+
   const children = (
     <BoxAnim
       style={calculateContainerStyles(details, crop, {
@@ -52,13 +58,23 @@ export const Video = ({
           frame={frame || 0}
         >
           <div style={calculateMediaStyles(details, crop)}>
-            <OffthreadVideo
-              startFrom={(item.trim?.from! / 1000) * fps}
-              endAt={(item.trim?.to! / 1000) * fps || 1 / fps}
-              playbackRate={playbackRate}
-              src={details.src}
-              volume={(details.volume ?? 100) / 100}
-            />
+            {getRemotionEnvironment().isRendering ? (
+              <OffthreadVideo
+                startFrom={startFromFrame}
+                endAt={endAtFrame}
+                playbackRate={playbackRate}
+                src={details.src}
+                volume={(details.volume ?? 100) / 100}
+              />
+            ) : (
+              <RemotionVideo
+                startFrom={startFromFrame}
+                endAt={endAtFrame}
+                playbackRate={playbackRate}
+                src={details.src}
+                volume={(details.volume ?? 100) / 100}
+              />
+            )}
           </div>
         </MaskAnim>
       </ContentAnim>

@@ -110,12 +110,13 @@ const Header = () => {
     });
   };
 
-  const handlePlay = () => {
-    dispatch(PLAYER_PLAY);
+  const handlePlay = (e: React.MouseEvent) => {
+    // Pass the event for browser autoplay policy compliance
+    playerRef?.current?.play(e);
   };
 
   const handlePause = () => {
-    dispatch(PLAYER_PAUSE);
+    playerRef?.current?.pause();
   };
 
   useEffect(() => {
@@ -209,11 +210,11 @@ const Header = () => {
                 <IconPlayerSkipBack size={14} />
               </Button>
               <Button
-                onClick={() => {
+                onClickCapture={(e) => {
                   if (playing) {
                     return handlePause();
                   }
-                  handlePlay();
+                  handlePlay(e);
                 }}
                 variant={"ghost"}
                 size={"icon"}

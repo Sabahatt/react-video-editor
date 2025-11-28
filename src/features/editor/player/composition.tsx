@@ -27,9 +27,6 @@ const Composition = () => {
     transitionsMap,
     trackItemsMap: trackItemsMap
   });
-  const mediaItems = Object.values(trackItemsMap).filter((item) => {
-    return item.type === "video" || item.type === "audio";
-  });
 
   const handleTextChange = (id: string, _: string) => {
     const elRef = document.querySelector(`.id-${id}`) as HTMLDivElement;

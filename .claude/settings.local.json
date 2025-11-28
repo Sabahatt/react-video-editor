@@ -1,10 +1,51 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:designcombo.dev)",
-      "WebFetch(domain:www.remotion.dev)"
+      "Bash(npx shadcn@latest:*)",
+      "Bash(cat:*)",
+      "Bash(mkdir:*)",
+      "WebSearch",
+      "WebFetch",
+      "Bash(npx tsc:*)",
+      "Bash(git -C \"D:/development/Siglance/react-video-editor\" diff)",
+      "Bash(git -C \"D:/development/Siglance/react-video-editor\" diff HEAD src/)"
     ],
     "deny": [],
     "ask": []
+  },
+  "hooks": {
+    "PermissionRequest": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "curl -X POST -d \"Claude needs your input\" ntfy.sh/claude-code-notif-alerts"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "curl -X POST -d \"Claude notification\" ntfy.sh/claude-code-notif-alerts"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "curl -X POST -d \"Claude task completed\" ntfy.sh/claude-code-notif-alerts"
+          }
+        ]
+      }
+    ]
   }
 }
