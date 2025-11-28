@@ -3,6 +3,7 @@ import Timeline from "./timeline";
 import useStore from "./store/use-store";
 import Navbar from "./navbar";
 import useTimelineEvents from "./hooks/use-timeline-events";
+import useKeyboardShortcuts from "./hooks/use-keyboard-shortcuts";
 import Scene from "./scene";
 import { SceneRef } from "./scene/scene.types";
 import StateManager, { DESIGN_LOAD } from "@designcombo/state";
@@ -56,6 +57,7 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 	const isLargeScreen = useIsLargeScreen();
 
 	useTimelineEvents();
+	useKeyboardShortcuts();
 
 	const { setCompactFonts, setFonts } = useDataState();
 
