@@ -8,7 +8,8 @@
       "WebFetch",
       "Bash(npx tsc:*)",
       "Bash(git -C \"D:/development/Siglance/react-video-editor\" diff)",
-      "Bash(git -C \"D:/development/Siglance/react-video-editor\" diff HEAD src/)"
+      "Bash(git -C \"D:/development/Siglance/react-video-editor\" diff HEAD src/)",
+      "Bash(node debug-scrape.js:*)"
     ],
     "deny": [],
     "ask": []

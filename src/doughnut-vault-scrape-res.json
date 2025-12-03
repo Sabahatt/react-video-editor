@@ -1,0 +1,176 @@
+{
+    "success": true,
+    "data": {
+        "brand": {
+            "name": "Doughnut Vault",
+            "tagline": "Classic Old Fashioneds",
+            "description": "CLASSIC OLD FASHIONEDS: Buttermilk, Triple Chocolate, Pistachio, Lemon \nPoppyseed, Almond — GLAZED: Vanilla, Chocolate, & Strawberry — GINGERBREAD \nSTACK — VANILLA BIRTHDAY CAKE — APPLE FRITTERS — DOUGHNUT HOLES | HOT \nCOFFEE & COLD BREW",
+            "cuisine": "cafe"
+        },
+        "logo": "http://static1.squarespace.com/static/66675789efc1680422bf043f/t/6672d25f5162aa7fa7f5671d/1718800991373/DV_SocialShare.png?format=1500w",
+        "images": [
+            {
+                "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/a34fbdbe-fab1-4355-bf30-589798122201/Doughnut-Vault-Logo.png?format=1500w",
+                "alt": "Doughnut Vault",
+                "width": 1273,
+                "height": 852,
+                "type": "product"
+            },
+            {
+                "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/998a91a9-2b13-493d-9b1b-0bd779509614/4X5A9291.jpg",
+                "width": 1909,
+                "height": 995,
+                "type": "product"
+            },
+            {
+                "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/0771e5e5-7a3f-470f-86ec-c09a822a6a3e/DV-SiteMock-menu_July_Longest.jpg",
+                "width": 1800,
+                "height": 7923,
+                "type": "product"
+            },
+            {
+                "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/23362ecf-8a4a-4ec5-8416-654ea5c9a6a3/DV-doughnut_mobilelongest.png",
+                "width": 1440,
+                "height": 3511,
+                "type": "product"
+            },
+            {
+                "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/5aa4ec97-535d-49e3-95e4-9128b61ce60b/_MG_3033-2.png",
+                "alt": "_MG_3033-2.png",
+                "width": 996,
+                "height": 539,
+                "type": "product"
+            },
+            {
+                "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/3a5cf978-2ec2-471b-b268-5c40ccb8bd2d/Screenshot+2024-07-01+at+11.23.22%E2%80%AFAM.png",
+                "alt": "Screenshot 2024-07-01 at 11.23.22 AM.png",
+                "width": 903,
+                "height": 539,
+                "type": "product"
+            },
+            {
+                "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/8b1b07c7-ebb7-49fb-bdf8-61f8f39ed76b/4X5A9325.jpg",
+                "alt": "4X5A9325.jpg",
+                "width": 810,
+                "height": 540,
+                "type": "product"
+            },
+            {
+                "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/cc219f45-6ff2-438c-a7b5-dfef1d8cfd0a/D57DE37A-2876-436D-977A-69B3939AEED0+%281%29.jpeg",
+                "alt": "D57DE37A-2876-436D-977A-69B3939AEED0 (1).jpeg",
+                "width": 823,
+                "height": 540,
+                "type": "product"
+            },
+            {
+                "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/ee01935b-c312-499f-a38d-05ce900d8d2d/1B9A8047.jpg",
+                "alt": "1B9A8047.jpg",
+                "width": 598,
+                "height": 540,
+                "type": "product"
+            },
+            {
+                "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/11b7dd6e-e768-4056-91b0-821a81e5c554/CleanShot+2024-06-14+at+13.53.32%402x.png",
+                "alt": "CleanShot 2024-06-14 at 13.53.32@2x.png",
+                "width": 829,
+                "height": 540,
+                "type": "product"
+            },
+            {
+                "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/c84f6a71-eee1-437e-aa77-868b654826f0/4X5A8150.jpg",
+                "alt": "4X5A8150.jpg",
+                "width": 360,
+                "height": 540,
+                "type": "product"
+            },
+            {
+                "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/629f629d-fd80-4f1b-8289-b1f336d7468d/DV-Catering_Hero.png",
+                "alt": "DV-Catering_Hero.png",
+                "width": 811,
+                "height": 540,
+                "type": "product"
+            },
+            {
+                "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/a34fbdbe-fab1-4355-bf30-589798122201/Doughnut-Vault-Logo.png",
+                "width": 407,
+                "height": 272,
+                "type": "unknown"
+            },
+            {
+                "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/bf64fa48-bd27-4b0b-bc55-30612dc6ddfc/Doughnuts-08.png",
+                "width": 480,
+                "height": 388,
+                "type": "unknown"
+            },
+            {
+                "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/c851d12f-4ca3-4247-8ccb-2deced925e74/Doughnuts-10.png",
+                "width": 480,
+                "height": 388,
+                "type": "unknown"
+            },
+            {
+                "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/cf35d8b9-68f6-4bce-948e-fd6982bb97b7/Doughnuts-11.png",
+                "width": 480,
+                "height": 388,
+                "type": "unknown"
+            },
+            {
+                "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/729e0b61-9618-4c80-b4dc-1609b65a5abe/Doughnuts-07.png",
+                "width": 480,
+                "height": 388,
+                "type": "unknown"
+            },
+            {
+                "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/13defee5-e993-4272-a672-f87e5d6982d4/Doughnuts-12.png",
+                "width": 480,
+                "height": 388,
+                "type": "unknown"
+            },
+            {
+                "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/c3d5a2db-4f61-4d85-af30-f094a121ba4b/Doughnuts-09.png",
+                "width": 480,
+                "height": 388,
+                "type": "unknown"
+            },
+            {
+                "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/1e99fa65-6881-4de6-9e3c-023b6cc28bcf/DV-doughnutillustrations-24.png",
+                "width": 480,
+                "height": 546,
+                "type": "unknown"
+            }
+        ],
+        "colors": {
+            "primary": "#e8e1c8",
+            "secondary": "#666666",
+            "accent": "#025a7a",
+            "background": "#fffdfa",
+            "text": "#001117",
+            "palette": [
+                "#e8e1c8",
+                "#025a7a",
+                "#fffdfa",
+                "#001117",
+                "#333333",
+                "#666666",
+                "#007bff",
+                "#ffffff"
+            ]
+        },
+        "contact": {
+            "hours": "DAILY: 7:30AM – 1:00PM",
+            "website": "https://www.doughnutvault.com/the-classics"
+        },
+        "socialLinks": [
+            "https://www.instagram.com/doughnutvault/?hl=en",
+            "https://www.facebook.com/doughnutvault/"
+        ],
+        "scrapedAt": "2025-12-03T16:27:13.458Z",
+        "sourceUrl": "https://www.doughnutvault.com/the-classics"
+    },
+    "timing": {
+        "total": 20719,
+        "pageLoad": 19516,
+        "extraction": 64,
+        "colorExtraction": 1067
+    }
+}

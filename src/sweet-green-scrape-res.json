@@ -1,0 +1,239 @@
+{
+    "success": true,
+    "data": {
+        "brand": {
+            "name": "sweetgreen",
+            "tagline": "Featured",
+            "description": "Order healthy salads and grain bowls made from scratch using sustainably farmed ingredients.",
+            "cuisine": "american"
+        },
+        "logo": "https://www.sweetgreen.com/favicon.ico",
+        "images": [
+            {
+                "url": "https://images.ctfassets.net/eum7w7yri3zr/6jobSckXxyc4GTuInqbFLR/8793a5625e81cc129de4b96df3c20f9d/SG_Web_Image_Bowl_Steak_Honey_Crunch__1_.jpg?w=600&q=75",
+                "alt": "Steak Honey Crunch",
+                "width": 600,
+                "height": 600,
+                "type": "product"
+            },
+            {
+                "url": "https://images.ctfassets.net/eum7w7yri3zr/6vNynyCoUI4yeU0xq6fYhv/c11caeb76d233b37c43e7c5e0f2ecb30/SG_Web_Image_Protein_Plate_Steak_Mezze__1_.jpg?w=600&q=75",
+                "alt": "Steak Mezze",
+                "width": 600,
+                "height": 600,
+                "type": "product"
+            },
+            {
+                "url": "https://images.ctfassets.net/eum7w7yri3zr/3mXSfLrDU3JdoqtqoqLhHh/fefeff30cb32b565706b798fd24fa077/SG_Web_Image_Protein_Plate_Power_Max_Protein__1_.jpg?w=600&q=75",
+                "alt": "Power Max Protein",
+                "width": 600,
+                "height": 600,
+                "type": "product"
+            },
+            {
+                "url": "https://images.ctfassets.net/eum7w7yri3zr/oQXXNTzxSZtVIthreOWU2/1a508e8e8b284ea982b4f9b2418d3e89/GarlicParmCauliBowl.jpeg?w=600&q=75",
+                "alt": "GarlicParmCauliBowl",
+                "width": 600,
+                "height": 600,
+                "type": "product"
+            },
+            {
+                "url": "https://images.ctfassets.net/eum7w7yri3zr/4tGfDtQgfD6ZiVaNY8r1Ph/67c9b6cca3153f4312c9cbb8e5a0975b/ChickenCauliPlate.jpeg?w=600&q=75",
+                "alt": "ChickenCauliPlate",
+                "width": 600,
+                "height": 600,
+                "type": "product"
+            },
+            {
+                "url": "https://images.ctfassets.net/eum7w7yri3zr/2VeldYH0b3Y0JNaeadEWNZ/58d5a541a1173554e16af6791832d097/CauliSide.jpeg?w=600&q=75",
+                "alt": "CauliSide",
+                "width": 600,
+                "height": 600,
+                "type": "product"
+            },
+            {
+                "url": "https://images.ctfassets.net/eum7w7yri3zr/3SurKmBzvliFdpKTieK18h/5919f2bef47df8c69dc7460223f97f84/SG_Web_Image_Plate_Caramelized_Garlic_Steak.png?w=600&q=75",
+                "alt": "Caramelized garlic steak protein plate",
+                "width": 600,
+                "height": 600,
+                "type": "product"
+            },
+            {
+                "url": "https://images.ctfassets.net/eum7w7yri3zr/2Nmjt0Mqc4i9Rxi0mmJI4M/913a61ac1f9393e8bad35ca924751e10/SG_Web_Image_Plate_Miso_Glazed_Salmon.png?w=600&q=75",
+                "alt": "Miso glazed salmon",
+                "width": 600,
+                "height": 600,
+                "type": "product"
+            },
+            {
+                "url": "https://images.ctfassets.net/eum7w7yri3zr/yHFY7qx79RaAmL2g7rK2r/c20e65a280981001f7c0093595e81ff9/SG_Web_Image_Plate_Hot_Honey_Chicken.png?w=600&q=75",
+                "alt": "Hot honey chicken protein plate",
+                "width": 600,
+                "height": 600,
+                "type": "product"
+            },
+            {
+                "url": "https://images.ctfassets.net/eum7w7yri3zr/Br3EYlf6srQYhCXdvOfwt/65b582e0c488a871e36cda2ea5e52df3/SG_Web_Image_Bowl_Harvest.png?w=600&q=75",
+                "alt": "Product Carousel-Harvest Bowl",
+                "width": 600,
+                "height": 600,
+                "type": "product"
+            },
+            {
+                "url": "https://images.ctfassets.net/eum7w7yri3zr/77bQryCjkOcr4lAKYIpo1C/a8e219ee7820abea85944e2751863cf2/SG_Web_Image_Bowl_Crispy_Rice_Bowl.png?w=600&q=75",
+                "alt": "Crispy Rice Bowl",
+                "width": 600,
+                "height": 600,
+                "type": "product"
+            },
+            {
+                "url": "https://images.ctfassets.net/eum7w7yri3zr/5Kw3escovLNb8uWqQuzR7o/fb77087267c6de716f49d50ff755ede5/SG_Web_Image_Bowl_Chicken_Pesto_Parm.png?w=600&q=75",
+                "alt": "Chicken Pesto Parm",
+                "width": 600,
+                "height": 600,
+                "type": "product"
+            },
+            {
+                "url": "https://images.ctfassets.net/eum7w7yri3zr/opkhdGIeByDTaIOKBzGKU/4692e29fb3ad28c7bd54634cd7622720/SG_Web_Image_Bowl_Chicken_Avocado_Ranch.png?w=600&q=75",
+                "alt": "Chicken Avocado Ranch",
+                "width": 600,
+                "height": 600,
+                "type": "product"
+            },
+            {
+                "url": "https://images.ctfassets.net/eum7w7yri3zr/57c1vaLIB4WtuQXQblhUa5/5bbbf55c178b7985a03f994749445040/SG_Web_Image_Bowl_Shroomami.png?w=600&q=75",
+                "alt": "shroomami",
+                "width": 600,
+                "height": 600,
+                "type": "product"
+            },
+            {
+                "url": "https://images.ctfassets.net/eum7w7yri3zr/GfXc33iGipBc9eYJM7bAP/19c0ecb3908d0f7f20cd5d904cb12937/SG_Web_Image_Bowl_Fish_Taco.png?w=600&q=75",
+                "alt": "Fish Taco",
+                "width": 600,
+                "height": 600,
+                "type": "product"
+            },
+            {
+                "url": "https://images.ctfassets.net/eum7w7yri3zr/5418ra5b4TcMHRxOIobxUx/db9774df0dc69cf6b0aa8c40460a43a0/SG_Web_Image_Salad_Kale_Caesar_Chicken.png?w=600&q=75",
+                "alt": "Kale Caesar",
+                "width": 600,
+                "height": 600,
+                "type": "product"
+            },
+            {
+                "url": "https://images.ctfassets.net/eum7w7yri3zr/3Z3fW9JhznhFDphzlHNmRx/d6410c46ffb8fc2c4c19c736a7f8d920/SG_Web_Image_Salad_Guacamole_Greens.png?w=600&q=75",
+                "alt": "Guac Greens",
+                "width": 600,
+                "height": 600,
+                "type": "product"
+            },
+            {
+                "url": "https://images.ctfassets.net/eum7w7yri3zr/6oXc02nY5QhEb9tYyZDyKZ/286ddb040d1842580fcbea40bf7c4a47/SG_Web_Image_Protein_Plate_Super_Green_Goddess.jpg?w=600&q=75",
+                "alt": "Supper green goddess salad",
+                "width": 600,
+                "height": 600,
+                "type": "product"
+            },
+            {
+                "url": "https://images.ctfassets.net/eum7w7yri3zr/5fITPYckTJf9NUIbgSStrj/02544cca800ef61e835979c8831f4d30/SG_Web_Image_Salad_BBQ_Chicken.png?w=600&q=75",
+                "alt": "BBQ Chicken Salad",
+                "width": 600,
+                "height": 600,
+                "type": "product"
+            },
+            {
+                "url": "https://images.ctfassets.net/eum7w7yri3zr/4wPVg3FJWpETYHNRZ2lN4p/4b8942e5c92664c57062cd5ec7695f06/SG_Web_Image_Salad_Hummus_Crunch.jpg?w=600&q=75",
+                "alt": "Hummus Crunch Salad",
+                "width": 600,
+                "height": 600,
+                "type": "product"
+            }
+        ],
+        "colors": {
+            "primary": "#00473c",
+            "secondary": "#666666",
+            "accent": "#e6ff55",
+            "background": "#ffffff",
+            "text": "#000000",
+            "palette": [
+                "#00473c",
+                "#e6ff55",
+                "#000000",
+                "#333333",
+                "#666666",
+                "#007bff",
+                "#ffffff"
+            ]
+        },
+        "contact": {
+            "website": "https://www.sweetgreen.com/menu"
+        },
+        "menuItems": [
+            {
+                "name": "Steak Honey Crunch",
+                "description": "Caramelized garlic steak, chopped romaine, herbed quinoa, pickled onions, tomatoes, garlic breadcrumbs, hot honey mustard sauce",
+                "image": "https://images.ctfassets.net/eum7w7yri3zr/6jobSckXxyc4GTuInqbFLR/8793a5625e81cc129de4b96df3c20f9d/SG_Web_Image_Bowl_Steak_Honey_Crunch__1_.jpg?w=600&q=75"
+            },
+            {
+                "name": "Steak Mezze",
+                "description": "Caramelized garlic steak, white rice x2, pickled onions, tomatoes, cucumbers, crispy onions, lime cilantro jalapeno vinaigrette, hummus",
+                "image": "https://images.ctfassets.net/eum7w7yri3zr/6vNynyCoUI4yeU0xq6fYhv/c11caeb76d233b37c43e7c5e0f2ecb30/SG_Web_Image_Protein_Plate_Steak_Mezze__1_.jpg?w=600&q=75"
+            },
+            {
+                "name": "Power Max Protein",
+                "description": "Roasted chicken 4x, herbed quinoa 2x, spicy broccoli 2x, green goddess ranch",
+                "image": "https://images.ctfassets.net/eum7w7yri3zr/3mXSfLrDU3JdoqtqoqLhHh/fefeff30cb32b565706b798fd24fa077/SG_Web_Image_Protein_Plate_Power_Max_Protein__1_.jpg?w=600&q=75"
+            },
+            {
+                "name": "Garlic Parm Cauli Bowl",
+                "description": "Garlic Parmesan Cauliflower, Caramelized Balsamic Onions, Roasted Sweet Potatoes, Garlic Breadcrumbs, Wild Rice, organic Shredded Kale, Roasted Romesco Sauce, Creamy Basil Dressing",
+                "image": "https://images.ctfassets.net/eum7w7yri3zr/oQXXNTzxSZtVIthreOWU2/1a508e8e8b284ea982b4f9b2418d3e89/GarlicParmCauliBowl.jpeg?w=600&q=75"
+            },
+            {
+                "name": "Chicken Cauli Plate",
+                "description": "Antibiotic-free roasted Chicken, Garlic Parmesan Cauliflower, Caramelized Balsamic Onions, Garlic Breadcrumbs, Wild Rice, Roasted Romesco Sauce, Creamy Basil Dressing",
+                "image": "https://images.ctfassets.net/eum7w7yri3zr/4tGfDtQgfD6ZiVaNY8r1Ph/67c9b6cca3153f4312c9cbb8e5a0975b/ChickenCauliPlate.jpeg?w=600&q=75"
+            },
+            {
+                "name": "Garlic Parm Cauli + Romesco",
+                "description": "Garlic Parmesan Cauliflower, Roasted Romesco Sauce",
+                "image": "https://images.ctfassets.net/eum7w7yri3zr/2VeldYH0b3Y0JNaeadEWNZ/58d5a541a1173554e16af6791832d097/CauliSide.jpeg?w=600&q=75"
+            },
+            {
+                "name": "Caramelized Garlic Steak",
+                "description": "Antibiotic-free grass-fed caramelized garlic steak, warm roasted sweet potatoes, spicy broccoli, tomatoes, wild rice and pesto vinaigrette",
+                "image": "https://images.ctfassets.net/eum7w7yri3zr/3SurKmBzvliFdpKTieK18h/5919f2bef47df8c69dc7460223f97f84/SG_Web_Image_Plate_Caramelized_Garlic_Steak.png?w=600&q=75"
+            },
+            {
+                "name": "Miso Glazed Salmon",
+                "description": "Antibiotic-free miso glazed salmon, avocado, cucumbers, pickled onions, crispy onions, white rice, nori sesame seasoning and spicy cashew",
+                "image": "https://images.ctfassets.net/eum7w7yri3zr/2Nmjt0Mqc4i9Rxi0mmJI4M/913a61ac1f9393e8bad35ca924751e10/SG_Web_Image_Plate_Miso_Glazed_Salmon.png?w=600&q=75"
+            },
+            {
+                "name": "Hot Honey Chicken",
+                "description": "Antibiotic-free blackened chicken, warm roasted sweet potatoes, veg slaw, crispy onions, herbed quinoa and hot honey mustard sauce",
+                "image": "https://images.ctfassets.net/eum7w7yri3zr/yHFY7qx79RaAmL2g7rK2r/c20e65a280981001f7c0093595e81ff9/SG_Web_Image_Plate_Hot_Honey_Chicken.png?w=600&q=75"
+            },
+            {
+                "name": "Harvest Bowl",
+                "description": "Antibiotic-free roasted chicken, roasted sweet potatoes, apples, goat cheese, roasted almonds, wild rice, organic shredded kale and balsamic vinaigrette",
+                "image": "https://images.ctfassets.net/eum7w7yri3zr/Br3EYlf6srQYhCXdvOfwt/65b582e0c488a871e36cda2ea5e52df3/SG_Web_Image_Bowl_Harvest.png?w=600&q=75"
+            }
+        ],
+        "socialLinks": [
+            "https://www.instagram.com/sweetgreen/",
+            "https://twitter.com/sweetgreen",
+            "https://www.tiktok.com/@sweetgreen",
+            "http://facebook.com/sweetgreen"
+        ],
+        "scrapedAt": "2025-12-03T16:23:53.524Z",
+        "sourceUrl": "https://www.sweetgreen.com/menu"
+    },
+    "timing": {
+        "total": 26730,
+        "pageLoad": 25218,
+        "extraction": 30,
+        "colorExtraction": 1268
+    }
+}
