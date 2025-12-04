@@ -1,0 +1,108 @@
+{
+  "success": true,
+  "data": {
+    "brand": {
+      "name": "Doughnut Vault",
+      "tagline": "LIFE IS SWEET."
+    },
+    "logo": "http://static1.squarespace.com/static/66675789efc1680422bf043f/t/6672d25f5162aa7fa7f5671d/1718800991373/DV_SocialShare.png?format=1500w",
+    "images": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/a34fbdbe-fab1-4355-bf30-589798122201/Doughnut-Vault-Logo.png?format=1500w",
+        "alt": "Doughnut Vault",
+        "width": 1273,
+        "height": 852,
+        "type": "product"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/eb8101f5-0fc9-4eb5-a42a-429689c84acb/DV-Hero.png",
+        "width": 1919,
+        "height": 1271,
+        "type": "product"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/ee01935b-c312-499f-a38d-05ce900d8d2d/1B9A8047.jpg",
+        "width": 1048,
+        "height": 946,
+        "type": "product"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/6a8265a9-22ae-4245-9d27-114efbef2388/4X5A9302.jpg",
+        "width": 1535,
+        "height": 2303,
+        "type": "product"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/45fae570-8794-4029-a44a-e2e842b6eada/donut.png",
+        "alt": "A donut",
+        "width": 800,
+        "height": 753,
+        "type": "product"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/af3f44e7-d35e-4682-8d7e-b83da96b7e5a/DV-Donuts.png",
+        "alt": "Doughnut vault donuts hand crafted and old fashioned style donuts with classic painted look",
+        "width": 1280,
+        "height": 465,
+        "type": "hero"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/e0cc5484-0761-4ec2-a679-d5fff34ebc40/DV-Wingding-12.png",
+        "width": 160,
+        "height": 261,
+        "type": "unknown"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/edfb2dc7-6289-48c0-becf-aab8aae433a2/DV-Wingding-13.png",
+        "width": 160,
+        "height": 261,
+        "type": "unknown"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/c7926c49-42b6-40da-8ee7-f7f69ecaa9fc/DV-Center_wingding.png",
+        "width": 320,
+        "height": 187,
+        "type": "unknown"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/30e7da97-794e-4514-810e-e3c699471bfa/Hogsalt+Logo+Cream_Final-01.png",
+        "width": 320,
+        "height": 65,
+        "type": "unknown"
+      }
+    ],
+    "colors": {
+      "primary": "#e8e1c8",
+      "secondary": "#666666",
+      "accent": "#609ec4",
+      "background": "#fffdfa",
+      "text": "#001117",
+      "palette": [
+        "#e8e1c8",
+        "#609ec4",
+        "#fffdfa",
+        "#001117",
+        "#333333",
+        "#666666",
+        "#007bff",
+        "#ffffff"
+      ]
+    },
+    "contact": {
+      "hours": "DAILY: 7:30AM – 1:00PM",
+      "website": "https://www.doughnutvault.com/"
+    },
+    "socialLinks": [
+      "https://www.instagram.com/doughnutvault/?hl=en",
+      "https://www.facebook.com/doughnutvault/"
+    ],
+    "scrapedAt": "2025-12-04T20:03:58.932Z",
+    "sourceUrl": "https://www.doughnutvault.com/"
+  },
+  "timing": {
+    "total": 18447,
+    "pageLoad": 16973,
+    "extraction": 56,
+    "colorExtraction": 1226
+  }
+}

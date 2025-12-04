@@ -1,0 +1,88 @@
+{
+  "success": true,
+  "script": {
+    "fullScript": "Authentic New York Pizza Since 1975 Foldable Slices, Hand-Tossed Daily Experience the Real New York Flavor Order Now from Joe's Pizza",
+    "scenes": [
+      {
+        "id": "hook",
+        "voiceoverText": "Authentic New York Pizza Since 1975",
+        "displayText": "NYC'S BEST",
+        "duration": 2.5,
+        "visual": {
+          "type": "animated_image",
+          "url": "https://static.wixstatic.com/media/4801ad_ec296bae26c34d46860df871ab25bea4~mv2.jpg/v1/fill/w_413,h_232,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/4801ad_ec296bae26c34d46860df871ab25bea4~mv2.jpg",
+          "alt": "🍕  PEPPERONI PIZZA"
+        }
+      },
+      {
+        "id": "value",
+        "voiceoverText": "Foldable Slices, Hand-Tossed Daily",
+        "displayText": "GREENWICH VILLAGE FAVE",
+        "duration": 2.5,
+        "visual": {
+          "type": "animated_image",
+          "url": "https://static.wixstatic.com/media/4801ad_91ee8244d63d48abaacd98db231e77e5~mv2.png/v1/fill/w_413,h_232,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/4801ad_91ee8244d63d48abaacd98db231e77e5~mv2.png",
+          "alt": "🇺🇸  NY CHEESE PIZZA"
+        }
+      },
+      {
+        "id": "benefit",
+        "voiceoverText": "Experience the Real New York Flavor",
+        "displayText": "TASTE THE DIFFERENCE",
+        "duration": 2.5,
+        "visual": {
+          "type": "stock_video",
+          "url": "https://videos.pexels.com/video-files/35056367/14850014_640_360_60fps.mp4",
+          "alt": "Stock video: customers enjoying food at tables"
+        }
+      },
+      {
+        "id": "cta",
+        "voiceoverText": "Order Now from Joe's Pizza",
+        "displayText": "ORDER NOW",
+        "duration": 2.5,
+        "visual": {
+          "type": "logo_brand",
+          "url": "https://static.wixstatic.com/media/4801ad_570e884d1d5a484096074d2cbb3f04e2~mv2.jpg/v1/fit/w_2500,h_1330,al_c/4801ad_570e884d1d5a484096074d2cbb3f04e2~mv2.jpg"
+        },
+        "contactOverlay": {
+          "website": "joespizza.com"
+        }
+      }
+    ],
+    "tone": "playful",
+    "totalDuration": 10
+  },
+  "brand": {
+    "name": "Joe's Pizza ",
+    "colors": {
+      "primary": "#0000ee",
+      "secondary": "#666666",
+      "accent": "#0000ee",
+      "background": "#ffffff",
+      "text": "#000000",
+      "palette": [
+        "#0000ee",
+        "#000000",
+        "#fa080f",
+        "#810206",
+        "#f4848c",
+        "#7c7c7c",
+        "#3c3c3c",
+        "#c6b4b4"
+      ]
+    },
+    "logo": "https://static.wixstatic.com/media/4801ad_570e884d1d5a484096074d2cbb3f04e2~mv2.jpg/v1/fit/w_2500,h_1330,al_c/4801ad_570e884d1d5a484096074d2cbb3f04e2~mv2.jpg",
+    "cuisine": "italian"
+  },
+  "stockVideos": {
+    "benefit": {
+      "id": "pexels_video_35056367",
+      "url": "https://videos.pexels.com/video-files/35056367/14850014_640_360_60fps.mp4",
+      "preview": "https://images.pexels.com/videos/35056367/pictures/preview-0.jpg",
+      "width": 640,
+      "height": 360,
+      "duration": 7
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "success": true,
+  "script": {
+    "fullScript": "Fresh, locally-sourced ingredients daily. Seasonal menu made in-house every day. Enjoy healthy and delicious meals made with love. Order now at sweetgreen.",
+    "scenes": [
+      {
+        "id": "hook",
+        "voiceoverText": "Fresh, locally-sourced ingredients daily.",
+        "displayText": "FRESH PRODUCE",
+        "duration": 2.5,
+        "visualType": "animated_image",
+        "visualPrompt": "kale caesar salad bowl"
+      },
+      {
+        "id": "value",
+        "voiceoverText": "Seasonal menu made in-house every day.",
+        "displayText": "SEASONAL MEALS",
+        "duration": 2.5,
+        "visualType": "animated_image",
+        "visualPrompt": "autumn harvest grain bowl"
+      },
+      {
+        "id": "benefit",
+        "voiceoverText": "Enjoy healthy and delicious meals made with love.",
+        "displayText": "REAL FOOD",
+        "duration": 2.5,
+        "visualType": "stock_video",
+        "visualPrompt": "customers enjoying food at tables"
+      },
+      {
+        "id": "cta",
+        "voiceoverText": "Order now at sweetgreen.",
+        "displayText": "ORDER NOW",
+        "duration": 2.5,
+        "visualType": "logo_brand",
+        "visualPrompt": "logo with brand colors",
+        "contactOverlay": {
+          "website": "sweetgreen.com"
+        }
+      }
+    ],
+    "tone": "professional",
+    "totalDuration": 10
+  },
+  "pocRestaurant": {
+    "name": "Sweetgreen",
+    "suggestedTone": "professional"
+  }
+}

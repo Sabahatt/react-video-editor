@@ -1,0 +1,226 @@
+{
+  "success": true,
+  "data": {
+    "brand": {
+      "name": "sweetgreen",
+      "tagline": "Kale Caesar",
+      "description": "Simple, seasonal, healthy salads and grain bowls made in-house from scratch, using whole produce delivered that morning.",
+      "cuisine": "cafe"
+    },
+    "logo": "https://www.sweetgreen.com/favicon.ico",
+    "images": [
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/5418ra5b4TcMHRxOIobxUx/db9774df0dc69cf6b0aa8c40460a43a0/SG_Web_Image_Salad_Kale_Caesar_Chicken.png?w=600&q=75",
+        "alt": "Kale Caesar",
+        "width": 600,
+        "height": 600,
+        "type": "product"
+      },
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/3Z3fW9JhznhFDphzlHNmRx/d6410c46ffb8fc2c4c19c736a7f8d920/SG_Web_Image_Salad_Guacamole_Greens.png?w=600&q=75",
+        "alt": "Guac Greens",
+        "width": 600,
+        "height": 600,
+        "type": "product"
+      },
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/QCN3MLGE4UBEnU6vSjpyz/d17102e51361c12b6a14590b89701eb9/SG_Web_Image_Salad_Buffalo_Chicken.png?w=600&q=75",
+        "alt": "Buffalo chicken salad",
+        "width": 600,
+        "height": 600,
+        "type": "product"
+      },
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/Br3EYlf6srQYhCXdvOfwt/65b582e0c488a871e36cda2ea5e52df3/SG_Web_Image_Bowl_Harvest.png?w=600&q=75",
+        "alt": "Product Carousel-Harvest Bowl",
+        "width": 600,
+        "height": 600,
+        "type": "product"
+      },
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/5Kw3escovLNb8uWqQuzR7o/fb77087267c6de716f49d50ff755ede5/SG_Web_Image_Bowl_Chicken_Pesto_Parm.png?w=600&q=75",
+        "alt": "Chicken Pesto Parm",
+        "width": 600,
+        "height": 600,
+        "type": "product"
+      },
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/57c1vaLIB4WtuQXQblhUa5/5bbbf55c178b7985a03f994749445040/SG_Web_Image_Bowl_Shroomami.png?w=600&q=75",
+        "alt": "shroomami",
+        "width": 600,
+        "height": 600,
+        "type": "product"
+      },
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/6KrjKxVXHWvcbVNVuRm4M4/dba9726d9afd6ac3e0bb6c4d5a4dd088/SG_Web_Image_Side_Rosemary_Focaccia.jpg?w=600&q=75",
+        "alt": "Product Carousel-Rosemay Focaccia",
+        "width": 600,
+        "height": 600,
+        "type": "product"
+      },
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/5emJWQD3CfWTvVfJbSG8G7/edf1cfed73259bd969af2f685b927884/SG_Web_Image_Side_Roasted_Sweet_Potatoes.jpg?w=600&q=75",
+        "alt": "Hot Honey Sweet Potatoes",
+        "width": 437,
+        "height": 437,
+        "type": "product"
+      },
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/j28IU9sScvgvuvnQ5AkBj/a56a14858807fcd486277566fb11973d/SG_Web_Image_Beverage_Hibiscus_Berry_Tea.jpg?w=600&q=75",
+        "alt": "Hibiscus Clover Tea",
+        "width": 437,
+        "height": 437,
+        "type": "product"
+      },
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/3KJj1rIlmro9hzCPt2V3xu/19fd4da719138c99a045cc760d69ced2/Home_Page_New_Module-Image.jpg?w=600&q=75&fm=jpg&fl=progressive",
+        "width": 1129,
+        "height": 1129,
+        "type": "product"
+      },
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/QeC14rNAsPTRIuV4EAafd/f6d5c7574ff3f26a87f23d4f9d1c0b8f/PickUp1.png?w=600&q=75",
+        "alt": "PickUp1",
+        "width": 600,
+        "height": 597,
+        "type": "product"
+      },
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/5418ra5b4TcMHRxOIobxUx/db9774df0dc69cf6b0aa8c40460a43a0/SG_Web_Image_Salad_Kale_Caesar_Chicken.png?w=600&fm=avif&q=75",
+        "alt": "Kale Caesar",
+        "type": "product"
+      },
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/3Z3fW9JhznhFDphzlHNmRx/d6410c46ffb8fc2c4c19c736a7f8d920/SG_Web_Image_Salad_Guacamole_Greens.png?w=600&fm=avif&q=75",
+        "alt": "Guac Greens",
+        "type": "product"
+      },
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/QCN3MLGE4UBEnU6vSjpyz/d17102e51361c12b6a14590b89701eb9/SG_Web_Image_Salad_Buffalo_Chicken.png?w=600&fm=avif&q=75",
+        "alt": "Buffalo chicken salad",
+        "type": "product"
+      },
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/Br3EYlf6srQYhCXdvOfwt/65b582e0c488a871e36cda2ea5e52df3/SG_Web_Image_Bowl_Harvest.png?w=600&fm=avif&q=75",
+        "alt": "Product Carousel-Harvest Bowl",
+        "type": "product"
+      },
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/5Kw3escovLNb8uWqQuzR7o/fb77087267c6de716f49d50ff755ede5/SG_Web_Image_Bowl_Chicken_Pesto_Parm.png?w=600&fm=avif&q=75",
+        "alt": "Chicken Pesto Parm",
+        "type": "product"
+      },
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/57c1vaLIB4WtuQXQblhUa5/5bbbf55c178b7985a03f994749445040/SG_Web_Image_Bowl_Shroomami.png?w=600&fm=avif&q=75",
+        "alt": "shroomami",
+        "type": "product"
+      },
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/1x6PDnJKiMltzMVN1QzT98/1cdf9687c34b390c13a242271d78ee8f/SG_Web_Desktop.jpeg?w=600&q=75&fm=jpg&fl=progressive",
+        "alt": "Late Fall Menu",
+        "width": 1920,
+        "height": 1071,
+        "type": "hero"
+      },
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/2kD9mpLAlvub8t5q8Gopdg/81af15ba52e3e190d161c2724898daa4/sweetgreen_HP_Slider_NRO_Desktop.jpg?w=600&q=75&fm=jpg&fl=progressive",
+        "alt": "Let us know",
+        "width": 1920,
+        "height": 1071,
+        "type": "hero"
+      },
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/fjE9le7BEqfrbdQW5E9Ss/b6e20c43e99e911d355c5be07080f50c/HiringCampaign_11_Homepage_1600x893-Option1__1_.jpg?w=600&q=75&fm=jpg&fl=progressive",
+        "alt": "Find out more",
+        "width": 1920,
+        "height": 1071,
+        "type": "hero"
+      }
+    ],
+    "colors": {
+      "primary": "#00473c",
+      "secondary": "#666666",
+      "accent": "#e6ff55",
+      "background": "#ffffff",
+      "text": "#000000",
+      "palette": [
+        "#00473c",
+        "#e6ff55",
+        "#000000",
+        "#333333",
+        "#666666",
+        "#007bff",
+        "#ffffff"
+      ]
+    },
+    "contact": {
+      "website": "https://www.sweetgreen.com/"
+    },
+    "menuItems": [
+      {
+        "name": "Kale Caesar",
+        "description": "Antibiotic-free roasted chicken, tomatoes, shaved parmesan, parmesan crisps, organic shredded kale, chopped romaine, lime squeeze and caesar",
+        "image": "https://images.ctfassets.net/eum7w7yri3zr/5418ra5b4TcMHRxOIobxUx/db9774df0dc69cf6b0aa8c40460a43a0/SG_Web_Image_Salad_Kale_Caesar_Chicken.png?w=600&q=75"
+      },
+      {
+        "name": "Guacamole Greens",
+        "description": "Antibiotic-free roasted chicken, avocado, tomatoes, pickled onions, shredded cabbage, tortilla chips, organic spring mix, chopped romaine, lime squeeze and lime cilantro jalapeño vinaigrette",
+        "image": "https://images.ctfassets.net/eum7w7yri3zr/3Z3fW9JhznhFDphzlHNmRx/d6410c46ffb8fc2c4c19c736a7f8d920/SG_Web_Image_Salad_Guacamole_Greens.png?w=600&q=75"
+      },
+      {
+        "name": "Buffalo Chicken",
+        "description": "Antibiotic-free blackened chicken, pickled onions, tomatoes, raw carrots, cilantro, blue cheese, garlic breadcrumbs, shredded kale, chopped romaine, Sweetgreen hot sauce, caesar",
+        "image": "https://images.ctfassets.net/eum7w7yri3zr/QCN3MLGE4UBEnU6vSjpyz/d17102e51361c12b6a14590b89701eb9/SG_Web_Image_Salad_Buffalo_Chicken.png?w=600&q=75"
+      },
+      {
+        "name": "Harvest Bowl",
+        "description": "Antibiotic-free roasted chicken, roasted sweet potatoes, apples, goat cheese, roasted almonds, wild rice, organic shredded kale and balsamic vinaigrette",
+        "image": "https://images.ctfassets.net/eum7w7yri3zr/Br3EYlf6srQYhCXdvOfwt/65b582e0c488a871e36cda2ea5e52df3/SG_Web_Image_Bowl_Harvest.png?w=600&q=75"
+      },
+      {
+        "name": "Chicken Pesto Parm",
+        "description": "Roasted chicken, spicy broccoli, tomatoes, shaved parmesan, za’atar breadcrumbs, warm quinoa, baby spinach, sweetgreen hot sauce, pesto vinaigrette",
+        "image": "https://images.ctfassets.net/eum7w7yri3zr/5Kw3escovLNb8uWqQuzR7o/fb77087267c6de716f49d50ff755ede5/SG_Web_Image_Bowl_Chicken_Pesto_Parm.png?w=600&q=75"
+      },
+      {
+        "name": "Shroomami",
+        "description": "Roasted tofu, warm portobello mix, cucumbers, basil, shredded cabbage, roasted almonds, wild\nrice, organic shredded kale and miso sesame ginger",
+        "image": "https://images.ctfassets.net/eum7w7yri3zr/57c1vaLIB4WtuQXQblhUa5/5bbbf55c178b7985a03f994749445040/SG_Web_Image_Bowl_Shroomami.png?w=600&q=75"
+      },
+      {
+        "name": "Rosemary Focaccia",
+        "description": "Locally-made rosemary focaccia. Check out our regional bakery partners here!",
+        "image": "https://images.ctfassets.net/eum7w7yri3zr/6KrjKxVXHWvcbVNVuRm4M4/dba9726d9afd6ac3e0bb6c4d5a4dd088/SG_Web_Image_Side_Rosemary_Focaccia.jpg?w=600&q=75"
+      },
+      {
+        "name": "Roasted Sweet Potatoes",
+        "description": "Warm roasted sweet potatoes served with a choice of hot honey mustard or green goddess ranch",
+        "image": "https://images.ctfassets.net/eum7w7yri3zr/5emJWQD3CfWTvVfJbSG8G7/edf1cfed73259bd969af2f685b927884/SG_Web_Image_Side_Roasted_Sweet_Potatoes.jpg?w=600&q=75"
+      },
+      {
+        "name": "HIBISCUS CLOVER TEA",
+        "description": "Refreshing crimson clover tea mixed with bright berries and tangy hibiscus",
+        "image": "https://images.ctfassets.net/eum7w7yri3zr/j28IU9sScvgvuvnQ5AkBj/a56a14858807fcd486277566fb11973d/SG_Web_Image_Beverage_Hibiscus_Berry_Tea.jpg?w=600&q=75"
+      },
+      {
+        "name": "Kale Caesar",
+        "description": "Antibiotic-free roasted chicken, tomatoes, shaved parmesan, parmesan crisps, organic shredded kale, chopped romaine, lime squeeze and caesar",
+        "image": "https://images.ctfassets.net/eum7w7yri3zr/5418ra5b4TcMHRxOIobxUx/db9774df0dc69cf6b0aa8c40460a43a0/SG_Web_Image_Salad_Kale_Caesar_Chicken.png?w=600&q=75"
+      }
+    ],
+    "socialLinks": [
+      "https://www.tiktok.com/@sweetgreen",
+      "https://www.instagram.com/sweetgreen/",
+      "https://twitter.com/sweetgreen",
+      "http://facebook.com/sweetgreen"
+    ],
+    "scrapedAt": "2025-12-04T20:05:11.913Z",
+    "sourceUrl": "https://www.sweetgreen.com/"
+  },
+  "timing": {
+    "total": 26393,
+    "pageLoad": 25001,
+    "extraction": 65,
+    "colorExtraction": 1166
+  }
+}

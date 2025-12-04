@@ -1,0 +1,49 @@
+{
+  "success": true,
+  "script": {
+    "fullScript": "Authentic New York Pizza Since 1975 Foldable Slices, Hand-Tossed Daily Experience the Real New York Flavor Order Now from Joe's Pizza",
+    "scenes": [
+      {
+        "id": "hook",
+        "voiceoverText": "Authentic New York Pizza Since 1975",
+        "displayText": "NYC'S BEST",
+        "duration": 2.5,
+        "visualType": "animated_image",
+        "visualPrompt": "pepperoni pizza"
+      },
+      {
+        "id": "value",
+        "voiceoverText": "Foldable Slices, Hand-Tossed Daily",
+        "displayText": "GREENWICH VILLAGE FAVE",
+        "duration": 2.5,
+        "visualType": "animated_image",
+        "visualPrompt": "cheese pizza slice"
+      },
+      {
+        "id": "benefit",
+        "voiceoverText": "Experience the Real New York Flavor",
+        "displayText": "TASTE THE DIFFERENCE",
+        "duration": 2.5,
+        "visualType": "stock_video",
+        "visualPrompt": "customers enjoying food at tables"
+      },
+      {
+        "id": "cta",
+        "voiceoverText": "Order Now from Joe's Pizza",
+        "displayText": "ORDER NOW",
+        "duration": 2.5,
+        "visualType": "logo_brand",
+        "visualPrompt": "logo with brand colors",
+        "contactOverlay": {
+          "website": "joespizza.com"
+        }
+      }
+    ],
+    "tone": "playful",
+    "totalDuration": 10
+  },
+  "pocRestaurant": {
+    "name": "Joe's Pizza",
+    "suggestedTone": "playful"
+  }
+}

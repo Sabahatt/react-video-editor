@@ -1,0 +1,87 @@
+{
+  "success": true,
+  "script": {
+    "fullScript": "LIFE IS SWEET at Doughnut Vault. Small-batch, handcrafted donuts made fresh daily. Lines form early because they sell out fast. Visit Doughnut Vault today!",
+    "scenes": [
+      {
+        "id": "hook",
+        "voiceoverText": "LIFE IS SWEET at Doughnut Vault.",
+        "displayText": "TRY OUR DONUTS",
+        "duration": 2.5,
+        "visual": {
+          "type": "animated_image",
+          "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/45fae570-8794-4029-a44a-e2e842b6eada/donut.png",
+          "alt": "A donut"
+        }
+      },
+      {
+        "id": "value",
+        "voiceoverText": "Small-batch, handcrafted donuts made fresh daily.",
+        "displayText": "ARTISAN DONUTS",
+        "duration": 2.5,
+        "visual": {
+          "type": "animated_image",
+          "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/a34fbdbe-fab1-4355-bf30-589798122201/Doughnut-Vault-Logo.png?format=1500w",
+          "alt": "Doughnut Vault"
+        }
+      },
+      {
+        "id": "benefit",
+        "voiceoverText": "Lines form early because they sell out fast.",
+        "displayText": "GET TO VAULT EARLY",
+        "duration": 2.5,
+        "visual": {
+          "type": "stock_video",
+          "url": "https://videos.pexels.com/video-files/3992587/3992587-hd_1366_720_50fps.mp4",
+          "alt": "Stock video: busy restaurant kitchen with customers waiting"
+        }
+      },
+      {
+        "id": "cta",
+        "voiceoverText": "Visit Doughnut Vault today!",
+        "displayText": "ORDER NOW",
+        "duration": 2.5,
+        "visual": {
+          "type": "logo_brand",
+          "url": "http://static1.squarespace.com/static/66675789efc1680422bf043f/t/6672d25f5162aa7fa7f5671d/1718800991373/DV_SocialShare.png?format=1500w"
+        },
+        "contactOverlay": {
+          "website": "doughnutvault.com"
+        }
+      }
+    ],
+    "tone": "friendly",
+    "totalDuration": 10
+  },
+  "brand": {
+    "name": "Doughnut Vault",
+    "colors": {
+      "primary": "#e8e1c8",
+      "secondary": "#666666",
+      "accent": "#609ec4",
+      "background": "#fffdfa",
+      "text": "#001117",
+      "palette": [
+        "#e8e1c8",
+        "#609ec4",
+        "#fffdfa",
+        "#001117",
+        "#333333",
+        "#666666",
+        "#007bff",
+        "#ffffff"
+      ]
+    },
+    "logo": "http://static1.squarespace.com/static/66675789efc1680422bf043f/t/6672d25f5162aa7fa7f5671d/1718800991373/DV_SocialShare.png?format=1500w"
+  },
+  "stockVideos": {
+    "benefit": {
+      "id": "pexels_video_3992587",
+      "url": "https://videos.pexels.com/video-files/3992587/3992587-hd_1366_720_50fps.mp4",
+      "preview": "https://images.pexels.com/videos/3992587/pictures/preview-0.jpg",
+      "width": 1366,
+      "height": 720,
+      "duration": 7
+    }
+  }
+}

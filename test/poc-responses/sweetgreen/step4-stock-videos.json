@@ -1,0 +1,87 @@
+{
+  "success": true,
+  "script": {
+    "fullScript": "Fresh, locally-sourced ingredients daily. Seasonal menu made in-house every day. Enjoy healthy and delicious meals made with love. Order now at sweetgreen.",
+    "scenes": [
+      {
+        "id": "hook",
+        "voiceoverText": "Fresh, locally-sourced ingredients daily.",
+        "displayText": "FRESH PRODUCE",
+        "duration": 2.5,
+        "visual": {
+          "type": "animated_image",
+          "url": "https://images.ctfassets.net/eum7w7yri3zr/5418ra5b4TcMHRxOIobxUx/db9774df0dc69cf6b0aa8c40460a43a0/SG_Web_Image_Salad_Kale_Caesar_Chicken.png?w=600&q=75",
+          "alt": "Kale Caesar"
+        }
+      },
+      {
+        "id": "value",
+        "voiceoverText": "Seasonal menu made in-house every day.",
+        "displayText": "SEASONAL MEALS",
+        "duration": 2.5,
+        "visual": {
+          "type": "animated_image",
+          "url": "https://images.ctfassets.net/eum7w7yri3zr/Br3EYlf6srQYhCXdvOfwt/65b582e0c488a871e36cda2ea5e52df3/SG_Web_Image_Bowl_Harvest.png?w=600&q=75",
+          "alt": "Product Carousel-Harvest Bowl"
+        }
+      },
+      {
+        "id": "benefit",
+        "voiceoverText": "Enjoy healthy and delicious meals made with love.",
+        "displayText": "REAL FOOD",
+        "duration": 2.5,
+        "visual": {
+          "type": "stock_video",
+          "url": "https://videos.pexels.com/video-files/3245641/3245641-hd_1280_720_50fps.mp4",
+          "alt": "Stock video: customers enjoying food at tables"
+        }
+      },
+      {
+        "id": "cta",
+        "voiceoverText": "Order now at sweetgreen.",
+        "displayText": "ORDER NOW",
+        "duration": 2.5,
+        "visual": {
+          "type": "logo_brand",
+          "url": "https://www.sweetgreen.com/favicon.ico"
+        },
+        "contactOverlay": {
+          "website": "sweetgreen.com"
+        }
+      }
+    ],
+    "tone": "professional",
+    "totalDuration": 10
+  },
+  "brand": {
+    "name": "sweetgreen",
+    "colors": {
+      "primary": "#00473c",
+      "secondary": "#666666",
+      "accent": "#e6ff55",
+      "background": "#ffffff",
+      "text": "#000000",
+      "palette": [
+        "#00473c",
+        "#e6ff55",
+        "#000000",
+        "#333333",
+        "#666666",
+        "#007bff",
+        "#ffffff"
+      ]
+    },
+    "logo": "https://www.sweetgreen.com/favicon.ico",
+    "cuisine": "cafe"
+  },
+  "stockVideos": {
+    "benefit": {
+      "id": "pexels_video_3245641",
+      "url": "https://videos.pexels.com/video-files/3245641/3245641-hd_1280_720_50fps.mp4",
+      "preview": "https://images.pexels.com/videos/3245641/pictures/preview-0.jpg",
+      "width": 1280,
+      "height": 720,
+      "duration": 9
+    }
+  }
+}

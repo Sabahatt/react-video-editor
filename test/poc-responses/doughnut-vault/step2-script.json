@@ -1,0 +1,49 @@
+{
+  "success": true,
+  "script": {
+    "fullScript": "LIFE IS SWEET at Doughnut Vault. Small-batch, handcrafted donuts made fresh daily. Lines form early because they sell out fast. Visit Doughnut Vault today!",
+    "scenes": [
+      {
+        "id": "hook",
+        "voiceoverText": "LIFE IS SWEET at Doughnut Vault.",
+        "displayText": "TRY OUR DONUTS",
+        "duration": 2.5,
+        "visualType": "animated_image",
+        "visualPrompt": "old-fashioned glazed donut"
+      },
+      {
+        "id": "value",
+        "voiceoverText": "Small-batch, handcrafted donuts made fresh daily.",
+        "displayText": "ARTISAN DONUTS",
+        "duration": 2.5,
+        "visualType": "animated_image",
+        "visualPrompt": "buttermilk old-fashioned donut"
+      },
+      {
+        "id": "benefit",
+        "voiceoverText": "Lines form early because they sell out fast.",
+        "displayText": "GET TO VAULT EARLY",
+        "duration": 2.5,
+        "visualType": "stock_video",
+        "visualPrompt": "busy restaurant kitchen with customers waiting"
+      },
+      {
+        "id": "cta",
+        "voiceoverText": "Visit Doughnut Vault today!",
+        "displayText": "ORDER NOW",
+        "duration": 2.5,
+        "visualType": "logo_brand",
+        "visualPrompt": "Doughnut Vault logo with brand colors",
+        "contactOverlay": {
+          "website": "doughnutvault.com"
+        }
+      }
+    ],
+    "tone": "friendly",
+    "totalDuration": 10
+  },
+  "pocRestaurant": {
+    "name": "The Doughnut Vault",
+    "suggestedTone": "friendly"
+  }
+}

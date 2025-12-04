@@ -1,12 +1,12 @@
 {
   "success": true,
   "script": {
-    "fullScript": "Experience New York's Finest Pizza Serving Authentic NYC Pizza Since 1975 Get Your Perfectly Foldable Slice Order Now at JoesPizza.com",
+    "fullScript": "Authentic New York Pizza Since 1975 Foldable Slices, Hand-Tossed Daily Experience the Real New York Flavor Order Now from Joe's Pizza",
     "scenes": [
       {
         "id": "hook",
-        "voiceoverText": "Experience New York's Finest Pizza",
-        "displayText": "JOE'S PIZZA",
+        "voiceoverText": "Authentic New York Pizza Since 1975",
+        "displayText": "NYC'S BEST",
         "duration": 2.5,
         "visual": {
           "type": "animated_image",
@@ -16,19 +16,19 @@
       },
       {
         "id": "value",
-        "voiceoverText": "Serving Authentic NYC Pizza Since 1975",
-        "displayText": "NYC PIZZA SINCE 1975",
+        "voiceoverText": "Foldable Slices, Hand-Tossed Daily",
+        "displayText": "GREENWICH VILLAGE FAVE",
         "duration": 2.5,
         "visual": {
           "type": "animated_image",
-          "url": "https://static.wixstatic.com/media/4801ad_527a80689d44480b97d5bd40e97cad2d~mv2.jpg/v1/fill/w_413,h_232,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/4801ad_527a80689d44480b97d5bd40e97cad2d~mv2.jpg",
-          "alt": "❤️   SAUSAGE PIZZA"
+          "url": "https://static.wixstatic.com/media/4801ad_91ee8244d63d48abaacd98db231e77e5~mv2.png/v1/fill/w_413,h_232,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/4801ad_91ee8244d63d48abaacd98db231e77e5~mv2.png",
+          "alt": "🇺🇸  NY CHEESE PIZZA"
         }
       },
       {
         "id": "benefit",
-        "voiceoverText": "Get Your Perfectly Foldable Slice",
-        "displayText": "FOLDABLE SLICE",
+        "voiceoverText": "Experience the Real New York Flavor",
+        "displayText": "TASTE THE DIFFERENCE",
         "duration": 2.5,
         "visual": {
           "type": "stock_video",
@@ -38,7 +38,7 @@
       },
       {
         "id": "cta",
-        "voiceoverText": "Order Now at JoesPizza.com",
+        "voiceoverText": "Order Now from Joe's Pizza",
         "displayText": "ORDER NOW",
         "duration": 2.5,
         "visual": {

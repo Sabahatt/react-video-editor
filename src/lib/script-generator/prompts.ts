@@ -311,8 +311,8 @@ const POC_FALLBACK_SCRIPTS: Record<string, (duration: number) => FallbackScriptT
           voiceoverText: 'The line forms early for a reason.',
           displayText: 'WORTH THE WAIT',
           duration: d,
-          visualType: 'animated_image',
-          visualPrompt: 'glazed donut'
+          visualType: 'stock_video',
+          visualPrompt: 'fresh donuts bakery'
         },
         {
           id: 'value',
@@ -320,7 +320,7 @@ const POC_FALLBACK_SCRIPTS: Record<string, (duration: number) => FallbackScriptT
           displayText: 'SMALL-BATCH ARTISAN',
           duration: d,
           visualType: 'animated_image',
-          visualPrompt: 'old fashioned donut'
+          visualPrompt: 'glazed donut'
         },
         {
           id: 'benefit',
@@ -328,7 +328,7 @@ const POC_FALLBACK_SCRIPTS: Record<string, (duration: number) => FallbackScriptT
           displayText: 'UNFORGETTABLE TASTE',
           duration: d,
           visualType: 'animated_image',
-          visualPrompt: 'buttermilk donut'
+          visualPrompt: 'old fashioned donut'
         },
         {
           id: 'cta',
@@ -351,15 +351,15 @@ const POC_FALLBACK_SCRIPTS: Record<string, (duration: number) => FallbackScriptT
           displayText: 'REAL NYC PIZZA',
           duration: d,
           visualType: 'animated_image',
-          visualPrompt: 'NY cheese pizza'
+          visualPrompt: 'pepperoni pizza'
         },
         {
           id: 'value',
           voiceoverText: 'Hand-tossed perfection since nineteen seventy-five.',
           displayText: 'SINCE 1975',
           duration: d,
-          visualType: 'animated_image',
-          visualPrompt: 'pepperoni pizza'
+          visualType: 'stock_video',
+          visualPrompt: 'pizza chef tossing dough'
         },
         {
           id: 'benefit',
@@ -367,7 +367,7 @@ const POC_FALLBACK_SCRIPTS: Record<string, (duration: number) => FallbackScriptT
           displayText: 'PERFECT SLICE',
           duration: d,
           visualType: 'animated_image',
-          visualPrompt: 'margherita pizza'
+          visualPrompt: 'cheese pizza slice'
         },
         {
           id: 'cta',
@@ -389,8 +389,8 @@ const POC_FALLBACK_SCRIPTS: Record<string, (duration: number) => FallbackScriptT
           voiceoverText: 'Real food that actually tastes incredible.',
           displayText: 'REAL FOOD',
           duration: d,
-          visualType: 'animated_image',
-          visualPrompt: 'harvest bowl'
+          visualType: 'stock_video',
+          visualPrompt: 'fresh salad preparation'
         },
         {
           id: 'value',
@@ -398,7 +398,7 @@ const POC_FALLBACK_SCRIPTS: Record<string, (duration: number) => FallbackScriptT
           displayText: 'LOCAL & SEASONAL',
           duration: d,
           visualType: 'animated_image',
-          visualPrompt: 'kale caesar salad'
+          visualPrompt: 'harvest bowl'
         },
         {
           id: 'benefit',
@@ -406,7 +406,7 @@ const POC_FALLBACK_SCRIPTS: Record<string, (duration: number) => FallbackScriptT
           displayText: 'FUEL YOUR DAY',
           duration: d,
           visualType: 'animated_image',
-          visualPrompt: 'chicken avocado bowl'
+          visualPrompt: 'kale caesar salad'
         },
         {
           id: 'cta',
