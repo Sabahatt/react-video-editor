@@ -14,7 +14,6 @@ dotenv.config({ path: '.env.local' });
 import {
   findBestMatchingImages,
   classifyImage,
-  generateCaption,
   validateImageContent,
   assignImagesToScenes,
   preloadModels,
@@ -117,34 +116,17 @@ async function runTests() {
   }
   console.log('\n');
 
-  // Test 6: Image Caption (runs locally - no API key needed!)
-  console.log('TEST 6: Generate Caption (ViT-GPT2 - LOCAL)');
-  console.log('-'.repeat(40));
-
-  console.log('Testing image captioning (first run downloads ~500MB model)...');
-  const caption = await generateCaption(TEST_IMAGES.coffee);
-  console.log(`Coffee image caption: "${caption}"`);
-
-  // Also caption other images to demonstrate
-  console.log('\nCaptioning all test images:');
-  for (const [name, url] of Object.entries(TEST_IMAGES)) {
-    const cap = await generateCaption(url);
-    console.log(`  ${name}: "${cap}"`);
-  }
-  console.log('\n');
-
   // Summary
   console.log('='.repeat(60));
   console.log('ALL TESTS COMPLETED SUCCESSFULLY');
   console.log('='.repeat(60));
   console.log('\nThe visual selector is ready for use in your ad pipeline!');
-  console.log('All models run LOCALLY - no API keys required!');
+  console.log('CLIP model runs LOCALLY - no API keys required!');
   console.log('\nUse these functions in src/lib/visual-selector.ts:');
   console.log('  - findBestMatchingImages(images, text)   <- Match images to text');
   console.log('  - classifyImage(imageUrl, labels)        <- Classify into categories');
   console.log('  - validateImageContent(imageUrl, expected)');
   console.log('  - assignImagesToScenes(images, scenes)   <- Auto-assign for ad scenes');
-  console.log('  - generateCaption(imageUrl)              <- Generate text description');
 }
 
 // Run tests

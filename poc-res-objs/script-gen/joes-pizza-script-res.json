@@ -1,39 +1,39 @@
 {
     "success": true,
     "script": {
-        "fullScript": "New York's Finest Pizza Since 1975 Authentic New York-style pizza slices A taste of the Big Apple in every bite Get Joe's Pizza Now!",
+        "fullScript": "Experience New York's Finest Pizza Serving Authentic NYC Pizza Since 1975 Get Your Perfectly Foldable Slice Order Now at JoesPizza.com",
         "scenes": [
             {
                 "id": "hook",
-                "voiceoverText": "New York's Finest Pizza Since 1975",
-                "displayText": "JOES PIZZA",
+                "voiceoverText": "Experience New York's Finest Pizza",
+                "displayText": "JOE'S PIZZA",
                 "duration": 2.5,
-                "visualType": "stock_video",
-                "visualPrompt": "Busy kitchen with pizza chefs tossing dough"
+                "visualType": "animated_image",
+                "visualPrompt": "pepperoni pizza"
             },
             {
                 "id": "value",
-                "voiceoverText": "Authentic New York-style pizza slices",
-                "displayText": "CRISPY, FOLDABLE SLICES",
+                "voiceoverText": "Serving Authentic NYC Pizza Since 1975",
+                "displayText": "NYC PIZZA SINCE 1975",
                 "duration": 2.5,
                 "visualType": "animated_image",
-                "visualPrompt": "Foldable slice of pizza with perfect cheese-to-sauce ratio"
+                "visualPrompt": "cheese pizza slice"
             },
             {
                 "id": "benefit",
-                "voiceoverText": "A taste of the Big Apple in every bite",
-                "displayText": "GREENWICH VILLAGE ICON",
+                "voiceoverText": "Get Your Perfectly Foldable Slice",
+                "displayText": "FOLDABLE SLICE",
                 "duration": 2.5,
-                "visualType": "animated_image",
-                "visualPrompt": "Perfectly crispy yet foldable slice with iconic NYC background"
+                "visualType": "stock_video",
+                "visualPrompt": "customers enjoying food at tables"
             },
             {
                 "id": "cta",
-                "voiceoverText": "Get Joe's Pizza Now!",
+                "voiceoverText": "Order Now at JoesPizza.com",
                 "displayText": "ORDER NOW",
                 "duration": 2.5,
                 "visualType": "logo_brand",
-                "visualPrompt": "Logo with brand colors and contact info",
+                "visualPrompt": "logo with brand colors",
                 "contactOverlay": {
                     "website": "joespizza.com"
                 }

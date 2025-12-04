@@ -1,39 +1,39 @@
 {
     "success": true,
     "script": {
-        "fullScript": "Indulge in Chicago's sweetest secrets Made fresh daily, small-batch donuts Experience the taste of Chicago's tradition Get your The Doughnut Vault fix",
+        "fullScript": "Chicago's Premier Artisan Donuts await! Handcrafted small-batch donuts made fresh daily. Indulge in old-fashioned goodness in Chicago! Visit The Doughnut Vault today!",
         "scenes": [
             {
                 "id": "hook",
-                "voiceoverText": "Indulge in Chicago's sweetest secrets",
-                "displayText": "ARTISAN DONUTS",
+                "voiceoverText": "Chicago's Premier Artisan Donuts await!",
+                "displayText": "CHICAGO'S PREMIER",
                 "duration": 2.5,
                 "visualType": "animated_image",
-                "visualPrompt": "a close-up shot of a freshly baked old-fashioned glazed donut"
+                "visualPrompt": "glazed donut"
             },
             {
                 "id": "value",
-                "voiceoverText": "Made fresh daily, small-batch donuts",
-                "displayText": "HANDCRAFTED WITH LOVE",
+                "voiceoverText": "Handcrafted small-batch donuts made fresh daily.",
+                "displayText": "SMALL-BATCH DONUTS",
                 "duration": 2.5,
                 "visualType": "animated_image",
-                "visualPrompt": "a photo of a chef handcrafting a donut"
+                "visualPrompt": "buttermilk old-fashioned"
             },
             {
                 "id": "benefit",
-                "voiceoverText": "Experience the taste of Chicago's tradition",
-                "displayText": "OLD-FASHIONED GLAZED",
+                "voiceoverText": "Indulge in old-fashioned goodness in Chicago!",
+                "displayText": "OLD-FASHIONED TREATS",
                 "duration": 2.5,
-                "visualType": "animated_image",
-                "visualPrompt": "a shot of a customer taking a bite of a donut with a happy expression"
+                "visualType": "stock_video",
+                "visualPrompt": "customers enjoying food at tables"
             },
             {
                 "id": "cta",
-                "voiceoverText": "Get your The Doughnut Vault fix",
+                "voiceoverText": "Visit The Doughnut Vault today!",
                 "displayText": "ORDER NOW",
                 "duration": 2.5,
                 "visualType": "logo_brand",
-                "visualPrompt": "The Doughnut Vault logo with brand colors and address",
+                "visualPrompt": "logo with brand colors",
                 "contactOverlay": {
                     "website": "doughnutvault.com"
                 }

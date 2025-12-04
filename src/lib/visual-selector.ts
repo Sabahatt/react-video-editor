@@ -1,12 +1,12 @@
 /**
- * Visual Selector - CLIP & ViT-GPT2 Integration for Smart Image Selection
+ * Visual Selector - CLIP Integration for Smart Image Selection
  *
  * Used in Step 3 of the video ad pipeline to:
- * - Match images semantically to script text (CLIP)
+ * - Match scraped images to script scenes using CLIP (semantic similarity)
  * - Classify images into categories
- * - Generate image captions (ViT-GPT2)
  *
- * ALL MODELS RUN LOCALLY via @huggingface/transformers - NO API KEY REQUIRED
+ * CLIP MODEL RUNS LOCALLY via @huggingface/transformers - NO API KEY REQUIRED
+ * First run downloads ~350MB model from HuggingFace CDN
  */
 
 import { pipeline, env } from '@huggingface/transformers';
@@ -19,7 +19,6 @@ env.useBrowserCache = false;
 export interface ScoredImage {
   url: string;
   score: number;
-  caption?: string;
 }
 
 export interface ImageMatchResult {
@@ -30,14 +29,11 @@ export interface ImageMatchResult {
 
 export interface VisualSelectorConfig {
   clipModel?: string;
-  hfToken?: string; // Optional: for BLIP via HuggingFace API
 }
 
-// Singleton pipeline instances (lazy loaded)
+// Singleton pipeline instance (lazy loaded)
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let clipPipeline: any = null;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let captionPipeline: any = null;
 
 const DEFAULT_CONFIG: VisualSelectorConfig = {
   clipModel: 'Xenova/clip-vit-base-patch32',
@@ -58,20 +54,6 @@ async function getClipPipeline(config: VisualSelectorConfig = DEFAULT_CONFIG) {
   return clipPipeline;
 }
 
-/**
- * Initialize caption model for image-to-text (runs locally)
- */
-async function getCaptionPipeline() {
-  if (!captionPipeline) {
-    console.log('Loading caption model (first time will download ~1GB)...');
-    captionPipeline = await pipeline(
-      'image-to-text',
-      'Xenova/vit-gpt2-image-captioning'
-    );
-    console.log('Caption model loaded successfully!');
-  }
-  return captionPipeline;
-}
 
 /**
  * Fetch image as blob for local processing
@@ -166,38 +148,6 @@ export async function classifyImage(
   }
 }
 
-/**
- * Generate a caption for an image using local model (ViT-GPT2)
- * Runs locally via @huggingface/transformers - NO API KEY REQUIRED
- *
- * @param imageUrl - URL of the image to caption
- * @returns Generated caption string
- *
- * @example
- * const caption = await generateCaption('https://example.com/product.jpg');
- * // "a cup of coffee on a wooden table"
- */
-export async function generateCaption(
-  imageUrl: string
-): Promise<string> {
-  try {
-    const captioner = await getCaptionPipeline();
-    const imageBlob = await fetchImageAsBlob(imageUrl);
-
-    // Generate caption
-    const result = await captioner(imageBlob);
-
-    // Result is an array with generated_text
-    if (Array.isArray(result) && result.length > 0 && result[0].generated_text) {
-      return result[0].generated_text;
-    }
-
-    return '[No caption generated]';
-  } catch (error) {
-    console.error('Caption generation failed:', error);
-    return '[Caption generation failed]';
-  }
-}
 
 /**
  * Validate if an image matches its expected content using CLIP
@@ -285,6 +235,5 @@ export async function preloadModels(config: VisualSelectorConfig = DEFAULT_CONFI
  */
 export function clearModelCache(): void {
   clipPipeline = null;
-  captionPipeline = null;
-  console.log('Model cache cleared');
+  console.log('CLIP model cache cleared');
 }

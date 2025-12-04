@@ -1,39 +1,39 @@
 {
     "success": true,
     "script": {
-        "fullScript": "Fresh, locally sourced goodness awaits. Sustainable practices for a healthier you. Delicious, customizable bowls for every day. Order now and taste the difference.",
+        "fullScript": "Fresh, locally-sourced ingredients Made with seasonal ingredients always Enjoy a healthy meal, every time Order now at sweetgreen",
         "scenes": [
             {
                 "id": "hook",
-                "voiceoverText": "Fresh, locally sourced goodness awaits.",
+                "voiceoverText": "Fresh, locally-sourced ingredients",
                 "displayText": "REAL FOOD",
                 "duration": 2.5,
                 "visualType": "animated_image",
-                "visualPrompt": "A vibrant mix of seasonal greens and colorful vegetables in a bowl"
+                "visualPrompt": "peppered arugula bowl"
             },
             {
                 "id": "value",
-                "voiceoverText": "Sustainable practices for a healthier you.",
-                "displayText": "LOCAL INGREDIENTS",
+                "voiceoverText": "Made with seasonal ingredients always",
+                "displayText": "SEASONAL EATS",
                 "duration": 2.5,
                 "visualType": "animated_image",
-                "visualPrompt": "A chef carefully selecting fresh herbs from the garden"
+                "visualPrompt": "roasted harvest salad bowl"
             },
             {
                 "id": "benefit",
-                "voiceoverText": "Delicious, customizable bowls for every day.",
+                "voiceoverText": "Enjoy a healthy meal, every time",
                 "displayText": "HEALTHY CHOICES",
                 "duration": 2.5,
-                "visualType": "animated_image",
-                "visualPrompt": "A variety of nutrient-dense bowls with different toppings and sauces"
+                "visualType": "stock_video",
+                "visualPrompt": "customers enjoying food at tables"
             },
             {
                 "id": "cta",
-                "voiceoverText": "Order now and taste the difference.",
+                "voiceoverText": "Order now at sweetgreen",
                 "displayText": "ORDER NOW",
                 "duration": 2.5,
                 "visualType": "logo_brand",
-                "visualPrompt": "Sweetgreen logo with brand colors and contact information",
+                "visualPrompt": "sweetgreen logo with brand colors",
                 "contactOverlay": {
                     "website": "sweetgreen.com"
                 }

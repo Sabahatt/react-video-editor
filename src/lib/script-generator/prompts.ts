@@ -222,9 +222,24 @@ SCENE STRUCTURE:
 CRITICAL RULES:
 - voiceoverText: ${wordsPerScene}-${wordsPerScene + 2} words per scene (MUST match duration for natural pacing)
 - displayText: 2-4 words, ALL CAPS, complements voiceover (NOT identical)
-- visualPrompt: Be specific! Describe what the image should show (used to match scraped images or search stock video)
 - visualType: Choose based on scene content, prioritize animated_image for product shots
 - Keywords to incorporate: ${effectiveKeywords.join(', ')}
+
+VISUAL PROMPT GUIDELINES (VERY IMPORTANT):
+The visualPrompt is used to match against actual product images scraped from the restaurant's website.
+These images typically have names like "Pepperoni Pizza", "Cheese Pizza", "Caesar Salad", "Glazed Donut", etc.
+
+For animated_image scenes, write visualPrompt as a CONCRETE PRODUCT NAME that would match menu items:
+- GOOD: "pepperoni pizza", "cheese pizza slice", "glazed donut", "caesar salad bowl"
+- GOOD: "whole pizza with melted mozzarella", "fresh salad with grilled chicken"
+- BAD: "foldable slice with perfect cheese ratio" (too abstract, won't match any product name)
+- BAD: "crispy yet foldable" (describes qualities, not the actual product)
+
+Think: "What would this dish be called on a menu?" - that's your visualPrompt.
+
+For stock_video scenes, describe the ACTION or ATMOSPHERE:
+- GOOD: "busy restaurant kitchen with chefs cooking", "customers enjoying food at tables"
+- These will be searched on stock video sites, so be descriptive of the scene.
 
 OUTPUT FORMAT (JSON only):
 {
@@ -235,7 +250,7 @@ OUTPUT FORMAT (JSON only):
       "displayText": "TWO TO FOUR WORDS",
       "duration": ${sceneDuration},
       "visualType": "animated_image or stock_video",
-      "visualPrompt": "specific description of what the visual should show"
+      "visualPrompt": "concrete product name OR action scene description"
     },
     {
       "id": "value",
@@ -243,7 +258,7 @@ OUTPUT FORMAT (JSON only):
       "displayText": "VALUE PROPOSITION",
       "duration": ${sceneDuration},
       "visualType": "animated_image",
-      "visualPrompt": "specific description of signature product/dish"
+      "visualPrompt": "signature dish name (e.g., pepperoni pizza, glazed donut)"
     },
     {
       "id": "benefit",
@@ -251,7 +266,7 @@ OUTPUT FORMAT (JSON only):
       "displayText": "BENEFIT TEXT",
       "duration": ${sceneDuration},
       "visualType": "animated_image or stock_video",
-      "visualPrompt": "specific description based on scene content"
+      "visualPrompt": "product name or scene description"
     },
     {
       "id": "cta",
@@ -297,7 +312,7 @@ const POC_FALLBACK_SCRIPTS: Record<string, (duration: number) => FallbackScriptT
           displayText: 'WORTH THE WAIT',
           duration: d,
           visualType: 'animated_image',
-          visualPrompt: 'fresh glazed donuts stacked on display'
+          visualPrompt: 'glazed donut'
         },
         {
           id: 'value',
@@ -305,7 +320,7 @@ const POC_FALLBACK_SCRIPTS: Record<string, (duration: number) => FallbackScriptT
           displayText: 'SMALL-BATCH ARTISAN',
           duration: d,
           visualType: 'animated_image',
-          visualPrompt: 'glazed donut close-up with shiny glaze'
+          visualPrompt: 'old fashioned donut'
         },
         {
           id: 'benefit',
@@ -313,7 +328,7 @@ const POC_FALLBACK_SCRIPTS: Record<string, (duration: number) => FallbackScriptT
           displayText: 'UNFORGETTABLE TASTE',
           duration: d,
           visualType: 'animated_image',
-          visualPrompt: 'variety of donuts including old-fashioned and buttermilk'
+          visualPrompt: 'buttermilk donut'
         },
         {
           id: 'cta',
@@ -336,7 +351,7 @@ const POC_FALLBACK_SCRIPTS: Record<string, (duration: number) => FallbackScriptT
           displayText: 'REAL NYC PIZZA',
           duration: d,
           visualType: 'animated_image',
-          visualPrompt: 'whole New York style pizza with melted cheese'
+          visualPrompt: 'NY cheese pizza'
         },
         {
           id: 'value',
@@ -344,7 +359,7 @@ const POC_FALLBACK_SCRIPTS: Record<string, (duration: number) => FallbackScriptT
           displayText: 'SINCE 1975',
           duration: d,
           visualType: 'animated_image',
-          visualPrompt: 'classic pepperoni pizza slice with cheese pull'
+          visualPrompt: 'pepperoni pizza'
         },
         {
           id: 'benefit',
@@ -352,7 +367,7 @@ const POC_FALLBACK_SCRIPTS: Record<string, (duration: number) => FallbackScriptT
           displayText: 'PERFECT SLICE',
           duration: d,
           visualType: 'animated_image',
-          visualPrompt: 'close-up of pizza slice showing crispy crust'
+          visualPrompt: 'margherita pizza'
         },
         {
           id: 'cta',
@@ -375,7 +390,7 @@ const POC_FALLBACK_SCRIPTS: Record<string, (duration: number) => FallbackScriptT
           displayText: 'REAL FOOD',
           duration: d,
           visualType: 'animated_image',
-          visualPrompt: 'colorful fresh salad bowl from above'
+          visualPrompt: 'harvest bowl'
         },
         {
           id: 'value',
@@ -383,7 +398,7 @@ const POC_FALLBACK_SCRIPTS: Record<string, (duration: number) => FallbackScriptT
           displayText: 'LOCAL & SEASONAL',
           duration: d,
           visualType: 'animated_image',
-          visualPrompt: 'harvest bowl with grains and roasted vegetables'
+          visualPrompt: 'kale caesar salad'
         },
         {
           id: 'benefit',
@@ -391,7 +406,7 @@ const POC_FALLBACK_SCRIPTS: Record<string, (duration: number) => FallbackScriptT
           displayText: 'FUEL YOUR DAY',
           duration: d,
           visualType: 'animated_image',
-          visualPrompt: 'warm grain bowl with fresh greens and protein'
+          visualPrompt: 'chicken avocado bowl'
         },
         {
           id: 'cta',

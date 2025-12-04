@@ -1,0 +1,48 @@
+{
+  "success": true,
+  "matches": [
+    {
+      "sceneId": "hook",
+      "visualType": "animated_image",
+      "visualPrompt": "pepperoni pizza",
+      "matchedImage": {
+        "url": "https://static.wixstatic.com/media/4801ad_ec296bae26c34d46860df871ab25bea4~mv2.jpg/v1/fill/w_413,h_232,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/4801ad_ec296bae26c34d46860df871ab25bea4~mv2.jpg",
+        "alt": "🍕  PEPPERONI PIZZA",
+        "score": 0.9994292259216309,
+        "qualityScore": 0.95,
+        "combinedScore": 0.9847306078787899,
+        "width": 413,
+        "height": 232
+      }
+    },
+    {
+      "sceneId": "value",
+      "visualType": "animated_image",
+      "visualPrompt": "cheese pizza slice",
+      "matchedImage": {
+        "url": "https://static.wixstatic.com/media/4801ad_527a80689d44480b97d5bd40e97cad2d~mv2.jpg/v1/fill/w_413,h_232,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/4801ad_527a80689d44480b97d5bd40e97cad2d~mv2.jpg",
+        "alt": "❤️   SAUSAGE PIZZA",
+        "score": 0.9990652799606323,
+        "qualityScore": 0.95,
+        "combinedScore": 0.8516666666666666,
+        "width": 413,
+        "height": 232
+      }
+    },
+    {
+      "sceneId": "benefit",
+      "visualType": "stock_video",
+      "visualPrompt": "customers enjoying food at tables"
+    },
+    {
+      "sceneId": "cta",
+      "visualType": "logo_brand",
+      "visualPrompt": "logo with brand colors",
+      "logoUrl": "https://static.wixstatic.com/media/4801ad_570e884d1d5a484096074d2cbb3f04e2~mv2.jpg/v1/fit/w_2500,h_1330,al_c/4801ad_570e884d1d5a484096074d2cbb3f04e2~mv2.jpg"
+    }
+  ],
+  "timing": {
+    "total": 9642,
+    "clipMatching": 9641
+  }
+}
