@@ -4,8 +4,8 @@
  * Run: node test-visual-matching.js
  *
  * Tests the visual matching API using:
- * - Joe's Pizza scraped images (from poc-res-objs/web-scrape/)
- * - Custom test scenes with CONCRETE product names (matching alt text)
+ * - Joe's Pizza script (from poc-res-objs/script-gen/)
+ * - Joe's Pizza scraped data (from poc-res-objs/web-scrape/)
  *
  * Make sure dev server is running: pnpm dev
  *
@@ -15,17 +15,17 @@
 const fs = require('fs');
 const path = require('path');
 
-// Load scraped data
-const scrapeData = JSON.parse(
+// Load POC data
+const scriptData = JSON.parse(
   fs.readFileSync(
-    path.join(__dirname, 'poc-res-objs/web-scrape/joes-pizza-scrape-res.json'),
+    path.join(__dirname, 'poc-res-objs/script-gen/joes-pizza-script-res.json'),
     'utf-8'
   )
 );
 
-const scriptData = JSON.parse(
+const scrapeData = JSON.parse(
   fs.readFileSync(
-    path.join(__dirname, 'poc-res-objs/script-gen/joes-pizza-script-res.json'),
+    path.join(__dirname, 'poc-res-objs/web-scrape/joes-pizza-scrape-res.json'),
     'utf-8'
   )
 );
@@ -36,19 +36,18 @@ async function testVisualMatching() {
   console.log('='.repeat(60));
   console.log('\nMake sure the dev server is running: pnpm dev\n');
 
-  // Prepare request body with CONCRETE product names
+  // New request format: script + scrapedData
   const requestBody = {
-    scenes: scriptData.script.scenes,
-    images: scrapeData.data.images,
-    logo: scrapeData.data.logo,
+    script: scriptData.script,
+    scrapedData: scrapeData.data,
   };
 
   console.log('Input Summary:');
-  console.log(`  - ${requestBody.scenes.length} scenes to match`);
-  console.log(`  - ${requestBody.images.length} scraped images available`);
-  console.log(`  - Logo: ${requestBody.logo ? 'Yes' : 'No'}`);
+  console.log(`  - ${requestBody.script.scenes.length} scenes to match`);
+  console.log(`  - ${requestBody.scrapedData.images.length} scraped images available`);
+  console.log(`  - Logo: ${requestBody.scrapedData.logo ? 'Yes' : 'No'}`);
   console.log('\nScenes to match:');
-  requestBody.scenes.forEach((scene, i) => {
+  requestBody.script.scenes.forEach((scene, i) => {
     console.log(`  ${i + 1}. ${scene.id} (${scene.visualType}): "${scene.visualPrompt}"`);
   });
 
@@ -72,48 +71,54 @@ async function testVisualMatching() {
     const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
 
     if (result.success) {
-      console.log(`SUCCESS! (${elapsed}s total, ${result.timing?.clipMatching}ms CLIP matching)\n`);
+      console.log(`SUCCESS! (${elapsed}s)\n`);
 
-      console.log('Matched Visuals:');
+      console.log('ENRICHED SCRIPT:');
       console.log('='.repeat(60));
 
-      result.matches.forEach((match, i) => {
-        console.log(`\n${i + 1}. Scene: ${match.sceneId.toUpperCase()}`);
-        console.log(`   Visual Type: ${match.visualType}`);
-        console.log(`   Prompt: "${match.visualPrompt}"`);
+      result.script.scenes.forEach((scene, i) => {
+        console.log(`\n${i + 1}. Scene: ${scene.id.toUpperCase()} (${scene.duration}s)`);
+        console.log(`   Voiceover: "${scene.voiceoverText}"`);
+        console.log(`   Display: "${scene.displayText}"`);
+        console.log(`   Visual Type: ${scene.visual.type}`);
 
-        if (match.matchedImage) {
-          console.log(`   MATCHED IMAGE:`);
-          console.log(`     URL: ${match.matchedImage.url.substring(0, 80)}...`);
-          console.log(`     Alt: ${match.matchedImage.alt || 'N/A'}`);
-          console.log(`     Dimensions: ${match.matchedImage.width || '?'}x${match.matchedImage.height || '?'}`);
-          console.log(`     Scores: CLIP=${(match.matchedImage.score * 100).toFixed(1)}% | Quality=${(match.matchedImage.qualityScore * 100).toFixed(1)}% | Combined=${(match.matchedImage.combinedScore * 100).toFixed(1)}%`);
+        if (scene.visual.url) {
+          console.log(`   Visual URL: ${scene.visual.url.substring(0, 70)}...`);
+          if (scene.visual.alt) {
+            console.log(`   Visual Alt: ${scene.visual.alt}`);
+          }
+        } else if (scene.visual.prompt) {
+          console.log(`   Visual Prompt: "${scene.visual.prompt}" (needs resolution)`);
+        } else {
+          console.log(`   Visual: NOT RESOLVED`);
         }
 
-        if (match.visualType === 'stock_video') {
-          console.log(`   -> Needs stock video (handled by Pexels step)`);
-        }
-
-        if (match.logoUrl) {
-          console.log(`   LOGO URL: ${match.logoUrl.substring(0, 80)}...`);
+        if (scene.contactOverlay) {
+          console.log(`   Contact: ${JSON.stringify(scene.contactOverlay)}`);
         }
       });
+
+      // Brand info
+      console.log('\n' + '='.repeat(60));
+      console.log('BRAND INFO:');
+      console.log('='.repeat(60));
+      console.log(`  Name: ${result.brand?.name || 'N/A'}`);
+      console.log(`  Logo: ${result.brand?.logo ? 'Yes' : 'No'}`);
+      console.log(`  Colors: ${result.brand?.colors ? Object.keys(result.brand.colors).join(', ') : 'N/A'}`);
 
       // Summary
       console.log('\n' + '='.repeat(60));
       console.log('SUMMARY');
       console.log('='.repeat(60));
 
-      const animatedCount = result.matches.filter(m => m.matchedImage).length;
-      const stockCount = result.matches.filter(m => m.visualType === 'stock_video').length;
-      const logoCount = result.matches.filter(m => m.logoUrl).length;
-      const unmatchedAnimated = result.matches.filter(m => m.visualType === 'animated_image' && !m.matchedImage).length;
+      const resolved = result.script.scenes.filter(s => s.visual.url).length;
+      const needsResolution = result.script.scenes.filter(s => !s.visual.url && s.visual.prompt).length;
+      const failed = result.script.scenes.filter(s => !s.visual.url && !s.visual.prompt).length;
 
-      console.log(`  Matched to scraped images: ${animatedCount}`);
-      console.log(`  Need stock video: ${stockCount}`);
-      console.log(`  Using logo: ${logoCount}`);
-      if (unmatchedAnimated > 0) {
-        console.log(`  WARNING: ${unmatchedAnimated} animated_image scene(s) couldn't find a match`);
+      console.log(`  Resolved visuals: ${resolved}`);
+      console.log(`  Needs stock video: ${needsResolution}`);
+      if (failed > 0) {
+        console.log(`  Failed to resolve: ${failed}`);
       }
 
       // Save result for reference

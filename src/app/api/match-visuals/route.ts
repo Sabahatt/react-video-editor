@@ -1,29 +1,41 @@
 /**
  * Visual Matching API - Step 3 of the Ad Pipeline
  *
- * Takes scraped images + generated script and matches visuals to scenes:
- * - animated_image scenes: Uses CLIP + quality scoring to find best scraped image
- * - stock_video scenes: Passes through visualPrompt (Pexels step handles query)
- * - logo_brand scenes: Uses scraped logo
+ * Takes script + scraped data and returns an ENRICHED SCRIPT ready for video assembly:
+ * - animated_image scenes: Resolves to best matching scraped image URL
+ * - stock_video scenes: Passes prompt through (Pexels step resolves URL)
+ * - logo_brand scenes: Resolves to scraped logo URL
+ *
+ * Output is the same script structure but with `visual` object instead of visualType/visualPrompt
  */
 
 import { NextRequest, NextResponse } from 'next/server';
 import { findBestMatchingImages } from '@/lib/visual-selector';
 
-// Types matching script generator output
-interface AdScene {
+// ============ Input Types ============
+
+interface ScriptScene {
   id: 'hook' | 'value' | 'benefit' | 'cta';
   voiceoverText: string;
   displayText: string;
   duration: number;
   visualType: 'stock_video' | 'animated_image' | 'logo_brand';
   visualPrompt: string;
-  contactOverlay?: {
-    phone?: string;
-    address?: string;
-    website?: string;
-    hours?: string;
-  };
+  contactOverlay?: ContactInfo;
+}
+
+interface ContactInfo {
+  phone?: string;
+  address?: string;
+  website?: string;
+  hours?: string;
+}
+
+interface GeneratedScript {
+  fullScript: string;
+  scenes: ScriptScene[];
+  tone: string;
+  totalDuration: number;
 }
 
 interface ScrapedImage {
@@ -34,87 +46,107 @@ interface ScrapedImage {
   type?: string;
 }
 
-interface MatchedScene {
-  sceneId: string;
-  visualType: 'stock_video' | 'animated_image' | 'logo_brand';
-  visualPrompt: string;
-  // For animated_image - matched scraped image
-  matchedImage?: {
-    url: string;
-    alt?: string;
-    score: number;
-    qualityScore: number;
-    combinedScore: number;
-    width?: number;
-    height?: number;
+interface BrandColors {
+  primary?: string;
+  secondary?: string;
+  accent?: string;
+  background?: string;
+  text?: string;
+  palette?: string[];
+}
+
+interface ScrapedData {
+  brand?: {
+    name?: string;
+    cuisine?: string;
   };
-  // For logo_brand - logo URL
-  logoUrl?: string;
+  logo?: string;
+  images?: ScrapedImage[];
+  colors?: BrandColors;
+  contact?: ContactInfo;
 }
 
 interface MatchVisualsRequest {
-  scenes: AdScene[];
-  images: ScrapedImage[];
-  logo?: string;
+  script: GeneratedScript;
+  scrapedData: ScrapedData;
+}
+
+// ============ Output Types ============
+
+interface ResolvedVisual {
+  type: 'animated_image' | 'stock_video' | 'logo_brand';
+  url: string | null;  // null if not yet resolved (stock_video)
+  alt?: string;
+  prompt?: string;     // For stock_video - to be resolved by Pexels step
+}
+
+interface EnrichedScene {
+  id: 'hook' | 'value' | 'benefit' | 'cta';
+  voiceoverText: string;
+  displayText: string;
+  duration: number;
+  visual: ResolvedVisual;
+  contactOverlay?: ContactInfo;
+}
+
+interface EnrichedScript {
+  fullScript: string;
+  scenes: EnrichedScene[];
+  tone: string;
+  totalDuration: number;
 }
 
 interface MatchVisualsResponse {
   success: boolean;
-  matches?: MatchedScene[];
-  error?: string;
-  timing?: {
-    total: number;
-    clipMatching: number;
+  script?: EnrichedScript;
+  brand?: {
+    name?: string;
+    colors?: BrandColors;
+    logo?: string;
   };
+  error?: string;
 }
+
+// ============ Scoring Functions ============
 
 /**
  * Calculate image quality score based on dimensions and type
- * Returns 0-1 score where higher is better
- *
- * Note: Scraper already filters out icons/thumbnails (<100px),
- * so we focus on preferring larger, well-composed images
  */
 function calculateImageQuality(image: ScrapedImage): number {
-  let score = 0.5; // Base score
+  let score = 0.5;
 
   const width = image.width || 0;
   const height = image.height || 0;
 
-  // Prefer larger images (better for video quality)
   if (width >= 400 && height >= 200) {
-    score += 0.2; // Large image bonus
+    score += 0.2;
   } else if (width >= 300 && height >= 150) {
-    score += 0.1; // Medium image bonus
+    score += 0.1;
   }
 
-  // Prefer landscape aspect ratio for video (16:9 to 4:3 range)
   if (width > 0 && height > 0) {
     const aspectRatio = width / height;
     if (aspectRatio >= 1.3 && aspectRatio <= 1.9) {
-      score += 0.15; // Ideal video aspect ratio
+      score += 0.15;
     } else if (aspectRatio >= 1.0 && aspectRatio <= 2.0) {
-      score += 0.05; // Acceptable aspect ratio
+      score += 0.05;
     }
-    // Square or portrait images don't get bonus but aren't penalized
   }
 
-  // Prefer product-type images (scraper classifies these)
   if (image.type === 'product') {
     score += 0.1;
   }
 
-  return Math.max(0, Math.min(1, score)); // Clamp to 0-1
+  return Math.max(0, Math.min(1, score));
 }
 
 /**
- * Stop words to ignore when matching alt-text to visual prompt
+ * Stop words to ignore when matching alt-text
  */
 const STOP_WORDS = ['a', 'an', 'the', 'with', 'and', 'of', 'on', 'in', 'to', 'for'];
 
 /**
  * Calculate alt-text match score
- * Checks how many meaningful keywords from the visual prompt appear in the image's alt text
  */
 function calculateAltTextMatch(alt: string | undefined, visualPrompt: string): number {
   if (!alt) return 0;
@@ -126,14 +158,12 @@ function calculateAltTextMatch(alt: string | undefined, visualPrompt: string): n
 
   if (promptWords.length === 0) return 0;
 
-  // Count how many prompt keywords appear in alt text
   const matches = promptWords.filter(word => altLower.includes(word)).length;
-  return matches / promptWords.length; // 0-1 score
+  return matches / promptWords.length;
 }
 
 /**
  * Normalize CLIP scores to make small differences meaningful
- * When all scores are 95-99%, this spreads them to 0-100%
  */
 function normalizeScores(results: Array<{ url: string; score: number }>): Array<{ url: string; score: number; normalizedScore: number }> {
   if (results.length === 0) return [];
@@ -146,40 +176,40 @@ function normalizeScores(results: Array<{ url: string; score: number }>): Array<
   const maxScore = Math.max(...scores);
   const range = maxScore - minScore;
 
-  // If all scores are nearly identical, use original scores
   if (range < 0.01) {
     return results.map(r => ({ ...r, normalizedScore: r.score }));
   }
 
-  // Normalize to 0-1 range
   return results.map(r => ({
     ...r,
     normalizedScore: (r.score - minScore) / range,
   }));
 }
 
-export async function POST(request: NextRequest): Promise<NextResponse<MatchVisualsResponse>> {
-  const startTime = Date.now();
-  let clipTime = 0;
+// ============ Main Handler ============
 
+export async function POST(request: NextRequest): Promise<NextResponse<MatchVisualsResponse>> {
   try {
     const body: MatchVisualsRequest = await request.json();
-    const { scenes, images, logo } = body;
+    const { script, scrapedData } = body;
 
     // Validate input
-    if (!scenes || !Array.isArray(scenes) || scenes.length === 0) {
+    if (!script || !script.scenes || !Array.isArray(script.scenes)) {
       return NextResponse.json(
-        { success: false, error: 'scenes array is required' },
+        { success: false, error: 'script with scenes array is required' },
         { status: 400 }
       );
     }
 
-    if (!images || !Array.isArray(images)) {
+    if (!scrapedData) {
       return NextResponse.json(
-        { success: false, error: 'images array is required' },
+        { success: false, error: 'scrapedData is required' },
         { status: 400 }
       );
     }
+
+    const images = scrapedData.images || [];
+    const logo = scrapedData.logo;
 
     // Pre-calculate quality scores for all images
     const imageQualityMap = new Map<string, { image: ScrapedImage; quality: number }>();
@@ -193,105 +223,122 @@ export async function POST(request: NextRequest): Promise<NextResponse<MatchVisu
     }
 
     const imageUrls = Array.from(imageQualityMap.keys());
-    const matches: MatchedScene[] = [];
     const usedImageUrls = new Set<string>();
+    const enrichedScenes: EnrichedScene[] = [];
 
     // Process each scene
-    for (const scene of scenes) {
-      const match: MatchedScene = {
-        sceneId: scene.id,
-        visualType: scene.visualType,
-        visualPrompt: scene.visualPrompt,
+    for (const scene of script.scenes) {
+      const enrichedScene: EnrichedScene = {
+        id: scene.id,
+        voiceoverText: scene.voiceoverText,
+        displayText: scene.displayText,
+        duration: scene.duration,
+        visual: {
+          type: scene.visualType,
+          url: null,
+        },
       };
+
+      // Preserve contactOverlay if present
+      if (scene.contactOverlay) {
+        enrichedScene.contactOverlay = scene.contactOverlay;
+      }
 
       switch (scene.visualType) {
         case 'animated_image': {
-          // Use CLIP + quality + alt-text scoring to find best matching scraped image
-          if (imageUrls.length > 0) {
-            const clipStart = Date.now();
+          // Use CLIP + quality + alt-text scoring to find best match
+          const availableImages = imageUrls.filter(url => !usedImageUrls.has(url));
 
-            // Filter out already used images
-            const availableImages = imageUrls.filter(url => !usedImageUrls.has(url));
+          if (availableImages.length > 0) {
+            const clipResults = await findBestMatchingImages(
+              availableImages,
+              scene.visualPrompt
+            );
 
-            if (availableImages.length > 0) {
-              // Use full visual prompt - CLIP needs coherent phrases
-              const clipResults = await findBestMatchingImages(
-                availableImages,
-                scene.visualPrompt
-              );
+            const normalizedResults = normalizeScores(clipResults);
 
-              clipTime += Date.now() - clipStart;
+            // Combine: 50% normalized CLIP + 30% quality + 20% alt-text
+            const scoredResults = normalizedResults.map(result => {
+              const qualityData = imageQualityMap.get(result.url)!;
+              const altTextScore = calculateAltTextMatch(qualityData.image.alt, scene.visualPrompt);
 
-              // Normalize CLIP scores so small differences become meaningful
-              const normalizedResults = normalizeScores(clipResults);
+              const combinedScore =
+                (result.normalizedScore * 0.5) +
+                (qualityData.quality * 0.3) +
+                (altTextScore * 0.2);
 
-              // Combine normalized CLIP + quality + alt-text match
-              // Formula: 50% normalized CLIP + 30% quality + 20% alt-text match
-              const scoredResults = normalizedResults.map(result => {
-                const qualityData = imageQualityMap.get(result.url)!;
-                const altTextScore = calculateAltTextMatch(qualityData.image.alt, scene.visualPrompt);
+              return {
+                ...result,
+                combinedScore,
+                image: qualityData.image,
+              };
+            });
 
-                const combinedScore =
-                  (result.normalizedScore * 0.5) +
-                  (qualityData.quality * 0.3) +
-                  (altTextScore * 0.2);
+            scoredResults.sort((a, b) => b.combinedScore - a.combinedScore);
 
-                return {
-                  ...result,
-                  qualityScore: qualityData.quality,
-                  altTextScore,
-                  combinedScore,
-                  image: qualityData.image,
-                };
-              });
-
-              // Sort by combined score
-              scoredResults.sort((a, b) => b.combinedScore - a.combinedScore);
-
-              // Pick best if it meets minimum threshold
-              if (scoredResults.length > 0 && scoredResults[0].combinedScore > 0.2) {
-                const best = scoredResults[0];
-                match.matchedImage = {
-                  url: best.url,
-                  alt: best.image.alt,
-                  score: best.score, // Original CLIP score for reference
-                  qualityScore: best.qualityScore,
-                  combinedScore: best.combinedScore,
-                  width: best.image.width,
-                  height: best.image.height,
-                };
-                usedImageUrls.add(best.url);
-              }
+            if (scoredResults.length > 0 && scoredResults[0].combinedScore > 0.2) {
+              const best = scoredResults[0];
+              enrichedScene.visual = {
+                type: 'animated_image',
+                url: best.url,
+                alt: best.image.alt,
+              };
+              usedImageUrls.add(best.url);
+            } else {
+              // No good match - pass prompt for potential fallback
+              enrichedScene.visual = {
+                type: 'animated_image',
+                url: null,
+                prompt: scene.visualPrompt,
+              };
             }
+          } else {
+            enrichedScene.visual = {
+              type: 'animated_image',
+              url: null,
+              prompt: scene.visualPrompt,
+            };
           }
-          // Note: If no match found, scene still has visualPrompt for fallback handling
           break;
         }
 
         case 'stock_video': {
-          // Pass through - visualPrompt is used by Pexels step
-          // No additional processing needed here
+          // Pass through prompt - Pexels step will resolve
+          enrichedScene.visual = {
+            type: 'stock_video',
+            url: null,
+            prompt: scene.visualPrompt,
+          };
           break;
         }
 
         case 'logo_brand': {
-          // Use scraped logo
-          if (logo) {
-            match.logoUrl = logo;
-          }
+          enrichedScene.visual = {
+            type: 'logo_brand',
+            url: logo || null,
+          };
           break;
         }
       }
 
-      matches.push(match);
+      enrichedScenes.push(enrichedScene);
     }
+
+    // Build enriched script
+    const enrichedScript: EnrichedScript = {
+      fullScript: script.fullScript,
+      scenes: enrichedScenes,
+      tone: script.tone,
+      totalDuration: script.totalDuration,
+    };
 
     return NextResponse.json({
       success: true,
-      matches,
-      timing: {
-        total: Date.now() - startTime,
-        clipMatching: clipTime,
+      script: enrichedScript,
+      brand: {
+        name: scrapedData.brand?.name,
+        colors: scrapedData.colors,
+        logo: scrapedData.logo,
       },
     });
 

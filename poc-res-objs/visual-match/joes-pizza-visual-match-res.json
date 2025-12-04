@@ -1,48 +1,77 @@
 {
   "success": true,
-  "matches": [
-    {
-      "sceneId": "hook",
-      "visualType": "animated_image",
-      "visualPrompt": "pepperoni pizza",
-      "matchedImage": {
-        "url": "https://static.wixstatic.com/media/4801ad_ec296bae26c34d46860df871ab25bea4~mv2.jpg/v1/fill/w_413,h_232,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/4801ad_ec296bae26c34d46860df871ab25bea4~mv2.jpg",
-        "alt": "🍕  PEPPERONI PIZZA",
-        "score": 0.9994292259216309,
-        "qualityScore": 0.95,
-        "combinedScore": 0.9847306078787899,
-        "width": 413,
-        "height": 232
+  "script": {
+    "fullScript": "Experience New York's Finest Pizza Serving Authentic NYC Pizza Since 1975 Get Your Perfectly Foldable Slice Order Now at JoesPizza.com",
+    "scenes": [
+      {
+        "id": "hook",
+        "voiceoverText": "Experience New York's Finest Pizza",
+        "displayText": "JOE'S PIZZA",
+        "duration": 2.5,
+        "visual": {
+          "type": "animated_image",
+          "url": "https://static.wixstatic.com/media/4801ad_ec296bae26c34d46860df871ab25bea4~mv2.jpg/v1/fill/w_413,h_232,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/4801ad_ec296bae26c34d46860df871ab25bea4~mv2.jpg",
+          "alt": "🍕  PEPPERONI PIZZA"
+        }
+      },
+      {
+        "id": "value",
+        "voiceoverText": "Serving Authentic NYC Pizza Since 1975",
+        "displayText": "NYC PIZZA SINCE 1975",
+        "duration": 2.5,
+        "visual": {
+          "type": "animated_image",
+          "url": "https://static.wixstatic.com/media/4801ad_527a80689d44480b97d5bd40e97cad2d~mv2.jpg/v1/fill/w_413,h_232,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/4801ad_527a80689d44480b97d5bd40e97cad2d~mv2.jpg",
+          "alt": "❤️   SAUSAGE PIZZA"
+        }
+      },
+      {
+        "id": "benefit",
+        "voiceoverText": "Get Your Perfectly Foldable Slice",
+        "displayText": "FOLDABLE SLICE",
+        "duration": 2.5,
+        "visual": {
+          "type": "stock_video",
+          "url": null,
+          "prompt": "customers enjoying food at tables"
+        }
+      },
+      {
+        "id": "cta",
+        "voiceoverText": "Order Now at JoesPizza.com",
+        "displayText": "ORDER NOW",
+        "duration": 2.5,
+        "visual": {
+          "type": "logo_brand",
+          "url": "https://static.wixstatic.com/media/4801ad_570e884d1d5a484096074d2cbb3f04e2~mv2.jpg/v1/fit/w_2500,h_1330,al_c/4801ad_570e884d1d5a484096074d2cbb3f04e2~mv2.jpg"
+        },
+        "contactOverlay": {
+          "website": "joespizza.com"
+        }
       }
+    ],
+    "tone": "playful",
+    "totalDuration": 10
+  },
+  "brand": {
+    "name": "Joe's Pizza ",
+    "colors": {
+      "primary": "#0000ee",
+      "secondary": "#666666",
+      "accent": "#0000ee",
+      "background": "#ffffff",
+      "text": "#000000",
+      "palette": [
+        "#0000ee",
+        "#000000",
+        "#fa080f",
+        "#810206",
+        "#f4848c",
+        "#7c7c7c",
+        "#3c3c3c",
+        "#c6b4b4"
+      ]
     },
-    {
-      "sceneId": "value",
-      "visualType": "animated_image",
-      "visualPrompt": "cheese pizza slice",
-      "matchedImage": {
-        "url": "https://static.wixstatic.com/media/4801ad_527a80689d44480b97d5bd40e97cad2d~mv2.jpg/v1/fill/w_413,h_232,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/4801ad_527a80689d44480b97d5bd40e97cad2d~mv2.jpg",
-        "alt": "❤️   SAUSAGE PIZZA",
-        "score": 0.9990652799606323,
-        "qualityScore": 0.95,
-        "combinedScore": 0.8516666666666666,
-        "width": 413,
-        "height": 232
-      }
-    },
-    {
-      "sceneId": "benefit",
-      "visualType": "stock_video",
-      "visualPrompt": "customers enjoying food at tables"
-    },
-    {
-      "sceneId": "cta",
-      "visualType": "logo_brand",
-      "visualPrompt": "logo with brand colors",
-      "logoUrl": "https://static.wixstatic.com/media/4801ad_570e884d1d5a484096074d2cbb3f04e2~mv2.jpg/v1/fit/w_2500,h_1330,al_c/4801ad_570e884d1d5a484096074d2cbb3f04e2~mv2.jpg"
-    }
-  ],
-  "timing": {
-    "total": 9642,
-    "clipMatching": 9641
+    "logo": "https://static.wixstatic.com/media/4801ad_570e884d1d5a484096074d2cbb3f04e2~mv2.jpg/v1/fit/w_2500,h_1330,al_c/4801ad_570e884d1d5a484096074d2cbb3f04e2~mv2.jpg"
   }
 }
