@@ -1,0 +1,49 @@
+{
+    "success": true,
+    "script": {
+        "fullScript": "Indulge in Chicago's sweetest secrets Made fresh daily, small-batch donuts Experience the taste of Chicago's tradition Get your The Doughnut Vault fix",
+        "scenes": [
+            {
+                "id": "hook",
+                "voiceoverText": "Indulge in Chicago's sweetest secrets",
+                "displayText": "ARTISAN DONUTS",
+                "duration": 2.5,
+                "visualType": "animated_image",
+                "visualPrompt": "a close-up shot of a freshly baked old-fashioned glazed donut"
+            },
+            {
+                "id": "value",
+                "voiceoverText": "Made fresh daily, small-batch donuts",
+                "displayText": "HANDCRAFTED WITH LOVE",
+                "duration": 2.5,
+                "visualType": "animated_image",
+                "visualPrompt": "a photo of a chef handcrafting a donut"
+            },
+            {
+                "id": "benefit",
+                "voiceoverText": "Experience the taste of Chicago's tradition",
+                "displayText": "OLD-FASHIONED GLAZED",
+                "duration": 2.5,
+                "visualType": "animated_image",
+                "visualPrompt": "a shot of a customer taking a bite of a donut with a happy expression"
+            },
+            {
+                "id": "cta",
+                "voiceoverText": "Get your The Doughnut Vault fix",
+                "displayText": "ORDER NOW",
+                "duration": 2.5,
+                "visualType": "logo_brand",
+                "visualPrompt": "The Doughnut Vault logo with brand colors and address",
+                "contactOverlay": {
+                    "website": "doughnutvault.com"
+                }
+            }
+        ],
+        "tone": "friendly",
+        "totalDuration": 10
+    },
+    "pocRestaurant": {
+        "name": "The Doughnut Vault",
+        "suggestedTone": "friendly"
+    }
+}

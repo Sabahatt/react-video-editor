@@ -1,116 +1,65 @@
 # Restaurant Video Ad Generator - Implementation Plan
 
-**Target**: Working POC within 1 week
+**Target**: Working POC
 **Industry Focus**: Restaurants (optimized for food/dining websites)
 
 ---
 
 ## Overview
 
-This document outlines the step-by-step implementation of the AI video ad generation pipeline. Each step will be implemented, tested, and validated before moving to the next.
+This document outlines the step-by-step implementation of the AI video ad generation pipeline.
+
+**Key Principle**: The ad must feel dynamic and alive - NOT a slideshow with zoom/pan effects. Image-to-video animation is essential for a professional ad feel.
 
 ---
 
-## Step 1: Web Scraping (Playwright + Cheerio)
+## Step 1: Web Scraping (Playwright)
 
 **Goal**: Extract brand assets from restaurant websites
 
-**Files to create**:
+**Files**:
 - `src/lib/scraper/index.ts` - Main scraper orchestrator
 - `src/lib/scraper/extractors.ts` - DOM extraction functions
-- `src/lib/scraper/color-extractor.ts` - Brand color extraction
+- `src/lib/scraper/color-extractor.ts` - Brand color extraction from CSS/theme
+- `src/lib/scraper/types.ts` - TypeScript interfaces
 - `src/app/api/scrape/route.ts` - API endpoint
 
 **What it extracts**:
 - Logo (og:image, header img, favicon)
-- Hero/product images (food photos)
-- Brand text (tagline, meta description, h1/h2)
-- Brand colors (via node-vibrant)
+- Hero/product images (categorized as hero/product/background)
+- Brand text (name, tagline, meta description)
+- Brand colors (from CSS variables, header, buttons - NOT from food images)
 - Contact info (phone, address, hours)
-- Menu items (if available)
+- Cuisine type detection
+- Social links
 
 **Test**:
 ```bash
-# Start dev server
-pnpm dev
-
-# Test with a restaurant website
 curl -X POST http://localhost:3000/api/scrape \
   -H "Content-Type: application/json" \
-  -d '{"url": "https://www.chipotle.com"}'
-```
-
-**Expected output**:
-```json
-{
-  "success": true,
-  "data": {
-    "brand": { "name": "Chipotle", "tagline": "..." },
-    "logo": "https://...",
-    "images": ["url1", "url2", ...],
-    "colors": { "primary": "#...", "secondary": "#..." },
-    "contact": { "phone": "...", "address": "..." }
-  }
-}
+  -d '{"url": "https://www.joespizza.com"}'
 ```
 
 ---
 
-## Step 2: Image Quality Filtering (Sharp.js)
-
-**Goal**: Filter out low-quality images, score remaining ones
-
-**Files to create**:
-- `src/lib/image-filter/index.ts` - Main filter logic
-- `src/lib/image-filter/blur-detector.ts` - Laplacian blur detection
-- `src/lib/image-filter/scorer.ts` - Image quality scoring
-
-**Filtering criteria**:
-- Minimum size: 400x300px
-- Blur detection (Laplacian variance)
-- Aspect ratio validation (0.2 to 5.0)
-- URL pattern filtering (exclude icons, favicons, trackers)
-
-**Test**:
-```typescript
-// Test in a script or API endpoint
-import { filterAndScoreImages } from '@/lib/image-filter';
-
-const images = ['url1', 'url2', ...]; // from Step 1
-const filtered = await filterAndScoreImages(images);
-console.log(filtered); // Sorted by quality score
-```
-
----
-
-## Step 3: Smart Visual Selection (CLIP/BLIP) - ALREADY DONE
-
-**Status**: ✅ Already implemented in `src/lib/visual-selector.ts`
-
-**Features available**:
-- `findBestMatchingImages()` - Match images to text
-- `classifyImage()` - Classify image categories
-- `generateCaption()` - Generate image captions
-- `assignImagesToScenes()` - Map images to ad scenes
-
-**Test**:
-```typescript
-import { findBestMatchingImages } from '@/lib/visual-selector';
-
-const images = ['food1.jpg', 'food2.jpg'];
-const results = await findBestMatchingImages(images, 'delicious pizza');
-```
-
----
-
-## Step 4: Script Generation (Groq/LLM)
+## Step 2: Script Generation (Groq/LLM)
 
 **Goal**: Generate compelling 10-second ad script for restaurants
 
-**Files to create**:
+**Files**:
 - `src/lib/script-generator/index.ts` - Main generator
 - `src/lib/script-generator/prompts.ts` - Restaurant-specific prompts
 - `src/app/api/generate-script/route.ts` - API endpoint
+
+**Input** (from Step 1):
+```typescript
+{
+  brandName: "Joe's Pizza",
+  tagline: "New York Style Pizza",
+  description: "Family-owned pizzeria serving authentic NY pizza since 1975",
+  cuisine: "italian"
+}
+```
 
 **Output format**:
 ```json
@@ -121,7 +70,9 @@ const results = await findBestMatchingImages(images, 'delicious pizza');
     { "id": "value", "voiceoverText": "Made daily.", "displayText": "MADE DAILY", "duration": 2.5 },
     { "id": "benefit", "voiceoverText": "Taste the difference.", "displayText": "TASTE THE DIFFERENCE", "duration": 2.5 },
     { "id": "cta", "voiceoverText": "Order now.", "displayText": "ORDER NOW", "duration": 2.5 }
-  ]
+  ],
+  "tone": "friendly",
+  "totalDuration": 10
 }
 ```
 
@@ -131,28 +82,55 @@ curl -X POST http://localhost:3000/api/generate-script \
   -H "Content-Type: application/json" \
   -d '{
     "brandName": "Pizza Palace",
-    "brandDescription": "Family-owned pizzeria serving authentic Italian pizza",
+    "tagline": "Authentic Italian",
+    "description": "Family-owned pizzeria serving authentic Italian pizza",
+    "cuisine": "italian",
     "tone": "friendly"
   }'
 ```
 
 ---
 
-## Step 5: Stock Video Fetching (Pexels API)
+## Step 3: Smart Image Selection (CLIP)
+
+**Goal**: Match scraped images to script scenes semantically
+
+**Files**:
+- `src/lib/visual-selector.ts` - CLIP integration (already implemented)
+
+**Key function**:
+```typescript
+import { assignImagesToScenes } from '@/lib/visual-selector';
+
+const assignments = await assignImagesToScenes(
+  images.map(img => img.url),
+  scenes.map(s => ({ id: s.id, text: s.voiceoverText }))
+);
+// Returns: { hook: "pizza.jpg", value: "chef.jpg", benefit: "interior.jpg", cta: "logo.jpg" }
+```
+
+---
+
+## Step 4: Stock Video Fetching (Pexels API)
 
 **Goal**: Fetch relevant stock videos for restaurant backgrounds
 
-**Status**: Partially exists at `/api/pexels-videos`
-
-**Files to create/modify**:
+**Files**:
 - `src/lib/stock-video/index.ts` - Enhanced video search
-- `src/lib/stock-video/restaurant-queries.ts` - Restaurant-specific search mappings
+- `src/lib/stock-video/restaurant-queries.ts` - Cuisine-specific search mappings
 
 **Restaurant query mappings**:
-- Pizza → "pizza making", "italian restaurant", "chef cooking"
-- Coffee → "barista", "coffee pour", "cafe atmosphere"
-- Sushi → "sushi chef", "japanese restaurant", "fresh fish"
-- Generic → "restaurant cooking", "food preparation", "dining"
+```typescript
+{
+  italian: ["pizza making", "italian restaurant", "pasta cooking"],
+  mexican: ["taco preparation", "mexican food", "salsa making"],
+  japanese: ["sushi chef", "japanese restaurant", "ramen cooking"],
+  american: ["burger grilling", "american diner", "fries cooking"],
+  cafe: ["barista", "coffee pour", "cafe atmosphere"],
+  bakery: ["bakery kitchen", "pastry chef", "fresh baking"],
+  default: ["restaurant cooking", "food preparation", "chef kitchen"]
+}
+```
 
 **Test**:
 ```bash
@@ -161,49 +139,11 @@ curl "http://localhost:3000/api/pexels-videos?query=pizza+cooking&per_page=5"
 
 ---
 
-## Step 6: Image-to-Video (Kling/Runway API)
-
-**Goal**: Animate food images to create dynamic video clips
-
-**Files to create**:
-- `src/lib/image-to-video/index.ts` - API wrapper
-- `src/lib/image-to-video/providers/fal.ts` - FAL.ai provider (Kling)
-- `src/app/api/animate-image/route.ts` - API endpoint
-
-**Primary provider**: FAL.ai (Kling) - ~$0.02/5s video
-
-**Test**:
-```bash
-curl -X POST http://localhost:3000/api/animate-image \
-  -H "Content-Type: application/json" \
-  -d '{
-    "imageUrl": "https://example.com/pizza.jpg",
-    "prompt": "subtle steam rising, appetizing food shot"
-  }'
-```
-
----
-
-## Step 7: Image Generation (Fallback)
-
-**Goal**: Generate images when scraping yields insufficient visuals
-
-**Files to create**:
-- `src/lib/image-generator/index.ts` - Image generation wrapper
-- Uses Pollinations.ai (FREE, no API key)
-
-**Test**:
-```bash
-curl "https://image.pollinations.ai/prompt/delicious%20pepperoni%20pizza%20professional%20food%20photography"
-```
-
----
-
-## Step 8: Voiceover Generation (Edge-TTS)
+## Step 5: Voiceover Generation (Edge-TTS)
 
 **Goal**: Generate professional voiceovers for ad scripts
 
-**Files to create**:
+**Files**:
 - `src/lib/voiceover/index.ts` - Edge-TTS wrapper
 - `src/lib/voiceover/voices.ts` - Voice presets
 - `src/app/api/generate-voice/route.ts` - API endpoint
@@ -221,24 +161,27 @@ curl -X POST http://localhost:3000/api/generate-voice \
     "text": "Fresh ingredients. Made daily. Order now.",
     "voice": "en-US-AriaNeural"
   }'
-# Returns: audio file path
 ```
 
 ---
 
-## Step 9: Background Music (Pixabay Music API)
+## Step 6: Background Music (Pixabay Music API)
 
 **Goal**: Fetch royalty-free background music
 
-**Files to create**:
+**Files**:
 - `src/lib/music/index.ts` - Pixabay music wrapper
 - `src/app/api/fetch-music/route.ts` - API endpoint
 
 **Mood mappings**:
-- professional → "corporate inspiring"
-- playful → "upbeat fun happy"
-- urgent → "energetic dramatic"
-- friendly → "warm acoustic"
+```typescript
+{
+  professional: "corporate inspiring upbeat",
+  playful: "fun happy cheerful",
+  urgent: "energetic dramatic fast",
+  friendly: "warm acoustic gentle"
+}
+```
 
 **Test**:
 ```bash
@@ -249,48 +192,138 @@ curl -X POST http://localhost:3000/api/fetch-music \
 
 ---
 
-## Step 10: Template Assembly (Timeline Builder)
+## Step 7: Image-to-Video Animation (Kling via FAL.ai)
 
-**Goal**: Combine all assets into editor-compatible JSON
+**Goal**: Animate food images to create dynamic, alive video clips
 
-**Files to create**:
-- `src/lib/timeline-builder/index.ts` - Main assembler
-- `src/lib/timeline-builder/templates/restaurant-showcase.ts` - Restaurant template
-- `src/lib/timeline-builder/types.ts` - Timeline types
+**Why essential**:
+- Static images with Ken Burns = looks like a slideshow ❌
+- Animated product images = feels like a real ad ✅
 
-**Output**: JSON compatible with react-video-editor timeline format
+**Files**:
+- `src/lib/image-to-video/index.ts` - Main orchestrator
+- `src/lib/image-to-video/providers/fal.ts` - FAL.ai provider (Kling)
+- `src/app/api/animate-image/route.ts` - API endpoint
+
+**Provider**: FAL.ai (Kling)
+- Cost: ~$0.02-0.05 per 5-second clip
+- Quality: High, good motion on food images
+- Speed: ~30-60 seconds generation time
+
+**Usage**:
+```typescript
+const animatedClip = await animateImage({
+  imageUrl: "https://example.com/pizza.jpg",
+  prompt: "subtle steam rising, appetizing food shot, slight camera movement",
+  duration: 5,
+});
+```
 
 **Test**:
-```typescript
-import { buildTimeline } from '@/lib/timeline-builder';
+```bash
+curl -X POST http://localhost:3000/api/animate-image \
+  -H "Content-Type: application/json" \
+  -d '{
+    "imageUrl": "https://example.com/pizza.jpg",
+    "prompt": "subtle steam rising, appetizing food shot"
+  }'
+```
 
-const timeline = await buildTimeline({
-  script: scriptFromStep4,
-  images: imagesFromStep2,
-  stockVideos: videosFromStep5,
-  voiceover: voiceoverFromStep8,
-  music: musicFromStep9,
-  colors: colorsFromStep1
+**Cost Strategy**:
+- Animate only 1-2 hero product images (not all)
+- Use stock video for background/context scenes
+- Total cost per ad: ~$0.02-0.10
+
+---
+
+## Step 8: Image Generation (Fallback)
+
+**Goal**: Generate images when scraping yields insufficient visuals
+
+**When to use**:
+- Less than 2 usable product images from scraping
+- No suitable hero image found
+
+**Files**:
+- `src/lib/image-generator/index.ts` - Image generation wrapper
+- `src/app/api/generate-image/route.ts` - API endpoint
+
+**Provider**: Pollinations.ai (FREE, no API key needed)
+
+**Usage**:
+```typescript
+const imageUrl = await generateImage({
+  prompt: "delicious pepperoni pizza, professional food photography, steam rising",
+  style: "photorealistic"
 });
+```
+
+**Test**:
+```bash
+curl "https://image.pollinations.ai/prompt/delicious%20pepperoni%20pizza%20professional%20food%20photography"
 ```
 
 ---
 
-## Step 11: Editor Integration
+## Step 9: Timeline Assembly
+
+**Goal**: Combine all assets into editor-compatible JSON
+
+**Files**:
+- `src/lib/timeline-builder/index.ts` - Main assembler
+- `src/lib/timeline-builder/templates/restaurant-ad.ts` - 10-second ad template
+- `src/lib/timeline-builder/types.ts` - Timeline types
+
+**Input**:
+```typescript
+{
+  script: { scenes: [...] },           // from Step 2
+  imageAssignments: { hook: "...", },  // from Step 3
+  stockVideos: [...],                  // from Step 4
+  animatedClips: [...],                // from Step 7
+  voiceover: { url, duration },        // from Step 5
+  music: { url, duration },            // from Step 6
+  brand: { colors, logo }              // from Step 1
+}
+```
+
+**Output**: JSON compatible with react-video-editor timeline format
+
+**Template Structure (10-second ad)**:
+```
+TIME       SCENE          VISUAL                          AUDIO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+0-2.5s     HOOK           Stock video background          VO: hook text
+                          + Text overlay                  Music: starts
+
+2.5-5s     VALUE          ANIMATED product image (Kling)  VO: value text
+                          + Text overlay                  Music: continues
+
+5-7.5s     BENEFIT        Stock video or 2nd animated     VO: benefit text
+                          + Text overlay                  Music: continues
+
+7.5-10s    CTA            Logo + brand colors             VO: CTA text
+                          + Contact info                  Music: fade out
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+---
+
+## Step 10: Editor Integration
 
 **Goal**: Load generated timeline into react-video-editor
 
-**Files to modify**:
-- Create generation UI component
-- Add "Generate from URL" button in editor
-- Load timeline into DesignCombo state
+**Files**:
+- Generation UI component
+- "Generate from URL" button in editor
+- Timeline loading into DesignCombo state
 
-**Test**:
-1. Navigate to editor at `http://localhost:3000`
-2. Click "Generate from URL"
-3. Enter restaurant website URL
-4. Wait for pipeline to complete
-5. See generated ad in timeline
+**Flow**:
+1. User enters restaurant URL
+2. Pipeline generates ad (~45-90 seconds)
+3. Timeline loads in editor
+4. User can edit/customize
+5. Export final video
 
 ---
 
@@ -298,65 +331,65 @@ const timeline = await buildTimeline({
 
 **File**: `src/app/api/generate/route.ts`
 
-Combines all steps into single endpoint:
-
 ```bash
 curl -X POST http://localhost:3000/api/generate \
   -H "Content-Type: application/json" \
   -d '{
-    "url": "https://www.pizzahut.com",
+    "url": "https://www.joespizza.com",
     "tone": "friendly"
   }'
 ```
 
----
-
-## Environment Variables Needed
-
-```env
-# .env.local
-
-# Pexels (FREE - already have)
-PEXELS_API_KEY=your_key
-
-# Groq (FREE)
-GROQ_API_KEY=your_key
-
-# FAL.ai (for Kling image-to-video)
-FAL_API_KEY=your_key
-
-# Pixabay (FREE)
-PIXABAY_API_KEY=your_key
+**Pipeline flow**:
+```
+URL + Tone
+    ↓
+Step 1: Scrape → brand, images, colors
+    ↓
+Step 2: Generate Script → scenes with text
+    ↓
+Step 3: CLIP assigns images to scenes
+    ↓
+Step 4: Fetch stock video for backgrounds
+    ↓
+Step 5: Generate voiceover
+    ↓
+Step 6: Fetch background music
+    ↓
+Step 7: Animate 1-2 product images (Kling)
+    ↓
+Step 8: Generate fallback images if needed
+    ↓
+Step 9: Assemble timeline
+    ↓
+Return: Editor-ready JSON
 ```
 
 ---
 
-## Estimated Timeline
+## Environment Variables
 
-| Day | Steps | Focus |
-|-----|-------|-------|
-| 1 | Step 1-2 | Scraping + Image Filtering |
-| 2 | Step 4-5 | Script Generation + Stock Video |
-| 3 | Step 8-9 | Voiceover + Music |
-| 4 | Step 6-7 | Image-to-Video + Fallbacks |
-| 5 | Step 10 | Timeline Builder |
-| 6 | Step 11 | Editor Integration |
-| 7 | Testing | End-to-end testing, bug fixes |
+```env
+# .env.local
 
----
-
-## Success Criteria
-
-1. ✅ Enter any restaurant URL
-2. ✅ System scrapes brand assets automatically
-3. ✅ Generates 10-second ad script
-4. ✅ Fetches relevant stock video backgrounds
-5. ✅ Animates key food image
-6. ✅ Generates professional voiceover
-7. ✅ Adds background music
-8. ✅ Loads in editor for customization
-9. ✅ Can export final video
+GROQ_API_KEY=your_key        # Script generation (FREE)
+PEXELS_API_KEY=your_key      # Stock video (FREE)
+PIXABAY_API_KEY=your_key     # Background music (FREE)
+FAL_KEY=your_key             # Kling image-to-video (REQUIRED)
+```
 
 ---
 
-*Let's start with Step 1!*
+## Cost Per Video Ad
+
+| Component | Provider | Cost |
+|-----------|----------|------|
+| Scraping | Playwright | FREE |
+| Script | Groq | FREE |
+| CLIP | Local | FREE |
+| Stock Video | Pexels | FREE |
+| Voiceover | Edge-TTS | FREE |
+| Music | Pixabay | FREE |
+| **Image Animation** | **Kling/FAL** | **$0.02-0.05** |
+| Image Generation | Pollinations | FREE |
+| **TOTAL** | | **~$0.02-0.10** |
