@@ -1,63 +1,41 @@
 /**
  * Stock Video Library - Step 4 of the Ad Pipeline
  *
- * Provides cuisine-specific video queries and handles Pexels API integration
- * for resolving stock_video scenes in enriched scripts.
+ * Handles Pexels API integration for resolving stock_video scenes.
  *
- * POC Focus: Curated queries for demo restaurants (Doughnut Vault, Joe's Pizza, Sweetgreen)
+ * Strategy: Use visualPrompt directly as search query (with minor cleanup).
+ * The script generator is responsible for creating search-friendly prompts.
  */
 
-// ============ POC Restaurant Video Queries ============
+// ============ Query Cleanup ============
 
 /**
- * POC-specific curated Pexels queries that are PROVEN to return great footage
- * These are manually tested and selected for the demo
+ * Clean up a visual prompt to be more search-friendly
+ * - Fix common plural issues that affect Pexels results
+ * - Remove filler words
  */
-export const POC_VIDEO_QUERIES: Record<string, Record<string, string[]>> = {
-  // The Doughnut Vault - bakery/donut shop
-  'doughnutvault': {
-    'fresh donuts bakery': ['donut shop', 'fresh donuts', 'bakery morning'],
-    'bakery kitchen': ['bakery kitchen', 'pastry chef baking', 'fresh baked goods'],
-    'donut making': ['donut frying', 'glazing donuts', 'bakery preparation'],
-    'default': ['bakery', 'fresh donuts', 'pastry shop'],
-  },
-  // Joe's Pizza - NYC pizza
-  'joespizza': {
-    'pizza chef tossing dough': ['pizza dough tossing', 'pizza chef', 'making pizza dough'],
-    'pizza oven': ['pizza oven fire', 'brick oven pizza', 'pizza baking'],
-    'busy pizzeria': ['pizzeria kitchen', 'pizza restaurant busy', 'pizza making'],
-    'customers enjoying food at tables': ['restaurant customers eating', 'people eating pizza', 'pizzeria dining'],
-    'default': ['pizza making', 'italian pizza', 'pizza chef'],
-  },
-  // Sweetgreen - healthy salads
-  'sweetgreen': {
-    'fresh salad preparation': ['salad preparation', 'chef making salad', 'fresh vegetables cutting'],
-    'healthy food kitchen': ['healthy restaurant kitchen', 'salad bar', 'fresh ingredients prep'],
-    'vegetables chopping': ['chopping vegetables', 'fresh produce', 'salad ingredients'],
-    'default': ['healthy salad', 'fresh vegetables', 'salad restaurant'],
-  },
-};
+export function cleanupSearchQuery(prompt: string): string {
+  let query = prompt.toLowerCase().trim();
 
-/**
- * Get POC restaurant key from brand name or URL
- */
-export function getPOCRestaurantKey(brandName?: string, url?: string): string | null {
-  const text = `${brandName || ''} ${url || ''}`.toLowerCase();
+  // Fix plurals that hurt Pexels search
+  query = query
+    .replace(/\btables\b/g, 'table')
+    .replace(/\bcustomers\b/g, 'people')
+    .replace(/\bdiners\b/g, 'people eating');
 
-  if (text.includes('doughnut') || text.includes('vault')) {
-    return 'doughnutvault';
-  }
-  if (text.includes('joe') && text.includes('pizza')) {
-    return 'joespizza';
-  }
-  if (text.includes('sweetgreen')) {
-    return 'sweetgreen';
-  }
+  // Remove filler phrases
+  query = query
+    .replace(/\bwith\s+\w+\s+\w+\b/g, '') // "with warm lighting" etc
+    .replace(/\benjoying\b/g, 'eating')
+    .replace(/\bat\s+/g, ' ');
 
-  return null;
+  // Clean up extra spaces
+  query = query.replace(/\s+/g, ' ').trim();
+
+  return query;
 }
 
-// ============ Cuisine Query Mappings (fallback for non-POC) ============
+// ============ Cuisine Query Fallbacks ============
 
 /**
  * Maps cuisine types to relevant Pexels search queries
@@ -257,55 +235,32 @@ export function buildVideoQuery(
 }
 
 /**
- * Get multiple query variants for better results
- * POC restaurants get curated queries that are proven to work well
+ * Get search queries for Pexels
+ * Primary: cleaned visual prompt
+ * Fallback: cuisine-specific queries
  */
 export function getQueryVariants(
   visualPrompt: string,
   cuisine?: string,
-  sceneId?: string,
-  brandName?: string
+  sceneId?: string
 ): string[] {
   const queries: string[] = [];
 
-  // Check if this is a POC restaurant first
-  const pocKey = getPOCRestaurantKey(brandName);
-  if (pocKey && POC_VIDEO_QUERIES[pocKey]) {
-    const pocQueries = POC_VIDEO_QUERIES[pocKey];
+  // Primary: use the visual prompt directly (cleaned up)
+  if (visualPrompt && visualPrompt.length > 3) {
+    const cleanedPrompt = cleanupSearchQuery(visualPrompt);
+    queries.push(cleanedPrompt);
 
-    // Try to find exact match for the visual prompt
-    const promptLower = visualPrompt.toLowerCase();
-    for (const [promptKey, queryList] of Object.entries(pocQueries)) {
-      if (promptKey !== 'default' && promptLower.includes(promptKey.split(' ')[0])) {
-        queries.push(...queryList);
-        break;
-      }
-    }
-
-    // If no exact match, use default POC queries
-    if (queries.length === 0 && pocQueries['default']) {
-      queries.push(...pocQueries['default']);
-    }
-
-    // POC queries are curated, so return them directly
-    if (queries.length > 0) {
-      return queries;
+    // Also try a shorter version (first 3-4 words) as fallback
+    const words = cleanedPrompt.split(' ');
+    if (words.length > 4) {
+      queries.push(words.slice(0, 4).join(' '));
     }
   }
 
-  // Non-POC: use visual prompt and cuisine queries
-  if (visualPrompt && visualPrompt.length > 5) {
-    queries.push(visualPrompt);
-  }
-
-  // Add cuisine-specific queries
+  // Fallback: cuisine-specific queries if prompt doesn't yield results
   const cuisineQueries = CUISINE_QUERIES[cuisine?.toLowerCase() || 'default'] || CUISINE_QUERIES.default;
   queries.push(...cuisineQueries.slice(0, 2));
-
-  // Add scene-specific queries
-  if (sceneId && SCENE_QUERIES[sceneId]) {
-    queries.push(...SCENE_QUERIES[sceneId].slice(0, 1));
-  }
 
   // Remove duplicates
   return [...new Set(queries)];
@@ -315,7 +270,7 @@ export function getQueryVariants(
 
 /**
  * Select the best video from results based on quality and duration
- * Prioritizes videos that closely match the scene duration
+ * We can trim longer videos, so duration is less critical than quality
  */
 export function selectBestVideo(
   videos: PexelsApiVideo[],
@@ -328,40 +283,36 @@ export function selectBestVideo(
   // Default scene duration if not specified
   const targetDuration = preferredDuration || 3;
 
-  // Score each video
+  // Score each video - prioritize quality over duration since we can trim
   const scored = videos.map(video => {
     let score = 0;
     const duration = video.details.duration;
 
-    // Duration scoring - prioritize videos close to target duration
-    // Videos can be trimmed down but not extended, so slightly longer is OK
-    const durationDiff = duration - targetDuration;
-
-    if (durationDiff >= 0 && durationDiff <= 2) {
-      // Perfect: video is 0-2s longer than needed (easy trim)
-      score += 40;
-    } else if (durationDiff > 2 && durationDiff <= 5) {
-      // Good: video is 2-5s longer (still trimmable)
-      score += 30;
-    } else if (durationDiff > 5 && durationDiff <= 10) {
-      // OK: video is 5-10s longer (more trimming needed)
+    // Duration scoring - relaxed since we can trim
+    // Just need video to be long enough (>= target duration)
+    if (duration >= targetDuration) {
+      // Video is long enough - give full points
+      // Slight preference for not too long (less trimming)
+      if (duration <= targetDuration + 10) {
+        score += 25; // Good length
+      } else if (duration <= 30) {
+        score += 20; // Acceptable, just trim
+      } else {
+        score += 15; // Very long but still usable
+      }
+    } else if (duration >= targetDuration - 1) {
+      // Slightly short but usable
       score += 15;
-    } else if (durationDiff < 0 && durationDiff >= -1) {
-      // Slightly short but usable (can slow down slightly)
-      score += 25;
-    } else if (durationDiff < -1) {
-      // Too short - penalize
-      score += 5;
     } else {
-      // Way too long (>10s extra)
-      score += 10;
+      // Too short - bigger penalty
+      score += 5;
     }
 
-    // Prefer HD quality (1080p or higher)
+    // Quality is more important - prefer HD (1080p or higher)
     if (video.details.height >= 1080) {
-      score += 25;
+      score += 35; // HD quality is key
     } else if (video.details.height >= 720) {
-      score += 15;
+      score += 20;
     } else {
       score += 5;
     }
@@ -369,11 +320,11 @@ export function selectBestVideo(
     // Prefer landscape aspect ratio for video ads (16:9 ideal)
     const aspectRatio = video.details.width / video.details.height;
     if (aspectRatio >= 1.7 && aspectRatio <= 1.85) {
-      score += 20; // Perfect 16:9
+      score += 25; // Perfect 16:9
     } else if (aspectRatio >= 1.5 && aspectRatio <= 2.0) {
-      score += 15; // Close to 16:9
+      score += 20; // Close to 16:9
     } else if (aspectRatio >= 1.0 && aspectRatio < 1.5) {
-      score += 5; // Square-ish, less ideal
+      score += 10; // Square-ish, less ideal
     }
     // Portrait videos get no bonus
 
@@ -488,8 +439,7 @@ export async function fetchPexelsVideos(
 
 /**
  * Search for a stock video matching the visual prompt
- * Tries multiple query variants for better results
- * POC restaurants use curated queries for best demo performance
+ * Uses cleaned prompt directly, falls back to cuisine queries
  */
 export async function findStockVideo(
   visualPrompt: string,
@@ -498,13 +448,15 @@ export async function findStockVideo(
     sceneId?: string;
     preferredDuration?: number;
     apiKey?: string;
-    brandName?: string;
   } = {}
 ): Promise<StockVideoResult | null> {
-  const { cuisine, sceneId, preferredDuration, apiKey, brandName } = options;
+  const { cuisine, sceneId, preferredDuration, apiKey } = options;
 
-  // Get query variants to try (POC restaurants get curated queries)
-  const queries = getQueryVariants(visualPrompt, cuisine, sceneId, brandName);
+  // Get query variants (cleaned prompt + cuisine fallbacks)
+  const queries = getQueryVariants(visualPrompt, cuisine, sceneId);
+
+  console.log(`Searching for: "${visualPrompt}"`);
+  console.log(`Query variants: ${queries.join(' | ')}`);
 
   // Try each query until we find a good result
   for (const query of queries) {

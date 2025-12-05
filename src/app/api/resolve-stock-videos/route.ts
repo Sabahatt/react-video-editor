@@ -88,7 +88,6 @@ export async function POST(request: NextRequest): Promise<NextResponse<ResolveSt
     }
 
     const cuisine = brand?.cuisine;
-    const brandName = brand?.name;
 
     // Track resolved stock videos for reference
     const stockVideos: Record<string, StockVideoResult> = {};
@@ -102,13 +101,12 @@ export async function POST(request: NextRequest): Promise<NextResponse<ResolveSt
         }
 
         // Find a stock video for this scene
-        // POC restaurants use curated queries for best demo performance
+        // Uses cleaned prompt directly, cuisine as fallback
         const visualPrompt = scene.visual.prompt || scene.voiceoverText;
         const stockVideo = await findStockVideo(visualPrompt, {
           cuisine,
           sceneId: scene.id,
           preferredDuration: scene.duration,
-          brandName,
         });
 
         if (stockVideo) {

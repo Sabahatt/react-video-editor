@@ -237,9 +237,13 @@ For animated_image scenes, write visualPrompt as a CONCRETE PRODUCT NAME that wo
 
 Think: "What would this dish be called on a menu?" - that's your visualPrompt.
 
-For stock_video scenes, describe the ACTION or ATMOSPHERE:
-- GOOD: "busy restaurant kitchen with chefs cooking", "customers enjoying food at tables"
-- These will be searched on stock video sites, so be descriptive of the scene.
+For stock_video scenes, write SIMPLE SEARCH-FRIENDLY phrases (these are searched on Pexels):
+- GOOD: "pizza chef tossing dough", "people eating at restaurant", "salad preparation kitchen"
+- GOOD: "cooking in kitchen", "food being served", "barista making coffee"
+- BAD: "customers enjoying food at tables" (too wordy, "tables" plural hurts search)
+- BAD: "busy restaurant kitchen with chefs cooking" (too long, pick one action)
+
+Keep stock_video prompts to 3-5 words, action-focused, use singular nouns.
 
 OUTPUT FORMAT (JSON only):
 {
@@ -312,7 +316,7 @@ const POC_FALLBACK_SCRIPTS: Record<string, (duration: number) => FallbackScriptT
           displayText: 'WORTH THE WAIT',
           duration: d,
           visualType: 'stock_video',
-          visualPrompt: 'fresh donuts bakery'
+          visualPrompt: 'donut shop bakery'
         },
         {
           id: 'value',
@@ -336,7 +340,7 @@ const POC_FALLBACK_SCRIPTS: Record<string, (duration: number) => FallbackScriptT
           displayText: 'GET YOURS NOW',
           duration: d,
           visualType: 'logo_brand',
-          visualPrompt: 'Doughnut Vault logo with brand colors'
+          visualPrompt: 'Doughnut Vault logo'
         },
       ],
     };
@@ -359,7 +363,7 @@ const POC_FALLBACK_SCRIPTS: Record<string, (duration: number) => FallbackScriptT
           displayText: 'SINCE 1975',
           duration: d,
           visualType: 'stock_video',
-          visualPrompt: 'pizza chef tossing dough'
+          visualPrompt: 'pizza dough tossing'
         },
         {
           id: 'benefit',
@@ -375,7 +379,7 @@ const POC_FALLBACK_SCRIPTS: Record<string, (duration: number) => FallbackScriptT
           displayText: 'GRAB A SLICE',
           duration: d,
           visualType: 'logo_brand',
-          visualPrompt: 'Joe\'s Pizza logo with red and white colors'
+          visualPrompt: 'Joe\'s Pizza logo'
         },
       ],
     };
@@ -390,7 +394,7 @@ const POC_FALLBACK_SCRIPTS: Record<string, (duration: number) => FallbackScriptT
           displayText: 'REAL FOOD',
           duration: d,
           visualType: 'stock_video',
-          visualPrompt: 'fresh salad preparation'
+          visualPrompt: 'chef making salad'
         },
         {
           id: 'value',
@@ -414,7 +418,7 @@ const POC_FALLBACK_SCRIPTS: Record<string, (duration: number) => FallbackScriptT
           displayText: 'ORDER NOW',
           duration: d,
           visualType: 'logo_brand',
-          visualPrompt: 'Sweetgreen logo with green brand colors'
+          visualPrompt: 'Sweetgreen logo'
         },
       ],
     };
