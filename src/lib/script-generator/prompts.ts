@@ -29,33 +29,35 @@ export const POC_RESTAURANTS: POCRestaurant[] = [
     brandName: "The Doughnut Vault",
     urlPatterns: ['doughnutvault', 'doughnut-vault'],
     cuisine: 'bakery',
-    tagline: 'Chicago\'s Premier Artisan Donuts',
-    description: 'Small-batch, handcrafted donuts made fresh daily in Chicago. Known for old-fashioned glazed, buttermilk old-fashioned, and seasonal specialties. Lines form early because they sell out fast.',
+    tagline: 'Premier Artisan Donuts',
+    description: 'Small-batch, handcrafted donuts made fresh daily. Known for old-fashioned glazed, buttermilk old-fashioned, and seasonal specialties. Lines form early because they sell out fast.',
     uniqueSellingPoints: [
       'Small-batch artisan donuts',
       'Made fresh daily',
       'Sells out early every day',
-      'Chicago institution',
+      'Worth the wait',
       'Old-fashioned recipes'
     ],
     suggestedTone: 'friendly',
-    keywords: ['artisan', 'small-batch', 'fresh daily', 'handcrafted', 'old-fashioned', 'glazed', 'Chicago']
+    // Keywords for voiceover - focus on product qualities, not location
+    keywords: ['artisan', 'small-batch', 'fresh daily', 'handcrafted', 'old-fashioned', 'glazed', 'worth the wait']
   },
   {
     brandName: "Joe's Pizza",
     urlPatterns: ['joespizza', 'joes-pizza'],
     cuisine: 'pizza',
     tagline: 'New York\'s Finest Pizza Since 1975',
-    description: 'Iconic Greenwich Village pizzeria serving authentic New York-style pizza. Famous for perfectly crispy yet foldable slices with the ideal cheese-to-sauce ratio. A NYC institution featured in Spider-Man.',
+    description: 'Iconic pizzeria serving authentic New York-style pizza. Famous for perfectly crispy yet foldable slices with the ideal cheese-to-sauce ratio. A legendary institution featured in Spider-Man.',
     uniqueSellingPoints: [
-      'Authentic NYC pizza since 1975',
+      'Authentic pizza since 1975',
       'Perfectly foldable slices',
-      'Greenwich Village icon',
+      'Legendary NYC institution',
       'Celebrity favorite',
-      'Hand-tossed daily'
+      'Hand-tossed fresh daily'
     ],
     suggestedTone: 'playful',
-    keywords: ['New York', 'authentic', 'hand-tossed', 'crispy', 'iconic', 'slice', 'Greenwich Village', '1975']
+    // Keywords for voiceover only (not display text) - location names are fine here
+    keywords: ['authentic', 'hand-tossed', 'crispy', 'iconic', 'slice', 'since 1975', 'fresh daily']
   },
   {
     brandName: "Sweetgreen",
@@ -221,9 +223,12 @@ SCENE STRUCTURE:
 
 CRITICAL RULES:
 - voiceoverText: ${wordsPerScene}-${wordsPerScene + 2} words per scene (MUST match duration for natural pacing)
-- displayText: 2-4 words, ALL CAPS, complements voiceover (NOT identical)
+- displayText: 2-4 words, ALL CAPS, MUST be universally understandable action/benefit phrases
+  * GOOD examples: "TASTE THE BEST", "FRESH DAILY", "ORDER NOW", "PERFECT SLICE", "MADE FRESH"
+  * BAD examples: "GREENWICH VILLAGE FAVE" (location-specific), "CHICAGO ICON" (location-specific)
+  * The displayText should make sense to ANYONE, not just locals
 - visualType: Choose based on scene content, prioritize animated_image for product shots
-- Keywords to incorporate: ${effectiveKeywords.join(', ')}
+- Do NOT use location names (neighborhoods, cities) in displayText - use universal appeal words instead
 
 VISUAL PROMPT GUIDELINES (VERY IMPORTANT):
 The visualPrompt is used to match against actual product images scraped from the restaurant's website.

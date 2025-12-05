@@ -31,6 +31,20 @@ export const calculateMediaStyles = (
   } as React.CSSProperties;
 };
 
+// Styles for making media fill their container with cover behavior
+export const mediaFillStyles: React.CSSProperties = {
+  width: "100%",
+  height: "100%",
+  objectFit: "cover",
+};
+
+// Styles for logos - contained within bounds without stretching
+export const mediaContainStyles: React.CSSProperties = {
+  width: "100%",
+  height: "100%",
+  objectFit: "contain",
+};
+
 export const calculateTextStyles = (
   details: IText["details"]
 ): React.CSSProperties => ({

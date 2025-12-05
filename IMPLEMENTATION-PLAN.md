@@ -393,3 +393,90 @@ FAL_KEY=your_key             # Kling image-to-video (REQUIRED)
 | **Image Animation** | **Kling/FAL** | **$0.02-0.05** |
 | Image Generation | Pollinations | FREE |
 | **TOTAL** | | **~$0.02-0.10** |
+
+---
+
+## Current Implementation Status
+
+### Phase 1: Core Pipeline (COMPLETED)
+
+**Steps 1-4 are fully implemented and working:**
+
+1. **Web Scraping** - Extracts brand info, logo, images, colors, contact from restaurant websites
+2. **Script Generation** - Uses Groq LLM to generate 4-scene ad scripts
+3. **Visual Matching** - CLIP-based semantic matching of images to scenes
+4. **Stock Video Resolution** - Pexels API integration for stock_video scenes
+
+### Phase 2: Editor Integration (COMPLETED)
+
+**Two-Screen Flow:**
+
+1. **Landing Page** (`src/app/page.tsx`)
+   - POC restaurant dropdown (Joe's Pizza, Doughnut Vault, Sweetgreen)
+   - Generate button triggers full pipeline
+   - Progress indicators for each step
+   - On completion, stores design in sessionStorage and navigates to editor
+
+2. **Orchestration API** (`src/app/api/generate-ad/route.ts`)
+   - Runs Steps 1-4 sequentially
+   - Builds timeline using `buildTimelineDesign()`
+   - Returns editor-compatible design JSON
+
+3. **Timeline Builder** (`src/lib/timeline-builder/index.ts`)
+   - Converts enriched script to `@designcombo/types` format
+   - Creates video/image track items for visuals
+   - Creates text overlay items for displayText
+   - Proper timing based on scene durations
+
+4. **Editor Integration** (`src/features/editor/editor.tsx`)
+   - Loads generated design from sessionStorage on mount
+   - Clears sessionStorage after loading
+   - Falls back to empty editor if no stored design
+
+**Removed:**
+- `src/features/editor/mock.ts` - Default sample timeline removed
+
+### Phase 3: Audio (NOT YET STARTED)
+
+- Step 5: Voiceover Generation (Edge-TTS)
+- Step 6: Background Music (Pixabay)
+
+### Phase 4: Advanced (NOT YET STARTED)
+
+- Step 7: Image-to-Video Animation (Kling/FAL.ai)
+- Step 8: Image Generation Fallback (Pollinations)
+
+---
+
+## How to Test
+
+1. Start the dev server:
+   ```bash
+   pnpm dev
+   ```
+
+2. Open `http://localhost:3000`
+
+3. Select a restaurant from the dropdown
+
+4. Click "Generate Ad"
+
+5. Wait for all steps to complete
+
+6. Editor opens with generated timeline
+
+---
+
+## File Changes Summary
+
+### New Files Created:
+- `src/app/page.tsx` - Landing page with restaurant selector
+- `src/app/api/generate-ad/route.ts` - Orchestration endpoint
+- `src/lib/timeline-builder/index.ts` - Script to timeline converter
+
+### Modified Files:
+- `src/features/editor/editor.tsx` - Loads design from sessionStorage
+- `src/lib/scraper/index.ts` - Fixed TypeScript type annotation
+
+### Removed Files:
+- `src/features/editor/mock.ts` - No longer needed

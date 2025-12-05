@@ -14,7 +14,7 @@ import {
   extractBrandColorsFromCSS,
 } from './extractors';
 import { extractColorsFromImage } from './color-extractor';
-import type { ScrapedData, ScrapeOptions, ScrapeResult } from './types';
+import type { ScrapedData, ScrapeOptions, ScrapeResult, BrandColors } from './types';
 
 // Singleton browser instance for reuse
 let browserInstance: Browser | null = null;
@@ -232,7 +232,7 @@ export async function scrapeWebsite(
     // Extract colors - prioritize CSS/theme colors over image-based extraction
     // CSS colors reflect intentional brand choices, while food images just show food colors
     const colorExtractionStart = Date.now();
-    let colors;
+    let colors: BrandColors;
 
     if (cssColors && (cssColors.primary || cssColors.accent)) {
       // Use CSS-extracted colors as primary source

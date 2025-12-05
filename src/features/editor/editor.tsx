@@ -30,12 +30,12 @@ import { useIsLargeScreen } from "@/hooks/use-media-query";
 import { ITrackItem } from "@designcombo/types";
 import useLayoutStore from "./store/use-layout-store";
 import ControlItemHorizontal from "./control-item-horizontal";
-import { design } from "./mock";
+import useUploadStore from "./store/use-upload-store";
 
 const stateManager = new StateManager({
 	size: {
-		width: 1080,
-		height: 1920,
+		width: 1920,
+		height: 1080,
 	},
 });
 
@@ -61,8 +61,73 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 
 	const { setCompactFonts, setFonts } = useDataState();
 
+	const { setUploads, uploads: existingUploads } = useUploadStore();
+
 	useEffect(() => {
-		dispatch(DESIGN_LOAD, { payload: design });
+		// Try to load generated design from sessionStorage
+		const storedDesign = sessionStorage.getItem("generatedDesign");
+		if (storedDesign) {
+			try {
+				const design = JSON.parse(storedDesign);
+				dispatch(DESIGN_LOAD, { payload: design });
+
+				// Extract media from design and add to uploads for the media panel
+				const mediaUploads: Array<{
+					id: string;
+					url: string;
+					type: string;
+					preview?: string;
+					metadata?: { alt?: string; uploadedUrl?: string; previewUrl?: string };
+				}> = [];
+
+				if (design.trackItemsMap) {
+					Object.values(design.trackItemsMap).forEach((item: any) => {
+						if (item.type === "video" && item.details?.src) {
+							mediaUploads.push({
+								id: `generated_${item.id}`,
+								url: item.details.src,
+								type: "video",
+								// For videos, use preview image if available (from Pexels)
+								preview: item.metadata?.previewUrl,
+								metadata: {
+									alt: item.metadata?.alt || "Generated video",
+									uploadedUrl: item.details.src,
+									previewUrl: item.metadata?.previewUrl,
+								},
+							});
+						} else if (item.type === "image" && item.details?.src) {
+							mediaUploads.push({
+								id: `generated_${item.id}`,
+								url: item.details.src,
+								type: "image",
+								metadata: {
+									alt: item.metadata?.alt || "Generated image",
+									uploadedUrl: item.details.src,
+								},
+							});
+						}
+					});
+				}
+
+				// Add unique media to uploads (avoid duplicates)
+				if (mediaUploads.length > 0) {
+					const existingUrls = new Set(existingUploads.map((u: any) => u.url));
+					const newUploads = mediaUploads.filter((u) => !existingUrls.has(u.url));
+					if (newUploads.length > 0) {
+						setUploads([...existingUploads, ...newUploads]);
+					}
+				}
+
+				// Clear sessionStorage after loading
+				sessionStorage.removeItem("generatedDesign");
+				sessionStorage.removeItem("generatedBrand");
+				sessionStorage.removeItem("generatedScript");
+				console.log("Loaded generated design from sessionStorage");
+			} catch (error) {
+				console.error("Failed to parse stored design:", error);
+			}
+		}
+		// If no stored design, editor starts empty (user can add items manually)
 	}, []);
 
 	useEffect(() => {
@@ -137,14 +202,14 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 	}, []);
 
 	return (
-		<div className="flex h-screen w-screen flex-col">
+		<div className="flex h-screen w-screen flex-col overflow-hidden">
 			<Navbar
 				projectName={projectName}
 				user={null}
 				stateManager={stateManager}
 				setProjectName={setProjectName}
 			/>
-			<div className="flex flex-1">
+			<div className="flex flex-1 overflow-hidden">
 				{isLargeScreen && (
 					<div className="bg-muted  flex flex-none border-r border-border/80 h-[calc(100vh-44px)]">
 						<MenuList />
@@ -152,7 +217,7 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 					</div>
 				)}
 				<ResizablePanelGroup style={{ flex: 1 }} direction="vertical">
-					<ResizablePanel className="relative" defaultSize={70}>
+					<ResizablePanel className="relative overflow-hidden" defaultSize={70}>
 						<FloatingControl />
 						<div className="flex h-full flex-1">
 							{/* Sidebar only on large screens - conditionally mounted */}

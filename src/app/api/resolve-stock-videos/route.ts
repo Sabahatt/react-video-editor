@@ -118,6 +118,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<ResolveSt
               type: 'stock_video' as const,
               url: stockVideo.url,
               alt: `Stock video: ${visualPrompt}`,
+              preview: stockVideo.preview, // Thumbnail for media panel
             },
           };
         }

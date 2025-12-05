@@ -149,22 +149,34 @@ export const Uploads = () => {
             </div>
             <ScrollArea className="max-h-32">
               <div className="grid grid-cols-3 gap-2 max-w-full">
-                {videos.map((video, idx) => (
-                  <div
-                    className="flex items-center gap-2 flex-col w-full"
-                    key={video.id || idx}
-                  >
-                    <Card
-                      className="w-16 h-16 flex items-center justify-center overflow-hidden relative cursor-pointer"
-                      onClick={() => handleAddVideo(video)}
+                {videos.map((video, idx) => {
+                  const previewUrl = video.metadata?.previewUrl || video.metadata?.thumbnail || video.preview;
+                  const videoUrl = video.metadata?.uploadedUrl || video.url;
+                  return (
+                    <div
+                      className="flex items-center gap-2 flex-col w-full"
+                      key={video.id || idx}
                     >
-                      <VideoIcon className="w-8 h-8 text-muted-foreground" />
-                    </Card>
-                    <div className="text-xs text-muted-foreground truncate w-full text-center">
-                      {video.file?.name || video.url || "Video"}
+                      <Card
+                        className="w-16 h-16 flex items-center justify-center overflow-hidden relative cursor-pointer bg-muted"
+                        onClick={() => handleAddVideo(video)}
+                      >
+                        {previewUrl ? (
+                          <img
+                            src={previewUrl}
+                            alt="Video thumbnail"
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <VideoIcon className="w-8 h-8 text-muted-foreground" />
+                        )}
+                      </Card>
+                      <div className="text-xs text-muted-foreground truncate w-full text-center">
+                        {video.file?.name || (videoUrl ? "Video" : "Video")}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </ScrollArea>
           </div>
@@ -179,22 +191,33 @@ export const Uploads = () => {
             </div>
             <ScrollArea className="max-h-32">
               <div className="grid grid-cols-3 gap-2 max-w-full">
-                {images.map((image, idx) => (
-                  <div
-                    className="flex items-center gap-2 flex-col w-full"
-                    key={image.id || idx}
-                  >
-                    <Card
-                      className="w-16 h-16 flex items-center justify-center overflow-hidden relative cursor-pointer"
-                      onClick={() => handleAddImage(image)}
+                {images.map((image, idx) => {
+                  const imageUrl = image.metadata?.uploadedUrl || image.url;
+                  return (
+                    <div
+                      className="flex items-center gap-2 flex-col w-full"
+                      key={image.id || idx}
                     >
-                      <ImageIcon className="w-8 h-8 text-muted-foreground" />
-                    </Card>
-                    <div className="text-xs text-muted-foreground truncate w-full text-center">
-                      {image.file?.name || image.url || "Image"}
+                      <Card
+                        className="w-16 h-16 flex items-center justify-center overflow-hidden relative cursor-pointer bg-muted"
+                        onClick={() => handleAddImage(image)}
+                      >
+                        {imageUrl ? (
+                          <img
+                            src={imageUrl}
+                            alt={image.metadata?.alt || "Image thumbnail"}
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <ImageIcon className="w-8 h-8 text-muted-foreground" />
+                        )}
+                      </Card>
+                      <div className="text-xs text-muted-foreground truncate w-full text-center">
+                        {image.file?.name || image.metadata?.alt || "Image"}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </ScrollArea>
           </div>

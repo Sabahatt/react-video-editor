@@ -1,7 +1,7 @@
 import { IVideo } from "@designcombo/types";
 import { BaseSequence, SequenceItemOptions } from "../base-sequence";
 import { BoxAnim, ContentAnim, MaskAnim } from "@designcombo/animations";
-import { calculateContainerStyles, calculateMediaStyles } from "../styles";
+import { calculateContainerStyles, calculateMediaStyles, mediaFillStyles } from "../styles";
 import { getAnimations } from "../../utils/get-animations";
 import { calculateFrames } from "../../utils/frames";
 import { OffthreadVideo, Video as RemotionVideo, getRemotionEnvironment } from "remotion";
@@ -65,6 +65,7 @@ export const Video = ({
                 playbackRate={playbackRate}
                 src={details.src}
                 volume={(details.volume ?? 100) / 100}
+                style={mediaFillStyles}
               />
             ) : (
               <RemotionVideo
@@ -73,6 +74,7 @@ export const Video = ({
                 playbackRate={playbackRate}
                 src={details.src}
                 volume={(details.volume ?? 100) / 100}
+                style={mediaFillStyles}
               />
             )}
           </div>

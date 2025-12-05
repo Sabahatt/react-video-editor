@@ -1,7 +1,7 @@
 import { IImage } from "@designcombo/types";
 import { BaseSequence, SequenceItemOptions } from "../base-sequence";
 import { BoxAnim, ContentAnim, MaskAnim } from "@designcombo/animations";
-import { calculateContainerStyles, calculateMediaStyles } from "../styles";
+import { calculateContainerStyles, calculateMediaStyles, mediaFillStyles, mediaContainStyles } from "../styles";
 import { getAnimations } from "../../utils/get-animations";
 import { calculateFrames } from "../../utils/frames";
 import { Img } from "remotion";
@@ -14,7 +14,7 @@ export default function Image({
   options: SequenceItemOptions;
 }) {
   const { fps, frame } = options;
-  const { details, animations } = item;
+  const { details, animations, metadata } = item;
   const { animationIn, animationOut, animationTimed } = getAnimations(
     animations!,
     item,
@@ -29,6 +29,10 @@ export default function Image({
   };
   const { durationInFrames } = calculateFrames(item.display, fps);
   const currentFrame = (frame || 0) - (item.display.from * fps) / 1000;
+
+  // Check if this is a logo (needs contain behavior instead of cover)
+  const isLogo = (metadata as Record<string, unknown>)?.isLogo === true;
+  const imageStyles = isLogo ? mediaContainStyles : mediaFillStyles;
 
   const children = (
     <BoxAnim
@@ -55,7 +59,7 @@ export default function Image({
             style={calculateMediaStyles(details, crop)}
           >
             {/* image layer */}
-            <Img data-id={item.id} src={details.src} />
+            <Img data-id={item.id} src={details.src} style={imageStyles} />
           </div>
         </MaskAnim>
       </ContentAnim>
