@@ -360,14 +360,6 @@ function createTextItem(
   const textWidth = 1600;
   const leftOffset = (CANVAS_WIDTH - textWidth) / 2;
 
-  // Professional text visibility: combine stroke + multiple layered shadows
-  // This ensures readability on any background (light or dark)
-  const textShadowLayers = [
-    '0 0 10px rgba(0,0,0,0.9)',      // Tight glow for edge definition
-    '0 0 20px rgba(0,0,0,0.7)',      // Medium glow for separation
-    '0 4px 8px rgba(0,0,0,0.8)',     // Drop shadow for depth
-  ].join(', ');
-
   return {
     id,
     name: 'text',
@@ -388,12 +380,15 @@ function createTextItem(
       letterSpacing: '2px',
       wordSpacing: 'normal',
       border: 'none',
-      textShadow: textShadowLayers,
       opacity: 100,
       wordWrap: 'normal',
       wordBreak: 'normal',
-      WebkitTextStrokeColor: '#000000',
-      WebkitTextStrokeWidth: '3px', // Slightly thicker stroke for better visibility
+      // Text stroke: borderWidth + borderColor are used by calculateTextStyles for WebkitTextStroke
+      borderWidth: 4,
+      borderColor: '#000000',
+      // Text shadow: boxShadow object is used by calculateTextStyles
+      // Using a strong shadow for visibility on any background
+      boxShadow: { color: 'rgba(0,0,0,0.9)', x: 2, y: 4, blur: 12 },
       top,
       left: `${leftOffset}px`,
       width: textWidth,
@@ -402,7 +397,6 @@ function createTextItem(
       transform: 'none',
       skewX: 0,
       skewY: 0,
-      boxShadow: { color: '#000000', x: 0, y: 0, blur: 0 },
     },
     metadata: {},
     isMain: false,

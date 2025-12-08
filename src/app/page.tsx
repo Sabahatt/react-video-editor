@@ -206,7 +206,7 @@ export default function Home() {
             Restaurant Ad Generator
           </h1>
           <p className="text-muted-foreground">
-            Generate a 10-second video ad from any restaurant website
+            Generate a video ad from any restaurant website
           </p>
         </div>
 
