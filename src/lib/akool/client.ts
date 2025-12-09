@@ -124,7 +124,7 @@ export class AkoolClient {
     const response = await fetch(`${this.baseUrl}/image2Video/createBySourcePrompt`, {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${this.apiKey}`,
+        'x-api-key': this.apiKey,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(request),
@@ -151,34 +151,53 @@ export class AkoolClient {
   }
 
   /**
-   * Get the status of an animation task
+   * Get the status of an animation task with retry logic
    */
-  async getTaskStatus(taskId: string): Promise<AkoolTaskStatus> {
-    const response = await fetch(`${this.baseUrl}/image2Video/result?_id=${taskId}`, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${this.apiKey}`,
-      },
-    });
+  async getTaskStatus(taskId: string, retries = 3): Promise<AkoolTaskStatus> {
+    let lastError: Error | null = null;
 
-    if (!response.ok) {
-      const error = await response.text();
-      throw new Error(`Akool API error: ${response.status} - ${error}`);
+    for (let attempt = 0; attempt < retries; attempt++) {
+      try {
+        const response = await fetch(`${this.baseUrl}/image2Video/resultsByIds`, {
+          method: 'POST',
+          headers: {
+            'x-api-key': this.apiKey,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ _ids: taskId }),
+        });
+
+        if (!response.ok) {
+          const error = await response.text();
+          throw new Error(`Akool API error: ${response.status} - ${error}`);
+        }
+
+        const result = await response.json();
+
+        if (result.code !== 1000) {
+          throw new Error(`Akool API error: ${result.msg || 'Unknown error'}`);
+        }
+
+        // API returns an array of results
+        const taskData = Array.isArray(result.data) ? result.data[0] : result.data;
+
+        return {
+          _id: taskData._id || taskId,
+          status: taskData.status,
+          video_url: taskData.video_url,
+          deduction_credit: taskData.deduction_credit,
+          error: taskData.error,
+        };
+      } catch (error) {
+        lastError = error instanceof Error ? error : new Error(String(error));
+        console.log(`Status check attempt ${attempt + 1}/${retries} failed: ${lastError.message}`);
+        if (attempt < retries - 1) {
+          await new Promise(resolve => setTimeout(resolve, 2000)); // Wait 2s before retry
+        }
+      }
     }
 
-    const result = await response.json();
-
-    if (result.code !== 1000) {
-      throw new Error(`Akool API error: ${result.msg || 'Unknown error'}`);
-    }
-
-    return {
-      _id: result.data._id || taskId,
-      status: result.data.status,
-      video_url: result.data.video_url,
-      deduction_credit: result.data.deduction_credit,
-      error: result.data.error,
-    };
+    throw lastError || new Error('Failed to get task status');
   }
 
   /**

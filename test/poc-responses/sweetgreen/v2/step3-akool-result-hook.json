@@ -1,0 +1,17 @@
+{
+  "sceneId": "hook",
+  "imageUrl": "https://images.ctfassets.net/eum7w7yri3zr/QCN3MLGE4UBEnU6vSjpyz/d17102e51361c12b6a14590b89701eb9/SG_Web_Image_Salad_Buffalo_Chicken.png?w=600&q=75",
+  "imageAlt": "Buffalo chicken salad",
+  "prompt": "dramatic slow zoom in, ingredients being tossed in slow motion, bright fresh lighting",
+  "negativePrompt": "blurry, distorted, oversaturated, cartoon, illustration, text overlay, static, boring, flat lighting",
+  "videoLength": 5,
+  "resolution": "720p",
+  "taskId": "693784d14b4c375700bb590f",
+  "status": 3,
+  "statusText": "completed",
+  "videoUrl": "https://d2qf6ukcym4kn9.cloudfront.net/1765246212142-3528.mp4",
+  "localVideoFile": "step3-animation-hook.mp4",
+  "deductionCredits": 20,
+  "videoDuration": 5.0625,
+  "completedAt": "2025-12-09T02:30:13.648Z"
+}

@@ -1,0 +1,11 @@
+{
+  "sceneId": "hook",
+  "imageUrl": "https://images.ctfassets.net/eum7w7yri3zr/QCN3MLGE4UBEnU6vSjpyz/d17102e51361c12b6a14590b89701eb9/SG_Web_Image_Salad_Buffalo_Chicken.png?w=600&q=75",
+  "imageAlt": "Buffalo chicken salad",
+  "prompt": "dramatic slow zoom in, ingredients being tossed in slow motion, bright fresh lighting",
+  "negativePrompt": "blurry, distorted, oversaturated, cartoon, illustration, text overlay, static, boring, flat lighting",
+  "videoLength": 5,
+  "resolution": "720p",
+  "estimatedCredits": 20,
+  "preparedAt": "2025-12-09T02:10:41.487Z"
+}
