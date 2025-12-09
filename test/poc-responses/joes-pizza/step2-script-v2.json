@@ -2,9 +2,9 @@
   "success": true,
   "pocBrand": "Joe's Pizza",
   "script": {
-    "fullScript": "In 1975, Pino Joe Pozzuoli brought a taste of Naples to New York City's Greenwich Village. For nearly 50 years, we've been perfecting our authentic New York street-style pizza. Thin, crispy slices made with all-natural mozzarella cheese, house-made sauce, and hand-tossed dough. From classic margherita to Sicilian, our pizzas are a New York favorite. Get your slice of history at Joe's Pizza, Greenwich Village.",
+    "fullScript": "
+      {In 1975, Pino Joe Pozzuoli brought a taste of Naples to New York City's Greenwich Village. For nearly 50 years, we've been perfecting our authentic New York street-style pizza. Thin, crispy slices made with all-natural mozzarella cheese, house-made sauce, and hand-tossed dough. From classic margherita to Sicilian, our pizzas are a New York favorite. Get your slice of history at Joe's Pizza, Greenwich Village.",
     "scenes": [
-      {
         "id": "hook",
         "voiceoverText": "In 1975, Pino Joe Pozzuoli brought a taste of Naples to New York City's Greenwich Village.",
         "displayText": "JOE'S PIZZA",

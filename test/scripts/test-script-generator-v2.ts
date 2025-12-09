@@ -89,11 +89,12 @@ async function testScriptGeneration() {
     console.log('\n📝 Generating script (20s ad)...');
     const startTime = Date.now();
 
+    const brand = testCase.data.brand as { name: string; tagline?: string; description?: string; cuisine?: string };
     const result = await generateScript({
-      brandName: testCase.data.brand.name,
-      tagline: testCase.data.brand.tagline,
-      description: testCase.data.brand.description,
-      cuisine: testCase.data.brand.cuisine,
+      brandName: brand.name,
+      tagline: brand.tagline,
+      description: brand.description,
+      cuisine: brand.cuisine,
       duration: 20,
       url: testCase.url,
       contact: testCase.data.contact,

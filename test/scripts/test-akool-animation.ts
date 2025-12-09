@@ -74,6 +74,8 @@ const TEST_CONFIG = {
   sceneId: 'hook',
   // Output directory
   outputDir: 'v2',
+  // Resume mode: provide taskId to skip creation and just poll/download
+  resumeTaskId: null as string | null,
 };
 
 interface SceneWithImage {
@@ -214,44 +216,89 @@ async function testAkoolAnimation() {
 
   // Initialize Akool client
   const client = new AkoolClient();
-
-  console.log('\nSubmitting animation request...');
   const startTime = Date.now();
 
-  try {
-    // Create animation task
-    const task = await client.createAnimation(
-      scene.selectedImage.url,
-      scene.akoolConfig.prompt,
-      scene.akoolConfig.negativePrompt,
-      {
-        videoLength: scene.akoolConfig.videoLength as 5 | 10,
-        resolution: scene.akoolConfig.resolution as '720p' | '1080p',
+  let taskId: string;
+  let taskData: Record<string, unknown>;
+
+  // Auto-detect existing task to prevent duplicate credit usage
+  const existingTaskPath = path.join(outputPath, `step3-akool-task-${sceneId}.json`);
+  const existingResultPath = path.join(outputPath, `step3-akool-result-${sceneId}.json`);
+
+  // Check if we already have a completed result
+  if (fs.existsSync(existingResultPath)) {
+    console.log(`\n⚠️  Result already exists: ${existingResultPath}`);
+    console.log('Delete the result file to re-run, or change sceneId.');
+    process.exit(0);
+  }
+
+  // Check for existing task (created but not completed)
+  let autoResumeTaskId: string | null = null;
+  if (fs.existsSync(existingTaskPath)) {
+    try {
+      const existingTask = JSON.parse(fs.readFileSync(existingTaskPath, 'utf-8'));
+      if (existingTask.taskId) {
+        autoResumeTaskId = existingTask.taskId;
+        console.log(`\n⚠️  Found existing task: ${autoResumeTaskId}`);
+        console.log('Auto-resuming to prevent duplicate credit usage...');
       }
-    );
+    } catch {
+      // Ignore parse errors
+    }
+  }
 
-    console.log(`\nTask created!`);
-    console.log(`  Task ID: ${task._id}`);
-    console.log(`  Status: ${task.status} (${getStatusText(task.status)})`);
+  // Determine which taskId to use
+  const resumeTaskId = TEST_CONFIG.resumeTaskId || autoResumeTaskId;
 
-    // Save task info
-    const taskData = {
-      ...requestData,
-      taskId: task._id,
-      status: task.status,
-      statusText: getStatusText(task.status),
-      submittedAt: new Date().toISOString(),
-    };
+  if (resumeTaskId) {
+    taskId = resumeTaskId;
+    console.log(`\nResuming task: ${taskId}`);
+    taskData = { ...requestData, taskId, resumedAt: new Date().toISOString() };
+  } else {
+    console.log('\nSubmitting animation request...');
 
-    const taskPath = path.join(outputPath, `step3-akool-task-${sceneId}.json`);
-    fs.writeFileSync(taskPath, JSON.stringify(taskData, null, 2));
-    console.log(`Task data saved to: ${taskPath}`);
+    try {
+      // Create animation task
+      const task = await client.createAnimation(
+        scene.selectedImage.url,
+        scene.akoolConfig.prompt,
+        scene.akoolConfig.negativePrompt,
+        {
+          videoLength: scene.akoolConfig.videoLength as 5 | 10,
+          resolution: scene.akoolConfig.resolution as '720p' | '1080p',
+        }
+      );
 
-    // Poll for completion
-    console.log('\nWaiting for completion...');
-    console.log('(This may take 1-5 minutes)');
+      taskId = task._id;
+      console.log(`\nTask created!`);
+      console.log(`  Task ID: ${taskId}`);
+      console.log(`  Status: ${task.status} (${getStatusText(task.status)})`);
 
-    const videoUrl = await client.waitForCompletion(task._id, {
+      // Save task info IMMEDIATELY (before polling)
+      taskData = {
+        ...requestData,
+        taskId,
+        status: task.status,
+        statusText: getStatusText(task.status),
+        submittedAt: new Date().toISOString(),
+      };
+
+      const taskPath = path.join(outputPath, `step3-akool-task-${sceneId}.json`);
+      fs.writeFileSync(taskPath, JSON.stringify(taskData, null, 2));
+      console.log(`Task data saved to: ${taskPath}`);
+      console.log(`\n** If polling fails, resume with: resumeTaskId: '${taskId}' **\n`);
+    } catch (createError) {
+      console.error('\nFailed to create animation:', createError);
+      process.exit(1);
+    }
+  }
+
+  // Poll for completion
+  console.log('Waiting for completion...');
+  console.log('(This may take 1-5 minutes)');
+
+  try {
+    const videoUrl = await client.waitForCompletion(taskId, {
       pollIntervalMs: 10000, // Check every 10 seconds
       maxWaitMs: 600000, // Max 10 minutes
     });
@@ -298,18 +345,21 @@ async function testAkoolAnimation() {
     console.log(`  - ${videoFilePath}`);
 
   } catch (error) {
-    console.error('\nAnimation failed:', error);
+    console.error('\nPolling/download failed:', error);
 
-    // Save error
+    // Save error WITH taskId so we can resume
     const errorData = {
       ...requestData,
+      taskId, // IMPORTANT: include taskId for resume
       error: error instanceof Error ? error.message : String(error),
       failedAt: new Date().toISOString(),
+      resumeHint: `To resume, set: resumeTaskId: '${taskId}'`,
     };
 
     const errorPath = path.join(outputPath, `step3-akool-error-${sceneId}.json`);
     fs.writeFileSync(errorPath, JSON.stringify(errorData, null, 2));
-    console.log(`Error saved to: ${errorPath}`);
+    console.log(`\nError saved to: ${errorPath}`);
+    console.log(`\n** To resume, set resumeTaskId: '${taskId}' in TEST_CONFIG **`);
 
     process.exit(1);
   }
