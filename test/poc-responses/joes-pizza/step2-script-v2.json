@@ -1,0 +1,166 @@
+{
+  "success": true,
+  "pocBrand": "Joe's Pizza",
+  "script": {
+    "fullScript": "In 1975, Pino Joe Pozzuoli brought a taste of Naples to New York City's Greenwich Village. For nearly 50 years, we've been perfecting our authentic New York street-style pizza. Thin, crispy slices made with all-natural mozzarella cheese, house-made sauce, and hand-tossed dough. From classic margherita to Sicilian, our pizzas are a New York favorite. Get your slice of history at Joe's Pizza, Greenwich Village.",
+    "scenes": [
+      {
+        "id": "hook",
+        "voiceoverText": "In 1975, Pino Joe Pozzuoli brought a taste of Naples to New York City's Greenwich Village.",
+        "displayText": "JOE'S PIZZA",
+        "duration": 4,
+        "visualType": "animated_image",
+        "visualCategory": "pizzas",
+        "akoolConfig": {
+          "prompt": "slow zoom in, gentle motion, appetizing food photography",
+          "negativePrompt": "blurry, distorted, oversaturated, cartoon, illustration",
+          "videoLength": 5,
+          "resolution": "720p"
+        }
+      },
+      {
+        "id": "value",
+        "voiceoverText": "For nearly 50 years, we've been perfecting our authentic New York street-style pizza.",
+        "displayText": "100% NATURAL",
+        "duration": 4,
+        "visualType": "animated_image",
+        "visualCategory": "salads",
+        "akoolConfig": {
+          "prompt": "slow zoom in, gentle motion, appetizing food photography",
+          "negativePrompt": "blurry, distorted, oversaturated, cartoon, illustration",
+          "videoLength": 5,
+          "resolution": "720p"
+        }
+      },
+      {
+        "id": "benefit",
+        "voiceoverText": "Thin, crispy slices made with all-natural mozzarella cheese, house-made sauce, and hand-tossed dough.",
+        "displayText": "TASTE THE DIFFERENCE",
+        "duration": 4,
+        "visualType": "animated_image",
+        "visualCategory": "sides",
+        "akoolConfig": {
+          "prompt": "slow zoom in, gentle motion, appetizing food photography",
+          "negativePrompt": "blurry, distorted, oversaturated, cartoon, illustration",
+          "videoLength": 5,
+          "resolution": "720p"
+        }
+      },
+      {
+        "id": "extra",
+        "voiceoverText": "From classic margherita to Sicilian, our pizzas are a New York favorite.",
+        "displayText": "TRY OUR PIZZAS",
+        "duration": 4,
+        "visualType": "animated_image",
+        "visualCategory": "pizzas",
+        "akoolConfig": {
+          "prompt": "slow zoom in, gentle motion, appetizing food photography",
+          "negativePrompt": "blurry, distorted, oversaturated, cartoon, illustration",
+          "videoLength": 5,
+          "resolution": "720p"
+        }
+      },
+      {
+        "id": "cta",
+        "voiceoverText": "Get your slice of history at Joe's Pizza, Greenwich Village.",
+        "displayText": "ORDER NOW",
+        "duration": 4,
+        "visualType": "logo_brand",
+        "contactOverlay": {
+          "website": "https://www.joespizza.com/menu-joes-pizza-santa-monica-venice"
+        }
+      }
+    ],
+    "tone": "playful",
+    "totalDuration": 20
+  },
+  "scenesWithImages": [
+    {
+      "sceneId": "hook",
+      "voiceoverText": "In 1975, Pino Joe Pozzuoli brought a taste of Naples to New York City's Greenwich Village.",
+      "displayText": "JOE'S PIZZA",
+      "duration": 4,
+      "visualType": "animated_image",
+      "visualCategory": "pizzas",
+      "selectedImage": {
+        "url": "https://static.wixstatic.com/media/4801ad_91ee8244d63d48abaacd98db231e77e5~mv2.png/v1/fill/w_413,h_232,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/4801ad_91ee8244d63d48abaacd98db231e77e5~mv2.png",
+        "alt": "🇺🇸  NY CHEESE PIZZA",
+        "category": "pizzas"
+      },
+      "akoolConfig": {
+        "prompt": "dramatic slow zoom in, gooey cheese pull stretching dramatically, warm dramatic lighting",
+        "negativePrompt": "blurry, distorted, oversaturated, cartoon, illustration, text overlay, static, boring, flat lighting",
+        "videoLength": 5,
+        "resolution": "720p"
+      }
+    },
+    {
+      "sceneId": "value",
+      "voiceoverText": "For nearly 50 years, we've been perfecting our authentic New York street-style pizza.",
+      "displayText": "100% NATURAL",
+      "duration": 4,
+      "visualType": "animated_image",
+      "visualCategory": "salads",
+      "selectedImage": {
+        "url": "https://static.wixstatic.com/media/4801ad_cfa6c65a3bad422485518247f6d418c9~mv2.jpg/v1/fill/w_413,h_232,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/4801ad_cfa6c65a3bad422485518247f6d418c9~mv2.jpg",
+        "alt": "Organic Italian Salad",
+        "category": "salads"
+      },
+      "akoolConfig": {
+        "prompt": "smooth cinematic pan, leafy greens tumbling gracefully, bright fresh lighting",
+        "negativePrompt": "blurry, distorted, oversaturated, cartoon, illustration, text overlay, static, boring, flat lighting",
+        "videoLength": 5,
+        "resolution": "720p"
+      }
+    },
+    {
+      "sceneId": "benefit",
+      "voiceoverText": "Thin, crispy slices made with all-natural mozzarella cheese, house-made sauce, and hand-tossed dough.",
+      "displayText": "TASTE THE DIFFERENCE",
+      "duration": 4,
+      "visualType": "animated_image",
+      "visualCategory": "sides",
+      "selectedImage": {
+        "url": "https://static.wixstatic.com/media/4801ad_304c8942a9344b25b45fcdd47cab1f44~mv2_d_1800_1200_s_2.jpg/v1/fill/w_413,h_232,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/4801ad_304c8942a9344b25b45fcdd47cab1f44~mv2_d_1800_1200_s_2.jpg",
+        "alt": "House-made Meatballs",
+        "category": "sides"
+      },
+      "akoolConfig": {
+        "prompt": "elegant tracking shot, sauce drizzling over top, warm dramatic lighting",
+        "negativePrompt": "blurry, distorted, oversaturated, cartoon, illustration, text overlay, static, boring, flat lighting",
+        "videoLength": 5,
+        "resolution": "720p"
+      }
+    },
+    {
+      "sceneId": "extra",
+      "voiceoverText": "From classic margherita to Sicilian, our pizzas are a New York favorite.",
+      "displayText": "TRY OUR PIZZAS",
+      "duration": 4,
+      "visualType": "animated_image",
+      "visualCategory": "pizzas",
+      "selectedImage": {
+        "url": "https://static.parastorage.com/services/restaurant-menus-showcase-ooi/d35014c84c77280feda24828439d72cf0187cc17903a4b97c02933a2/media/menus_side_image.7077f229.jpeg",
+        "alt": "",
+        "category": "uncategorized"
+      },
+      "akoolConfig": {
+        "prompt": "graceful orbit around, perfect presentation, soft appetizing glow",
+        "negativePrompt": "blurry, distorted, oversaturated, cartoon, illustration, text overlay, static, boring, flat lighting",
+        "videoLength": 5,
+        "resolution": "720p"
+      }
+    },
+    {
+      "sceneId": "cta",
+      "voiceoverText": "Get your slice of history at Joe's Pizza, Greenwich Village.",
+      "displayText": "ORDER NOW",
+      "duration": 4,
+      "visualType": "logo_brand",
+      "visualCategory": null,
+      "selectedImage": null,
+      "akoolConfig": null
+    }
+  ],
+  "generatedAt": "2025-12-09T01:41:43.929Z"
+}

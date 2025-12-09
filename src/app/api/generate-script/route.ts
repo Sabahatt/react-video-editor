@@ -1,5 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { generateScript, detectPOCRestaurant, type AdTone, type ContactInfo } from '@/lib/script-generator';
+import {
+  generateScript,
+  detectPOCBrand,
+  type AdTone,
+  type ContactInfo,
+} from '@/lib/script-generator';
 
 export async function POST(request: NextRequest) {
   try {
@@ -9,10 +14,10 @@ export async function POST(request: NextRequest) {
       tagline,
       description,
       cuisine,
-      tone, // No default - will use POC suggested tone or 'friendly'
-      duration = 10,
+      tone,
+      duration = 20, // Default to 20s for richer ads
       url,
-      contact, // Optional contact info for CTA scene
+      contact,
     } = body;
 
     // Validate required fields
@@ -23,32 +28,26 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Check if this is a POC restaurant FIRST (before tone validation)
-    const pocRestaurant = detectPOCRestaurant(brandName.trim(), url);
+    // Check if this is a POC brand
+    const pocBrand = detectPOCBrand(brandName.trim(), url);
 
-    // Determine effective tone:
-    // 1. Use explicitly provided tone if valid
-    // 2. Otherwise use POC suggested tone if detected
-    // 3. Otherwise default to 'friendly'
+    // Determine effective tone
     const validTones: AdTone[] = ['professional', 'playful', 'urgent', 'friendly'];
     let effectiveTone: AdTone;
 
     if (tone && validTones.includes(tone)) {
-      // User explicitly provided a valid tone
       effectiveTone = tone as AdTone;
-    } else if (pocRestaurant) {
-      // Use POC restaurant's suggested tone
-      effectiveTone = pocRestaurant.suggestedTone;
+    } else if (pocBrand) {
+      effectiveTone = pocBrand.tone;
     } else {
-      // Default fallback
       effectiveTone = 'friendly';
     }
 
-    // Validate duration
+    // Validate duration (extended for v2)
     const numDuration = Number(duration);
-    if (isNaN(numDuration) || numDuration < 5 || numDuration > 30) {
+    if (isNaN(numDuration) || numDuration < 5 || numDuration > 60) {
       return NextResponse.json(
-        { error: 'Duration must be a number between 5 and 30 seconds' },
+        { error: 'Duration must be a number between 5 and 60 seconds' },
         { status: 400 }
       );
     }
@@ -82,9 +81,10 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: true,
       script: result.script,
-      pocRestaurant: pocRestaurant ? {
-        name: pocRestaurant.brandName,
-        suggestedTone: pocRestaurant.suggestedTone,
+      pocBrand: pocBrand ? {
+        name: pocBrand.brandName,
+        tone: pocBrand.tone,
+        menuCategories: Object.keys(pocBrand.menuCategories),
       } : null,
     });
   } catch (error) {

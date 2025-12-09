@@ -1,0 +1,166 @@
+{
+  "success": true,
+  "pocBrand": "Sweetgreen",
+  "script": {
+    "fullScript": "Three college students revolutionized fast food, one fresh salad at a time. We cook from scratch, sourcing locally and transparently, to bring you the best. Indulge in our chef-crafted, plant-forward dishes that nourish both body and soul. From farm-to-table to ocean-friendly packaging, we're redefining the fast food experience. Join the movement and taste the difference at Sweetgreen.",
+    "scenes": [
+      {
+        "id": "hook",
+        "voiceoverText": "Three college students revolutionized fast food, one fresh salad at a time.",
+        "displayText": "NATURAL FOOD REVOLUTION",
+        "duration": 4,
+        "visualType": "animated_image",
+        "visualCategory": "salads",
+        "akoolConfig": {
+          "prompt": "slow zoom in, gentle motion, appetizing food photography",
+          "negativePrompt": "blurry, distorted, oversaturated, cartoon, illustration",
+          "videoLength": 5,
+          "resolution": "720p"
+        }
+      },
+      {
+        "id": "value",
+        "voiceoverText": "We cook from scratch, sourcing locally and transparently, to bring you the best.",
+        "displayText": "COOKED WITH LOVE",
+        "duration": 4,
+        "visualType": "animated_image",
+        "visualCategory": "bowls",
+        "akoolConfig": {
+          "prompt": "slow zoom in, gentle motion, appetizing food photography",
+          "negativePrompt": "blurry, distorted, oversaturated, cartoon, illustration",
+          "videoLength": 5,
+          "resolution": "720p"
+        }
+      },
+      {
+        "id": "benefit",
+        "voiceoverText": "Indulge in our chef-crafted, plant-forward dishes that nourish both body and soul.",
+        "displayText": "DELICIOUSLY NUTRITIOUS",
+        "duration": 4,
+        "visualType": "animated_image",
+        "visualCategory": "plates",
+        "akoolConfig": {
+          "prompt": "slow zoom in, gentle motion, appetizing food photography",
+          "negativePrompt": "blurry, distorted, oversaturated, cartoon, illustration",
+          "videoLength": 5,
+          "resolution": "720p"
+        }
+      },
+      {
+        "id": "extra",
+        "voiceoverText": "From farm-to-table to ocean-friendly packaging, we're redefining the fast food experience.",
+        "displayText": "SUSTAINABLE CHOICES",
+        "duration": 4,
+        "visualType": "animated_image",
+        "visualCategory": "drinks",
+        "akoolConfig": {
+          "prompt": "slow zoom in, gentle motion, appetizing food photography",
+          "negativePrompt": "blurry, distorted, oversaturated, cartoon, illustration",
+          "videoLength": 5,
+          "resolution": "720p"
+        }
+      },
+      {
+        "id": "cta",
+        "voiceoverText": "Join the movement and taste the difference at Sweetgreen.",
+        "displayText": "ORDER NOW",
+        "duration": 4,
+        "visualType": "logo_brand",
+        "contactOverlay": {
+          "website": "https://www.sweetgreen.com/"
+        }
+      }
+    ],
+    "tone": "professional",
+    "totalDuration": 20
+  },
+  "scenesWithImages": [
+    {
+      "sceneId": "hook",
+      "voiceoverText": "Three college students revolutionized fast food, one fresh salad at a time.",
+      "displayText": "NATURAL FOOD REVOLUTION",
+      "duration": 4,
+      "visualType": "animated_image",
+      "visualCategory": "salads",
+      "selectedImage": {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/QCN3MLGE4UBEnU6vSjpyz/d17102e51361c12b6a14590b89701eb9/SG_Web_Image_Salad_Buffalo_Chicken.png?w=600&q=75",
+        "alt": "Buffalo chicken salad",
+        "category": "salads"
+      },
+      "akoolConfig": {
+        "prompt": "dramatic slow zoom in, ingredients being tossed in slow motion, bright fresh lighting",
+        "negativePrompt": "blurry, distorted, oversaturated, cartoon, illustration, text overlay, static, boring, flat lighting",
+        "videoLength": 5,
+        "resolution": "720p"
+      }
+    },
+    {
+      "sceneId": "value",
+      "voiceoverText": "We cook from scratch, sourcing locally and transparently, to bring you the best.",
+      "displayText": "COOKED WITH LOVE",
+      "duration": 4,
+      "visualType": "animated_image",
+      "visualCategory": "bowls",
+      "selectedImage": {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/Br3EYlf6srQYhCXdvOfwt/65b582e0c488a871e36cda2ea5e52df3/SG_Web_Image_Bowl_Harvest.png?w=600&q=75",
+        "alt": "Product Carousel-Harvest Bowl",
+        "category": "bowls"
+      },
+      "akoolConfig": {
+        "prompt": "smooth cinematic pan, ingredients raining down elegantly, soft appetizing glow",
+        "negativePrompt": "blurry, distorted, oversaturated, cartoon, illustration, text overlay, static, boring, flat lighting",
+        "videoLength": 5,
+        "resolution": "720p"
+      }
+    },
+    {
+      "sceneId": "benefit",
+      "voiceoverText": "Indulge in our chef-crafted, plant-forward dishes that nourish both body and soul.",
+      "displayText": "DELICIOUSLY NUTRITIOUS",
+      "duration": 4,
+      "visualType": "animated_image",
+      "visualCategory": "plates",
+      "selectedImage": {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/5emJWQD3CfWTvVfJbSG8G7/edf1cfed73259bd969af2f685b927884/SG_Web_Image_Side_Roasted_Sweet_Potatoes.jpg?w=600&q=75",
+        "alt": "Hot Honey Sweet Potatoes",
+        "category": "plates"
+      },
+      "akoolConfig": {
+        "prompt": "elegant tracking shot, herbs sprinkling from above, warm dramatic lighting",
+        "negativePrompt": "blurry, distorted, oversaturated, cartoon, illustration, text overlay, static, boring, flat lighting",
+        "videoLength": 5,
+        "resolution": "720p"
+      }
+    },
+    {
+      "sceneId": "extra",
+      "voiceoverText": "From farm-to-table to ocean-friendly packaging, we're redefining the fast food experience.",
+      "displayText": "SUSTAINABLE CHOICES",
+      "duration": 4,
+      "visualType": "animated_image",
+      "visualCategory": "drinks",
+      "selectedImage": {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/j28IU9sScvgvuvnQ5AkBj/a56a14858807fcd486277566fb11973d/SG_Web_Image_Beverage_Hibiscus_Berry_Tea.jpg?w=600&q=75",
+        "alt": "Hibiscus Clover Tea",
+        "category": "drinks"
+      },
+      "akoolConfig": {
+        "prompt": "graceful orbit around, bubbles rising slowly, soft appetizing glow",
+        "negativePrompt": "blurry, distorted, oversaturated, cartoon, illustration, text overlay, static, boring, flat lighting",
+        "videoLength": 5,
+        "resolution": "720p"
+      }
+    },
+    {
+      "sceneId": "cta",
+      "voiceoverText": "Join the movement and taste the difference at Sweetgreen.",
+      "displayText": "ORDER NOW",
+      "duration": 4,
+      "visualType": "logo_brand",
+      "visualCategory": null,
+      "selectedImage": null,
+      "akoolConfig": null
+    }
+  ],
+  "generatedAt": "2025-12-09T01:41:44.598Z"
+}

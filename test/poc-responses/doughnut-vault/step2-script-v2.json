@@ -1,0 +1,167 @@
+{
+  "success": true,
+  "pocBrand": "Doughnut Vault",
+  "script": {
+    "fullScript": "Imagine a sweet destination worth the journey. Made with love, using old world recipes, handcrafted daily. Indulge in fluffy, dreamy doughnuts, right from the fryer. From classic oldFashioned to creative specialties. Discover the sweetest destination in town, today!",
+    "scenes": [
+      {
+        "id": "hook",
+        "voiceoverText": "Imagine a sweet destination worth the journey.",
+        "displayText": "ARTISANAL DOUGHNUTS",
+        "duration": 4,
+        "visualType": "animated_image",
+        "visualCategory": "oldFashioned",
+        "akoolConfig": {
+          "prompt": "slow zoom in, gentle motion, appetizing food photography",
+          "negativePrompt": "blurry, distorted, oversaturated, cartoon, illustration",
+          "videoLength": 5,
+          "resolution": "720p"
+        }
+      },
+      {
+        "id": "value",
+        "voiceoverText": "Made with love, using old world recipes, handcrafted daily.",
+        "displayText": "SWEET TRADITION",
+        "duration": 4,
+        "visualType": "animated_image",
+        "visualCategory": "glazed",
+        "akoolConfig": {
+          "prompt": "slow zoom in, gentle motion, appetizing food photography",
+          "negativePrompt": "blurry, distorted, oversaturated, cartoon, illustration",
+          "videoLength": 5,
+          "resolution": "720p"
+        }
+      },
+      {
+        "id": "benefit",
+        "voiceoverText": "Indulge in fluffy, dreamy doughnuts, right from the fryer.",
+        "displayText": "TREAT YOURSELF",
+        "duration": 4,
+        "visualType": "animated_image",
+        "visualCategory": "specialty",
+        "akoolConfig": {
+          "prompt": "slow zoom in, gentle motion, appetizing food photography",
+          "negativePrompt": "blurry, distorted, oversaturated, cartoon, illustration",
+          "videoLength": 5,
+          "resolution": "720p"
+        }
+      },
+      {
+        "id": "extra",
+        "voiceoverText": "From classic oldFashioned to creative specialties.",
+        "displayText": "VARIETY GALORE",
+        "duration": 4,
+        "visualType": "animated_image",
+        "visualCategory": "other",
+        "akoolConfig": {
+          "prompt": "slow zoom in, gentle motion, appetizing food photography",
+          "negativePrompt": "blurry, distorted, oversaturated, cartoon, illustration",
+          "videoLength": 5,
+          "resolution": "720p"
+        }
+      },
+      {
+        "id": "cta",
+        "voiceoverText": "Discover the sweetest destination in town, today!",
+        "displayText": "ORDER NOW",
+        "duration": 4,
+        "visualType": "logo_brand",
+        "contactOverlay": {
+          "hours": "DAILY: 7:30AM – 1:00PM",
+          "website": "https://www.doughnutvault.com/"
+        }
+      }
+    ],
+    "tone": "friendly",
+    "totalDuration": 20
+  },
+  "scenesWithImages": [
+    {
+      "sceneId": "hook",
+      "voiceoverText": "Imagine a sweet destination worth the journey.",
+      "displayText": "ARTISANAL DOUGHNUTS",
+      "duration": 4,
+      "visualType": "animated_image",
+      "visualCategory": "oldFashioned",
+      "selectedImage": {
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/af3f44e7-d35e-4682-8d7e-b83da96b7e5a/DV-Donuts.png",
+        "alt": "Doughnut vault donuts hand crafted and old fashioned style donuts with classic painted look",
+        "category": "oldFashioned"
+      },
+      "akoolConfig": {
+        "prompt": "dramatic slow zoom in, glossy glaze dripping slowly, warm golden backlight",
+        "negativePrompt": "blurry, distorted, oversaturated, cartoon, illustration, text overlay, static, boring, flat lighting",
+        "videoLength": 5,
+        "resolution": "720p"
+      }
+    },
+    {
+      "sceneId": "value",
+      "voiceoverText": "Made with love, using old world recipes, handcrafted daily.",
+      "displayText": "SWEET TRADITION",
+      "duration": 4,
+      "visualType": "animated_image",
+      "visualCategory": "glazed",
+      "selectedImage": {
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/45fae570-8794-4029-a44a-e2e842b6eada/donut.png",
+        "alt": "A donut",
+        "category": "uncategorized"
+      },
+      "akoolConfig": {
+        "prompt": "smooth cinematic pan, powdered sugar dusting like snow, warm golden backlight",
+        "negativePrompt": "blurry, distorted, oversaturated, cartoon, illustration, text overlay, static, boring, flat lighting",
+        "videoLength": 5,
+        "resolution": "720p"
+      }
+    },
+    {
+      "sceneId": "benefit",
+      "voiceoverText": "Indulge in fluffy, dreamy doughnuts, right from the fryer.",
+      "displayText": "TREAT YOURSELF",
+      "duration": 4,
+      "visualType": "animated_image",
+      "visualCategory": "specialty",
+      "selectedImage": {
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/eb8101f5-0fc9-4eb5-a42a-429689c84acb/DV-Hero.png",
+        "alt": "",
+        "category": "uncategorized"
+      },
+      "akoolConfig": {
+        "prompt": "elegant tracking shot, steam wisps rising gently, soft appetizing glow",
+        "negativePrompt": "blurry, distorted, oversaturated, cartoon, illustration, text overlay, static, boring, flat lighting",
+        "videoLength": 5,
+        "resolution": "720p"
+      }
+    },
+    {
+      "sceneId": "extra",
+      "voiceoverText": "From classic oldFashioned to creative specialties.",
+      "displayText": "VARIETY GALORE",
+      "duration": 4,
+      "visualType": "animated_image",
+      "visualCategory": "other",
+      "selectedImage": {
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/ee01935b-c312-499f-a38d-05ce900d8d2d/1B9A8047.jpg",
+        "alt": "",
+        "category": "uncategorized"
+      },
+      "akoolConfig": {
+        "prompt": "graceful orbit around, perfect presentation, soft appetizing glow",
+        "negativePrompt": "blurry, distorted, oversaturated, cartoon, illustration, text overlay, static, boring, flat lighting",
+        "videoLength": 5,
+        "resolution": "720p"
+      }
+    },
+    {
+      "sceneId": "cta",
+      "voiceoverText": "Discover the sweetest destination in town, today!",
+      "displayText": "ORDER NOW",
+      "duration": 4,
+      "visualType": "logo_brand",
+      "visualCategory": null,
+      "selectedImage": null,
+      "akoolConfig": null
+    }
+  ],
+  "generatedAt": "2025-12-09T01:41:45.251Z"
+}
