@@ -60,12 +60,13 @@ export type {
 } from './image-selector';
 
 // Re-export akool prompt generator
+// - generatePOCTemplatePrompt: For POC demos (templates only, deterministic)
+// - generateAkoolPromptWithLLM: For production API (LLM with template fallback)
+// - generateAkoolPrompt: Base template engine (internal use)
 export {
   generateAkoolPrompt,
-  generateAkoolPromptsForScenes,
-  generatePOCAkoolPrompt,
   generateAkoolPromptWithLLM,
-  generateAkoolPromptsWithLLM,
+  generatePOCTemplatePrompt,
   DEFAULT_AKOOL_CONFIG,
   NEGATIVE_PROMPT,
 } from './akool-prompts';

@@ -2,7 +2,7 @@
   "success": true,
   "pocBrand": "Sweetgreen",
   "mainDishType": "salad",
-  "fullScript": "Experience the art of fresh, seasonal ingredients Handcrafted with care, our salads are a canvas for flavor From antibiotic-free chicken to locally-sourced produce, we're committed to quality Indulge in the taste of sustainability, with every delicious bite Explore our wide variety of bowls, made with love and care Join the Sweetgreen movement, and taste the difference for yourself",
+  "fullScript": "Handcrafted, locally sourced, deliciously fresh. Our chef-crafted salads are made with love and care. We're committed to transparency in our ingredients and sourcing. Indulge in the flavors and textures of our plant-forward bowls. Explore our diverse menu, crafted with whole ingredients. Join the movement towards a healthier, more sustainable food system.",
   "tone": "professional",
   "totalDuration": 20,
   "scenePlan": {
@@ -15,7 +15,7 @@
     {
       "sceneId": "hook",
       "sceneIndex": 0,
-      "voiceoverText": "Experience the art of fresh, seasonal ingredients",
+      "voiceoverText": "Handcrafted, locally sourced, deliciously fresh.",
       "displayText": "Fresh, plant-forward, earth friendly food.",
       "duration": 3,
       "visualMode": "static",
@@ -31,8 +31,8 @@
     {
       "sceneId": "body1",
       "sceneIndex": 1,
-      "voiceoverText": "Handcrafted with care, our salads are a canvas for flavor",
-      "displayText": "CRAFTED WITH LOVE",
+      "voiceoverText": "Our chef-crafted salads are made with love and care.",
+      "displayText": "NOURISH",
       "duration": 3,
       "visualMode": "animated",
       "selectedImage": {
@@ -42,8 +42,8 @@
         "foodType": "salad"
       },
       "akoolConfig": {
-        "prompt": "Fresh Buffalo Chicken salad, crisp shredded kale and chopped romaine glistening, light catching Caesar dressing",
-        "negativePrompt": "blurry, distorted, low quality, pixelated, extra hands, deformed hands, extra fingers, missing fingers, wrong number of fingers, unrelated objects, wrong food items, different food appearing, floating objects, levitating food, food flying unrealistically, cartoon, illustration, anime, painting, sketch, text overlay, watermark, logo, caption, subtitle, morphing, melting unnaturally, flickering, artifacts, glitches, disembodied hands, hands coming from wrong angle, oversaturated, undersaturated, wrong colors, static, frozen, no movement, boring",
+        "prompt": "Fresh Buffalo Chicken with glossy dressing droplets falling slowly onto crisp vibrant leaves. Clean minimalist aesthetic. Shallow depth of field. Dolly in slowly",
+        "negativePrompt": "blurry, distorted, low quality, pixelated, plastic appearance, artificial look, too-perfect symmetry, unnaturally perfect, flawless, pristine, extra hands, deformed hands, extra fingers, missing fingers, wrong number of fingers, hands from wrong angle, disembodied hands, unrelated objects, wrong food items, different food appearing, floating objects, levitating food, food flying unrealistically, morphing, warping, flickering, artifacts, glitches, melting unnaturally, objects appearing disappearing, cartoon, illustration, anime, painting, sketch, text overlay, watermark, logo, caption, subtitle, flash photography, harsh shadows, overhead fluorescent, bright flat lighting, oversaturated, undersaturated, wrong colors, static, frozen, no movement, boring, multiple complex motions, contradictory movements",
         "videoLength": 5,
         "resolution": "720p"
       }
@@ -51,27 +51,11 @@
     {
       "sceneId": "body2",
       "sceneIndex": 2,
-      "voiceoverText": "From antibiotic-free chicken to locally-sourced produce, we're committed to quality",
-      "displayText": "QUALITY IN EVERY BITE",
+      "voiceoverText": "We're committed to transparency in our ingredients and sourcing.",
+      "displayText": "TRUSTED",
       "duration": 3,
       "visualMode": "static",
       "kenBurnsDirection": "zoom-in",
-      "selectedImage": {
-        "url": "https://images.ctfassets.net/eum7w7yri3zr/oQXXNTzxSZtVIthreOWU2/1a508e8e8b284ea982b4f9b2418d3e89/GarlicParmCauliBowl.jpeg?w=600&q=75",
-        "alt": "Garlic Parm Cauli Bowl",
-        "category": "bowls",
-        "foodType": "bowl"
-      },
-      "akoolConfig": null
-    },
-    {
-      "sceneId": "body3",
-      "sceneIndex": 3,
-      "voiceoverText": "Indulge in the taste of sustainability, with every delicious bite",
-      "displayText": "TASTE THE DIFFERENCE",
-      "duration": 3,
-      "visualMode": "static",
-      "kenBurnsDirection": "pan-right",
       "selectedImage": {
         "url": "https://images.ctfassets.net/eum7w7yri3zr/6vNynyCoUI4yeU0xq6fYhv/c11caeb76d233b37c43e7c5e0f2ecb30/SG_Web_Image_Protein_Plate_Steak_Mezze__1_.jpg?w=600&q=75",
         "alt": "Steak Mezze",
@@ -81,10 +65,26 @@
       "akoolConfig": null
     },
     {
+      "sceneId": "body3",
+      "sceneIndex": 3,
+      "voiceoverText": "Indulge in the flavors and textures of our plant-forward bowls.",
+      "displayText": "DELIGHT",
+      "duration": 3,
+      "visualMode": "static",
+      "kenBurnsDirection": "pan-right",
+      "selectedImage": {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/6KrjKxVXHWvcbVNVuRm4M4/dba9726d9afd6ac3e0bb6c4d5a4dd088/SG_Web_Image_Side_Rosemary_Focaccia.jpg?w=600&q=75",
+        "alt": "Rosemary Focaccia",
+        "category": "sides",
+        "foodType": "bread"
+      },
+      "akoolConfig": null
+    },
+    {
       "sceneId": "body4",
       "sceneIndex": 4,
-      "voiceoverText": "Explore our wide variety of bowls, made with love and care",
-      "displayText": "ENDLESS OPTIONS",
+      "voiceoverText": "Explore our diverse menu, crafted with whole ingredients.",
+      "displayText": "DISCOVER",
       "duration": 3,
       "visualMode": "animated",
       "selectedImage": {
@@ -94,8 +94,8 @@
         "foodType": "salad"
       },
       "akoolConfig": {
-        "prompt": "Fresh Kale Caesar, crisp organic kale glistening, shaved parmesan catching light, warm dressing drizzle.",
-        "negativePrompt": "blurry, distorted, low quality, pixelated, extra hands, deformed hands, extra fingers, missing fingers, wrong number of fingers, unrelated objects, wrong food items, different food appearing, floating objects, levitating food, food flying unrealistically, cartoon, illustration, anime, painting, sketch, text overlay, watermark, logo, caption, subtitle, morphing, melting unnaturally, flickering, artifacts, glitches, disembodied hands, hands coming from wrong angle, oversaturated, undersaturated, wrong colors, static, frozen, no movement, boring",
+        "prompt": "Freshly tossed Kale Caesar with crisp leafy greens glistening with vinaigrette, settling gently after toss. Parmesan shavings catching soft natural window light. Slow push in",
+        "negativePrompt": "blurry, distorted, low quality, pixelated, plastic appearance, artificial look, too-perfect symmetry, unnaturally perfect, flawless, pristine, extra hands, deformed hands, extra fingers, missing fingers, wrong number of fingers, hands from wrong angle, disembodied hands, unrelated objects, wrong food items, different food appearing, floating objects, levitating food, food flying unrealistically, morphing, warping, flickering, artifacts, glitches, melting unnaturally, objects appearing disappearing, cartoon, illustration, anime, painting, sketch, text overlay, watermark, logo, caption, subtitle, flash photography, harsh shadows, overhead fluorescent, bright flat lighting, oversaturated, undersaturated, wrong colors, static, frozen, no movement, boring, multiple complex motions, contradictory movements",
         "videoLength": 5,
         "resolution": "720p"
       }
@@ -103,7 +103,7 @@
     {
       "sceneId": "cta",
       "sceneIndex": 5,
-      "voiceoverText": "Join the Sweetgreen movement, and taste the difference for yourself",
+      "voiceoverText": "Join the movement towards a healthier, more sustainable food system.",
       "displayText": "ORDER NOW",
       "duration": 3,
       "visualMode": "static",
@@ -111,5 +111,5 @@
       "akoolConfig": null
     }
   ],
-  "generatedAt": "2025-12-10T07:43:11.162Z"
+  "generatedAt": "2025-12-10T17:47:23.760Z"
 }

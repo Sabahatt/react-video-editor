@@ -2,12 +2,12 @@
   "success": true,
   "pocBrand": "Doughnut Vault",
   "mainDishType": "doughnut",
-  "fullScript": "Experience the art of handcrafted doughnuts. Made with love, using old world recipes. Fresh from the fryer, every day. A sweet destination worth the journey. From classic to creative flavors. Visit us today and indulge in the sweet life.",
+  "fullScript": "In a city that rises early, a sweet secret is born Made with love, in small batches, every day Fresh from the fryer, with a crunchy outside and fluffy inside Discover the perfect morning ritual, every time From classic glazed to creative flavors, there's something for everyone Visit us today and treat yourself to a sweet experience",
   "tone": "friendly",
   "totalDuration": 20,
   "scenePlan": {
-    "patternIndex": 0,
-    "patternName": "Pattern 1",
+    "patternIndex": 1,
+    "patternName": "Pattern 2",
     "animatedCount": 2,
     "staticCount": 4
   },
@@ -15,11 +15,11 @@
     {
       "sceneId": "hook",
       "sceneIndex": 0,
-      "voiceoverText": "Experience the art of handcrafted doughnuts.",
+      "voiceoverText": "In a city that rises early, a sweet secret is born",
       "displayText": "Artisanal doughnuts handcrafted daily using old world recipes",
       "duration": 3,
       "visualMode": "static",
-      "kenBurnsDirection": "zoom-in",
+      "kenBurnsDirection": "pan-left",
       "selectedImage": {
         "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/8b1b07c7-ebb7-49fb-bdf8-61f8f39ed76b/4X5A9325.jpg",
         "alt": "Fresh Doughnuts Display",
@@ -31,7 +31,7 @@
     {
       "sceneId": "body1",
       "sceneIndex": 1,
-      "voiceoverText": "Made with love, using old world recipes.",
+      "voiceoverText": "Made with love, in small batches, every day",
       "displayText": "HANDCRAFTED WITH LOVE",
       "duration": 3,
       "visualMode": "animated",
@@ -42,8 +42,8 @@
         "foodType": "doughnut"
       },
       "akoolConfig": {
-        "prompt": "Soft doughnuts glistening, glaze glistening.",
-        "negativePrompt": "blurry, distorted, low quality, pixelated, extra hands, deformed hands, extra fingers, missing fingers, wrong number of fingers, unrelated objects, wrong food items, different food appearing, floating objects, levitating food, food flying unrealistically, cartoon, illustration, anime, painting, sketch, text overlay, watermark, logo, caption, subtitle, morphing, melting unnaturally, flickering, artifacts, glitches, disembodied hands, hands coming from wrong angle, oversaturated, undersaturated, wrong colors, static, frozen, no movement, boring",
+        "prompt": "Fresh Doughnut Catering Box with glossy glaze glistening, gentle light reflections moving across shiny surface. Fluffy pillowy texture visible. Warm bakery lighting. Dolly zoom",
+        "negativePrompt": "blurry, distorted, low quality, pixelated, plastic appearance, artificial look, too-perfect symmetry, unnaturally perfect, flawless, pristine, extra hands, deformed hands, extra fingers, missing fingers, wrong number of fingers, hands from wrong angle, disembodied hands, unrelated objects, wrong food items, different food appearing, floating objects, levitating food, food flying unrealistically, morphing, warping, flickering, artifacts, glitches, melting unnaturally, objects appearing disappearing, cartoon, illustration, anime, painting, sketch, text overlay, watermark, logo, caption, subtitle, flash photography, harsh shadows, overhead fluorescent, bright flat lighting, oversaturated, undersaturated, wrong colors, static, frozen, no movement, boring, multiple complex motions, contradictory movements",
         "videoLength": 5,
         "resolution": "720p"
       }
@@ -51,11 +51,11 @@
     {
       "sceneId": "body2",
       "sceneIndex": 2,
-      "voiceoverText": "Fresh from the fryer, every day.",
-      "displayText": "FRESH FROM THE FRYER",
+      "voiceoverText": "Fresh from the fryer, with a crunchy outside and fluffy inside",
+      "displayText": "TEXTURE PERFECTION",
       "duration": 3,
       "visualMode": "static",
-      "kenBurnsDirection": "pan-right",
+      "kenBurnsDirection": "zoom-in",
       "selectedImage": {
         "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/c3d5a2db-4f61-4d85-af30-f094a121ba4b/Doughnuts-09.png",
         "alt": "Stack Doughnut",
@@ -67,8 +67,24 @@
     {
       "sceneId": "body3",
       "sceneIndex": 3,
-      "voiceoverText": "A sweet destination worth the journey.",
-      "displayText": "WORTH THE JOURNEY",
+      "voiceoverText": "Discover the perfect morning ritual, every time",
+      "displayText": "INDULGE IN THE BEST",
+      "duration": 3,
+      "visualMode": "static",
+      "kenBurnsDirection": "pan-right",
+      "selectedImage": {
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/998a91a9-2b13-493d-9b1b-0bd779509614/4X5A9291.jpg",
+        "alt": "Doughnut Selection",
+        "category": "other",
+        "foodType": "doughnut"
+      },
+      "akoolConfig": null
+    },
+    {
+      "sceneId": "body4",
+      "sceneIndex": 4,
+      "voiceoverText": "From classic glazed to creative flavors, there's something for everyone",
+      "displayText": "VARIETY OF SWEETS",
       "duration": 3,
       "visualMode": "animated",
       "selectedImage": {
@@ -78,32 +94,16 @@
         "foodType": "doughnut"
       },
       "akoolConfig": {
-        "prompt": "\"Old Fashioned Doughnut, sweet glaze glistening, soft cake texture, warm lighting\"",
-        "negativePrompt": "blurry, distorted, low quality, pixelated, extra hands, deformed hands, extra fingers, missing fingers, wrong number of fingers, unrelated objects, wrong food items, different food appearing, floating objects, levitating food, food flying unrealistically, cartoon, illustration, anime, painting, sketch, text overlay, watermark, logo, caption, subtitle, morphing, melting unnaturally, flickering, artifacts, glitches, disembodied hands, hands coming from wrong angle, oversaturated, undersaturated, wrong colors, static, frozen, no movement, boring",
+        "prompt": "Freshly glazed Old Fashioned Doughnut with glossy coating dripping slowly down golden-brown side, pooling at base. Shiny surface catching warm bakery light. Macro close-up. Slow push in",
+        "negativePrompt": "blurry, distorted, low quality, pixelated, plastic appearance, artificial look, too-perfect symmetry, unnaturally perfect, flawless, pristine, extra hands, deformed hands, extra fingers, missing fingers, wrong number of fingers, hands from wrong angle, disembodied hands, unrelated objects, wrong food items, different food appearing, floating objects, levitating food, food flying unrealistically, morphing, warping, flickering, artifacts, glitches, melting unnaturally, objects appearing disappearing, cartoon, illustration, anime, painting, sketch, text overlay, watermark, logo, caption, subtitle, flash photography, harsh shadows, overhead fluorescent, bright flat lighting, oversaturated, undersaturated, wrong colors, static, frozen, no movement, boring, multiple complex motions, contradictory movements",
         "videoLength": 5,
         "resolution": "720p"
       }
     },
     {
-      "sceneId": "body4",
-      "sceneIndex": 4,
-      "voiceoverText": "From classic to creative flavors.",
-      "displayText": "CLASSIC & CREATIVE",
-      "duration": 3,
-      "visualMode": "static",
-      "kenBurnsDirection": "zoom-out",
-      "selectedImage": {
-        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/bf64fa48-bd27-4b0b-bc55-30612dc6ddfc/Doughnuts-08.png",
-        "alt": "Glazed Doughnut",
-        "category": "glazed",
-        "foodType": "doughnut"
-      },
-      "akoolConfig": null
-    },
-    {
       "sceneId": "cta",
       "sceneIndex": 5,
-      "voiceoverText": "Visit us today and indulge in the sweet life.",
+      "voiceoverText": "Visit us today and treat yourself to a sweet experience",
       "displayText": "ORDER NOW",
       "duration": 3,
       "visualMode": "static",
@@ -111,5 +111,5 @@
       "akoolConfig": null
     }
   ],
-  "generatedAt": "2025-12-10T07:43:21.393Z"
+  "generatedAt": "2025-12-10T17:47:24.559Z"
 }

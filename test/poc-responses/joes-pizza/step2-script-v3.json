@@ -2,12 +2,12 @@
   "success": true,
   "pocBrand": "Joe's Pizza",
   "mainDishType": "pizza",
-  "fullScript": "Joe's Pizza - where a slice of New York magic meets every bite 50 years of perfecting the NYC slice - what makes us special? All natural cheese, house-made sauce and hand-tossed dough - quality in every bite Experience the crunch, the flavor and the fold - it's a taste of the city that never sleeps Variety for every taste - from classic margherita to white pizza and more Come taste the magic for yourself",
+  "fullScript": "Get ready for a taste of New York's best. 50 years of serving up authentic New York street-style pizza. Hand-tossed fresh daily dough, house-made sauce and all natural mozzarella cheese. A taste of Italy in every bite, perfectly folded and ready to devour. From classic slices to fresh salads, there's something for everyone at Joe's Pizza. Visit us today and taste the difference for yourself!",
   "tone": "playful",
   "totalDuration": 20,
   "scenePlan": {
-    "patternIndex": 0,
-    "patternName": "Pattern 1",
+    "patternIndex": 1,
+    "patternName": "Pattern 2",
     "animatedCount": 2,
     "staticCount": 4
   },
@@ -15,11 +15,11 @@
     {
       "sceneId": "hook",
       "sceneIndex": 0,
-      "voiceoverText": "Joe's Pizza - where a slice of New York magic meets every bite",
+      "voiceoverText": "Get ready for a taste of New York's best.",
       "displayText": "Award Winning New York Pies, Slices & Organic Salads. All Natural Cheese No Preservatives or Artificial Ingredients",
       "duration": 3,
       "visualMode": "static",
-      "kenBurnsDirection": "zoom-in",
+      "kenBurnsDirection": "pan-left",
       "selectedImage": {
         "url": "https://static.wixstatic.com/media/4801ad_91ee8244d63d48abaacd98db231e77e5~mv2.png/v1/fill/w_413,h_232,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/4801ad_91ee8244d63d48abaacd98db231e77e5~mv2.png",
         "alt": "NY Cheese Pizza",
@@ -31,7 +31,7 @@
     {
       "sceneId": "body1",
       "sceneIndex": 1,
-      "voiceoverText": "50 years of perfecting the NYC slice - what makes us special?",
+      "voiceoverText": "50 years of serving up authentic New York street-style pizza.",
       "displayText": "GREENWICH VILLAGE INSTITUTION",
       "duration": 3,
       "visualMode": "animated",
@@ -42,8 +42,8 @@
         "foodType": "pizza"
       },
       "akoolConfig": {
-        "prompt": "Fresh pepperoni pizza, melted mozzarella cheese stretching, steam rising from golden crust, warm lighting.",
-        "negativePrompt": "blurry, distorted, low quality, pixelated, extra hands, deformed hands, extra fingers, missing fingers, wrong number of fingers, unrelated objects, wrong food items, different food appearing, floating objects, levitating food, food flying unrealistically, cartoon, illustration, anime, painting, sketch, text overlay, watermark, logo, caption, subtitle, morphing, melting unnaturally, flickering, artifacts, glitches, disembodied hands, hands coming from wrong angle, oversaturated, undersaturated, wrong colors, static, frozen, no movement, boring",
+        "prompt": "Fresh hot Pepperoni Pizza straight from oven, glossy bubbling cheese glistening with oil droplets. Gentle steam curling upward slowly from golden charred crust. Warm cinematic lighting. Shallow depth of field. Camera pans across",
+        "negativePrompt": "blurry, distorted, low quality, pixelated, plastic appearance, artificial look, too-perfect symmetry, unnaturally perfect, flawless, pristine, extra hands, deformed hands, extra fingers, missing fingers, wrong number of fingers, hands from wrong angle, disembodied hands, unrelated objects, wrong food items, different food appearing, floating objects, levitating food, food flying unrealistically, morphing, warping, flickering, artifacts, glitches, melting unnaturally, objects appearing disappearing, cartoon, illustration, anime, painting, sketch, text overlay, watermark, logo, caption, subtitle, flash photography, harsh shadows, overhead fluorescent, bright flat lighting, oversaturated, undersaturated, wrong colors, static, frozen, no movement, boring, multiple complex motions, contradictory movements",
         "videoLength": 5,
         "resolution": "720p"
       }
@@ -51,11 +51,11 @@
     {
       "sceneId": "body2",
       "sceneIndex": 2,
-      "voiceoverText": "All natural cheese, house-made sauce and hand-tossed dough - quality in every bite",
-      "displayText": "NO PRESERVATIVES OR ARTIFICIAL INGREDIENTS",
+      "voiceoverText": "Hand-tossed fresh daily dough, house-made sauce and all natural mozzarella cheese.",
+      "displayText": "HANDCRAFTED WITH LOVE",
       "duration": 3,
       "visualMode": "static",
-      "kenBurnsDirection": "pan-right",
+      "kenBurnsDirection": "zoom-in",
       "selectedImage": {
         "url": "https://static.wixstatic.com/media/4801ad_cfa6c65a3bad422485518247f6d418c9~mv2.jpg/v1/fill/w_413,h_232,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/4801ad_cfa6c65a3bad422485518247f6d418c9~mv2.jpg",
         "alt": "Organic Italian Salad",
@@ -67,8 +67,24 @@
     {
       "sceneId": "body3",
       "sceneIndex": 3,
-      "voiceoverText": "Experience the crunch, the flavor and the fold - it's a taste of the city that never sleeps",
-      "displayText": "CRISPY, CHEWY, PERFECTLY FOLDABLE",
+      "voiceoverText": "A taste of Italy in every bite, perfectly folded and ready to devour.",
+      "displayText": "FLAVORFUL AND FRESH",
+      "duration": 3,
+      "visualMode": "static",
+      "kenBurnsDirection": "pan-right",
+      "selectedImage": {
+        "url": "https://static.wixstatic.com/media/4801ad_304c8942a9344b25b45fcdd47cab1f44~mv2_d_1800_1200_s_2.jpg/v1/fill/w_413,h_232,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/4801ad_304c8942a9344b25b45fcdd47cab1f44~mv2_d_1800_1200_s_2.jpg",
+        "alt": "House-made Meatballs",
+        "category": "sides",
+        "foodType": "sides"
+      },
+      "akoolConfig": null
+    },
+    {
+      "sceneId": "body4",
+      "sceneIndex": 4,
+      "voiceoverText": "From classic slices to fresh salads, there's something for everyone at Joe's Pizza.",
+      "displayText": "VARIOUS DELICIOUS OPTIONS",
       "duration": 3,
       "visualMode": "animated",
       "selectedImage": {
@@ -78,32 +94,16 @@
         "foodType": "pizza"
       },
       "akoolConfig": {
-        "prompt": "\"Mozzarella cheese stretching, spinach leaves wilting, artichoke hearts visible, steam rising from golden crust, warm lighting\"",
-        "negativePrompt": "blurry, distorted, low quality, pixelated, extra hands, deformed hands, extra fingers, missing fingers, wrong number of fingers, unrelated objects, wrong food items, different food appearing, floating objects, levitating food, food flying unrealistically, cartoon, illustration, anime, painting, sketch, text overlay, watermark, logo, caption, subtitle, morphing, melting unnaturally, flickering, artifacts, glitches, disembodied hands, hands coming from wrong angle, oversaturated, undersaturated, wrong colors, static, frozen, no movement, boring",
+        "prompt": "Freshly baked Spinach & Artichoke Pizza with bubbling glossy mozzarella, thick cheese pull stretching in long golden strings as slice lifts on pizza server. Steam rising from charred crust. Warm cinematic lighting. Slow push in. No hands visible",
+        "negativePrompt": "blurry, distorted, low quality, pixelated, plastic appearance, artificial look, too-perfect symmetry, unnaturally perfect, flawless, pristine, extra hands, deformed hands, extra fingers, missing fingers, wrong number of fingers, hands from wrong angle, disembodied hands, unrelated objects, wrong food items, different food appearing, floating objects, levitating food, food flying unrealistically, morphing, warping, flickering, artifacts, glitches, melting unnaturally, objects appearing disappearing, cartoon, illustration, anime, painting, sketch, text overlay, watermark, logo, caption, subtitle, flash photography, harsh shadows, overhead fluorescent, bright flat lighting, oversaturated, undersaturated, wrong colors, static, frozen, no movement, boring, multiple complex motions, contradictory movements",
         "videoLength": 5,
         "resolution": "720p"
       }
     },
     {
-      "sceneId": "body4",
-      "sceneIndex": 4,
-      "voiceoverText": "Variety for every taste - from classic margherita to white pizza and more",
-      "displayText": "VARIETY OF PIZZAS",
-      "duration": 3,
-      "visualMode": "static",
-      "kenBurnsDirection": "zoom-out",
-      "selectedImage": {
-        "url": "https://static.wixstatic.com/media/4801ad_37d7ff93771a43e08d121e663dd0b7d9~mv2.jpg/v1/fill/w_413,h_232,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/4801ad_37d7ff93771a43e08d121e663dd0b7d9~mv2.jpg",
-        "alt": "Caesar Salad",
-        "category": "salads",
-        "foodType": "salad"
-      },
-      "akoolConfig": null
-    },
-    {
       "sceneId": "cta",
       "sceneIndex": 5,
-      "voiceoverText": "Come taste the magic for yourself",
+      "voiceoverText": "Visit us today and taste the difference for yourself!",
       "displayText": "ORDER NOW",
       "duration": 3,
       "visualMode": "static",
@@ -111,5 +111,5 @@
       "akoolConfig": null
     }
   ],
-  "generatedAt": "2025-12-10T07:43:09.785Z"
+  "generatedAt": "2025-12-10T17:47:23.011Z"
 }

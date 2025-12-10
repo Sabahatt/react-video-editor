@@ -19,97 +19,107 @@ import Groq from 'groq-sdk';
 import type { AkoolAnimationConfig } from './types';
 
 /**
- * Comprehensive negative prompt to avoid common issues
+ * Comprehensive negative prompt based on common AI food video failure modes
+ * Reference: video-prompt-guide.md failure analysis
  */
-export const NEGATIVE_PROMPT = `blurry, distorted, low quality, pixelated, extra hands, deformed hands, extra fingers, missing fingers, wrong number of fingers, unrelated objects, wrong food items, different food appearing, floating objects, levitating food, food flying unrealistically, cartoon, illustration, anime, painting, sketch, text overlay, watermark, logo, caption, subtitle, morphing, melting unnaturally, flickering, artifacts, glitches, disembodied hands, hands coming from wrong angle, oversaturated, undersaturated, wrong colors, static, frozen, no movement, boring`.trim();
+export const NEGATIVE_PROMPT = `blurry, distorted, low quality, pixelated, plastic appearance, artificial look, too-perfect symmetry, unnaturally perfect, flawless, pristine, extra hands, deformed hands, extra fingers, missing fingers, wrong number of fingers, hands from wrong angle, disembodied hands, unrelated objects, wrong food items, different food appearing, floating objects, levitating food, food flying unrealistically, morphing, warping, flickering, artifacts, glitches, melting unnaturally, objects appearing disappearing, cartoon, illustration, anime, painting, sketch, text overlay, watermark, logo, caption, subtitle, flash photography, harsh shadows, overhead fluorescent, bright flat lighting, oversaturated, undersaturated, wrong colors, static, frozen, no movement, boring, multiple complex motions, contradictory movements`.trim();
 
 /**
  * POC Brand-specific prompt templates
- * Key: Focus on ONE primary movement per prompt. Use sensory words.
+ * Formula: subject + texture + motion + lighting + camera
+ * Key: ONE motion, speed qualifiers, trigger words from training data
+ * Reference: video-prompt-guide.md proven terminology
  */
 
 // Joe's Pizza - NYC iconic since 1975
+// Trigger words: cheese pull, mozzarella stretch, golden crust, charred spots, steam rising, fresh, freshly made
+// NO hands/forks - if lifting needed, use pizza server/spatula. Food moves on its own.
+// Camera variety: static, slow push in, slow zoom in, macro close-up, dolly in
+// {productName} placeholder gets replaced with actual product name (e.g., "Pepperoni Pizza")
 const JOES_PIZZA_PROMPTS: Record<string, string[]> = {
   pizza: [
-    // Cheese pull - the hero motion for pizza
-    "A slice of {productName} being lifted, melted cheese stretching in golden gooey strings, freshly baked crust, warm pizzeria lighting, macro close-up, shallow depth of field",
-    // Steam focus
-    "Freshly baked {productName}, steam rising slowly from hot melted mozzarella, crispy golden crust, cinematic warm lighting, slow push-in, appetizing food commercial",
-    // Texture focus
-    "{productName} with bubbling cheese surface, golden crispy edges, warm ambient glow, gentle zoom revealing delicious textures",
+    "Freshly baked {productName} with bubbling glossy mozzarella, thick cheese pull stretching in long golden strings as slice lifts on pizza server. Steam rising from charred crust. Warm cinematic lighting. Slow push in. No hands visible",
+    "Fresh hot {productName} straight from oven, glossy bubbling cheese glistening with oil droplets. Gentle steam curling upward slowly from golden charred crust. Warm cinematic lighting. Shallow depth of field. Camera pans across",
+    "Two fresh {productName} slices slowly being lifted up to reveal satisfying cheese pull, thick mozzarella cheese pull stretching in glossy golden strings between them. Steam wisps rising. Ultra-realistic food commercial style. Slow zoom in. No utensils",
+    "Freshly baked {productName} with bubbling mozzarella and crispy charred crust edges, oil droplets glistening. Gentle steam rising. Warm cinematic lighting. Macro close-up. Dolly zoom in slowly",
   ],
   salad: [
-    "Fresh {productName} with crisp greens, light vinaigrette dripping slowly, vibrant colors, bright natural daylight, overhead angle, clean food photography",
-    "Organic {productName}, fresh ingredients glistening with dressing, colorful vegetables, soft natural lighting, gentle camera movement",
+    "Crisp fresh {productName} glistening with vinaigrette, settling gently after toss. Dressing droplets catching soft natural light. Bright airy aesthetic. Slow push in",
+    "Freshly tossed {productName} with glistening vinaigrette, gentle movement settling slowly. Soft natural window light. Shallow depth of field. Dolly zoom in slowly",
   ],
   sides: [
-    "Hot {productName}, steam rising gently, golden crispy texture, warm ambient lighting, close-up macro shot",
-    "Freshly prepared {productName}, appetizing golden surface, warm inviting lighting, slow cinematic push-in",
+    "Freshly made {productName} with crispy caramelized edges, gentle steam rising and curling slowly. Warm cinematic lighting. Macro close-up. Camera remains still",
+    "Fresh {productName} steaming hot with glistening caramelized surface catching warm light. Gentle steam wisps curling upward. Shallow depth of field. Slow zoom in",
   ],
   default: [
-    "Appetizing {productName}, warm inviting lighting, gentle steam wisps, cinematic food photography, slow zoom in",
+    "Freshly prepared {productName} with gentle steam rising slowly from glistening appetizing surface. Warm golden hour lighting. Shallow depth of field. Slow push in",
   ],
 };
 
 // Sweetgreen - Farm-to-table salads
+// Trigger words: crisp, vibrant, garden fresh, glistening, drizzle, leafy greens, colorful vegetables, freshly prepared
+// NO hands/forks - focus on food motion, drizzles, and settling
+// Camera variety: static, slow push in, slow zoom in, dolly in, macro close-up
+// {productName} placeholder gets replaced with actual product name (e.g., "Kale Caesar")
 const SWEETGREEN_PROMPTS: Record<string, string[]> = {
   bowl: [
-    // Steam from warm bowl
-    "Warm {productName}, gentle steam rising from roasted grains, fresh vibrant ingredients, soft natural lighting, slow cinematic push-in, wholesome food commercial",
-    // Fork lift
-    "A fork lifting a fresh bite from {productName}, crisp greens and grains rising, dressing dripping gently, bright airy daylight, macro close-up",
-    // Texture focus
-    "{productName} with glistening ingredients, vibrant colors, steam wisps from warm elements, natural daylight, elegant overhead shot",
+    "Freshly prepared {productName} with crisp greens and warm grains, olive oil drizzling slowly in glossy streams across the surface. Soft natural window light. Shallow depth of field. Dolly zoom in slowly",
+    "Fresh {productName} with gentle steam rising slowly from just-cooked ingredients, glistening roasted vegetables settling softly. Soft natural daylight. Slow zoom in",
+    "Garden fresh {productName} with golden olive oil cascading slowly over vibrant vegetables, pooling at edges and glistening. Bright airy natural daylight. Camera remains still",
+    "Freshly assembled {productName} with glossy tahini dressing drizzling slowly over colorful ingredients. Soft natural light. Macro close-up. Dolly zoom",
   ],
   salad: [
-    "Fresh {productName}, crisp organic greens glistening, vibrant colorful vegetables, bright natural daylight, gentle camera push-in, clean modern aesthetic",
-    "A fork tossing fresh {productName}, crisp texture visible, light dressing coating leaves, overhead natural lighting, slow motion",
-    "Organic {productName}, fresh ingredients catching the light, colorful healthy composition, soft natural glow, appetizing close-up",
+    "Freshly tossed {productName} with crisp leafy greens glistening with vinaigrette, settling gently after toss. Parmesan shavings catching soft natural window light. Slow push in",
+    "Fresh {productName} with glossy dressing droplets falling slowly onto crisp vibrant leaves. Clean minimalist aesthetic. Shallow depth of field. Dolly in slowly",
+    "Just-prepared {productName} with vinaigrette drizzling slowly across crisp vibrant greens, droplets glistening in natural light. Ultra-realistic food photography. Camera static",
+    "Freshly tossed {productName} with glistening olive oil droplets catching light, crisp greens settling gently. Bright airy aesthetic. Slow zoom in",
   ],
   plates: [
-    "Warm {productName}, steam rising from perfectly cooked protein, fresh accompaniments, soft natural lighting, cinematic presentation",
-    "Freshly plated {productName}, appetizing textures, natural ingredients glistening, warm inviting lighting, elegant push-in",
+    "Freshly seared {productName} with gentle steam rising slowly, glistening juices pooling on warm plate surface. Caramelized edges catching cinematic light. Shallow depth of field. Slow push in",
+    "Just-cooked {productName} with glossy caramelized exterior, steam wisps curling gently upward. Warm cinematic lighting. Macro close-up. Camera remains still",
   ],
   sides: [
-    "Warm roasted {productName}, steam rising slowly, golden caramelized edges, soft natural lighting, appetizing close-up",
+    "Freshly roasted {productName} with gentle steam curling upward slowly, caramelized golden edges glistening. Warm golden hour lighting. Macro close-up. Camera static",
+    "Fresh {productName} with glossy olive oil coating, gentle steam rising. Warm natural light. Slow zoom in",
   ],
   bread: [
-    "Freshly baked {productName}, steam wisps rising, flaky golden crust, warm bakery lighting, macro close-up, artisanal quality",
+    "Freshly baked {productName} straight from oven with fluffy interior visible, wisps of steam escaping slowly. Golden crispy crust glistening. Warm bakery light. Slow push in",
+    "Fresh {productName} with golden crust and soft interior, gentle steam wisps rising. Warm bakery lighting. Macro close-up. Camera static",
   ],
   default: [
-    "Fresh {productName}, vibrant healthy ingredients, natural daylight, clean appetizing presentation, gentle zoom",
+    "Freshly prepared {productName} glistening with dressing drizzling slowly in glossy streams. Soft natural window light. Shallow depth of field. Slow push in",
   ],
 };
 
 // Doughnut Vault - Chicago artisan donuts
+// Trigger words: glossy glaze, fluffy, pillowy, dusted with sugar, golden-brown, shiny frosting, fresh, freshly made
+// NO hands/fingers - focus on glaze drips, sugar dusting, rotating display, and texture
+// Camera variety: static, slow push in, slow zoom in, dolly in, macro close-up
+// {productName} placeholder gets replaced with actual product name (e.g., "Old Fashioned Doughnut")
 const DOUGHNUT_VAULT_PROMPTS: Record<string, string[]> = {
   doughnut: [
-    // Glaze focus - hero visual for doughnuts
-    "Freshly glazed {productName}, glossy coating catching warm morning light, soft pillowy texture, golden bakery ambiance, slow cinematic push-in",
-    // Hand interaction - shows softness
-    "A hand gently pressing {productName}, soft fluffy dough yielding, glossy glaze glistening, warm golden lighting, intimate macro close-up",
-    // Sugar/powder floating
-    "Fresh {productName}, powdered sugar particles floating gently, soft airy texture visible, warm bakery morning light, shallow depth of field",
-    // Glaze dripping
-    "{productName} with glossy glaze slowly dripping, rich sweet coating, warm inviting bakery lighting, appetizing macro shot",
+    "Freshly glazed {productName} with glossy coating dripping slowly down golden-brown side, pooling at base. Shiny surface catching warm bakery light. Macro close-up. Slow push in",
+    "Fresh {productName} with glossy glaze glistening, gentle light reflections moving across shiny surface. Fluffy pillowy texture visible. Warm bakery lighting. Dolly zoom",
+    "Freshly dusted {productName} with powdered sugar particles floating down gently and settling on fluffy pillowy surface. Soft diffused morning light. Slow zoom in",
+    "Just-made {productName} with shiny coating catching warm light, glaze slowly dripping down golden-brown side. Shallow depth of field. Dolly in slowly",
   ],
   oldFashioned: [
-    "Classic {productName}, crackly glaze surface catching light, tender cake interior visible, warm nostalgic bakery glow, intimate close-up",
-    "Freshly made {productName}, golden crispy edges, soft fluffy center, morning bakery warmth, slow elegant zoom",
+    "Fresh {productName} with crackly glossy glaze surface, warm light dancing across golden-brown ridges. Nostalgic bakery glow. Shallow depth of field. Slow push in",
+    "Freshly made {productName} with tender fluffy interior visible at break, fine crumbs falling gently. Warm cinematic lighting. Macro close-up. Camera static",
   ],
   glazed: [
-    "Perfect {productName}, mirror-like glaze glistening, soft pillowy dough, warm golden hour lighting, gentle rotation reveal",
-    "{productName} with translucent glaze catching light, delicate sweet coating, cozy bakery ambiance, macro beauty shot",
+    "Fresh {productName} with glossy coating dripping slowly from edge, catching warm golden bakery light. Pillowy surface dimpling gently. Macro close-up. Camera remains still",
+    "Freshly dipped {productName} rotating slowly on display, shiny glaze surface glistening with warm light reflections. Warm bakery glow. Shallow depth of field. Slow zoom in",
   ],
   specialty: [
-    "Artisan {productName}, unique toppings glistening, creative presentation, warm inviting lighting, slow appreciative zoom",
-    "Handcrafted {productName}, special ingredients visible, artisanal quality, golden bakery glow, cinematic close-up",
+    "Freshly made {productName} with rich glaze dripping slowly, colorful toppings catching warm studio light. Glossy surface glistening. Dolly in slowly",
+    "Fresh {productName} with shiny icing drizzling slowly across pillowy top, pooling in golden crevices. Soft diffused light. Ultra-realistic food photography. Slow push in",
   ],
   pastry: [
-    "Freshly baked {productName}, flaky golden layers visible, delicate crumbs falling, warm soft lighting, artisanal close-up",
+    "Freshly baked {productName} with flaky layers slowly separating, delicate crumbs cascading gently down. Golden buttery surface glistening. Warm golden hour lighting. Macro close-up. Camera static",
   ],
   default: [
-    "Fresh {productName}, warm bakery lighting, appetizing textures, gentle steam or glaze glistening, inviting close-up",
+    "Fresh {productName} with glossy glaze glistening, warm bakery light reflecting off shiny surface. Shallow depth of field. Slow push in",
   ],
 };
 
@@ -130,77 +140,92 @@ const POC_PROMPTS: Record<string, Record<string, string[]>> = {
 
 /**
  * Generic prompts for non-POC brands
+ * Formula: subject + texture + motion + lighting + camera
+ * Key: ONE motion, speed qualifiers, food-specific trigger words, ALWAYS include "fresh/freshly"
+ * NO hands/forks/knives - if lifting needed, use proper tools (pizza server) or "separates on its own"
+ * Camera variety: static, slow push in, slow zoom in, dolly in, macro close-up
+ * {productName} placeholder gets replaced with actual product name
  */
 const GENERIC_PROMPTS: Record<string, string[]> = {
   pizza: [
-    "Freshly baked {productName}, melted cheese stretching, steam rising, warm pizzeria lighting, appetizing close-up",
-    "{productName} with golden crispy crust, bubbling toppings, warm ambient glow, cinematic food shot",
+    "Freshly baked {productName} with thick glossy mozzarella, cheese pull stretching in long golden strings as slice lifts on pizza server. Steam rising from charred crust. Warm cinematic lighting. Slow push in. No hands visible",
+    "Fresh hot {productName} straight from oven with bubbling glossy cheese glistening, charred golden crust. Gentle steam curling upward slowly. Shallow depth of field. Dolly zoom in slowly",
+    "Two fresh {productName} slices slowly separating on their own, thick mozzarella cheese pull stretching in glossy golden strings. Steam wisps rising. Warm cinematic lighting. Slow zoom in. No utensils. Camera pans across",
+    "Freshly baked {productName} with bubbling mozzarella, oil droplets glistening on crispy charred crust. Gentle steam rising. Macro close-up. Dolly zoom",
   ],
   salad: [
-    "Fresh {productName}, crisp greens glistening, colorful vegetables, bright natural lighting, clean presentation",
-    "Healthy {productName}, fresh ingredients, light dressing drizzling, overhead natural light, appetizing shot",
+    "Freshly tossed {productName} glistening with glossy vinaigrette, settling gently after toss. Dressing droplets catching soft natural window light. Slow push in",
+    "Fresh {productName} with glistening dressing droplets falling slowly onto crisp vibrant leaves. Bright airy natural daylight. Dolly in slowly",
+    "Just-prepared {productName} with olive oil drizzling slowly, crisp greens glistening. Soft natural light. Slow zoom in",
   ],
   bowl: [
-    "Warm {productName}, steam rising gently, fresh toppings, soft natural lighting, wholesome presentation",
-    "Colorful {productName}, vibrant ingredients, appetizing textures, gentle camera movement",
+    "Fresh {productName} with olive oil drizzling slowly in glossy streams across colorful vegetables. Soft natural window light. Shallow depth of field. Slow push in",
+    "Freshly prepared {productName} with gentle steam rising slowly from just-cooked ingredients, glistening vegetables settling softly. Soft natural daylight. Dolly zoom",
+    "Fresh {productName} with glossy tahini dressing drizzling slowly over vibrant ingredients. Bright airy light. Macro close-up. Slow zoom in",
   ],
   doughnut: [
-    "Freshly glazed {productName}, glossy coating catching light, soft texture, warm bakery lighting, close-up",
-    "{productName} with sweet glaze glistening, fluffy dough, golden morning light, appetizing macro shot",
+    "Freshly glazed {productName} with glossy coating dripping slowly down golden-brown side, pooling at base. Shiny surface catching warm bakery light. Macro close-up. Slow push in",
+    "Fresh {productName} with shiny glaze glistening, warm light reflections moving across glossy surface. Fluffy pillowy texture visible. Warm bakery lighting. Dolly zoom",
+    "Freshly dusted {productName} with powdered sugar particles settling gently on pillowy surface. Soft morning light. Slow zoom in",
   ],
   pastry: [
-    "Fresh {productName}, flaky layers visible, golden crust, warm bakery lighting, artisanal close-up",
+    "Freshly baked {productName} with flaky layers slowly separating, delicate crumbs cascading gently down. Golden buttery surface glistening. Warm golden hour lighting. Camera remains still",
+    "Fresh {productName} with flaky golden layers, steam wisps escaping from tender interior. Warm bakery light. Macro close-up. Slow push in",
   ],
   protein: [
-    "Perfectly cooked {productName}, juices glistening, steam rising, warm dramatic lighting, appetizing shot",
-    "Sizzling {productName}, caramelized edges, aromatic steam, cinematic food photography",
+    "Freshly seared {productName} with glossy caramelized surface, glistening juices slowly pooling on warm plate. Gentle steam rising. Warm cinematic lighting. Slow push in",
+    "Just-cooked {productName} with juices bubbling gently on caramelized surface, aromatic steam rising slowly. Shallow depth of field. Macro close-up. Camera static",
   ],
   bread: [
-    "Freshly baked {productName}, steam escaping, golden crust, warm bakery glow, artisanal quality",
+    "Freshly baked {productName} straight from oven with fluffy interior visible, wisps of steam escaping slowly from warm golden crust. Warm bakery light. Slow zoom in",
+    "Fresh {productName} with golden crust, gentle steam rising from soft interior. Warm bakery lighting. Macro close-up. Camera remains still",
   ],
   sides: [
-    "Hot {productName}, steam rising, golden crispy texture, warm inviting lighting, appetizing close-up",
+    "Freshly made {productName} with crispy caramelized edges, gentle steam rising and curling slowly. Glistening surface. Warm cinematic lighting. Slow push in",
+    "Fresh {productName} with golden crispy coating, steam wisps rising gently. Shallow depth of field. Dolly in slowly",
   ],
   default: [
-    "Appetizing {productName}, warm inviting lighting, beautiful textures, gentle camera movement, food commercial quality",
-    "Fresh {productName}, appetizing presentation, soft natural lighting, cinematic slow zoom",
+    "Freshly prepared {productName} with gentle steam rising slowly from glistening appetizing surface. Warm golden hour lighting. Shallow depth of field. Slow push in",
+    "Fresh {productName} with glossy sauce drizzling slowly across glistening surface, pooling at edges. Soft natural window light. Camera static",
+    "Just-made {productName} with glistening surface catching warm light, gentle steam curling upward. Macro close-up. Slow zoom in",
   ],
 };
 
 /**
- * Infer texture/motion effects from product description keywords
- * Maps description keywords to visual effects (not ingredient lists)
+ * Infer MOTION effects from product description keywords
+ * Maps description keywords to physics-grounded movements with speed qualifiers
+ * Reference: video-prompt-guide.md motion terminology
  */
-function inferTextureEffects(description: string): string {
+function inferMotionEffects(description: string): string {
   const effects: string[] = [];
   const desc = description.toLowerCase();
 
-  // Temperature → steam/warmth
-  if (/roasted|warm|hot|grilled|toasted|baked|fresh.?from/.test(desc)) {
-    effects.push('gentle steam rising');
+  // Temperature → steam motion (gentle steam curling is most reliable)
+  if (/roasted|warm|hot|grilled|toasted|baked|fresh.?from|sizzling/.test(desc)) {
+    effects.push('gentle steam curling upward slowly');
   }
-  // Freshness → glistening
-  if (/fresh|crisp|raw|organic|garden/.test(desc)) {
-    effects.push('fresh ingredients glistening');
+  // Freshness → glistening motion
+  if (/fresh|crisp|raw|garden|vibrant/.test(desc)) {
+    effects.push('glistening surface catching light');
   }
-  // Dressed/glazed → shine
-  if (/vinaigrette|dressing|glazed|sauce|drizzle/.test(desc)) {
-    effects.push('glossy surface catching light');
+  // Dressed/glazed → drizzling motion (use "drizzling slowly" not "pouring")
+  if (/vinaigrette|dressing|glazed|sauce|drizzle|oil/.test(desc)) {
+    effects.push('dressing drizzling slowly in glossy strings');
   }
-  // Creamy/melted → texture
+  // Creamy/melted → stretching motion (cheese pull is high-impact term)
   if (/creamy|melted|cheese|mozzarella|ricotta/.test(desc)) {
-    effects.push('smooth creamy texture');
+    effects.push('cheese pull stretching in glossy golden strings');
   }
-  // Crispy → texture
-  if (/crispy|crunchy|golden|fried/.test(desc)) {
-    effects.push('golden crispy edges');
+  // Crispy → sizzling/glistening motion
+  if (/crispy|crunchy|golden|fried|caramelized|seared/.test(desc)) {
+    effects.push('caramelized edges glistening');
   }
-  // Sweet/sugary → coating
-  if (/sugar|sweet|honey|caramel|chocolate/.test(desc)) {
-    effects.push('sweet coating glistening');
+  // Sweet/sugary → glossy glaze dripping motion
+  if (/sugar|sweet|honey|caramel|chocolate|glaze|frosting/.test(desc)) {
+    effects.push('glossy glaze dripping slowly');
   }
 
-  return effects.slice(0, 2).join(', ') || 'appetizing textures';
+  return effects.slice(0, 1).join(', ') || 'gentle movement'; // Only ONE effect
 }
 
 /**
@@ -272,15 +297,15 @@ export function generateAkoolPrompt(
   // Select prompt based on scene index for variety
   const template = categoryPrompts[sceneIndex % categoryPrompts.length];
 
-  // Build prompt with product name
-  let prompt = template.replace('{productName}', productName);
+  // Build prompt with product name (replace all occurrences)
+  let prompt = template.replace(/\{productName\}/g, productName);
 
-  // Infer and add texture effects from description if available
+  // Infer and add motion effects from description if available
   if (productDescription) {
-    const effects = inferTextureEffects(productDescription);
+    const effects = inferMotionEffects(productDescription);
     // Only add if not already in prompt
     if (!prompt.toLowerCase().includes(effects.split(',')[0].toLowerCase())) {
-      prompt = prompt.replace(/, (slow|gentle|cinematic)/, `, ${effects}, $1`);
+      prompt = prompt.replace(/, (slow|gentle|cinematic|subtle)/, `, ${effects}, $1`);
     }
   }
 
@@ -293,76 +318,81 @@ export function generateAkoolPrompt(
 }
 
 /**
- * Generate prompts for multiple scenes with their selected images
- * Legacy function for backwards compatibility
+ * Default config when no image context available
+ * Uses proven trigger words from video-prompt-guide.md - includes "fresh/freshly"
  */
-export function generateAkoolPromptsForScenes(
-  scenes: Array<{
-    sceneId: string;
-    selectedImage?: {
-      alt: string;
-      category?: string;
-    } | null;
-  }>,
-  brandName?: string
-): Map<string, AkoolAnimationConfig> {
-  const prompts = new Map<string, AkoolAnimationConfig>();
-
-  scenes.forEach((scene, index) => {
-    if (scene.selectedImage) {
-      const config = generateAkoolPrompt(
-        scene.selectedImage.alt,
-        undefined, // No description in legacy format
-        scene.selectedImage.category,
-        brandName,
-        index
-      );
-      prompts.set(scene.sceneId, config);
-    }
-  });
-
-  return prompts;
-}
+export const DEFAULT_AKOOL_CONFIG: AkoolAnimationConfig = {
+  prompt: 'Freshly prepared appetizing food with gentle steam rising slowly. Glistening surface catching warm cinematic light. Shallow depth of field. Slow push in. Ultra-realistic food commercial style',
+  negativePrompt: NEGATIVE_PROMPT,
+  videoLength: 5,
+  resolution: '720p',
+};
 
 /**
- * Generate Akool prompt with full context
- * New function with all POC plan features
+ * POC Template-Only Prompt Generator
+ *
+ * For POC demos, use ONLY proven templates - no LLM variability.
+ * This ensures consistent, tested results for demos.
+ *
+ * Key features:
+ * - Picks from curated templates based on brand + food type
+ * - Uses scene index for variety across scenes (deterministic by default)
+ * - Optional randomization for more variety
+ * - NO LLM calls - fast and predictable
+ *
+ * @param productName - Product name (from image alt)
+ * @param options.foodType - Food type for template selection
+ * @param options.brandName - Brand for brand-specific templates
+ * @param options.sceneIndex - Scene index for deterministic variety
+ * @param options.randomize - If true, randomly pick from available templates
  */
-export function generatePOCAkoolPrompt(
+export function generatePOCTemplatePrompt(
   productName: string,
   options: {
     productDescription?: string;
     foodType?: string;
     brandName?: string;
     sceneIndex?: number;
-    visualMode?: 'animated' | 'static';
+    randomize?: boolean;
   } = {}
 ): AkoolAnimationConfig {
   const {
-    productDescription,
     foodType,
     brandName,
     sceneIndex = 0,
+    randomize = false,
   } = options;
 
-  return generateAkoolPrompt(
-    productName,
-    productDescription,
-    foodType,
-    brandName,
-    sceneIndex
-  );
-}
+  // Get brand-specific prompts
+  const prompts = getPromptsForBrand(brandName);
 
-/**
- * Default config when no image context available
- */
-export const DEFAULT_AKOOL_CONFIG: AkoolAnimationConfig = {
-  prompt: 'appetizing food photography, warm inviting lighting, gentle camera movement, cinematic quality, shallow depth of field',
-  negativePrompt: NEGATIVE_PROMPT,
-  videoLength: 5,
-  resolution: '720p',
-};
+  // Try to match by foodType first, then by product name, then default
+  const category = foodType || detectFoodCategory(productName);
+
+  // Get prompts for this category
+  const categoryPrompts = prompts[category] || prompts['default'] || GENERIC_PROMPTS['default'];
+
+  // Select prompt - either random or deterministic based on scene index
+  let promptIndex: number;
+  if (randomize) {
+    promptIndex = Math.floor(Math.random() * categoryPrompts.length);
+  } else {
+    promptIndex = sceneIndex % categoryPrompts.length;
+  }
+
+  // Get template and replace {productName} placeholder with actual product name
+  const template = categoryPrompts[promptIndex];
+  const prompt = template.replace(/\{productName\}/g, productName);
+
+  console.log(`[POC Template] Brand: ${brandName}, Food: ${category}, Product: "${productName}", Prompt #${promptIndex + 1}/${categoryPrompts.length}${randomize ? ' (random)' : ''}`);
+
+  return {
+    prompt,
+    negativePrompt: NEGATIVE_PROMPT,
+    videoLength: 5,
+    resolution: '720p',
+  };
+}
 
 // ============================================================================
 // LLM-BASED PROMPT GENERATION
@@ -383,34 +413,100 @@ function getGroqClient(): Groq | null {
 /**
  * System prompt for Akool animation prompt generation
  *
- * GOAL: Generate efficient, accurate prompts that create professional food animations
- * without wasting Akool API credits on hallucinated or unrealistic details.
+ * Based on video-prompt-guide.md proven terminology that AI models understand.
+ * Akool animates existing images - focus on ONE motion, not scene description.
+ *
+ * Formula: subject + texture + motion + lighting + camera
+ * CRITICAL: NO hands, forks, knives, fingers - these cause AI failure ("Will Smith Eating Spaghetti" problem)
  */
-const AKOOL_PROMPT_SYSTEM = `You write prompts for Akool image-to-video AI. Keep prompts SHORT and ACCURATE.
+const AKOOL_PROMPT_SYSTEM = `You write prompts for Akool image-to-video AI that animates food photos.
 
-RULES:
-1. MAX 30 words - Akool works better with concise prompts
-2. Use ONLY the product description provided - don't invent ingredients
-3. ONE motion type per prompt (pick the most appetizing for this food type)
-4. NO brand names, NO location references
-5. NO camera direction words (overhead, close-up, zoom) - Akool handles this automatically
+CRITICAL RULES:
+1. ONE motion only (25-45 words total prompt)
+2. NEVER include hands, forks, knives, fingers - if lifting pizza, use "pizza server" or "slices separate on their own"
+3. ALWAYS include "fresh", "freshly made", "freshly baked", or "just-made" - these are proven trigger words
+4. ONLY mention ingredients actually visible/listed - never assume cheese/sauce if not specified
+5. NO marketing terms (organic, artisanal, antibiotic-free, etc.)
+6. NO quotes around response
+7. ONE camera instruction only - vary between "Slow push in", "Camera static", "Camera remains still"
+8. Use complete sentences, not fragments with + or :
+9. End prompts with "No hands visible" or "No utensils" when lifting/separating motion is involved
 
-MOTION BY FOOD TYPE:
-- PIZZA: "cheese stretching, steam rising from crust"
-- SALAD/BOWL: "fresh greens glistening, light catching dressing" (NO cheese pulling for salads!)
-- DOUGHNUT: "glaze glistening, soft texture"
-- HOT DISHES: "steam rising gently, warmth visible"
-- COLD DISHES: "fresh ingredients glistening, vibrant colors"
+BANNED ELEMENTS (cause AI artifacts):
+- Hands, fingers, forks, knives interacting with food - AI CANNOT render hands properly
+- Multiple competing motions in one prompt
+- Contradictory camera instructions
+- Abstract feelings ("delicious", "tasty") - describe what you SEE
 
-FORMAT: Return ONLY the prompt, no quotes.
+TRIGGER WORDS THAT WORK (use these):
+- Freshness: fresh, freshly made, freshly baked, just-made, fresh from oven, fresh from fryer
+- Textures: glistening, glossy, crispy, fluffy, pillowy, seared, caramelized, golden-brown, bubbling
+- Motion: slow motion, slowly, gently, drizzling slowly, rising slowly, stretching, settling, curling
+- Lighting: warm cinematic lighting, soft natural light, warm bakery light, shallow depth of field
+- Camera: "Slow push in" OR "Camera remains still" OR "Camera static" (pick ONE, vary across prompts)
 
-GOOD EXAMPLE (pizza): "Freshly baked pizza, melted cheese stretching, steam rising from golden crust, warm lighting"
-GOOD EXAMPLE (salad): "Fresh salad, crisp greens glistening, dressing catching light, vibrant colors"
-BAD EXAMPLE: "elegant overhead shot of artisanal pizza with cheese pulling in gooey strings while camera slowly zooms" (too long, has camera directions)`;
+MOTION BY FOOD TYPE (NO HANDS - food moves on its own or use proper tools):
+- PIZZA: "Freshly baked pizza with cheese pull stretching as slice lifts on pizza server" OR "Two slices slowly separating on their own, cheese pull visible"
+- SALAD: "Freshly tossed crisp greens glistening with dressing, settling gently"
+- BOWL: "Fresh warm bowl with olive oil drizzling slowly" OR "gentle steam rising from just-cooked ingredients"
+- DOUGHNUT: "Freshly glazed doughnut with glossy coating dripping slowly" OR "powdered sugar settling gently on fresh doughnut"
+- HOT FOOD: "Fresh from the kitchen with gentle steam curling upward slowly"
+- PROTEIN: "Freshly seared protein with glistening juices slowly pooling"
+
+CAMERA VARIETY (alternate these across different prompts):
+- Hero shots: "Slow push in" - builds anticipation
+- Texture focus: "Camera static" - lets motion shine
+- Detail shots: "Camera remains still" with "Macro close-up"
+
+STRUCTURE: ["Fresh/Freshly" + food subject + textures] + [ONE physics-based motion with speed] + [Lighting term] + [ONE camera instruction] + [Optional: "No hands visible"]
+
+FORMAT: Return ONLY prompt text. Complete sentences. No quotes. 25-45 words.
+
+EXAMPLES:
+- Kale Caesar: Freshly tossed crisp leafy kale glistening with caesar dressing, settling gently after toss. Parmesan shavings catching soft natural light. Shallow depth of field. Slow push in
+- Glazed doughnut: Fresh glazed doughnut with glossy coating dripping slowly down golden-brown side. Shiny surface catching warm bakery light. Macro close-up. Camera remains still
+- Pepperoni pizza: Freshly baked pepperoni pizza with thick glossy mozzarella, cheese pull stretching in long golden strings as slice lifts on pizza server. Steam rising. Warm cinematic lighting. Slow push in. No hands visible`;
+
+/**
+ * Clean ingredient description - remove marketing terms, keep actual food items
+ */
+function cleanIngredients(description: string): string {
+  // Marketing terms to remove
+  const marketingTerms = [
+    'antibiotic-free',
+    'antibiotic free',
+    'grass-fed',
+    'grass fed',
+    'organic',
+    'locally-sourced',
+    'locally sourced',
+    'locally-made',
+    'farm-fresh',
+    'artisanal',
+    'handcrafted',
+    'hand-crafted',
+    'premium',
+    'signature',
+    'house-made',
+    'fresh-baked',
+    'seed oil-free',
+  ];
+
+  let cleaned = description.toLowerCase();
+  for (const term of marketingTerms) {
+    cleaned = cleaned.replace(new RegExp(term + '\\s*', 'gi'), '');
+  }
+
+  // Clean up extra spaces and commas
+  cleaned = cleaned.replace(/\s+/g, ' ').replace(/,\s*,/g, ',').trim();
+
+  return cleaned;
+}
 
 /**
  * Build the user prompt for LLM
- * Provides accurate product info so LLM doesn't hallucinate ingredients
+ * Passes cleaned ingredients (no marketing fluff) so LLM knows what's in the dish
+ * Structure guides LLM to follow proven formula: subject + texture + motion + lighting + camera
  */
 function buildAkoolUserPrompt(
   productName: string,
@@ -421,15 +517,18 @@ function buildAkoolUserPrompt(
 ): string {
   const foodType = options.foodType || 'food';
 
-  // Provide clear, structured info for accurate prompt generation
-  let prompt = `FOOD TYPE: ${foodType}\n`;
-  prompt += `PRODUCT: ${productName}\n`;
+  let prompt = `FOOD: ${productName} (${foodType})\n`;
 
+  // Pass cleaned ingredients so LLM knows what's actually in the dish
   if (options.productDescription && options.productDescription !== productName) {
-    prompt += `ACTUAL INGREDIENTS: ${options.productDescription}\n`;
+    const cleanedIngredients = cleanIngredients(options.productDescription);
+    prompt += `INGREDIENTS: ${cleanedIngredients}\n`;
   }
 
-  prompt += `\nWrite a short animation prompt (max 30 words) for this ${foodType}. Only reference ingredients listed above.`;
+  prompt += `\nWrite a 15-30 word Akool animation prompt following this structure:
+[Subject + texture words] + [ONE motion with speed qualifier] + [Lighting term] + [Camera instruction]
+
+Use trigger words: glistening, glossy, slowly, gentle, warm cinematic lighting, shallow depth of field, slow push in, camera static`;
 
   return prompt;
 }
@@ -474,9 +573,16 @@ export async function generateAkoolPromptWithLLM(
       max_tokens: 150,
     });
 
-    const prompt = completion.choices[0]?.message?.content?.trim();
+    let prompt = completion.choices[0]?.message?.content?.trim() || '';
 
-    if (!prompt || prompt.length < 20) {
+    // Clean up LLM output - remove quotes and extra whitespace
+    prompt = prompt
+      .replace(/^["']|["']$/g, '')  // Remove leading/trailing quotes
+      .replace(/^"+|"+$/g, '')       // Remove multiple quotes
+      .replace(/\\"/g, '"')          // Unescape quotes
+      .trim();
+
+    if (!prompt || prompt.length < 15) {
       throw new Error('LLM returned empty or too short prompt');
     }
 
@@ -502,37 +608,3 @@ export async function generateAkoolPromptWithLLM(
   }
 }
 
-/**
- * Generate Akool prompts for multiple images using LLM
- * Processes in parallel for speed
- */
-export async function generateAkoolPromptsWithLLM(
-  images: Array<{
-    sceneId: string;
-    productName: string;
-    productDescription?: string;
-    foodType?: string;
-  }>,
-  brandName?: string
-): Promise<Map<string, AkoolAnimationConfig>> {
-  const prompts = new Map<string, AkoolAnimationConfig>();
-
-  // Generate all prompts in parallel
-  const results = await Promise.all(
-    images.map(async (img, index) => {
-      const config = await generateAkoolPromptWithLLM(img.productName, {
-        productDescription: img.productDescription,
-        foodType: img.foodType,
-        brandName,
-        sceneIndex: index,
-      });
-      return { sceneId: img.sceneId, config };
-    })
-  );
-
-  for (const result of results) {
-    prompts.set(result.sceneId, result.config);
-  }
-
-  return prompts;
-}

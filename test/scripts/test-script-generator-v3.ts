@@ -4,9 +4,10 @@
  * Tests the full POC pipeline with:
  * - Scene planner (animated vs static with pattern variation)
  * - Image selector with main dish prioritization
- * - LLM-generated Akool prompts (with fallback to templates)
+ * - TEMPLATE-based Akool prompts (NO LLM for POC demos - proven prompts only)
  *
  * Uses curated poc-data (brand.json + products.json) for best quality.
+ * POC demos use pre-defined templates for consistent, tested video quality.
  *
  * Run with: npx tsx test/scripts/test-script-generator-v3.ts
  */
@@ -23,7 +24,7 @@ import {
   getMainDishType,
 } from '../../src/lib/script-generator/image-selector';
 import { planScenes, BODY_SCENE_PATTERNS } from '../../src/lib/script-generator/scene-planner';
-import { generateAkoolPromptWithLLM } from '../../src/lib/script-generator/akool-prompts';
+import { generatePOCTemplatePrompt } from '../../src/lib/script-generator/akool-prompts';
 import type { ScrapedImage } from '../../src/lib/scraper/types';
 import type { GeneratedScript, AkoolAnimationConfig } from '../../src/lib/script-generator/types';
 import type { ScenePlan, PlannedScene } from '../../src/lib/script-generator/scene-planner';
@@ -124,7 +125,7 @@ async function testScriptGeneration() {
   console.log('  - Hook always STATIC (USP focus)');
   console.log('  - Body: exactly 2 animated + 2 static');
   console.log('  - Image selector with main dish prioritization');
-  console.log('  - LLM-generated Akool prompts');
+  console.log('  - TEMPLATE-based Akool prompts (NO LLM for POC demos)');
   console.log('  - Using curated poc-data (brand.json + products.json)');
   console.log('');
 
@@ -263,10 +264,10 @@ async function testScriptGeneration() {
       console.log(`    Static: ${selectedImages.filter(i => i.visualMode === 'static').length}`);
     }
 
-    // ============ Step 5: LLM Akool Prompt Generation ============
-    console.log('\n🤖 Generating LLM-based Akool prompts...');
+    // ============ Step 5: POC Template Akool Prompt Generation ============
+    console.log('\n🎯 Generating Akool prompts from PROVEN TEMPLATES (no LLM)...');
 
-    const llmStartTime = Date.now();
+    const promptStartTime = Date.now();
     let imageIndex = 0;
 
     const scenesWithImages: SceneWithImagesV3[] = [];
@@ -286,11 +287,11 @@ async function testScriptGeneration() {
           : null;
       }
 
-      // Generate Akool prompt for animated scenes
+      // Generate Akool prompt for animated scenes using TEMPLATES (no LLM for POC)
       let akoolConfig: AkoolAnimationConfig | null = null;
       if (shouldAnimate && selectedImage) {
-        console.log(`  Generating prompt for ${scene.id}: "${selectedImage.alt}"...`);
-        akoolConfig = await generateAkoolPromptWithLLM(
+        console.log(`  Template prompt for ${scene.id}: "${selectedImage.alt}" (${selectedImage.foodType})...`);
+        akoolConfig = generatePOCTemplatePrompt(
           selectedImage.alt,
           {
             productDescription: selectedImage.productDescription,
@@ -324,8 +325,8 @@ async function testScriptGeneration() {
       });
     }
 
-    const llmTime = Date.now() - llmStartTime;
-    console.log(`  LLM prompt generation time: ${llmTime}ms`);
+    const promptTime = Date.now() - promptStartTime;
+    console.log(`  Template prompt generation time: ${promptTime}ms`);
 
     // ============ Print Results ============
     console.log('\n📜 Results:');
