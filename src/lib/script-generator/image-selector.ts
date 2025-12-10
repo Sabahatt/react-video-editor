@@ -60,6 +60,19 @@ export interface SelectedImageWithMode extends SelectedImage {
 }
 
 /**
+ * Pick randomly from top N images for variety while maintaining quality
+ * @param images Array of images (already sorted by quality)
+ * @param topN Number of top images to consider (default 3)
+ * @returns Random image from top N, or first if array is small
+ */
+function pickRandomFromTop<T>(images: T[], topN: number = 3): T | null {
+  if (images.length === 0) return null;
+  const maxIndex = Math.min(topN, images.length);
+  const randomIndex = Math.floor(Math.random() * maxIndex);
+  return images[randomIndex];
+}
+
+/**
  * Keywords that indicate an image is a logo, icon, or decoration (not food)
  */
 const LOGO_KEYWORDS = [
@@ -484,11 +497,11 @@ export function selectImagesForScenePlan(
   if (hookScene) {
     let selectedImage: CategorizedImage | null = null;
 
-    // Strategy 1: Get the BEST main dish image for hook
+    // Strategy 1: Get a top main dish image for hook (random from top 3)
     if (mainDishType && categorizedImages.byFoodType[mainDishType]) {
       const mainDishImages = categorizedImages.byFoodType[mainDishType];
       if (mainDishImages.length > 0) {
-        selectedImage = mainDishImages[0]; // Best quality main dish
+        selectedImage = pickRandomFromTop(mainDishImages, 3);
       }
     }
 
@@ -496,13 +509,13 @@ export function selectImagesForScenePlan(
     if (!selectedImage) {
       const firstCategory = categorizedImages.categoryOrder[0];
       if (firstCategory && categorizedImages.byCategory[firstCategory]?.length > 0) {
-        selectedImage = categorizedImages.byCategory[firstCategory][0];
+        selectedImage = pickRandomFromTop(categorizedImages.byCategory[firstCategory], 3);
       }
     }
 
     // Strategy 3: Fall back to best overall image
     if (!selectedImage && categorizedImages.all.length > 0) {
-      selectedImage = categorizedImages.all[0];
+      selectedImage = pickRandomFromTop(categorizedImages.all, 3);
     }
 
     if (selectedImage) {
@@ -522,17 +535,15 @@ export function selectImagesForScenePlan(
   for (const scene of animatedScenes) {
     let selectedImage: CategorizedImage | null = null;
 
-    // Strategy 1: Try to get main dish type first for animated scenes
+    // Strategy 1: Try to get main dish type first for animated scenes (random from top 4 unused)
     if (mainDishType && categorizedImages.byFoodType[mainDishType]) {
-      for (const img of categorizedImages.byFoodType[mainDishType]) {
-        if (!usedUrls.has(img.url)) {
-          selectedImage = img;
-          break;
-        }
+      const unusedMainDish = categorizedImages.byFoodType[mainDishType].filter(img => !usedUrls.has(img.url));
+      if (unusedMainDish.length > 0) {
+        selectedImage = pickRandomFromTop(unusedMainDish, 4);
       }
     }
 
-    // Strategy 2: Try the requested category
+    // Strategy 2: Try the requested category (random from top 4 unused)
     if (!selectedImage && scene.visualCategory) {
       const categoryImages = categorizedImages.byCategory[scene.visualCategory];
       if (categoryImages) {
@@ -541,22 +552,18 @@ export function selectImagesForScenePlan(
           ? [...categoryImages].sort((a, b) => scoreForMainDish(b, mainDishType) - scoreForMainDish(a, mainDishType))
           : categoryImages;
 
-        for (const img of sorted) {
-          if (!usedUrls.has(img.url)) {
-            selectedImage = img;
-            break;
-          }
+        const unused = sorted.filter(img => !usedUrls.has(img.url));
+        if (unused.length > 0) {
+          selectedImage = pickRandomFromTop(unused, 4);
         }
       }
     }
 
-    // Strategy 3: Fall back to any high-quality image
+    // Strategy 3: Fall back to any high-quality image (random from top 4 unused)
     if (!selectedImage) {
-      for (const img of categorizedImages.all) {
-        if (!usedUrls.has(img.url)) {
-          selectedImage = img;
-          break;
-        }
+      const unusedAll = categorizedImages.all.filter(img => !usedUrls.has(img.url));
+      if (unusedAll.length > 0) {
+        selectedImage = pickRandomFromTop(unusedAll, 4);
       }
     }
 
@@ -578,7 +585,7 @@ export function selectImagesForScenePlan(
   for (const scene of staticBodyScenes) {
     let selectedImage: CategorizedImage | null = null;
 
-    // Strategy 1: Try the requested category (prefer non-main-dish items)
+    // Strategy 1: Try the requested category (prefer non-main-dish items, random from top 4)
     if (scene.visualCategory) {
       const categoryImages = categorizedImages.byCategory[scene.visualCategory];
       if (categoryImages) {
@@ -592,39 +599,34 @@ export function selectImagesForScenePlan(
             })
           : categoryImages;
 
-        for (const img of sorted) {
-          if (!usedUrls.has(img.url)) {
-            selectedImage = img;
-            break;
-          }
+        const unused = sorted.filter(img => !usedUrls.has(img.url));
+        if (unused.length > 0) {
+          selectedImage = pickRandomFromTop(unused, 4);
         }
       }
     }
 
-    // Strategy 2: Try sides/supporting categories
+    // Strategy 2: Try sides/supporting categories (random from top 4 unused)
     if (!selectedImage) {
       const supportingCategories = ['sides', 'bread', 'sides', 'uncategorized'];
+      // Gather all unused images from supporting categories
+      const supportingImages: CategorizedImage[] = [];
       for (const cat of supportingCategories) {
         const categoryImages = categorizedImages.byCategory[cat];
         if (categoryImages) {
-          for (const img of categoryImages) {
-            if (!usedUrls.has(img.url)) {
-              selectedImage = img;
-              break;
-            }
-          }
-          if (selectedImage) break;
+          supportingImages.push(...categoryImages.filter(img => !usedUrls.has(img.url)));
         }
+      }
+      if (supportingImages.length > 0) {
+        selectedImage = pickRandomFromTop(supportingImages, 4);
       }
     }
 
-    // Strategy 3: Fall back to any remaining high-quality image
+    // Strategy 3: Fall back to any remaining high-quality image (random from top 4)
     if (!selectedImage) {
-      for (const img of categorizedImages.all) {
-        if (!usedUrls.has(img.url)) {
-          selectedImage = img;
-          break;
-        }
+      const unusedAll = categorizedImages.all.filter(img => !usedUrls.has(img.url));
+      if (unusedAll.length > 0) {
+        selectedImage = pickRandomFromTop(unusedAll, 4);
       }
     }
 
