@@ -20,7 +20,6 @@ import {
   planScenes,
   generatePOCTemplatePrompt,
   type AdTone,
-  type ContactInfo,
   type AkoolAnimationConfig,
 } from '@/lib/script-generator';
 import type { ScenePlan } from '@/lib/script-generator/scene-planner';
@@ -33,6 +32,14 @@ interface ScrapedImage {
   type?: string;
   foodType?: string;
   productDescription?: string;
+}
+
+interface ContactInfo {
+  website?: string;
+  phone?: string;
+  address?: string;
+  hours?: string;
+  email?: string;
 }
 
 interface SceneWithImagesV3 {
@@ -50,6 +57,7 @@ interface SceneWithImagesV3 {
     foodType?: string;
   } | null;
   akoolConfig: AkoolAnimationConfig | null;
+  contactOverlay?: ContactInfo; // For CTA scene
 }
 
 export async function POST(request: NextRequest) {
@@ -211,7 +219,8 @@ export async function POST(request: NextRequest) {
         ? tagline
         : scene.displayText;
 
-      scenesWithImages.push({
+      // Build scene object
+      const sceneData: SceneWithImagesV3 = {
         sceneId: scene.id,
         sceneIndex: sceneIdx,
         voiceoverText: scene.voiceoverText,
@@ -226,7 +235,20 @@ export async function POST(request: NextRequest) {
           foodType: selectedImage.foodType,
         } : null,
         akoolConfig,
-      });
+      };
+
+      // Add contact overlay for CTA scene
+      if (scene.id === 'cta' && contact) {
+        sceneData.contactOverlay = {
+          website: contact.website,
+          phone: contact.phone,
+          address: contact.address,
+          hours: contact.hours,
+          email: contact.email,
+        };
+      }
+
+      scenesWithImages.push(sceneData);
     }
 
     // Return v3 format

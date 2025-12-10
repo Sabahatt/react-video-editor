@@ -178,8 +178,13 @@ export class AkoolClient {
           throw new Error(`Akool API error: ${result.msg || 'Unknown error'}`);
         }
 
-        // API returns an array of results
-        const taskData = Array.isArray(result.data) ? result.data[0] : result.data;
+        // API returns data.result array (not data directly)
+        const resultArray = result.data?.result || result.data;
+        const taskData = Array.isArray(resultArray) ? resultArray[0] : resultArray;
+
+        if (!taskData) {
+          throw new Error('No task data returned from Akool API');
+        }
 
         return {
           _id: taskData._id || taskId,

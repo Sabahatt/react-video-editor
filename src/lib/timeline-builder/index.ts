@@ -8,7 +8,7 @@
 // ============ Types ============
 
 interface ResolvedVisual {
-  type: 'animated_image' | 'stock_video' | 'logo_brand';
+  type: 'animated_image' | 'static_image' | 'stock_video' | 'logo_brand';
   url: string | null;
   alt?: string;
   prompt?: string;
@@ -20,14 +20,17 @@ interface ContactInfo {
   address?: string;
   website?: string;
   hours?: string;
+  email?: string;
 }
 
 interface EnrichedScene {
-  id: 'hook' | 'value' | 'benefit' | 'cta';
+  id: string; // 'hook' | 'body1' | 'body2' | 'body3' | 'body4' | 'cta' etc.
   voiceoverText: string;
   displayText: string;
   duration: number;
   visual: ResolvedVisual;
+  visualMode?: 'animated' | 'static';
+  kenBurnsDirection?: 'zoom-in' | 'zoom-out' | 'pan-left' | 'pan-right';
   contactOverlay?: ContactInfo;
 }
 
@@ -60,6 +63,26 @@ interface BoxShadow {
   x: number;
   y: number;
   blur: number;
+}
+
+// Animation composition for @designcombo/animations
+interface AnimationComposition {
+  property: string;
+  from: number | string;
+  to: number | string;
+  durationInFrames: number;
+  easing: string;
+}
+
+interface BasicAnimation {
+  name: string;
+  composition: AnimationComposition[];
+}
+
+interface TrackItemAnimations {
+  in?: BasicAnimation;
+  out?: BasicAnimation;
+  timed?: BasicAnimation;
 }
 
 interface TrackItemDetails {
@@ -125,6 +148,7 @@ interface TrackItem {
   duration?: number;
   playbackRate?: number;
   details: TrackItemDetails;
+  animations?: TrackItemAnimations;
   metadata?: Record<string, unknown>;
   isMain?: boolean;
 }
@@ -195,6 +219,98 @@ const TEXT_ACCEPTS = ['text', 'caption'];
 const CANVAS_WIDTH = 1920;
 const CANVAS_HEIGHT = 1080;
 
+// ============ Ken Burns Animation Builder ============
+
+type KenBurnsDirection = 'zoom-in' | 'zoom-out' | 'pan-left' | 'pan-right';
+
+/**
+ * Create Ken Burns animation for static images
+ * Ken Burns effect creates subtle motion by slowly zooming or panning
+ */
+function createKenBurnsAnimation(
+  direction: KenBurnsDirection,
+  durationInFrames: number
+): TrackItemAnimations {
+  const composition: AnimationComposition[] = [];
+
+  switch (direction) {
+    case 'zoom-in':
+      // Scale from 1.0 to 1.15 (slow zoom in)
+      composition.push({
+        property: 'scale',
+        from: 1.0,
+        to: 1.15,
+        durationInFrames,
+        easing: 'linear',
+      });
+      break;
+
+    case 'zoom-out':
+      // Scale from 1.15 to 1.0 (slow zoom out)
+      composition.push({
+        property: 'scale',
+        from: 1.15,
+        to: 1.0,
+        durationInFrames,
+        easing: 'linear',
+      });
+      break;
+
+    case 'pan-left':
+      // Pan from right to left (translateX from 5% to -5%)
+      composition.push({
+        property: 'translateX',
+        from: 50, // 5% of 1000 base
+        to: -50,
+        durationInFrames,
+        easing: 'linear',
+      });
+      // Slight zoom to avoid showing edges
+      composition.push({
+        property: 'scale',
+        from: 1.1,
+        to: 1.1,
+        durationInFrames,
+        easing: 'linear',
+      });
+      break;
+
+    case 'pan-right':
+      // Pan from left to right (translateX from -5% to 5%)
+      composition.push({
+        property: 'translateX',
+        from: -50,
+        to: 50,
+        durationInFrames,
+        easing: 'linear',
+      });
+      // Slight zoom to avoid showing edges
+      composition.push({
+        property: 'scale',
+        from: 1.1,
+        to: 1.1,
+        durationInFrames,
+        easing: 'linear',
+      });
+      break;
+  }
+
+  return {
+    in: {
+      name: 'none',
+      composition: [],
+    },
+    out: {
+      name: 'none',
+      composition: [],
+    },
+    timed: {
+      name: `kenBurns-${direction}`,
+      composition,
+    },
+  };
+}
+
 // ============ Track Item Builders ============
 
 /**
@@ -246,16 +362,24 @@ function createVideoItem(
 }
 
 /**
- * Create an image track item - fills entire canvas with object-fit cover behavior
+ * Create an image track item - fills entire canvas
+ * Uses fitMode to control object-fit: 'cover' (default) or 'contain' for product images
+ * Optionally includes Ken Burns animation for subtle motion on static images
  */
 function createImageItem(
   id: string,
   src: string,
   from: number,
   to: number,
-  alt?: string
+  alt?: string,
+  kenBurnsDirection?: KenBurnsDirection,
+  fps: number = 30,
+  fitMode: 'cover' | 'contain' = 'contain' // Default to contain for product images
 ): TrackItem {
-  return {
+  const durationMs = to - from;
+  const durationInFrames = Math.round((durationMs / 1000) * fps);
+
+  const item: TrackItem = {
     id,
     name: 'image',
     type: 'image',
@@ -279,9 +403,16 @@ function createImageItem(
       rotate: '0deg',
       visibility: 'visible',
     },
-    metadata: { alt },
+    metadata: { alt, kenBurnsDirection, fitMode },
     isMain: true,
   };
+
+  // Add Ken Burns animation if direction specified
+  if (kenBurnsDirection) {
+    item.animations = createKenBurnsAnimation(kenBurnsDirection, durationInFrames);
+  }
+
+  return item;
 }
 
 /**
@@ -405,8 +536,7 @@ function createTextItem(
 
 /**
  * Create CTA text with contact info
- * Uses a subtle semi-transparent dark background for readability
- * Brand colors are NOT used for background to avoid jarring color blocks
+ * Uses same styling as other text overlays (white text with black outline)
  */
 function createCtaTextItem(
   id: string,
@@ -416,19 +546,78 @@ function createCtaTextItem(
   to: number,
   brandColors?: BrandColors
 ): TrackItem {
-  // Build CTA text with optional contact info
-  let text = displayText;
-  if (contactInfo?.website) {
-    text = `${displayText}\n${contactInfo.website}`;
+  // Build CTA text with contact info
+  const lines: string[] = [displayText];
+
+  if (contactInfo) {
+    // Add address if available
+    if (contactInfo.address) {
+      lines.push(contactInfo.address);
+    }
+
+    // Add hours if available (shortened format)
+    if (contactInfo.hours) {
+      // Shorten hours text if too long
+      const hours = contactInfo.hours.length > 40
+        ? contactInfo.hours.split('.')[0] // Take first part
+        : contactInfo.hours;
+      lines.push(hours);
+    }
+
+    // Add website (clean up https:// for display)
+    if (contactInfo.website) {
+      const cleanUrl = contactInfo.website.replace(/^https?:\/\/(www\.)?/, '');
+      lines.push(cleanUrl);
+    }
   }
 
-  return createTextItem(id, text, from, to, {
-    fontSize: 64,
-    color: brandColors?.text || '#FFFFFF',
-    // Use a subtle dark overlay, not brand primary color (which could be too bright/jarring)
-    backgroundColor: 'rgba(0, 0, 0, 0.75)',
-    top: '750px', // Adjusted for landscape
-  });
+  const text = lines.join('\n');
+
+  // Center horizontally
+  const textWidth = 1600;
+  const leftOffset = (CANVAS_WIDTH - textWidth) / 2;
+
+  // Use same styling as createTextItem for consistency
+  return {
+    id,
+    name: 'text',
+    type: 'text',
+    display: { from, to },
+    details: {
+      text,
+      fontSize: 56,
+      fontFamily: 'Inter',
+      fontUrl: 'https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuGKYAZ9hiJ-Ek-_EeA.woff2',
+      fontWeight: 'bold',
+      fontStyle: 'normal',
+      textAlign: 'center',
+      color: '#FFFFFF',
+      backgroundColor: 'transparent',
+      textDecoration: 'none',
+      lineHeight: '1.5',
+      letterSpacing: '2px',
+      wordSpacing: 'normal',
+      border: 'none',
+      opacity: 100,
+      wordWrap: 'normal',
+      wordBreak: 'normal',
+      // Black outline for visibility (same as other text)
+      borderWidth: 4,
+      borderColor: '#000000',
+      // Strong shadow for visibility on any background
+      boxShadow: { color: 'rgba(0,0,0,0.9)', x: 2, y: 4, blur: 12 },
+      top: '700px',
+      left: `${leftOffset}px`,
+      width: textWidth,
+      height: 300,
+      textTransform: 'uppercase',
+      transform: 'none',
+      skewX: 0,
+      skewY: 0,
+    },
+    metadata: {},
+    isMain: false,
+  };
 }
 
 // ============ Main Builder ============
@@ -486,13 +675,19 @@ export function buildTimelineDesign(
         );
         trackItemsMap[visualId] = logoItem;
       } else {
-        // animated_image - fills canvas with cover behavior
+        // static_image or animated_image - fills canvas with cover behavior
+        // Apply Ken Burns animation for static scenes to add subtle motion
+        const kenBurns = scene.visualMode === 'static' && scene.kenBurnsDirection
+          ? scene.kenBurnsDirection as KenBurnsDirection
+          : undefined;
+
         const imageItem = createImageItem(
           visualId,
           scene.visual.url,
           currentTime,
           sceneEnd,
-          scene.visual.alt
+          scene.visual.alt,
+          kenBurns
         );
         trackItemsMap[visualId] = imageItem;
       }

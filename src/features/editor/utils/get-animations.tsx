@@ -62,6 +62,23 @@ export const getAnimations = (
       }
     });
   }
+
+  // Process timed animations (e.g., Ken Burns effect)
+  if (animation?.timed && animation.timed.composition?.length > 0) {
+    animationTimed = [];
+    animation.timed.composition.forEach((comp) => {
+      animationTimed.push({
+        property: comp.property,
+        from: comp.from,
+        to: comp.to,
+        durationInFrames: comp.durationInFrames,
+        ease: Easing[comp.easing as keyof typeof Easing] as (
+          t: number
+        ) => number
+      });
+    });
+  }
+
   return {
     animationIn,
     animationOut,

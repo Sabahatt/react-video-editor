@@ -54,12 +54,6 @@
     "dimensions": { "width": 413, "height": 232 }
   },
   {
-    "url": "https://static.wixstatic.com/media/4801ad_5b2641603ae44ccf88a96e081fe9ed6a~mv2.jpg/v1/fill/w_343,h_193,al_c,lg_1,q_80,enc_auto/4801ad_5b2641603ae44ccf88a96e081fe9ed6a~mv2.jpg",
-    "productName": "Margherita",
-    "foodType": "pizza",
-    "dimensions": { "width": 343, "height": 193 }
-  },
-  {
     "url": "https://static.wixstatic.com/media/4801ad_b3f9464486ea45cd9f21bb2ae1ebd34b.jpg/v1/fill/w_386,h_217,al_c,lg_1,q_80,enc_auto/4801ad_b3f9464486ea45cd9f21bb2ae1ebd34b.jpg",
     "productName": "Grandma Pizza",
     "foodType": "pizza",
