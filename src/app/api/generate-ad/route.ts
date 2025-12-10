@@ -1,22 +1,36 @@
 /**
- * Ad Generation Orchestration API - v2
+ * Ad Generation Orchestration API - v3
  *
- * Simplified pipeline for POC demo:
+ * POC Plan Implementation:
  * 1. Scrape website
  * 2. Generate script with POC brand context
- * 3. Select images by category + quality (no CLIP)
- * 4. Generate smart Akool animation prompts
- * 5. Animate images via Akool API (optional)
- * 6. Build timeline for editor
+ * 3. Plan scenes (animated vs static with pattern variation)
+ * 4. Select images (main dish priority for animated, supporting for static)
+ * 5. Generate POC-specific Akool animation prompts
+ * 6. Animate images via Akool API (optional, only for animated scenes)
+ * 7. Build timeline for editor
+ *
+ * Key Changes in v3:
+ * - Scene planner with 5 pattern variations for animated/static balance
+ * - Intro always static (USP focus), body has 2 animated + 2 static
+ * - Main dish prioritization for animated scenes
+ * - POC-specific Akool prompts with texture inference
+ * - Ken Burns direction for static scenes
  */
 
 import { NextRequest, NextResponse } from "next/server";
 import { buildTimelineDesign } from "@/lib/timeline-builder";
+import { detectPOCBrand } from "@/lib/script-generator/poc-brands";
 import {
-  detectPOCBrand,
-  selectImagesForAd,
-  generateAkoolPrompt,
-} from "@/lib/script-generator";
+  categorizeImages,
+  selectImagesForScenePlan,
+  getMainDishType,
+} from "@/lib/script-generator/image-selector";
+import { generateAkoolPromptWithLLM, NEGATIVE_PROMPT } from "@/lib/script-generator/akool-prompts";
+import {
+  planScenes,
+  type ScenePlan,
+} from "@/lib/script-generator/scene-planner";
 
 // POC Restaurant URLs
 const POC_RESTAURANTS: Record<
@@ -44,12 +58,14 @@ interface GenerateAdRequest {
   restaurant: string;
   /** If true, animate images via Akool API (consumes credits) */
   animateImages?: boolean;
+  /** Optional: Force a specific pattern (0-4) for testing */
+  patternIndex?: number;
 }
 
 export async function POST(request: NextRequest) {
   try {
     const body: GenerateAdRequest = await request.json();
-    const { restaurant, animateImages = false } = body;
+    const { restaurant, animateImages = false, patternIndex } = body;
 
     // Validate restaurant
     const restaurantConfig = POC_RESTAURANTS[restaurant];
@@ -64,7 +80,7 @@ export async function POST(request: NextRequest) {
       process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
     console.log(`\n${"=".repeat(60)}`);
-    console.log(`GENERATING AD v2: ${restaurantConfig.name}`);
+    console.log(`GENERATING AD v3: ${restaurantConfig.name}`);
     console.log("=".repeat(60));
 
     // ============ Step 1: Scrape ============
@@ -93,7 +109,7 @@ export async function POST(request: NextRequest) {
         description: scrapeResult.data?.brand?.description,
         cuisine: scrapeResult.data?.brand?.cuisine,
         tone: restaurantConfig.tone,
-        duration: 20, // v2: longer ads
+        duration: 20, // v3: 20s ads with 5 scenes
         url: restaurantConfig.url,
       }),
     });
@@ -110,34 +126,67 @@ export async function POST(request: NextRequest) {
     const pocBrand = detectPOCBrand(restaurantConfig.name, restaurantConfig.url);
     const menuCategories = pocBrand?.menuCategories || {};
 
-    // ============ Step 3: Select Images by Category ============
-    console.log("\n[Step 3] Selecting images by category...");
+    // ============ Step 3: Plan Scenes (Animated vs Static) ============
+    console.log("\n[Step 3] Planning scene visual modes...");
 
-    // Get requested categories from script scenes
-    const requestedCategories = scriptResult.script.scenes
-      .filter((s: { visualType: string }) => s.visualType === "animated_image")
-      .map((s: { visualCategory?: string }) => s.visualCategory);
-
-    // Count scenes that need images (exclude CTA which uses logo)
-    const sceneCount = scriptResult.script.scenes.filter(
-      (s: { visualType: string }) => s.visualType === "animated_image"
-    ).length;
-
-    // Select diverse images by category + quality
-    const selectedImages = selectImagesForAd(
-      scrapedImages,
-      menuCategories,
-      requestedCategories,
-      sceneCount
+    // Build scene data for planner
+    const scenesForPlanning = scriptResult.script.scenes.map(
+      (s: { id: string; visualCategory?: string; visualType?: string }) => ({
+        id: s.id,
+        visualCategory: s.visualCategory,
+        visualType: s.visualType,
+      })
     );
 
-    console.log(`  ✓ Selected: ${selectedImages.length} images from ${new Set(selectedImages.map(i => i.category)).size} categories`);
+    // Plan scenes with pattern variation
+    const scenePlan: ScenePlan = planScenes(
+      scenesForPlanning,
+      pocBrand,
+      patternIndex // Use provided pattern or random
+    );
 
-    // ============ Step 4: Build Enriched Scenes with Akool Prompts ============
-    console.log("\n[Step 4] Generating animation prompts...");
+    console.log(`  ✓ Using pattern ${scenePlan.patternIndex + 1}/5`);
+    console.log(`  ✓ Animated scenes: ${scenePlan.animatedCount}`);
+    console.log(`  ✓ Static scenes: ${scenePlan.staticCount}`);
+
+    // ============ Step 4: Select Images by Scene Plan ============
+    console.log("\n[Step 4] Selecting images with main dish priority...");
+
+    // Categorize all scraped images
+    const categorizedImages = categorizeImages(scrapedImages, menuCategories);
+
+    // Get main dish type for this brand
+    const mainDishType = getMainDishType(restaurantConfig.name);
+    console.log(`  ✓ Main dish type: ${mainDishType || 'unknown'}`);
+
+    // Select images based on scene plan (animated gets main dish priority)
+    const selectedImages = selectImagesForScenePlan(
+      categorizedImages,
+      scenePlan,
+      mainDishType
+    );
+
+    console.log(
+      `  ✓ Selected: ${selectedImages.length} images`
+    );
+    console.log(
+      `    - Animated: ${selectedImages.filter(i => i.visualMode === 'animated').length}`
+    );
+    console.log(
+      `    - Static: ${selectedImages.filter(i => i.visualMode === 'static').length}`
+    );
+
+    // ============ Step 5: Build Enriched Scenes with LLM-generated Akool Prompts ============
+    console.log("\n[Step 5] Building enriched scenes with LLM-generated Akool prompts...");
+
+    // First, collect all animated scenes that need LLM prompts
+    const animatedScenesForLLM: Array<{
+      sceneIdx: number;
+      selectedImage: typeof selectedImages[0];
+    }> = [];
 
     let imageIndex = 0;
-    const enrichedScenes = scriptResult.script.scenes.map(
+    const sceneData = scriptResult.script.scenes.map(
       (scene: {
         id: string;
         voiceoverText: string;
@@ -146,17 +195,115 @@ export async function POST(request: NextRequest) {
         visualType: string;
         visualCategory?: string;
         contactOverlay?: { phone?: string; address?: string; website?: string; hours?: string };
-      }) => {
-        if (scene.visualType === "animated_image" && imageIndex < selectedImages.length) {
-          const selectedImage = selectedImages[imageIndex];
-          imageIndex++;
+      }, sceneIdx: number) => {
+        const plannedScene = scenePlan.scenes.find(s => s.sceneIndex === sceneIdx);
+        const shouldAnimate = plannedScene?.visualMode === 'animated';
+        const kenBurnsDirection = plannedScene?.kenBurnsDirection;
 
-          // Generate smart Akool prompt based on image content
-          const akoolConfig = generateAkoolPrompt(
-            selectedImage.alt,
-            selectedImage.category,
-            scene.id
-          );
+        // Get the selected image for this scene (if not CTA)
+        let selectedImage = null;
+        if (scene.visualType !== "logo_brand" && scene.id !== "cta") {
+          selectedImage = imageIndex < selectedImages.length
+            ? selectedImages[imageIndex++]
+            : null;
+        }
+
+        // Collect animated scenes for LLM prompt generation
+        if (shouldAnimate && selectedImage) {
+          animatedScenesForLLM.push({ sceneIdx, selectedImage });
+        }
+
+        return {
+          scene,
+          sceneIdx,
+          plannedScene,
+          shouldAnimate,
+          kenBurnsDirection,
+          selectedImage,
+        };
+      }
+    );
+
+    // Generate LLM prompts for all animated scenes in parallel
+    console.log(`  ✓ Generating LLM prompts for ${animatedScenesForLLM.length} animated scenes...`);
+
+    const llmPromptResults = await Promise.all(
+      animatedScenesForLLM.map(async ({ sceneIdx, selectedImage }) => {
+        const akoolConfig = await generateAkoolPromptWithLLM(
+          selectedImage.alt,
+          {
+            productDescription: selectedImage.productDescription,
+            foodType: selectedImage.foodType,
+            brandName: restaurantConfig.name,
+            sceneIndex: sceneIdx,
+          }
+        );
+        return { sceneIdx, akoolConfig };
+      })
+    );
+
+    // Create a map for quick lookup
+    const akoolConfigMap = new Map<number, typeof llmPromptResults[0]['akoolConfig']>();
+    for (const result of llmPromptResults) {
+      akoolConfigMap.set(result.sceneIdx, result.akoolConfig);
+    }
+
+    // Build enriched scenes with the LLM-generated prompts
+    const enrichedScenes = sceneData.map(
+      ({ scene, sceneIdx, shouldAnimate, kenBurnsDirection, selectedImage }: {
+        scene: {
+          id: string;
+          voiceoverText: string;
+          displayText: string;
+          duration: number;
+          visualType: string;
+          visualCategory?: string;
+          contactOverlay?: { phone?: string; address?: string; website?: string; hours?: string };
+        };
+        sceneIdx: number;
+        plannedScene: unknown;
+        shouldAnimate: boolean;
+        kenBurnsDirection: string | undefined;
+        selectedImage: typeof selectedImages[0] | null;
+      }) => {
+        if (scene.visualType === "logo_brand" || scene.id === "cta") {
+          // CTA scene - always logo
+          return {
+            id: scene.id,
+            voiceoverText: scene.voiceoverText,
+            displayText: scene.displayText,
+            duration: scene.duration,
+            visual: {
+              type: "logo_brand" as const,
+              url: scrapeResult.data?.brand?.logo || null,
+              alt: restaurantConfig.name,
+            },
+            visualMode: 'static' as const,
+            contactOverlay: scene.contactOverlay,
+          };
+        }
+
+        if (!selectedImage) {
+          // No image available - use static with Ken Burns
+          return {
+            id: scene.id,
+            voiceoverText: scene.voiceoverText,
+            displayText: scene.displayText,
+            duration: scene.duration,
+            visual: {
+              type: "static_image" as const,
+              url: null,
+              alt: "",
+            },
+            visualMode: 'static' as const,
+            kenBurnsDirection,
+            contactOverlay: scene.contactOverlay,
+          };
+        }
+
+        if (shouldAnimate) {
+          // Get the LLM-generated Akool prompt
+          const akoolConfig = akoolConfigMap.get(sceneIdx)!;
 
           return {
             id: scene.id,
@@ -169,49 +316,52 @@ export async function POST(request: NextRequest) {
               alt: selectedImage.alt,
               prompt: akoolConfig.prompt,
             },
+            visualMode: 'animated' as const,
             contactOverlay: scene.contactOverlay,
             akoolConfig,
-          };
-        } else if (scene.visualType === "logo_brand") {
-          return {
-            id: scene.id,
-            voiceoverText: scene.voiceoverText,
-            displayText: scene.displayText,
-            duration: scene.duration,
-            visual: {
-              type: "logo_brand" as const,
-              url: scrapeResult.data?.brand?.logo || null,
-              alt: restaurantConfig.name,
-            },
-            contactOverlay: scene.contactOverlay,
+            foodType: selectedImage.foodType,
           };
         } else {
+          // Static scene with Ken Burns effect
           return {
             id: scene.id,
             voiceoverText: scene.voiceoverText,
             displayText: scene.displayText,
             duration: scene.duration,
             visual: {
-              type: scene.visualType,
-              url: null,
-              alt: "",
+              type: "static_image" as const,
+              url: selectedImage.url,
+              alt: selectedImage.alt,
             },
+            visualMode: 'static' as const,
+            kenBurnsDirection,
             contactOverlay: scene.contactOverlay,
+            foodType: selectedImage.foodType,
           };
         }
       }
     );
 
-    console.log(`  ✓ Generated prompts for ${imageIndex} scenes`);
+    const animatedSceneCount = enrichedScenes.filter(
+      (s: { visualMode: string }) => s.visualMode === 'animated'
+    ).length;
+    const staticSceneCount = enrichedScenes.filter(
+      (s: { visualMode: string; visual: { type: string } }) =>
+        s.visualMode === 'static' && s.visual.type !== 'logo_brand'
+    ).length;
 
-    // ============ Step 5: Animate Images (Optional) ============
+    console.log(`  ✓ Enriched ${enrichedScenes.length} scenes`);
+    console.log(`    - ${animatedSceneCount} animated (Akool)`);
+    console.log(`    - ${staticSceneCount} static (Ken Burns)`);
+
+    // ============ Step 6: Animate Images (Optional) ============
     if (animateImages) {
-      console.log("\n[Step 5] Animating images via Akool...");
+      console.log("\n[Step 6] Animating images via Akool...");
 
-      // Transform scenes to match animate-images API format
+      // Only animate scenes marked as animated
       const scenesToAnimate = enrichedScenes
-        .filter((s: { visual: { type: string; url: string | null } }) =>
-          s.visual.type === "animated_image" && s.visual.url
+        .filter((s: { visualMode: string; visual: { type: string; url: string | null } }) =>
+          s.visualMode === 'animated' && s.visual.type === "animated_image" && s.visual.url
         )
         .map((s: {
           id: string;
@@ -221,12 +371,14 @@ export async function POST(request: NextRequest) {
           sceneId: s.id,
           imageUrl: s.visual.url,
           prompt: s.akoolConfig?.prompt || "slow zoom in, appetizing food photography",
-          negativePrompt: s.akoolConfig?.negativePrompt || "blurry, distorted",
+          negativePrompt: s.akoolConfig?.negativePrompt || NEGATIVE_PROMPT,
           videoLength: s.akoolConfig?.videoLength || 5,
           resolution: s.akoolConfig?.resolution || "720p",
         }));
 
       if (scenesToAnimate.length > 0) {
+        console.log(`  ✓ Submitting ${scenesToAnimate.length} scenes for animation...`);
+
         const animateRes = await fetch(`${baseUrl}/api/animate-images`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -235,7 +387,7 @@ export async function POST(request: NextRequest) {
         const animateResult = await animateRes.json();
 
         if (animateResult.success && animateResult.results) {
-          // Update scenes with task IDs (videos are generated async)
+          // Update scenes with video URLs or task IDs
           for (const result of animateResult.results) {
             const scene = enrichedScenes.find((s: { id: string }) => s.id === result.sceneId);
             if (scene && result.videoUrl) {
@@ -252,14 +404,15 @@ export async function POST(request: NextRequest) {
           console.warn(`  ⚠ Animation failed: ${animateResult.error}`);
         }
       } else {
-        console.log("  ⚠ No images to animate");
+        console.log("  ⚠ No animated scenes to process");
       }
     } else {
-      console.log("\n[Step 5] Skipping animation (animateImages=false)");
+      console.log("\n[Step 6] Skipping animation (animateImages=false)");
+      console.log("  ℹ  Static scenes will use Ken Burns effect in editor");
     }
 
-    // ============ Step 6: Build Timeline ============
-    console.log("\n[Step 6] Building timeline...");
+    // ============ Step 7: Build Timeline ============
+    console.log("\n[Step 7] Building timeline...");
     const enrichedScript = {
       fullScript: scriptResult.script.fullScript,
       scenes: enrichedScenes,
@@ -280,7 +433,12 @@ export async function POST(request: NextRequest) {
     );
 
     console.log("\n" + "=".repeat(60));
-    console.log("AD GENERATION v2 COMPLETE");
+    console.log("AD GENERATION v3 COMPLETE");
+    console.log("=".repeat(60));
+    console.log(`Pattern used: ${scenePlan.patternIndex + 1}/5`);
+    console.log(`Main dish type: ${mainDishType || 'unknown'}`);
+    console.log(`Animated scenes: ${animatedSceneCount}`);
+    console.log(`Static scenes: ${staticSceneCount}`);
     console.log("=".repeat(60) + "\n");
 
     return NextResponse.json({
@@ -289,6 +447,13 @@ export async function POST(request: NextRequest) {
       brand,
       script: enrichedScript,
       selectedImages,
+      scenePlan: {
+        patternIndex: scenePlan.patternIndex,
+        animatedCount: scenePlan.animatedCount,
+        staticCount: scenePlan.staticCount,
+        scenes: scenePlan.scenes,
+      },
+      mainDishType,
     });
   } catch (error) {
     console.error("Ad generation error:", error);

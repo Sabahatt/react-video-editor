@@ -1,12 +1,16 @@
 /**
  * Image Selector - Ensures diversity in ad visuals
  *
- * Categorizes scraped images by menu type and selects diverse images
- * across categories to avoid showing similar visuals in every scene.
+ * POC Plan Requirements:
+ * - Animated scenes should get main dish first (pizza for Joe's, salad for Sweetgreen, doughnut for Vault)
+ * - Static scenes get supporting products, sides, extras
+ * - Ensure diversity across categories
+ * - Quality ranking by size, aspect ratio, and metadata
  */
 
 import type { ScrapedImage } from '../scraper/types';
 import type { SelectedImage } from './types';
+import type { ScenePlan, PlannedScene } from './scene-planner';
 
 /**
  * Image with category and quality score
@@ -18,6 +22,10 @@ export interface CategorizedImage {
   qualityScore: number;
   width?: number;
   height?: number;
+  /** Detected food type for main dish prioritization */
+  foodType?: string;
+  /** Product description from products.json (used for Akool prompt generation) */
+  productDescription?: string;
 }
 
 /**
@@ -30,6 +38,25 @@ export interface CategorizedImages {
   all: CategorizedImage[];
   /** Categories in priority order */
   categoryOrder: string[];
+  /** Images grouped by food type */
+  byFoodType: Record<string, CategorizedImage[]>;
+}
+
+/**
+ * Main dish type by brand
+ */
+export type MainDishType = 'pizza' | 'salad' | 'doughnut';
+
+/**
+ * Extended selection result with scene plan info
+ */
+export interface SelectedImageWithMode extends SelectedImage {
+  /** Whether this image is for an animated or static scene */
+  visualMode: 'animated' | 'static';
+  /** Food type detected from alt text */
+  foodType?: string;
+  /** Product description (from alt text) */
+  productDescription?: string;
 }
 
 /**
@@ -83,6 +110,46 @@ function isLikelyLogo(img: ScrapedImage): boolean {
   }
 
   return false;
+}
+
+/**
+ * Detect food type from name/description
+ * Used for main dish prioritization
+ */
+export function detectFoodType(name: string, description?: string): string {
+  const text = `${name} ${description || ''}`.toLowerCase();
+
+  if (/pizza|slice|margherita|pepperoni|sicilian/.test(text)) return 'pizza';
+  if (/salad|greens|kale|caesar|arugula/.test(text)) return 'salad';
+  if (/bowl|harvest|grain|quinoa|rice/.test(text)) return 'bowl';
+  if (/doughnut|donut|old.?fashioned|glazed|fritter/.test(text)) return 'doughnut';
+  if (/pastry|croissant|muffin/.test(text)) return 'pastry';
+  if (/bread|focaccia|baguette/.test(text)) return 'bread';
+  if (/potato|fries|sides|meatball/.test(text)) return 'sides';
+  if (/chicken|steak|salmon|fish/.test(text)) return 'protein';
+
+  return 'unknown';
+}
+
+/**
+ * Score image for main dish suitability
+ * Higher scores = better for animated scenes
+ */
+function scoreForMainDish(img: CategorizedImage, mainDishType: MainDishType): number {
+  let score = img.qualityScore;
+
+  // Boost main dish type significantly
+  if (img.foodType === mainDishType) {
+    score += 50;
+  } else if (mainDishType === 'salad' && img.foodType === 'bowl') {
+    // Bowls are also good for Sweetgreen
+    score += 40;
+  } else if (mainDishType === 'doughnut' && img.foodType === 'pastry') {
+    // Pastries are similar to doughnuts
+    score += 30;
+  }
+
+  return score;
 }
 
 /**
@@ -156,12 +223,14 @@ function matchesCategory(altText: string, menuItems: string[]): boolean {
 
 /**
  * Categorize images by matching alt text to menu category keywords
+ * Also detects food type for main dish prioritization
  */
 export function categorizeImages(
   images: ScrapedImage[],
   menuCategories: Record<string, string[]>
 ): CategorizedImages {
   const byCategory: Record<string, CategorizedImage[]> = {};
+  const byFoodType: Record<string, CategorizedImage[]> = {};
   const categoryOrder = Object.keys(menuCategories);
 
   // Initialize categories
@@ -181,19 +250,36 @@ export function categorizeImages(
     // Skip logos (negative score) and very low quality images
     if (qualityScore < 10) continue;
 
+    // Use foodType from products.json if available, otherwise detect from alt text
+    // This allows curated POC data to have accurate food types
+    const foodType = (img as { foodType?: string }).foodType || detectFoodType(altText);
+
+    // Get productDescription from products.json if available
+    const productDescription = (img as { productDescription?: string }).productDescription;
+
     let matched = false;
 
     // Try to match to a category
     for (const [category, menuItems] of Object.entries(menuCategories)) {
       if (matchesCategory(altText, menuItems)) {
-        byCategory[category].push({
+        const categorizedImg: CategorizedImage = {
           url: img.url,
           alt: altText,
           category,
           qualityScore,
           width: img.width,
-          height: img.height
-        });
+          height: img.height,
+          foodType,
+          productDescription,
+        };
+        byCategory[category].push(categorizedImg);
+
+        // Also add to byFoodType
+        if (!byFoodType[foodType]) {
+          byFoodType[foodType] = [];
+        }
+        byFoodType[foodType].push(categorizedImg);
+
         matched = true;
         break; // Only assign to first matching category
       }
@@ -201,14 +287,23 @@ export function categorizeImages(
 
     // If no category matched, add to uncategorized if it's a product image
     if (!matched && (img.type === 'product' || img.type === 'hero')) {
-      byCategory['uncategorized'].push({
+      const categorizedImg: CategorizedImage = {
         url: img.url,
         alt: altText,
         category: 'uncategorized',
         qualityScore,
         width: img.width,
-        height: img.height
-      });
+        height: img.height,
+        foodType,
+        productDescription,
+      };
+      byCategory['uncategorized'].push(categorizedImg);
+
+      // Also add to byFoodType
+      if (!byFoodType[foodType]) {
+        byFoodType[foodType] = [];
+      }
+      byFoodType[foodType].push(categorizedImg);
     }
   }
 
@@ -217,13 +312,19 @@ export function categorizeImages(
     byCategory[category].sort((a, b) => b.qualityScore - a.qualityScore);
   }
 
+  // Sort each food type by quality score (descending)
+  for (const foodType of Object.keys(byFoodType)) {
+    byFoodType[foodType].sort((a, b) => b.qualityScore - a.qualityScore);
+  }
+
   // Build flat array of all categorized images
   const all = Object.values(byCategory).flat().sort((a, b) => b.qualityScore - a.qualityScore);
 
   return {
     byCategory,
     all,
-    categoryOrder: [...categoryOrder, 'uncategorized']
+    categoryOrder: [...categoryOrder, 'uncategorized'],
+    byFoodType
   };
 }
 
@@ -347,4 +448,250 @@ export function getImageCategorySummary(
   }
 
   return summary;
+}
+
+/**
+ * Select images based on scene plan with main dish prioritization
+ *
+ * POC Plan Requirements:
+ * - HOOK: ALWAYS gets main dish (it's the attention grabber with USP)
+ * - Animated body scenes: Get main dish next (for animation quality)
+ * - Static body scenes: Get supporting products, sides, extras
+ * - Ensure diversity across all scenes
+ *
+ * @param categorizedImages - Pre-categorized images
+ * @param scenePlan - Scene plan with animated/static assignments
+ * @param mainDishType - Main dish type for this brand
+ */
+export function selectImagesForScenePlan(
+  categorizedImages: CategorizedImages,
+  scenePlan: ScenePlan,
+  mainDishType?: MainDishType
+): SelectedImageWithMode[] {
+  const selected: SelectedImageWithMode[] = [];
+  const usedUrls = new Set<string>();
+
+  // Separate scenes by type (excluding CTA)
+  const hookScene = scenePlan.scenes.find(s => s.sceneId === 'hook');
+  const animatedScenes = scenePlan.scenes.filter(
+    s => s.visualMode === 'animated' && s.sceneId !== 'cta' && s.sceneId !== 'hook'
+  );
+  const staticBodyScenes = scenePlan.scenes.filter(
+    s => s.visualMode === 'static' && s.sceneId !== 'cta' && s.sceneId !== 'hook'
+  );
+
+  // FIRST: Select image for HOOK (ALWAYS main dish - it's the attention grabber)
+  if (hookScene) {
+    let selectedImage: CategorizedImage | null = null;
+
+    // Strategy 1: Get the BEST main dish image for hook
+    if (mainDishType && categorizedImages.byFoodType[mainDishType]) {
+      const mainDishImages = categorizedImages.byFoodType[mainDishType];
+      if (mainDishImages.length > 0) {
+        selectedImage = mainDishImages[0]; // Best quality main dish
+      }
+    }
+
+    // Strategy 2: Try the first category (usually main products)
+    if (!selectedImage) {
+      const firstCategory = categorizedImages.categoryOrder[0];
+      if (firstCategory && categorizedImages.byCategory[firstCategory]?.length > 0) {
+        selectedImage = categorizedImages.byCategory[firstCategory][0];
+      }
+    }
+
+    // Strategy 3: Fall back to best overall image
+    if (!selectedImage && categorizedImages.all.length > 0) {
+      selectedImage = categorizedImages.all[0];
+    }
+
+    if (selectedImage) {
+      selected.push({
+        url: selectedImage.url,
+        alt: selectedImage.alt,
+        category: selectedImage.category,
+        visualMode: 'static', // Hook is always static
+        foodType: selectedImage.foodType,
+        productDescription: selectedImage.productDescription || selectedImage.alt,
+      });
+      usedUrls.add(selectedImage.url);
+    }
+  }
+
+  // SECOND: Select images for ANIMATED scenes (prioritize main dish)
+  for (const scene of animatedScenes) {
+    let selectedImage: CategorizedImage | null = null;
+
+    // Strategy 1: Try to get main dish type first for animated scenes
+    if (mainDishType && categorizedImages.byFoodType[mainDishType]) {
+      for (const img of categorizedImages.byFoodType[mainDishType]) {
+        if (!usedUrls.has(img.url)) {
+          selectedImage = img;
+          break;
+        }
+      }
+    }
+
+    // Strategy 2: Try the requested category
+    if (!selectedImage && scene.visualCategory) {
+      const categoryImages = categorizedImages.byCategory[scene.visualCategory];
+      if (categoryImages) {
+        // Sort by main dish score if we have a main dish type
+        const sorted = mainDishType
+          ? [...categoryImages].sort((a, b) => scoreForMainDish(b, mainDishType) - scoreForMainDish(a, mainDishType))
+          : categoryImages;
+
+        for (const img of sorted) {
+          if (!usedUrls.has(img.url)) {
+            selectedImage = img;
+            break;
+          }
+        }
+      }
+    }
+
+    // Strategy 3: Fall back to any high-quality image
+    if (!selectedImage) {
+      for (const img of categorizedImages.all) {
+        if (!usedUrls.has(img.url)) {
+          selectedImage = img;
+          break;
+        }
+      }
+    }
+
+    if (selectedImage) {
+      selected.push({
+        url: selectedImage.url,
+        alt: selectedImage.alt,
+        category: selectedImage.category,
+        visualMode: 'animated',
+        foodType: selectedImage.foodType,
+        // Use actual productDescription from products.json if available
+        productDescription: selectedImage.productDescription || selectedImage.alt,
+      });
+      usedUrls.add(selectedImage.url);
+    }
+  }
+
+  // THIRD: Select images for STATIC BODY scenes (supporting items, not hook)
+  for (const scene of staticBodyScenes) {
+    let selectedImage: CategorizedImage | null = null;
+
+    // Strategy 1: Try the requested category (prefer non-main-dish items)
+    if (scene.visualCategory) {
+      const categoryImages = categorizedImages.byCategory[scene.visualCategory];
+      if (categoryImages) {
+        // For static scenes, prefer NON-main-dish items (sides, extras)
+        const sorted = mainDishType
+          ? [...categoryImages].sort((a, b) => {
+              // Lower score for main dish in static scenes
+              const aIsMainDish = a.foodType === mainDishType ? -20 : 0;
+              const bIsMainDish = b.foodType === mainDishType ? -20 : 0;
+              return (b.qualityScore + bIsMainDish) - (a.qualityScore + aIsMainDish);
+            })
+          : categoryImages;
+
+        for (const img of sorted) {
+          if (!usedUrls.has(img.url)) {
+            selectedImage = img;
+            break;
+          }
+        }
+      }
+    }
+
+    // Strategy 2: Try sides/supporting categories
+    if (!selectedImage) {
+      const supportingCategories = ['sides', 'bread', 'sides', 'uncategorized'];
+      for (const cat of supportingCategories) {
+        const categoryImages = categorizedImages.byCategory[cat];
+        if (categoryImages) {
+          for (const img of categoryImages) {
+            if (!usedUrls.has(img.url)) {
+              selectedImage = img;
+              break;
+            }
+          }
+          if (selectedImage) break;
+        }
+      }
+    }
+
+    // Strategy 3: Fall back to any remaining high-quality image
+    if (!selectedImage) {
+      for (const img of categorizedImages.all) {
+        if (!usedUrls.has(img.url)) {
+          selectedImage = img;
+          break;
+        }
+      }
+    }
+
+    if (selectedImage) {
+      selected.push({
+        url: selectedImage.url,
+        alt: selectedImage.alt,
+        category: selectedImage.category,
+        visualMode: 'static',
+        foodType: selectedImage.foodType,
+        // Use actual productDescription from products.json if available
+        productDescription: selectedImage.productDescription || selectedImage.alt,
+      });
+      usedUrls.add(selectedImage.url);
+    }
+  }
+
+  // Re-order selected images to match scene order
+  // We selected: hook first, then animated, then static body
+  // Now we need to arrange them in scene order: hook, body1, body2, body3, body4
+
+  // Get hook image (first static, which is hook)
+  const hookImage = selected.find(s => s.visualMode === 'static' && selected.indexOf(s) === 0);
+
+  // Get animated images
+  const animatedImages = selected.filter(s => s.visualMode === 'animated');
+
+  // Get static body images (all static except hook)
+  const staticBodyImages = selected.filter(s => s.visualMode === 'static' && s !== hookImage);
+
+  const orderedSelected: SelectedImageWithMode[] = [];
+  let animIdx = 0;
+  let staticBodyIdx = 0;
+
+  for (const scene of scenePlan.scenes) {
+    if (scene.sceneId === 'cta') continue;
+
+    if (scene.sceneId === 'hook') {
+      // Hook gets the main dish image we selected first
+      if (hookImage) {
+        orderedSelected.push(hookImage);
+      }
+    } else if (scene.visualMode === 'animated' && animIdx < animatedImages.length) {
+      orderedSelected.push(animatedImages[animIdx++]);
+    } else if (scene.visualMode === 'static' && staticBodyIdx < staticBodyImages.length) {
+      orderedSelected.push(staticBodyImages[staticBodyIdx++]);
+    }
+  }
+
+  return orderedSelected;
+}
+
+/**
+ * Get main dish type from brand name
+ */
+export function getMainDishType(brandName: string): MainDishType | undefined {
+  const name = brandName.toLowerCase();
+
+  if (name.includes('pizza') || name.includes("joe's")) {
+    return 'pizza';
+  }
+  if (name.includes('sweetgreen') || name.includes('salad')) {
+    return 'salad';
+  }
+  if (name.includes('doughnut') || name.includes('donut') || name.includes('vault')) {
+    return 'doughnut';
+  }
+
+  return undefined;
 }

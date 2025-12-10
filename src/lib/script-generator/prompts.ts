@@ -21,15 +21,23 @@ export const toneDescriptions: Record<AdTone, string> = {
 
 /**
  * Generate the main prompt for script generation using POC brand context
+ *
+ * Ad Structure (per POC plan):
+ * - HOOK/INTRO (static): USP headline with Ken Burns on main dish image
+ * - BODY 1-4: 4 product showcase scenes (2 animated via Akool, 2 static via Ken Burns)
+ * - CTA (static): Logo with contact info
+ *
  * Note: Akool animation prompts are generated separately after image selection
- * to ensure they match the actual image content
+ * to ensure they match the actual image content. Hook does NOT get Akool prompt.
  */
 export function generatePOCScriptPrompt(
   brand: POCBrandConfig,
-  duration: number
+  duration: number,
+  usp?: string
 ): string {
   const brandContext = buildBrandContextPrompt(brand);
-  const sceneCount = duration <= 15 ? 4 : 5;
+  // Always 6 scenes for proper ad structure: hook + 4 body + cta
+  const sceneCount = 6;
   const sceneDuration = Math.round(duration / sceneCount);
   const wordsPerScene = Math.round(sceneDuration * 2.5);
   const toneDesc = toneDescriptions[brand.tone];
@@ -37,29 +45,38 @@ export function generatePOCScriptPrompt(
   // Get category names for the prompt
   const categoryNames = Object.keys(brand.menuCategories);
 
+  // Use provided USP or derive from brand's unique qualities
+  const brandUSP = usp || brand.uniqueQualities?.[0] || `Quality ${brand.cuisine} from ${brand.brandName}`;
+
   return `You are an expert video ad copywriter creating a ${duration}-second restaurant commercial.
 
 ${brandContext}
 
+BRAND CONTEXT:
+- USP: "${brandUSP}" (this will be shown as text overlay on hook scene - do NOT use verbatim in voiceover)
+
 REQUIREMENTS:
 - Total duration: ${duration} seconds
-- Number of scenes: ${sceneCount}
+- Number of scenes: 6 (hook + 4 body scenes + cta)
 - Each scene: ~${sceneDuration} seconds
-- Voiceover: ${wordsPerScene}-${wordsPerScene + 5} words per scene (natural speaking pace ~2.5 words/sec)
+- Voiceover: ${wordsPerScene}-${wordsPerScene + 3} words per scene (natural speaking pace ~2.5 words/sec)
 - Tone: ${brand.tone} (${toneDesc})
 
-SCENE STRUCTURE:
-1. HOOK - Grab attention immediately with brand's unique story/quality
-2. VALUE - Highlight what makes them special (ingredients, process, quality)
-3. BENEFIT - The experience/result the customer gets
-${sceneCount === 5 ? '4. EXTRA - Additional value point or variety showcase\n5. CTA - Call to action with logo' : '4. CTA - Call to action with logo'}
+AD STRUCTURE (6 scenes total):
+1. HOOK - Grab attention with a compelling, natural-sounding opener (NOT the USP verbatim - that's shown as text overlay separately). voiceoverText should set up the brand story in a conversational way.
+2. BODY1 - First product showcase - highlight what makes them special
+3. BODY2 - Second product showcase - the quality/ingredients story
+4. BODY3 - Third product showcase - the experience/result
+5. BODY4 - Fourth product showcase - variety or additional value
+6. CTA - Call to action with logo and contact info
 
 VISUAL CATEGORIES AVAILABLE: ${categoryNames.join(', ')}
-- Assign each non-CTA scene a different visualCategory for variety
-- The visualCategory determines which product images to show
-- CTA scene always uses visualType: "logo_brand"
+- Hook should use the MAIN product category (${categoryNames[0]}) - we want to show the signature dish
+- Assign each body scene a different visualCategory for variety
+- CTA shows logo (no product image needed)
 
 CREATIVE GUIDELINES:
+- Hook voiceover should be attention-grabbing and lead into the brand story
 - Leverage the brand's actual story, awards, quality claims, and heritage
 - voiceoverText: Natural, conversational spoken copy that sounds good when read aloud
 - displayText: 2-4 words, ALL CAPS, punchy and memorable
@@ -78,34 +95,44 @@ OUTPUT FORMAT (JSON only, no markdown):
   "scenes": [
     {
       "id": "hook",
-      "voiceoverText": "Your compelling hook copy here - make it memorable!",
-      "displayText": "HOOK TEXT",
+      "voiceoverText": "Deliver the USP message naturally - grab attention!",
+      "displayText": "USP HEADLINE",
       "duration": ${sceneDuration},
-      "visualType": "animated_image",
       "visualCategory": "${categoryNames[0] || 'products'}"
     },
     {
-      "id": "value",
-      "voiceoverText": "Your value proposition - highlight what's special.",
-      "displayText": "VALUE TEXT",
+      "id": "body1",
+      "voiceoverText": "First product highlight - what makes them special.",
+      "displayText": "BODY1 TEXT",
       "duration": ${sceneDuration},
-      "visualType": "animated_image",
+      "visualCategory": "${categoryNames[0] || 'products'}"
+    },
+    {
+      "id": "body2",
+      "voiceoverText": "Second product highlight - quality and ingredients.",
+      "displayText": "BODY2 TEXT",
+      "duration": ${sceneDuration},
       "visualCategory": "${categoryNames[1] || categoryNames[0] || 'products'}"
     },
     {
-      "id": "benefit",
-      "voiceoverText": "The experience they'll enjoy - make them crave it.",
-      "displayText": "BENEFIT TEXT",
+      "id": "body3",
+      "voiceoverText": "Third product highlight - the experience.",
+      "displayText": "BODY3 TEXT",
       "duration": ${sceneDuration},
-      "visualType": "animated_image",
       "visualCategory": "${categoryNames[2] || categoryNames[0] || 'products'}"
+    },
+    {
+      "id": "body4",
+      "voiceoverText": "Fourth product highlight - variety or extra value.",
+      "displayText": "BODY4 TEXT",
+      "duration": ${sceneDuration},
+      "visualCategory": "${categoryNames[1] || categoryNames[0] || 'products'}"
     },
     {
       "id": "cta",
       "voiceoverText": "Your warm, inviting call to action.",
       "displayText": "ORDER NOW",
       "duration": ${sceneDuration},
-      "visualType": "logo_brand",
       "visualCategory": null
     }
   ],

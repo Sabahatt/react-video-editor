@@ -60,10 +60,24 @@ export interface SelectedImage {
 }
 
 /**
+ * Scene IDs - new format uses body1-4, legacy uses value/benefit/extra
+ */
+export type SceneId =
+  | 'hook'    // Intro/USP scene - always STATIC
+  | 'body1'   // Body scene 1 - animated or static per pattern
+  | 'body2'   // Body scene 2 - animated or static per pattern
+  | 'body3'   // Body scene 3 - animated or static per pattern
+  | 'body4'   // Body scene 4 - animated or static per pattern
+  | 'value'   // Legacy: maps to body1
+  | 'benefit' // Legacy: maps to body2
+  | 'extra'   // Legacy: maps to body3
+  | 'cta';    // Call to action - always STATIC
+
+/**
  * A single scene in the ad
  */
 export interface AdScene {
-  id: 'hook' | 'value' | 'benefit' | 'cta';
+  id: SceneId;
 
   // Audio
   voiceoverText: string;  // What the narrator says (~2.5 words per second)
@@ -104,19 +118,20 @@ export interface AdScene {
 
 /**
  * LLM output format for scene generation
- * This is what the LLM returns before image selection
+ * This is what the LLM returns before image selection and scene planning
  */
 export interface LLMSceneOutput {
-  id: 'hook' | 'value' | 'benefit' | 'cta';
+  id: SceneId;
   voiceoverText: string;
   displayText: string;
   duration: number;
-  visualType: VisualType;
+  /** Optional - LLM may not set this, scene planner determines animated vs static */
+  visualType?: VisualType;
   /** Which menu category to use for image selection */
   visualCategory?: string;
-  /** Akool animation prompt */
+  /** Akool animation prompt - deprecated, now generated after scene planning */
   akoolPrompt?: string;
-  /** Akool negative prompt */
+  /** Akool negative prompt - deprecated */
   akoolNegativePrompt?: string;
 }
 

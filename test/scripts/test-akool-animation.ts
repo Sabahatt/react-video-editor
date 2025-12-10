@@ -73,7 +73,9 @@ const TEST_CONFIG = {
   // Which scene to animate (hook, value, benefit, extra)
   sceneId: 'hook',
   // Output directory
-  outputDir: 'v2',
+  outputDir: 'v3',
+  // Script version to use (v2 or v3)
+  scriptVersion: 'v3' as 'v2' | 'v3',
   // Resume mode: provide taskId to skip creation and just poll/download
   resumeTaskId: null as string | null,
 };
@@ -84,11 +86,14 @@ interface SceneWithImage {
   displayText: string;
   duration: number;
   visualType: string;
+  visualMode?: 'animated' | 'static'; // v3 only
   visualCategory: string | null;
+  kenBurnsDirection?: string; // v3 only
   selectedImage: {
     url: string;
     alt: string;
     category: string;
+    foodType?: string; // v3 only
   } | null;
   akoolConfig: {
     prompt: string;
@@ -96,39 +101,63 @@ interface SceneWithImage {
     videoLength: number;
     resolution: string;
   } | null;
+  isMainDish?: boolean; // v3 only
 }
 
-interface ScriptV2Response {
+interface ScriptResponse {
   success: boolean;
   pocBrand: string;
+  mainDishType?: string; // v3 only
+  scenePlan?: { // v3 only
+    patternIndex: number;
+    patternName: string;
+    animatedCount: number;
+    staticCount: number;
+  };
   script: unknown;
   scenesWithImages: SceneWithImage[];
   generatedAt: string;
 }
 
-async function loadSceneData(poc: string, sceneId: string): Promise<SceneWithImage | null> {
+async function loadSceneData(poc: string, sceneId: string): Promise<{ scene: SceneWithImage; metadata: ScriptResponse } | null> {
+  const { scriptVersion } = TEST_CONFIG;
   const scriptPath = path.join(
     __dirname,
     '..',
     'poc-responses',
     poc,
-    'step2-script-v2.json'
+    `step2-script-${scriptVersion}.json`
   );
 
   if (!fs.existsSync(scriptPath)) {
     console.error(`Script file not found: ${scriptPath}`);
+    console.log(`\nRun the script generator first:`);
+    console.log(`  npx tsx test/scripts/test-script-generator-${scriptVersion}.ts`);
     return null;
   }
 
-  const data: ScriptV2Response = JSON.parse(fs.readFileSync(scriptPath, 'utf-8'));
-  const scene = data.scenesWithImages.find(s => s.sceneId === sceneId);
+  const data: ScriptResponse = JSON.parse(fs.readFileSync(scriptPath, 'utf-8'));
+
+  // For v3, filter to only animated scenes
+  let availableScenes = data.scenesWithImages;
+  if (scriptVersion === 'v3') {
+    availableScenes = data.scenesWithImages.filter(s => s.visualMode === 'animated');
+    if (availableScenes.length === 0) {
+      console.error(`No animated scenes found in ${poc}`);
+      return null;
+    }
+  }
+
+  const scene = availableScenes.find(s => s.sceneId === sceneId);
 
   if (!scene) {
-    console.error(`Scene "${sceneId}" not found in ${poc}`);
+    const availableIds = availableScenes.map(s => s.sceneId).join(', ');
+    console.error(`Scene "${sceneId}" not found or not animated in ${poc}`);
+    console.log(`Available animated scenes: ${availableIds}`);
     return null;
   }
 
-  return scene;
+  return { scene, metadata: data };
 }
 
 async function testAkoolAnimation() {
@@ -143,34 +172,54 @@ async function testAkoolAnimation() {
     process.exit(1);
   }
 
-  const { poc, sceneId, outputDir } = TEST_CONFIG;
+  const { poc, sceneId, outputDir, scriptVersion } = TEST_CONFIG;
 
   console.log(`\nTest Configuration:`);
   console.log(`  POC: ${poc}`);
   console.log(`  Scene: ${sceneId}`);
+  console.log(`  Script Version: ${scriptVersion}`);
   console.log(`  Output: test/poc-responses/${poc}/${outputDir}/`);
 
   // Load scene data
-  console.log(`\nLoading scene data...`);
-  const scene = await loadSceneData(poc, sceneId);
+  console.log(`\nLoading scene data from step2-script-${scriptVersion}.json...`);
+  const result = await loadSceneData(poc, sceneId);
 
-  if (!scene) {
+  if (!result) {
     process.exit(1);
   }
+
+  const { scene, metadata } = result;
 
   if (!scene.selectedImage || !scene.akoolConfig) {
     console.error('Scene does not have image or akool config');
     process.exit(1);
   }
 
+  // Show v3-specific metadata
+  if (scriptVersion === 'v3' && metadata.scenePlan) {
+    console.log(`\nScene Plan (v3):`);
+    console.log(`  Pattern: ${metadata.scenePlan.patternName}`);
+    console.log(`  Animated: ${metadata.scenePlan.animatedCount}, Static: ${metadata.scenePlan.staticCount}`);
+    console.log(`  Main Dish Type: ${metadata.mainDishType || 'unknown'}`);
+  }
+
   console.log(`\nScene Details:`);
   console.log(`  ID: ${scene.sceneId}`);
   console.log(`  Voiceover: "${scene.voiceoverText}"`);
   console.log(`  Display: "${scene.displayText}"`);
+  if (scene.visualMode) {
+    console.log(`  Visual Mode: ${scene.visualMode}`);
+  }
+  if (scene.isMainDish) {
+    console.log(`  Main Dish: YES`);
+  }
   console.log(`  Image: ${scene.selectedImage.alt}`);
+  if (scene.selectedImage.foodType) {
+    console.log(`  Food Type: ${scene.selectedImage.foodType}`);
+  }
   console.log(`  Image URL: ${scene.selectedImage.url}`);
   console.log(`  Akool Prompt: "${scene.akoolConfig.prompt}"`);
-  console.log(`  Akool Negative: "${scene.akoolConfig.negativePrompt}"`);
+  console.log(`  Akool Negative: "${scene.akoolConfig.negativePrompt.substring(0, 50)}..."`);
   console.log(`  Video Length: ${scene.akoolConfig.videoLength}s`);
   console.log(`  Resolution: ${scene.akoolConfig.resolution}`);
 

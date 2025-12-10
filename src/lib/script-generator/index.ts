@@ -48,14 +48,45 @@ export {
   selectImagesForAd,
   categorizeImages,
   getImageCategorySummary,
+  selectImagesForScenePlan,
+  getMainDishType,
+  detectFoodType,
+} from './image-selector';
+export type {
+  CategorizedImage,
+  CategorizedImages,
+  MainDishType,
+  SelectedImageWithMode,
 } from './image-selector';
 
 // Re-export akool prompt generator
 export {
   generateAkoolPrompt,
   generateAkoolPromptsForScenes,
+  generatePOCAkoolPrompt,
+  generateAkoolPromptWithLLM,
+  generateAkoolPromptsWithLLM,
   DEFAULT_AKOOL_CONFIG,
+  NEGATIVE_PROMPT,
 } from './akool-prompts';
+
+// Re-export scene planner
+export {
+  planScenes,
+  selectRandomPattern,
+  getAnimatedSceneIndices,
+  getStaticSceneIndices,
+  isAnimatedScene,
+  getSceneKenBurnsDirection,
+  prioritizeMainDishForAnimation,
+  BODY_SCENE_PATTERNS,
+} from './scene-planner';
+export type {
+  SceneVisualMode,
+  BodyScenePattern,
+  PlannedScene,
+  ScenePlan,
+} from './scene-planner';
 
 /**
  * Compute fullScript by concatenating all scene voiceovers
@@ -128,11 +159,11 @@ function parseScriptResponse(
       return null;
     }
 
-    // Valid visual types (v2: no stock_video)
+    // Valid visual types
     const validVisualTypes: VisualType[] = ['animated_image', 'logo_brand'];
 
-    // Validate each scene
-    const validSceneIds = ['hook', 'value', 'benefit', 'extra', 'cta'];
+    // Valid scene IDs - includes new body1-4 format and legacy value/benefit/extra
+    const validSceneIds = ['hook', 'body1', 'body2', 'body3', 'body4', 'value', 'benefit', 'extra', 'cta'];
     for (const scene of parsed.scenes) {
       if (!scene.id || !scene.voiceoverText || !scene.displayText || typeof scene.duration !== 'number') {
         console.error('Invalid scene structure:', scene);
@@ -144,14 +175,17 @@ function parseScriptResponse(
       }
     }
 
-    // Build scenes with Akool config
+    // Build scenes - NOTE: visualType and akoolConfig will be set by scene planner
+    // This parsing step just extracts the LLM's creative output
     const scenes: AdScene[] = parsed.scenes.map((s: LLMSceneOutput) => {
-      // Determine visual type
+      // Determine visual type:
+      // - CTA always gets logo_brand
+      // - Hook gets animated_image (but scene planner will mark it as static/Ken Burns)
+      // - Body scenes get animated_image (scene planner decides which are truly animated)
       let visualType: VisualType;
       if (s.visualType && validVisualTypes.includes(s.visualType)) {
         visualType = s.visualType;
       } else {
-        // CTA always gets logo_brand, others get animated_image
         visualType = s.id === 'cta' ? 'logo_brand' : 'animated_image';
       }
 
@@ -164,15 +198,10 @@ function parseScriptResponse(
         visualCategory: s.visualCategory || undefined,
       };
 
-      // Add Akool config for animated_image scenes
-      if (visualType === 'animated_image') {
-        scene.akoolConfig = {
-          prompt: s.akoolPrompt || DEFAULT_AKOOL_CONFIG.prompt,
-          negativePrompt: s.akoolNegativePrompt || DEFAULT_AKOOL_CONFIG.negativePrompt,
-          videoLength: scene.duration <= 5 ? 5 : 10,
-          resolution: '720p',
-        };
-      }
+      // NOTE: We do NOT add akoolConfig here anymore
+      // The scene planner determines which scenes are animated vs static
+      // akoolConfig should only be added to truly animated scenes (visualMode === 'animated')
+      // This is handled in the test script / API route after scene planning
 
       // Add contact overlay to CTA scene
       if (scene.id === 'cta' && contactInfo) {
@@ -385,8 +414,9 @@ export async function generateScript(input: ScriptGeneratorInput): Promise<Scrip
     const groq = getGroqClient();
 
     // Generate appropriate prompt
+    // Pass USP (tagline) to POC prompt for hook scene
     const prompt = pocBrand
-      ? generatePOCScriptPrompt(pocBrand, duration)
+      ? generatePOCScriptPrompt(pocBrand, duration, tagline)
       : generateGenericScriptPrompt(brandName, tagline, description, cuisine, effectiveTone, duration);
 
     const completion = await groq.chat.completions.create({

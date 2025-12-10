@@ -1,0 +1,115 @@
+{
+  "success": true,
+  "pocBrand": "Doughnut Vault",
+  "mainDishType": "doughnut",
+  "fullScript": "Experience the art of handcrafted doughnuts. Made with love, using old world recipes. Fresh from the fryer, every day. A sweet destination worth the journey. From classic to creative flavors. Visit us today and indulge in the sweet life.",
+  "tone": "friendly",
+  "totalDuration": 20,
+  "scenePlan": {
+    "patternIndex": 0,
+    "patternName": "Pattern 1",
+    "animatedCount": 2,
+    "staticCount": 4
+  },
+  "scenes": [
+    {
+      "sceneId": "hook",
+      "sceneIndex": 0,
+      "voiceoverText": "Experience the art of handcrafted doughnuts.",
+      "displayText": "Artisanal doughnuts handcrafted daily using old world recipes",
+      "duration": 3,
+      "visualMode": "static",
+      "kenBurnsDirection": "zoom-in",
+      "selectedImage": {
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/8b1b07c7-ebb7-49fb-bdf8-61f8f39ed76b/4X5A9325.jpg",
+        "alt": "Fresh Doughnuts Display",
+        "category": "other",
+        "foodType": "doughnut"
+      },
+      "akoolConfig": null
+    },
+    {
+      "sceneId": "body1",
+      "sceneIndex": 1,
+      "voiceoverText": "Made with love, using old world recipes.",
+      "displayText": "HANDCRAFTED WITH LOVE",
+      "duration": 3,
+      "visualMode": "animated",
+      "selectedImage": {
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/629f629d-fd80-4f1b-8289-b1f336d7468d/DV-Catering_Hero.png",
+        "alt": "Doughnut Catering Box",
+        "category": "other",
+        "foodType": "doughnut"
+      },
+      "akoolConfig": {
+        "prompt": "Soft doughnuts glistening, glaze glistening.",
+        "negativePrompt": "blurry, distorted, low quality, pixelated, extra hands, deformed hands, extra fingers, missing fingers, wrong number of fingers, unrelated objects, wrong food items, different food appearing, floating objects, levitating food, food flying unrealistically, cartoon, illustration, anime, painting, sketch, text overlay, watermark, logo, caption, subtitle, morphing, melting unnaturally, flickering, artifacts, glitches, disembodied hands, hands coming from wrong angle, oversaturated, undersaturated, wrong colors, static, frozen, no movement, boring",
+        "videoLength": 5,
+        "resolution": "720p"
+      }
+    },
+    {
+      "sceneId": "body2",
+      "sceneIndex": 2,
+      "voiceoverText": "Fresh from the fryer, every day.",
+      "displayText": "FRESH FROM THE FRYER",
+      "duration": 3,
+      "visualMode": "static",
+      "kenBurnsDirection": "pan-right",
+      "selectedImage": {
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/c3d5a2db-4f61-4d85-af30-f094a121ba4b/Doughnuts-09.png",
+        "alt": "Stack Doughnut",
+        "category": "specialty",
+        "foodType": "doughnut"
+      },
+      "akoolConfig": null
+    },
+    {
+      "sceneId": "body3",
+      "sceneIndex": 3,
+      "voiceoverText": "A sweet destination worth the journey.",
+      "displayText": "WORTH THE JOURNEY",
+      "duration": 3,
+      "visualMode": "animated",
+      "selectedImage": {
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/45fae570-8794-4029-a44a-e2e842b6eada/donut.png",
+        "alt": "Old Fashioned Doughnut",
+        "category": "oldFashioned",
+        "foodType": "doughnut"
+      },
+      "akoolConfig": {
+        "prompt": "\"Old Fashioned Doughnut, sweet glaze glistening, soft cake texture, warm lighting\"",
+        "negativePrompt": "blurry, distorted, low quality, pixelated, extra hands, deformed hands, extra fingers, missing fingers, wrong number of fingers, unrelated objects, wrong food items, different food appearing, floating objects, levitating food, food flying unrealistically, cartoon, illustration, anime, painting, sketch, text overlay, watermark, logo, caption, subtitle, morphing, melting unnaturally, flickering, artifacts, glitches, disembodied hands, hands coming from wrong angle, oversaturated, undersaturated, wrong colors, static, frozen, no movement, boring",
+        "videoLength": 5,
+        "resolution": "720p"
+      }
+    },
+    {
+      "sceneId": "body4",
+      "sceneIndex": 4,
+      "voiceoverText": "From classic to creative flavors.",
+      "displayText": "CLASSIC & CREATIVE",
+      "duration": 3,
+      "visualMode": "static",
+      "kenBurnsDirection": "zoom-out",
+      "selectedImage": {
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/bf64fa48-bd27-4b0b-bc55-30612dc6ddfc/Doughnuts-08.png",
+        "alt": "Glazed Doughnut",
+        "category": "glazed",
+        "foodType": "doughnut"
+      },
+      "akoolConfig": null
+    },
+    {
+      "sceneId": "cta",
+      "sceneIndex": 5,
+      "voiceoverText": "Visit us today and indulge in the sweet life.",
+      "displayText": "ORDER NOW",
+      "duration": 3,
+      "visualMode": "static",
+      "selectedImage": null,
+      "akoolConfig": null
+    }
+  ],
+  "generatedAt": "2025-12-10T07:43:21.393Z"
+}

@@ -1,0 +1,115 @@
+{
+  "success": true,
+  "pocBrand": "Sweetgreen",
+  "mainDishType": "salad",
+  "fullScript": "Experience the art of fresh, seasonal ingredients Handcrafted with care, our salads are a canvas for flavor From antibiotic-free chicken to locally-sourced produce, we're committed to quality Indulge in the taste of sustainability, with every delicious bite Explore our wide variety of bowls, made with love and care Join the Sweetgreen movement, and taste the difference for yourself",
+  "tone": "professional",
+  "totalDuration": 20,
+  "scenePlan": {
+    "patternIndex": 1,
+    "patternName": "Pattern 2",
+    "animatedCount": 2,
+    "staticCount": 4
+  },
+  "scenes": [
+    {
+      "sceneId": "hook",
+      "sceneIndex": 0,
+      "voiceoverText": "Experience the art of fresh, seasonal ingredients",
+      "displayText": "Fresh, plant-forward, earth friendly food.",
+      "duration": 3,
+      "visualMode": "static",
+      "kenBurnsDirection": "pan-left",
+      "selectedImage": {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/5fITPYckTJf9NUIbgSStrj/02544cca800ef61e835979c8831f4d30/SG_Web_Image_Salad_BBQ_Chicken.png?w=600&q=75",
+        "alt": "BBQ Chicken Salad",
+        "category": "salads",
+        "foodType": "salad"
+      },
+      "akoolConfig": null
+    },
+    {
+      "sceneId": "body1",
+      "sceneIndex": 1,
+      "voiceoverText": "Handcrafted with care, our salads are a canvas for flavor",
+      "displayText": "CRAFTED WITH LOVE",
+      "duration": 3,
+      "visualMode": "animated",
+      "selectedImage": {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/QCN3MLGE4UBEnU6vSjpyz/d17102e51361c12b6a14590b89701eb9/SG_Web_Image_Salad_Buffalo_Chicken.png?w=600&q=75",
+        "alt": "Buffalo Chicken",
+        "category": "salads",
+        "foodType": "salad"
+      },
+      "akoolConfig": {
+        "prompt": "Fresh Buffalo Chicken salad, crisp shredded kale and chopped romaine glistening, light catching Caesar dressing",
+        "negativePrompt": "blurry, distorted, low quality, pixelated, extra hands, deformed hands, extra fingers, missing fingers, wrong number of fingers, unrelated objects, wrong food items, different food appearing, floating objects, levitating food, food flying unrealistically, cartoon, illustration, anime, painting, sketch, text overlay, watermark, logo, caption, subtitle, morphing, melting unnaturally, flickering, artifacts, glitches, disembodied hands, hands coming from wrong angle, oversaturated, undersaturated, wrong colors, static, frozen, no movement, boring",
+        "videoLength": 5,
+        "resolution": "720p"
+      }
+    },
+    {
+      "sceneId": "body2",
+      "sceneIndex": 2,
+      "voiceoverText": "From antibiotic-free chicken to locally-sourced produce, we're committed to quality",
+      "displayText": "QUALITY IN EVERY BITE",
+      "duration": 3,
+      "visualMode": "static",
+      "kenBurnsDirection": "zoom-in",
+      "selectedImage": {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/oQXXNTzxSZtVIthreOWU2/1a508e8e8b284ea982b4f9b2418d3e89/GarlicParmCauliBowl.jpeg?w=600&q=75",
+        "alt": "Garlic Parm Cauli Bowl",
+        "category": "bowls",
+        "foodType": "bowl"
+      },
+      "akoolConfig": null
+    },
+    {
+      "sceneId": "body3",
+      "sceneIndex": 3,
+      "voiceoverText": "Indulge in the taste of sustainability, with every delicious bite",
+      "displayText": "TASTE THE DIFFERENCE",
+      "duration": 3,
+      "visualMode": "static",
+      "kenBurnsDirection": "pan-right",
+      "selectedImage": {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/6vNynyCoUI4yeU0xq6fYhv/c11caeb76d233b37c43e7c5e0f2ecb30/SG_Web_Image_Protein_Plate_Steak_Mezze__1_.jpg?w=600&q=75",
+        "alt": "Steak Mezze",
+        "category": "plates",
+        "foodType": "bowl"
+      },
+      "akoolConfig": null
+    },
+    {
+      "sceneId": "body4",
+      "sceneIndex": 4,
+      "voiceoverText": "Explore our wide variety of bowls, made with love and care",
+      "displayText": "ENDLESS OPTIONS",
+      "duration": 3,
+      "visualMode": "animated",
+      "selectedImage": {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/5418ra5b4TcMHRxOIobxUx/db9774df0dc69cf6b0aa8c40460a43a0/SG_Web_Image_Salad_Kale_Caesar_Chicken.png?w=600&q=75",
+        "alt": "Kale Caesar",
+        "category": "salads",
+        "foodType": "salad"
+      },
+      "akoolConfig": {
+        "prompt": "Fresh Kale Caesar, crisp organic kale glistening, shaved parmesan catching light, warm dressing drizzle.",
+        "negativePrompt": "blurry, distorted, low quality, pixelated, extra hands, deformed hands, extra fingers, missing fingers, wrong number of fingers, unrelated objects, wrong food items, different food appearing, floating objects, levitating food, food flying unrealistically, cartoon, illustration, anime, painting, sketch, text overlay, watermark, logo, caption, subtitle, morphing, melting unnaturally, flickering, artifacts, glitches, disembodied hands, hands coming from wrong angle, oversaturated, undersaturated, wrong colors, static, frozen, no movement, boring",
+        "videoLength": 5,
+        "resolution": "720p"
+      }
+    },
+    {
+      "sceneId": "cta",
+      "sceneIndex": 5,
+      "voiceoverText": "Join the Sweetgreen movement, and taste the difference for yourself",
+      "displayText": "ORDER NOW",
+      "duration": 3,
+      "visualMode": "static",
+      "selectedImage": null,
+      "akoolConfig": null
+    }
+  ],
+  "generatedAt": "2025-12-10T07:43:11.162Z"
+}
