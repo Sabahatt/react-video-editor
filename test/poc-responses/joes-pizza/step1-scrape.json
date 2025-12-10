@@ -1,179 +1,289 @@
 {
   "success": true,
   "data": {
-    "brand": {
-      "name": "Joe's Pizza ",
-      "cuisine": "italian"
-    },
-    "logo": "https://static.wixstatic.com/media/4801ad_570e884d1d5a484096074d2cbb3f04e2~mv2.jpg/v1/fit/w_2500,h_1330,al_c/4801ad_570e884d1d5a484096074d2cbb3f04e2~mv2.jpg",
     "images": [
       {
-        "url": "https://static.parastorage.com/services/restaurant-menus-showcase-ooi/d35014c84c77280feda24828439d72cf0187cc17903a4b97c02933a2/media/menus_side_image.7077f229.jpeg",
-        "width": 3009,
-        "height": 3009,
-        "type": "product"
+        "url": "https://static.wixstatic.com/media/4801ad_ede12fd2d0ec4084847089d8b4b90ef3~mv2.jpg/v1/fill/w_846,h_280,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/4801ad_ede12fd2d0ec4084847089d8b4b90ef3~mv2.jpg",
+        "alt": "Drinks",
+        "width": 846,
+        "height": 280,
+        "type": "product",
+        "productName": "Drinks"
       },
       {
         "url": "https://static.wixstatic.com/media/4801ad_91ee8244d63d48abaacd98db231e77e5~mv2.png/v1/fill/w_413,h_232,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/4801ad_91ee8244d63d48abaacd98db231e77e5~mv2.png",
         "alt": "🇺🇸  NY CHEESE PIZZA",
         "width": 413,
         "height": 232,
-        "type": "product"
+        "type": "product",
+        "productName": "🇺🇸  NY CHEESE PIZZA",
+        "foodType": "pizza"
       },
       {
         "url": "https://static.wixstatic.com/media/4801ad_ec296bae26c34d46860df871ab25bea4~mv2.jpg/v1/fill/w_413,h_232,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/4801ad_ec296bae26c34d46860df871ab25bea4~mv2.jpg",
         "alt": "🍕  PEPPERONI PIZZA",
         "width": 413,
         "height": 232,
-        "type": "product"
+        "type": "product",
+        "productName": "PEPPERONI PIZZA",
+        "foodType": "pizza"
       },
       {
         "url": "https://static.wixstatic.com/media/4801ad_527a80689d44480b97d5bd40e97cad2d~mv2.jpg/v1/fill/w_413,h_232,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/4801ad_527a80689d44480b97d5bd40e97cad2d~mv2.jpg",
         "alt": "❤️   SAUSAGE PIZZA",
         "width": 413,
         "height": 232,
-        "type": "product"
+        "type": "product",
+        "productName": "️   SAUSAGE PIZZA",
+        "foodType": "pizza"
       },
       {
         "url": "https://static.wixstatic.com/media/4801ad_7a41615874bc43a29cb44c6149156a0f~mv2.jpg/v1/fill/w_413,h_232,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/4801ad_7a41615874bc43a29cb44c6149156a0f~mv2.jpg",
         "alt": "🧀  WHITE PIZZA",
         "width": 413,
         "height": 232,
-        "type": "product"
+        "type": "product",
+        "productName": "WHITE PIZZA",
+        "foodType": "pizza"
       },
       {
         "url": "https://static.wixstatic.com/media/4801ad_96890b534b7a498fa905118cae4b25c3~mv2.jpg/v1/fill/w_413,h_232,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/4801ad_96890b534b7a498fa905118cae4b25c3~mv2.jpg",
         "alt": "🍅  CAPRESE PIZZA",
         "width": 413,
         "height": 232,
-        "type": "product"
+        "type": "product",
+        "productName": "CAPRESE PIZZA",
+        "foodType": "pizza"
       },
       {
         "url": "https://static.wixstatic.com/media/4801ad_436b095820b84193a94eb37578ec8cfb~mv2.jpg/v1/fill/w_413,h_232,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/4801ad_436b095820b84193a94eb37578ec8cfb~mv2.jpg",
         "alt": "🌳  SPINACH & ARTICHOKE PIZZA",
         "width": 413,
         "height": 232,
-        "type": "product"
-      },
-      {
-        "url": "https://static.wixstatic.com/media/4801ad_c5c5f5fbfb0b48eb9cc1fc571c07982f~mv2.jpg/v1/fill/w_386,h_217,al_c,lg_1,q_80,enc_auto/4801ad_c5c5f5fbfb0b48eb9cc1fc571c07982f~mv2.jpg",
-        "alt": "👵🏼  GRANDMA PIZZA",
-        "width": 386,
-        "height": 217,
-        "type": "product"
+        "type": "product",
+        "productName": "SPINACH & ARTICHOKE PIZZA",
+        "foodType": "pizza"
       },
       {
         "url": "https://static.wixstatic.com/media/4801ad_cb09b29b63364a559b59f69ec9446384~mv2.jpg/v1/fill/w_413,h_232,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/4801ad_cb09b29b63364a559b59f69ec9446384~mv2.jpg",
         "alt": " 🇮🇹  SICILIAN PIZZA",
         "width": 413,
         "height": 232,
-        "type": "product"
-      },
-      {
-        "url": "https://static.wixstatic.com/media/4801ad_21fcbc68b77149cc82872e9bec4fbc7d~mv2.jpg/v1/fill/w_413,h_232,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/4801ad_21fcbc68b77149cc82872e9bec4fbc7d~mv2.jpg",
-        "alt": "👨🏻‍🍳  MY WAY PIZZA",
-        "width": 413,
-        "height": 232,
-        "type": "product"
-      },
-      {
-        "url": "https://static.wixstatic.com/media/4801ad_cfa6c65a3bad422485518247f6d418c9~mv2.jpg/v1/fill/w_413,h_232,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/4801ad_cfa6c65a3bad422485518247f6d418c9~mv2.jpg",
-        "alt": "Organic Italian Salad",
-        "width": 413,
-        "height": 232,
-        "type": "product"
-      },
-      {
-        "url": "https://static.wixstatic.com/media/4801ad_37d7ff93771a43e08d121e663dd0b7d9~mv2.jpg/v1/fill/w_413,h_232,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/4801ad_37d7ff93771a43e08d121e663dd0b7d9~mv2.jpg",
-        "alt": "Caesar Salad",
-        "width": 413,
-        "height": 232,
-        "type": "product"
-      },
-      {
-        "url": "https://static.wixstatic.com/media/4801ad_d95037c40d3d4022b6274016c8374e2e~mv2.jpg/v1/fill/w_413,h_232,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/4801ad_d95037c40d3d4022b6274016c8374e2e~mv2.jpg",
-        "alt": "Caprese Salad",
-        "width": 413,
-        "height": 232,
-        "type": "product"
-      },
-      {
-        "url": "https://static.wixstatic.com/media/4801ad_eed8c4b7b91c4021a089eb9306955597~mv2.jpg/v1/fill/w_413,h_232,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/4801ad_eed8c4b7b91c4021a089eb9306955597~mv2.jpg",
-        "alt": "Organic Antipasto Salad",
-        "width": 413,
-        "height": 232,
-        "type": "product"
-      },
-      {
-        "url": "https://static.wixstatic.com/media/4801ad_53286249f0074c90b6a9aecf91c254d1~mv2.jpg/v1/fill/w_58,h_57,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/I_LOVE_NY.jpg",
-        "alt": "I.LOVE.NY.jpg",
-        "width": 58,
-        "height": 57,
-        "type": "unknown"
-      },
-      {
-        "url": "https://static.wixstatic.com/media/4801ad_b01af780940d4758a495c318d4bd8431~mv2.jpg/v1/fill/w_54,h_53,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/download-20_edited_edited_edited.jpg",
-        "alt": "download-20_edited_edited_edited.jpg",
-        "width": 54,
-        "height": 53,
-        "type": "unknown"
-      },
-      {
-        "url": "https://static.wixstatic.com/media/4801ad_5b2641603ae44ccf88a96e081fe9ed6a~mv2.jpg/v1/fill/w_343,h_193,al_c,lg_1,q_80,enc_auto/4801ad_5b2641603ae44ccf88a96e081fe9ed6a~mv2.jpg",
-        "alt": "🍃  MARGHERITA",
-        "width": 343,
-        "height": 192,
-        "type": "unknown"
+        "type": "product",
+        "productName": "🇮🇹  SICILIAN PIZZA",
+        "foodType": "pizza"
       },
       {
         "url": "https://static.wixstatic.com/media/4801ad_67c9796b3f604409bad98c29972f8839~mv2.png/v1/fill/w_413,h_232,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/4801ad_67c9796b3f604409bad98c29972f8839~mv2.png",
         "alt": "🇮🇹  SICILIAN PEPPERONI",
         "width": 413,
         "height": 232,
-        "type": "unknown"
+        "type": "product",
+        "productName": "🇮🇹  SICILIAN PEPPERONI",
+        "foodType": "pizza"
       },
       {
-        "url": "https://static.wixstatic.com/media/4801ad_bba61bb29ff945068deb535ca8e78b58~mv2.jpg/v1/fill/w_403,h_226,al_c,lg_1,q_80,enc_auto/4801ad_bba61bb29ff945068deb535ca8e78b58~mv2.jpg",
-        "alt": " 🌶  ADD TOPPINGS",
-        "width": 403,
-        "height": 226,
-        "type": "unknown"
+        "url": "https://static.wixstatic.com/media/4801ad_21fcbc68b77149cc82872e9bec4fbc7d~mv2.jpg/v1/fill/w_413,h_232,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/4801ad_21fcbc68b77149cc82872e9bec4fbc7d~mv2.jpg",
+        "alt": "👨🏻‍🍳  MY WAY PIZZA",
+        "width": 413,
+        "height": 232,
+        "type": "product",
+        "productName": "‍  MY WAY PIZZA",
+        "foodType": "pizza"
+      },
+      {
+        "url": "https://static.wixstatic.com/media/4801ad_cfa6c65a3bad422485518247f6d418c9~mv2.jpg/v1/fill/w_413,h_232,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/4801ad_cfa6c65a3bad422485518247f6d418c9~mv2.jpg",
+        "alt": "Organic Italian Salad",
+        "width": 413,
+        "height": 232,
+        "type": "product",
+        "productName": "Organic Italian Salad",
+        "foodType": "salad"
+      },
+      {
+        "url": "https://static.wixstatic.com/media/4801ad_37d7ff93771a43e08d121e663dd0b7d9~mv2.jpg/v1/fill/w_413,h_232,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/4801ad_37d7ff93771a43e08d121e663dd0b7d9~mv2.jpg",
+        "alt": "Caesar Salad",
+        "width": 413,
+        "height": 232,
+        "type": "product",
+        "productName": "Caesar Salad",
+        "foodType": "salad"
+      },
+      {
+        "url": "https://static.wixstatic.com/media/4801ad_d95037c40d3d4022b6274016c8374e2e~mv2.jpg/v1/fill/w_413,h_232,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/4801ad_d95037c40d3d4022b6274016c8374e2e~mv2.jpg",
+        "alt": "Caprese Salad",
+        "width": 413,
+        "height": 232,
+        "type": "product",
+        "productName": "Caprese Salad",
+        "foodType": "salad"
+      },
+      {
+        "url": "https://static.wixstatic.com/media/4801ad_eed8c4b7b91c4021a089eb9306955597~mv2.jpg/v1/fill/w_413,h_232,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/4801ad_eed8c4b7b91c4021a089eb9306955597~mv2.jpg",
+        "alt": "Organic Antipasto Salad",
+        "width": 413,
+        "height": 232,
+        "type": "product",
+        "productName": "Organic Antipasto Salad",
+        "foodType": "salad"
       },
       {
         "url": "https://static.wixstatic.com/media/4801ad_304c8942a9344b25b45fcdd47cab1f44~mv2_d_1800_1200_s_2.jpg/v1/fill/w_413,h_232,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/4801ad_304c8942a9344b25b45fcdd47cab1f44~mv2_d_1800_1200_s_2.jpg",
         "alt": "House-made Meatballs",
         "width": 413,
         "height": 232,
-        "type": "unknown"
+        "type": "product",
+        "productName": "House-made Meatballs"
+      },
+      {
+        "url": "https://static.wixstatic.com/media/11062b_c88d1c08baaf4e2c911e636c7cf4b4cf~mv2.jpg/v1/fill/w_413,h_232,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/11062b_c88d1c08baaf4e2c911e636c7cf4b4cf~mv2.jpg",
+        "alt": "Garlic Knots",
+        "width": 413,
+        "height": 232,
+        "type": "product",
+        "productName": "Garlic Knots"
+      },
+      {
+        "url": "https://static.wixstatic.com/media/4801ad_4df8d3fa6d4d498daa3eea50bacb8793~mv2.jpg/v1/fill/w_413,h_232,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/4801ad_4df8d3fa6d4d498daa3eea50bacb8793~mv2.jpg",
+        "alt": "🍓 New York Strawberry Cheesecake",
+        "width": 413,
+        "height": 232,
+        "type": "product",
+        "productName": "New York Strawberry Cheesecake"
+      },
+      {
+        "url": "https://static.wixstatic.com/media/4801ad_e681452a2cb0416c9e5938af5619a81e~mv2.jpg/v1/fill/w_413,h_232,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/4801ad_e681452a2cb0416c9e5938af5619a81e~mv2.jpg",
+        "alt": "🍯 Salted Caramel Cheesecake",
+        "width": 413,
+        "height": 232,
+        "type": "product",
+        "productName": "Salted Caramel Cheesecake"
+      },
+      {
+        "url": "https://static.wixstatic.com/media/4801ad_bba61bb29ff945068deb535ca8e78b58~mv2.jpg/v1/fill/w_403,h_226,al_c,lg_1,q_80,enc_auto/4801ad_bba61bb29ff945068deb535ca8e78b58~mv2.jpg",
+        "alt": " 🌶  ADD TOPPINGS",
+        "width": 403,
+        "height": 226,
+        "type": "product",
+        "productName": "ADD TOPPINGS"
+      },
+      {
+        "url": "https://static.wixstatic.com/media/4801ad_c5c5f5fbfb0b48eb9cc1fc571c07982f~mv2.jpg/v1/fill/w_386,h_217,al_c,lg_1,q_80,enc_auto/4801ad_c5c5f5fbfb0b48eb9cc1fc571c07982f~mv2.jpg",
+        "alt": "👵🏼  GRANDMA PIZZA",
+        "width": 386,
+        "height": 217,
+        "type": "product",
+        "productName": "GRANDMA PIZZA",
+        "foodType": "pizza"
+      },
+      {
+        "url": "https://static.wixstatic.com/media/4801ad_b3f9464486ea45cd9f21bb2ae1ebd34b.jpg/v1/fill/w_378,h_212,al_c,lg_1,q_80,enc_auto/4801ad_b3f9464486ea45cd9f21bb2ae1ebd34b.jpg",
+        "alt": "Sprite",
+        "width": 378,
+        "height": 212,
+        "type": "product",
+        "productName": "Sprite"
+      },
+      {
+        "url": "https://static.wixstatic.com/media/4801ad_5b2641603ae44ccf88a96e081fe9ed6a~mv2.jpg/v1/fill/w_343,h_193,al_c,lg_1,q_80,enc_auto/4801ad_5b2641603ae44ccf88a96e081fe9ed6a~mv2.jpg",
+        "alt": "🍃  MARGHERITA",
+        "width": 343,
+        "height": 192,
+        "type": "product",
+        "productName": "MARGHERITA",
+        "foodType": "pizza"
+      },
+      {
+        "url": "https://static.wixstatic.com/media/4801ad_8842d53c63aa4f2a87138962b389da25~mv2.jpg/v1/fill/w_315,h_177,al_c,lg_1,q_80,enc_auto/4801ad_8842d53c63aa4f2a87138962b389da25~mv2.jpg",
+        "alt": "🍫 Triple Chocolate Fudge Torte",
+        "width": 315,
+        "height": 177,
+        "type": "product",
+        "productName": "Triple Chocolate Fudge Torte"
+      },
+      {
+        "url": "https://static.wixstatic.com/media/4801ad_6b563be07a954c818526abd9fc41bc78~mv2.jpg/v1/fill/w_315,h_177,al_c,lg_1,q_80,enc_auto/4801ad_6b563be07a954c818526abd9fc41bc78~mv2.jpg",
+        "alt": "Coke",
+        "width": 315,
+        "height": 177,
+        "type": "product",
+        "productName": "Coke"
+      },
+      {
+        "url": "https://static.wixstatic.com/media/4801ad_61310fc056c54d5ab0d56ddc5ef703d2~mv2.jpg/v1/fill/w_315,h_177,al_c,lg_1,q_80,enc_auto/4801ad_61310fc056c54d5ab0d56ddc5ef703d2~mv2.jpg",
+        "alt": "🍊 Orange Fanta",
+        "width": 315,
+        "height": 177,
+        "type": "product",
+        "productName": "Orange Fanta"
+      },
+      {
+        "url": "https://static.wixstatic.com/media/4801ad_434a03f4c0514c3fa9ae0f886d1fc1cb~mv2.jpg/v1/fill/w_315,h_177,al_c,lg_1,q_80,enc_auto/4801ad_434a03f4c0514c3fa9ae0f886d1fc1cb~mv2.jpg",
+        "alt": "🍍 Pineapple Fanta",
+        "width": 315,
+        "height": 177,
+        "type": "product",
+        "productName": "Pineapple Fanta"
+      },
+      {
+        "url": "https://static.wixstatic.com/media/4801ad_5e01721fb2f24b51afedd0f1ba91c48a~mv2.jpg/v1/fill/w_315,h_177,al_c,lg_1,q_80,enc_auto/4801ad_5e01721fb2f24b51afedd0f1ba91c48a~mv2.jpg",
+        "alt": "🍇 Grape Fanta",
+        "width": 315,
+        "height": 177,
+        "type": "product",
+        "productName": "Grape Fanta"
+      },
+      {
+        "url": "https://static.wixstatic.com/media/4801ad_bb2a203344564308a86e23b1bc0d297e~mv2.jpg/v1/fill/w_315,h_177,al_c,lg_1,q_80,enc_auto/4801ad_bb2a203344564308a86e23b1bc0d297e~mv2.jpg",
+        "alt": "Coca Cola",
+        "width": 315,
+        "height": 177,
+        "type": "product",
+        "productName": "Coca Cola"
+      },
+      {
+        "url": "https://static.wixstatic.com/media/4801ad_1e491b034579408ebbf787cd090652ce~mv2.jpg/v1/fill/w_315,h_177,al_c,lg_1,q_80,enc_auto/4801ad_1e491b034579408ebbf787cd090652ce~mv2.jpg",
+        "alt": "Coke Zero",
+        "width": 315,
+        "height": 177,
+        "type": "product",
+        "productName": "Coke Zero"
+      },
+      {
+        "url": "https://static.wixstatic.com/media/4801ad_fdc2a088c70447668a9bd32cce0b4be0~mv2.jpg/v1/fill/w_315,h_177,al_c,lg_1,q_80,enc_auto/4801ad_fdc2a088c70447668a9bd32cce0b4be0~mv2.jpg",
+        "alt": "Diet Coke",
+        "width": 315,
+        "height": 177,
+        "type": "product",
+        "productName": "Diet Coke"
+      },
+      {
+        "url": "https://static.wixstatic.com/media/4801ad_2d2517ef354342b4abf733cbeddcffe1~mv2.jpg/v1/fill/w_315,h_177,al_c,lg_1,q_80,enc_auto/4801ad_2d2517ef354342b4abf733cbeddcffe1~mv2.jpg",
+        "alt": "Dr Pepper",
+        "width": 315,
+        "height": 177,
+        "type": "product",
+        "productName": "Dr Pepper"
+      },
+      {
+        "url": "https://static.wixstatic.com/media/4801ad_450524a5b0bc45218204aec581ef0dc8~mv2.jpg/v1/fill/w_314,h_176,al_c,lg_1,q_80,enc_auto/4801ad_450524a5b0bc45218204aec581ef0dc8~mv2.jpg",
+        "alt": "🍓 Strawberry Fanta",
+        "width": 314,
+        "height": 176,
+        "type": "product",
+        "productName": "Strawberry Fanta"
+      },
+      {
+        "url": "https://static.parastorage.com/services/restaurant-menus-showcase-ooi/d35014c84c77280feda24828439d72cf0187cc17903a4b97c02933a2/media/menus_side_image.7077f229.jpeg",
+        "width": 3009,
+        "height": 3009,
+        "type": "product"
       }
     ],
-    "colors": {
-      "primary": "#0000ee",
-      "secondary": "#666666",
-      "accent": "#0000ee",
-      "background": "#ffffff",
-      "text": "#000000",
-      "palette": [
-        "#0000ee",
-        "#000000",
-        "#fa080f",
-        "#810206",
-        "#f4848c",
-        "#7c7c7c",
-        "#3c3c3c",
-        "#c6b4b4"
-      ]
-    },
-    "contact": {
-      "website": "https://www.joespizza.com/menu-joes-pizza-santa-monica-venice"
-    },
-    "scrapedAt": "2025-12-04T20:03:29.050Z",
     "sourceUrl": "https://www.joespizza.com/menu-joes-pizza-santa-monica-venice"
   },
   "timing": {
-    "total": 29608,
-    "pageLoad": 26511,
-    "extraction": 80,
-    "colorExtraction": 820
+    "total": 28234,
+    "pageLoad": 28199
   }
 }

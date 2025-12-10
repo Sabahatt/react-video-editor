@@ -1,14 +1,33 @@
 /**
  * Scraper Types - Type definitions for web scraping pipeline
+ * Optimized for restaurant video ad generation
  */
+
+/** Food categories for prompt generation */
+export type FoodType =
+  | 'pizza'
+  | 'salad'
+  | 'bowl'
+  | 'doughnut'
+  | 'pastry'
+  | 'bread'
+  | 'sides'
+  | 'protein'
+  | 'appetizer';
 
 export interface ScrapedImage {
   url: string;
   alt?: string;
   width?: number;
   height?: number;
-  type: 'logo' | 'hero' | 'product' | 'background' | 'unknown';
-  score?: number;
+  /** Image classification - no 'unknown', everything categorized or excluded */
+  type: 'logo' | 'hero' | 'product' | 'background';
+  /** Product name extracted from nearby heading or alt text */
+  productName?: string;
+  /** Product description from nearby paragraph or menu data */
+  productDescription?: string;
+  /** Detected food type for Akool prompt generation */
+  foodType?: FoodType;
 }
 
 export interface BrandColors {

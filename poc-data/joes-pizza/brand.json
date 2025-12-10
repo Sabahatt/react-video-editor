@@ -1,0 +1,21 @@
+{
+  "name": "Joe's Pizza",
+  "slug": "joes-pizza",
+  "usp": "Award Winning New York Pies, Slices & Organic Salads. All Natural Cheese No Preservatives or Artificial Ingredients",
+  "logo": {
+    "url": "/joes-pizza-logo.png"
+  },
+  "contact": {
+    "website": "https://www.joespizza.com",
+    "address": "111 Broadway Santa Monica",
+    "email": "info@Joespizza.com",
+    "hours": "Sun-Thu: 12:00 PM - 10:00 PM. Fri-Sat: 12:00 PM - Midnight"
+  },
+  "mainDishType": "pizza",
+  "tone": "classic-nyc",
+  "notes": {
+    "origin": "NYC institution, known for classic New York-style pizza",
+    "signatureItems": ["NY Cheese Pizza", "Pepperoni Pizza", "Sicilian Pizza", "White Pizza"],
+    "visualStyle": "Classic pizzeria, warm tones, cheese pulls, steam, freshly baked"
+  }
+}

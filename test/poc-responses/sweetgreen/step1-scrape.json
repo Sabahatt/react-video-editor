@@ -1,226 +1,343 @@
 {
   "success": true,
   "data": {
-    "brand": {
-      "name": "sweetgreen",
-      "tagline": "Kale Caesar",
-      "description": "Simple, seasonal, healthy salads and grain bowls made in-house from scratch, using whole produce delivered that morning.",
-      "cuisine": "cafe"
-    },
-    "logo": "https://www.sweetgreen.com/favicon.ico",
     "images": [
       {
-        "url": "https://images.ctfassets.net/eum7w7yri3zr/5418ra5b4TcMHRxOIobxUx/db9774df0dc69cf6b0aa8c40460a43a0/SG_Web_Image_Salad_Kale_Caesar_Chicken.png?w=600&q=75",
-        "alt": "Kale Caesar",
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/6jobSckXxyc4GTuInqbFLR/8793a5625e81cc129de4b96df3c20f9d/SG_Web_Image_Bowl_Steak_Honey_Crunch__1_.jpg?w=600&q=75",
+        "alt": "Steak Honey Crunch",
         "width": 600,
         "height": 600,
-        "type": "product"
+        "type": "product",
+        "productName": "Steak Honey Crunch",
+        "productDescription": "Caramelized garlic steak, chopped romaine, herbed quinoa, pickled onions, tomatoes, garlic breadcrumbs, hot honey mustard sauce",
+        "foodType": "bowl"
       },
       {
-        "url": "https://images.ctfassets.net/eum7w7yri3zr/3Z3fW9JhznhFDphzlHNmRx/d6410c46ffb8fc2c4c19c736a7f8d920/SG_Web_Image_Salad_Guacamole_Greens.png?w=600&q=75",
-        "alt": "Guac Greens",
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/6vNynyCoUI4yeU0xq6fYhv/c11caeb76d233b37c43e7c5e0f2ecb30/SG_Web_Image_Protein_Plate_Steak_Mezze__1_.jpg?w=600&q=75",
+        "alt": "Steak Mezze",
         "width": 600,
         "height": 600,
-        "type": "product"
+        "type": "product",
+        "productName": "Steak Mezze",
+        "productDescription": "Caramelized garlic steak, white rice x2, pickled onions, tomatoes, cucumbers, crispy onions, lime cilantro jalapeno vinaigrette, hummus",
+        "foodType": "bowl"
       },
       {
-        "url": "https://images.ctfassets.net/eum7w7yri3zr/QCN3MLGE4UBEnU6vSjpyz/d17102e51361c12b6a14590b89701eb9/SG_Web_Image_Salad_Buffalo_Chicken.png?w=600&q=75",
-        "alt": "Buffalo chicken salad",
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/3mXSfLrDU3JdoqtqoqLhHh/fefeff30cb32b565706b798fd24fa077/SG_Web_Image_Protein_Plate_Power_Max_Protein__1_.jpg?w=600&q=75",
+        "alt": "Power Max Protein",
         "width": 600,
         "height": 600,
-        "type": "product"
+        "type": "product",
+        "productName": "Power Max Protein",
+        "productDescription": "Roasted chicken 4x, herbed quinoa 2x, spicy broccoli 2x, green goddess ranch",
+        "foodType": "bowl"
+      },
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/oQXXNTzxSZtVIthreOWU2/1a508e8e8b284ea982b4f9b2418d3e89/GarlicParmCauliBowl.jpeg?w=600&q=75",
+        "alt": "GarlicParmCauliBowl",
+        "width": 600,
+        "height": 600,
+        "type": "product",
+        "productName": "Garlic Parm Cauli Bowl",
+        "productDescription": "Garlic Parmesan Cauliflower, Caramelized Balsamic Onions, Roasted Sweet Potatoes, Garlic Breadcrumbs, Wild Rice, organic Shredded Kale, Roasted Romesco Sauce, Creamy Basil Dressing\n*Contains common allergens, including nuts",
+        "foodType": "salad"
+      },
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/4tGfDtQgfD6ZiVaNY8r1Ph/67c9b6cca3153f4312c9cbb8e5a0975b/ChickenCauliPlate.jpeg?w=600&q=75",
+        "alt": "ChickenCauliPlate",
+        "width": 600,
+        "height": 600,
+        "type": "product",
+        "productName": "Chicken Cauli Plate",
+        "productDescription": "Antibiotic-free roasted Chicken, Garlic Parmesan Cauliflower, Caramelized Balsamic Onions, Garlic Breadcrumbs, Wild Rice, Roasted Romesco Sauce, Creamy Basil Dressing\n*Contains common allergens, including nuts",
+        "foodType": "bowl"
+      },
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/2VeldYH0b3Y0JNaeadEWNZ/58d5a541a1173554e16af6791832d097/CauliSide.jpeg?w=600&q=75",
+        "alt": "CauliSide",
+        "width": 600,
+        "height": 600,
+        "type": "product",
+        "productName": "Garlic Parm Cauli + Romesco",
+        "productDescription": "Garlic Parmesan Cauliflower, Roasted Romesco Sauce\n*Contains common allergens, including nuts"
+      },
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/3SurKmBzvliFdpKTieK18h/5919f2bef47df8c69dc7460223f97f84/SG_Web_Image_Plate_Caramelized_Garlic_Steak.png?w=600&q=75",
+        "alt": "Caramelized garlic steak protein plate",
+        "width": 600,
+        "height": 600,
+        "type": "product",
+        "productName": "Caramelized Garlic Steak",
+        "productDescription": "Antibiotic-free grass-fed caramelized garlic steak, warm roasted sweet potatoes, spicy broccoli, tomatoes, wild rice and pesto vinaigrette",
+        "foodType": "bowl"
+      },
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/2Nmjt0Mqc4i9Rxi0mmJI4M/913a61ac1f9393e8bad35ca924751e10/SG_Web_Image_Plate_Miso_Glazed_Salmon.png?w=600&q=75",
+        "alt": "Miso glazed salmon",
+        "width": 600,
+        "height": 600,
+        "type": "product",
+        "productName": "Miso Glazed Salmon",
+        "productDescription": "Antibiotic-free miso glazed salmon, avocado, cucumbers, pickled onions, crispy onions, white rice, nori sesame seasoning and spicy cashew",
+        "foodType": "bowl"
+      },
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/yHFY7qx79RaAmL2g7rK2r/c20e65a280981001f7c0093595e81ff9/SG_Web_Image_Plate_Hot_Honey_Chicken.png?w=600&q=75",
+        "alt": "Hot honey chicken protein plate",
+        "width": 600,
+        "height": 600,
+        "type": "product",
+        "productName": "Hot Honey Chicken",
+        "productDescription": "Antibiotic-free blackened chicken, warm roasted sweet potatoes, veg slaw, crispy onions, herbed quinoa and hot honey mustard sauce",
+        "foodType": "bowl"
       },
       {
         "url": "https://images.ctfassets.net/eum7w7yri3zr/Br3EYlf6srQYhCXdvOfwt/65b582e0c488a871e36cda2ea5e52df3/SG_Web_Image_Bowl_Harvest.png?w=600&q=75",
         "alt": "Product Carousel-Harvest Bowl",
         "width": 600,
         "height": 600,
-        "type": "product"
+        "type": "product",
+        "productName": "Harvest Bowl",
+        "productDescription": "Antibiotic-free roasted chicken, roasted sweet potatoes, apples, goat cheese, roasted almonds, wild rice, organic shredded kale and balsamic vinaigrette",
+        "foodType": "salad"
+      },
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/77bQryCjkOcr4lAKYIpo1C/a8e219ee7820abea85944e2751863cf2/SG_Web_Image_Bowl_Crispy_Rice_Bowl.png?w=600&q=75",
+        "alt": "Crispy Rice Bowl",
+        "width": 600,
+        "height": 600,
+        "type": "product",
+        "productName": "Crispy Rice Bowl",
+        "productDescription": "Antibiotic-free blackened chicken, raw carrots, shredded cabbage, cucumbers, cilantro, roasted almonds, crispy rice, wild rice, organic arugula, lime squeeze and spicy cashew",
+        "foodType": "salad"
       },
       {
         "url": "https://images.ctfassets.net/eum7w7yri3zr/5Kw3escovLNb8uWqQuzR7o/fb77087267c6de716f49d50ff755ede5/SG_Web_Image_Bowl_Chicken_Pesto_Parm.png?w=600&q=75",
         "alt": "Chicken Pesto Parm",
         "width": 600,
         "height": 600,
-        "type": "product"
+        "type": "product",
+        "productName": "Chicken Pesto Parm",
+        "productDescription": "Antibiotic-free roasted chicken, spicy broccoli, tomatoes, shaved parmesan, garlic breadcrumbs, herbed quinoa, organic baby spinach, Sweetgreen hot sauce and pesto vinaigrette",
+        "foodType": "bowl"
+      },
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/opkhdGIeByDTaIOKBzGKU/4692e29fb3ad28c7bd54634cd7622720/SG_Web_Image_Bowl_Chicken_Avocado_Ranch.png?w=600&q=75",
+        "alt": "Chicken Avocado Ranch",
+        "width": 600,
+        "height": 600,
+        "type": "product",
+        "productName": "Chicken Avocado Ranch",
+        "productDescription": "Antibiotic-free blackened chicken, avocado, pickled onions, apples, tortilla chips, white rice, chopped romaine and seed oil-free green goddess ranch",
+        "foodType": "bowl"
       },
       {
         "url": "https://images.ctfassets.net/eum7w7yri3zr/57c1vaLIB4WtuQXQblhUa5/5bbbf55c178b7985a03f994749445040/SG_Web_Image_Bowl_Shroomami.png?w=600&q=75",
         "alt": "shroomami",
         "width": 600,
         "height": 600,
-        "type": "product"
+        "type": "product",
+        "productName": "Shroomami",
+        "productDescription": "Roasted tofu, warm portobello mix, cucumbers, basil, shredded cabbage, roasted almonds, wild\nrice, organic shredded kale and miso sesame ginger",
+        "foodType": "salad"
+      },
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/GfXc33iGipBc9eYJM7bAP/19c0ecb3908d0f7f20cd5d904cb12937/SG_Web_Image_Bowl_Fish_Taco.png?w=600&q=75",
+        "alt": "Fish Taco",
+        "width": 600,
+        "height": 600,
+        "type": "product",
+        "productName": "Fish Taco",
+        "productDescription": "Antibiotic-free miso glazed salmon, avocado, shredded cabbage, cilantro, tortilla chips, herbed quinoa, spring mix, sweetgreen hot sauce, lime cilantro jalapeño vinaigrette",
+        "foodType": "bowl"
+      },
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/5418ra5b4TcMHRxOIobxUx/db9774df0dc69cf6b0aa8c40460a43a0/SG_Web_Image_Salad_Kale_Caesar_Chicken.png?w=600&q=75",
+        "alt": "Kale Caesar",
+        "width": 600,
+        "height": 600,
+        "type": "product",
+        "productName": "Kale Caesar",
+        "productDescription": "Antibiotic-free roasted chicken, tomatoes, shaved parmesan, parmesan crisps, organic shredded kale, chopped romaine, lime squeeze and caesar",
+        "foodType": "salad"
+      },
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/3Z3fW9JhznhFDphzlHNmRx/d6410c46ffb8fc2c4c19c736a7f8d920/SG_Web_Image_Salad_Guacamole_Greens.png?w=600&q=75",
+        "alt": "Guac Greens",
+        "width": 600,
+        "height": 600,
+        "type": "product",
+        "productName": "Guacamole Greens",
+        "productDescription": "Antibiotic-free roasted chicken, avocado, tomatoes, pickled onions, shredded cabbage, tortilla chips, organic spring mix, chopped romaine, lime squeeze and lime cilantro jalapeño vinaigrette",
+        "foodType": "salad"
+      },
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/6oXc02nY5QhEb9tYyZDyKZ/286ddb040d1842580fcbea40bf7c4a47/SG_Web_Image_Protein_Plate_Super_Green_Goddess.jpg?w=600&q=75",
+        "alt": "Supper green goddess salad",
+        "width": 600,
+        "height": 600,
+        "type": "product",
+        "productName": "Super Green Goddess",
+        "productDescription": "Chickpeas, roasted sweet potatoes, raw carrots, spicy broccoli, shredded cabbage, roasted almonds, baby spinach, shredded kale, green goddess ranch",
+        "foodType": "salad"
+      },
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/5fITPYckTJf9NUIbgSStrj/02544cca800ef61e835979c8831f4d30/SG_Web_Image_Salad_BBQ_Chicken.png?w=600&q=75",
+        "alt": "BBQ Chicken Salad",
+        "width": 600,
+        "height": 600,
+        "type": "product",
+        "productName": "BBQ Chicken Salad",
+        "productDescription": "Antibiotic-free blackened chicken, shredded cabbage, pickled onions, tomatoes, apples, tortilla chips, chopped romaine, shredded kale, honey BBQ sauce, green goddess ranch",
+        "foodType": "salad"
+      },
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/4wPVg3FJWpETYHNRZ2lN4p/4b8942e5c92664c57062cd5ec7695f06/SG_Web_Image_Salad_Hummus_Crunch.jpg?w=600&q=75",
+        "alt": "Hummus Crunch Salad",
+        "width": 600,
+        "height": 600,
+        "type": "product",
+        "productName": "Hummus Crunch",
+        "productDescription": "Hummus, chickpeas, tomatoes, cucumbers, shredded cabbage, pickled onions, basil, garlic breadcrumbs, chopped romaine, shredded kale, pesto vinaigrette",
+        "foodType": "salad"
+      },
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/QCN3MLGE4UBEnU6vSjpyz/d17102e51361c12b6a14590b89701eb9/SG_Web_Image_Salad_Buffalo_Chicken.png?w=600&q=75",
+        "alt": "Buffalo chicken salad",
+        "width": 600,
+        "height": 600,
+        "type": "product",
+        "productName": "Buffalo Chicken",
+        "productDescription": "Antibiotic-free blackened chicken, pickled onions, tomatoes, raw carrots, cilantro, blue cheese, garlic breadcrumbs, shredded kale, chopped romaine, Sweetgreen hot sauce, caesar",
+        "foodType": "salad"
+      },
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/15XsnodSCyzD5VAPPa3dLa/e3d1a82a0d384707abc6ccd8726aed3e/SG_Web_Image_Bowl_Garden_Cobb.png?w=600&q=75",
+        "alt": "Garden Cobb",
+        "width": 600,
+        "height": 600,
+        "type": "product",
+        "productName": "Garden Cobb",
+        "productDescription": "Avocado, hard boiled egg, roasted sweet potatoes, tomatoes, blue cheese, roasted almonds, spring mix, chopped romaine, balsamic vinaigrette"
+      },
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/6m23jjtBJux5MU8T4h0pHF/781db31f0cc546426f183eb1b9b8b611/SG_Web_Image_Kids_Ranchy_Chicken_Rice.jpg?w=600&q=75",
+        "alt": "ranchy chicken + rice",
+        "width": 600,
+        "height": 600,
+        "type": "product",
+        "productName": "RANCHY CHICKEN + RICE",
+        "productDescription": "Roasted chicken, cucumbers, parmesan crisps, wild rice, green goddess ranch\n*Select sg restaurants only.",
+        "foodType": "bowl"
+      },
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/4rLqWwSWJ1VFqA5v5yeVkw/99c21600330c15b85e37368ddc081337/SG_Web_Image_Kids_Little_Harvest.jpg?w=600&q=75",
+        "alt": "little harvest",
+        "width": 600,
+        "height": 600,
+        "type": "product",
+        "productName": "LITTLE HARVEST",
+        "productDescription": "Roasted chicken, warm roasted sweet potatoes, apples, balsamic vinaigrette",
+        "foodType": "bowl"
+      },
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/6bfLnJgczdU5hjy01yiBT3/6f770cef62e5c5bad9260e5888c6ecb0/SG_Web_Image_Kids_Mini_Mezze.jpg?w=600&q=75",
+        "alt": "Mini Mezze",
+        "width": 600,
+        "height": 600,
+        "type": "product",
+        "productName": "Mini Mezze",
+        "productDescription": "Roasted chicken, cucumbers, hummus, tortilla chips"
       },
       {
         "url": "https://images.ctfassets.net/eum7w7yri3zr/6KrjKxVXHWvcbVNVuRm4M4/dba9726d9afd6ac3e0bb6c4d5a4dd088/SG_Web_Image_Side_Rosemary_Focaccia.jpg?w=600&q=75",
         "alt": "Product Carousel-Rosemay Focaccia",
         "width": 600,
         "height": 600,
-        "type": "product"
+        "type": "product",
+        "productName": "Rosemary Focaccia",
+        "productDescription": "Locally-made rosemary focaccia. Check out our regional bakery partners here!"
+      },
+      {
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/6sor0rLM2jzSrGyyFAjfgJ/ce36dce9553e57f9723fda285dd279b6/SG_Web_Image_Side_Hummus_Focaccia.jpg?w=600&q=75",
+        "alt": "HF",
+        "width": 600,
+        "height": 600,
+        "type": "product",
+        "productName": "Hummus + Focaccia",
+        "productDescription": "Locally baked rosemary focaccia breadsticks paired with smooth hummus."
       },
       {
         "url": "https://images.ctfassets.net/eum7w7yri3zr/5emJWQD3CfWTvVfJbSG8G7/edf1cfed73259bd969af2f685b927884/SG_Web_Image_Side_Roasted_Sweet_Potatoes.jpg?w=600&q=75",
         "alt": "Hot Honey Sweet Potatoes",
-        "width": 437,
-        "height": 437,
-        "type": "product"
-      },
-      {
-        "url": "https://images.ctfassets.net/eum7w7yri3zr/j28IU9sScvgvuvnQ5AkBj/a56a14858807fcd486277566fb11973d/SG_Web_Image_Beverage_Hibiscus_Berry_Tea.jpg?w=600&q=75",
-        "alt": "Hibiscus Clover Tea",
-        "width": 437,
-        "height": 437,
-        "type": "product"
-      },
-      {
-        "url": "https://images.ctfassets.net/eum7w7yri3zr/3KJj1rIlmro9hzCPt2V3xu/19fd4da719138c99a045cc760d69ced2/Home_Page_New_Module-Image.jpg?w=600&q=75&fm=jpg&fl=progressive",
-        "width": 1129,
-        "height": 1129,
-        "type": "product"
-      },
-      {
-        "url": "https://images.ctfassets.net/eum7w7yri3zr/QeC14rNAsPTRIuV4EAafd/f6d5c7574ff3f26a87f23d4f9d1c0b8f/PickUp1.png?w=600&q=75",
-        "alt": "PickUp1",
         "width": 600,
-        "height": 597,
-        "type": "product"
+        "height": 600,
+        "type": "product",
+        "productName": "Roasted Sweet Potatoes",
+        "productDescription": "Warm roasted sweet potatoes served with a choice of Hot Honey Mustard or Green Goddess Ranch"
       },
       {
-        "url": "https://images.ctfassets.net/eum7w7yri3zr/5418ra5b4TcMHRxOIobxUx/db9774df0dc69cf6b0aa8c40460a43a0/SG_Web_Image_Salad_Kale_Caesar_Chicken.png?w=600&fm=avif&q=75",
-        "alt": "Kale Caesar",
-        "type": "product"
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/4gdYMZWVSk3qDvAsvKih78/18fb03a2bb622f4d09abf5e43df10fb7/SG_Web_Image_Attachment_Green_Goddess_Potato_Chips.jpg?w=600&q=75",
+        "alt": "Green Goddess Ranch Potato Chips",
+        "width": 600,
+        "height": 600,
+        "type": "product",
+        "productName": "SG x Siete: Green Goddess Ranch Potato Chips",
+        "productDescription": "Meet the match that marries Sweetgreen flavor with a Siete potato chip."
       },
       {
-        "url": "https://images.ctfassets.net/eum7w7yri3zr/3Z3fW9JhznhFDphzlHNmRx/d6410c46ffb8fc2c4c19c736a7f8d920/SG_Web_Image_Salad_Guacamole_Greens.png?w=600&fm=avif&q=75",
-        "alt": "Guac Greens",
-        "type": "product"
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/4Wx2AQpERoH0tuYWwsTpcv/b0a637bc270c9f3f948c67008e9c4472/SG_Web_Image_Attachment_Green_Sea_Salt_Chips.jpg?w=600&q=75",
+        "alt": "Siete Sea Salt Potato Chip",
+        "width": 600,
+        "height": 600,
+        "type": "product",
+        "productName": "Siete Sea Salt Potato Chips",
+        "productDescription": "Crafted with the best kind of basics: potatoes, avocado oil and sea salt."
       },
       {
-        "url": "https://images.ctfassets.net/eum7w7yri3zr/QCN3MLGE4UBEnU6vSjpyz/d17102e51361c12b6a14590b89701eb9/SG_Web_Image_Salad_Buffalo_Chicken.png?w=600&fm=avif&q=75",
-        "alt": "Buffalo chicken salad",
-        "type": "product"
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/15Ye7HsdigcqbzKdCFVi9A/f678554ca9e6e38dada1c3bbcbadfd55/SG_Web_Image_Attachment_Crispy_Rice_Treat.jpg?w=600&q=75",
+        "alt": "dessert menu",
+        "width": 600,
+        "height": 600,
+        "type": "product",
+        "productName": "Crispy Rice Treat",
+        "productDescription": "Crispy organic brown rice, quinoa, and puffed millet—naturally sweetened with honey date caramel and just 6g of sugar.\n*This treat is gluten-free but contains common allergens, including dairy + tree nuts (coconuts).",
+        "foodType": "bowl"
       },
       {
-        "url": "https://images.ctfassets.net/eum7w7yri3zr/Br3EYlf6srQYhCXdvOfwt/65b582e0c488a871e36cda2ea5e52df3/SG_Web_Image_Bowl_Harvest.png?w=600&fm=avif&q=75",
-        "alt": "Product Carousel-Harvest Bowl",
-        "type": "product"
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/1pltICE1M385U3qQeEOCjh/1f3062d6d5f727932770a86d6740e90c/SG_Web_Image_Attachment_Hu_Chocolate_Chunks.jpg?w=600&q=75",
+        "alt": "Hu Cashews + Vanilla Bean Hunks",
+        "width": 600,
+        "height": 600,
+        "type": "product",
+        "productName": "Hu Cashews + Vanilla Bean Hunks",
+        "productDescription": "Organic snackable dark chocolate covered cashews with a pinch of sea salt and no refined sugar.\n*This product is gluten-free and vegan but contains cashew & coconut. May contain dairy, peanuts & other tree nuts."
       },
       {
-        "url": "https://images.ctfassets.net/eum7w7yri3zr/5Kw3escovLNb8uWqQuzR7o/fb77087267c6de716f49d50ff755ede5/SG_Web_Image_Bowl_Chicken_Pesto_Parm.png?w=600&fm=avif&q=75",
-        "alt": "Chicken Pesto Parm",
-        "type": "product"
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/5swtHGEL9uU8XUx5vk6hZn/aede86e10c8abde5cdb561065be15cf3/SG_Web_Image_Attachment_Hu_Chocolate_Bar.jpg?w=600&q=75",
+        "alt": "Hu Bar",
+        "width": 600,
+        "height": 600,
+        "type": "product",
+        "productName": "Hu Salty Dark Chocolate Bar",
+        "productDescription": "Organic dark chocolate with a pinch of sea salt and no refined sugar.\n*This product is gluten-free and vegan but contains coconut. May contain other tree nuts & dairy."
       },
       {
-        "url": "https://images.ctfassets.net/eum7w7yri3zr/57c1vaLIB4WtuQXQblhUa5/5bbbf55c178b7985a03f994749445040/SG_Web_Image_Bowl_Shroomami.png?w=600&fm=avif&q=75",
-        "alt": "shroomami",
-        "type": "product"
-      },
-      {
-        "url": "https://images.ctfassets.net/eum7w7yri3zr/1x6PDnJKiMltzMVN1QzT98/1cdf9687c34b390c13a242271d78ee8f/SG_Web_Desktop.jpeg?w=600&q=75&fm=jpg&fl=progressive",
-        "alt": "Late Fall Menu",
-        "width": 1920,
-        "height": 1071,
-        "type": "hero"
-      },
-      {
-        "url": "https://images.ctfassets.net/eum7w7yri3zr/2kD9mpLAlvub8t5q8Gopdg/81af15ba52e3e190d161c2724898daa4/sweetgreen_HP_Slider_NRO_Desktop.jpg?w=600&q=75&fm=jpg&fl=progressive",
-        "alt": "Let us know",
-        "width": 1920,
-        "height": 1071,
-        "type": "hero"
-      },
-      {
-        "url": "https://images.ctfassets.net/eum7w7yri3zr/fjE9le7BEqfrbdQW5E9Ss/b6e20c43e99e911d355c5be07080f50c/HiringCampaign_11_Homepage_1600x893-Option1__1_.jpg?w=600&q=75&fm=jpg&fl=progressive",
-        "alt": "Find out more",
-        "width": 1920,
-        "height": 1071,
-        "type": "hero"
+        "url": "https://images.ctfassets.net/eum7w7yri3zr/37EjSxZ9gQdxpIlGVDfSI8/19ed8c5de919bd580450f955a33e4a49/SG_Web_Image_Beverage_OLIPOP_Vintage_Cola.jpg?w=600&q=75",
+        "alt": "VC",
+        "width": 600,
+        "height": 600,
+        "type": "product",
+        "productName": "OLIPOP Vintage Cola",
+        "productDescription": "Notes of vanilla, cinnamon and caramel create a classic old-fashioned flavor made with plant-based, natural ingredients and just 2g of sugar.\n*Contains caffeine.",
+        "foodType": "doughnut"
       }
     ],
-    "colors": {
-      "primary": "#00473c",
-      "secondary": "#666666",
-      "accent": "#e6ff55",
-      "background": "#ffffff",
-      "text": "#000000",
-      "palette": [
-        "#00473c",
-        "#e6ff55",
-        "#000000",
-        "#333333",
-        "#666666",
-        "#007bff",
-        "#ffffff"
-      ]
-    },
-    "contact": {
-      "website": "https://www.sweetgreen.com/"
-    },
-    "menuItems": [
-      {
-        "name": "Kale Caesar",
-        "description": "Antibiotic-free roasted chicken, tomatoes, shaved parmesan, parmesan crisps, organic shredded kale, chopped romaine, lime squeeze and caesar",
-        "image": "https://images.ctfassets.net/eum7w7yri3zr/5418ra5b4TcMHRxOIobxUx/db9774df0dc69cf6b0aa8c40460a43a0/SG_Web_Image_Salad_Kale_Caesar_Chicken.png?w=600&q=75"
-      },
-      {
-        "name": "Guacamole Greens",
-        "description": "Antibiotic-free roasted chicken, avocado, tomatoes, pickled onions, shredded cabbage, tortilla chips, organic spring mix, chopped romaine, lime squeeze and lime cilantro jalapeño vinaigrette",
-        "image": "https://images.ctfassets.net/eum7w7yri3zr/3Z3fW9JhznhFDphzlHNmRx/d6410c46ffb8fc2c4c19c736a7f8d920/SG_Web_Image_Salad_Guacamole_Greens.png?w=600&q=75"
-      },
-      {
-        "name": "Buffalo Chicken",
-        "description": "Antibiotic-free blackened chicken, pickled onions, tomatoes, raw carrots, cilantro, blue cheese, garlic breadcrumbs, shredded kale, chopped romaine, Sweetgreen hot sauce, caesar",
-        "image": "https://images.ctfassets.net/eum7w7yri3zr/QCN3MLGE4UBEnU6vSjpyz/d17102e51361c12b6a14590b89701eb9/SG_Web_Image_Salad_Buffalo_Chicken.png?w=600&q=75"
-      },
-      {
-        "name": "Harvest Bowl",
-        "description": "Antibiotic-free roasted chicken, roasted sweet potatoes, apples, goat cheese, roasted almonds, wild rice, organic shredded kale and balsamic vinaigrette",
-        "image": "https://images.ctfassets.net/eum7w7yri3zr/Br3EYlf6srQYhCXdvOfwt/65b582e0c488a871e36cda2ea5e52df3/SG_Web_Image_Bowl_Harvest.png?w=600&q=75"
-      },
-      {
-        "name": "Chicken Pesto Parm",
-        "description": "Roasted chicken, spicy broccoli, tomatoes, shaved parmesan, za’atar breadcrumbs, warm quinoa, baby spinach, sweetgreen hot sauce, pesto vinaigrette",
-        "image": "https://images.ctfassets.net/eum7w7yri3zr/5Kw3escovLNb8uWqQuzR7o/fb77087267c6de716f49d50ff755ede5/SG_Web_Image_Bowl_Chicken_Pesto_Parm.png?w=600&q=75"
-      },
-      {
-        "name": "Shroomami",
-        "description": "Roasted tofu, warm portobello mix, cucumbers, basil, shredded cabbage, roasted almonds, wild\nrice, organic shredded kale and miso sesame ginger",
-        "image": "https://images.ctfassets.net/eum7w7yri3zr/57c1vaLIB4WtuQXQblhUa5/5bbbf55c178b7985a03f994749445040/SG_Web_Image_Bowl_Shroomami.png?w=600&q=75"
-      },
-      {
-        "name": "Rosemary Focaccia",
-        "description": "Locally-made rosemary focaccia. Check out our regional bakery partners here!",
-        "image": "https://images.ctfassets.net/eum7w7yri3zr/6KrjKxVXHWvcbVNVuRm4M4/dba9726d9afd6ac3e0bb6c4d5a4dd088/SG_Web_Image_Side_Rosemary_Focaccia.jpg?w=600&q=75"
-      },
-      {
-        "name": "Roasted Sweet Potatoes",
-        "description": "Warm roasted sweet potatoes served with a choice of hot honey mustard or green goddess ranch",
-        "image": "https://images.ctfassets.net/eum7w7yri3zr/5emJWQD3CfWTvVfJbSG8G7/edf1cfed73259bd969af2f685b927884/SG_Web_Image_Side_Roasted_Sweet_Potatoes.jpg?w=600&q=75"
-      },
-      {
-        "name": "HIBISCUS CLOVER TEA",
-        "description": "Refreshing crimson clover tea mixed with bright berries and tangy hibiscus",
-        "image": "https://images.ctfassets.net/eum7w7yri3zr/j28IU9sScvgvuvnQ5AkBj/a56a14858807fcd486277566fb11973d/SG_Web_Image_Beverage_Hibiscus_Berry_Tea.jpg?w=600&q=75"
-      },
-      {
-        "name": "Kale Caesar",
-        "description": "Antibiotic-free roasted chicken, tomatoes, shaved parmesan, parmesan crisps, organic shredded kale, chopped romaine, lime squeeze and caesar",
-        "image": "https://images.ctfassets.net/eum7w7yri3zr/5418ra5b4TcMHRxOIobxUx/db9774df0dc69cf6b0aa8c40460a43a0/SG_Web_Image_Salad_Kale_Caesar_Chicken.png?w=600&q=75"
-      }
-    ],
-    "socialLinks": [
-      "https://www.tiktok.com/@sweetgreen",
-      "https://www.instagram.com/sweetgreen/",
-      "https://twitter.com/sweetgreen",
-      "http://facebook.com/sweetgreen"
-    ],
-    "scrapedAt": "2025-12-04T20:05:11.913Z",
-    "sourceUrl": "https://www.sweetgreen.com/"
+    "scrapedAt": "2025-12-10T04:10:03.941Z",
+    "sourceUrl": "https://www.sweetgreen.com/menu"
   },
   "timing": {
-    "total": 26393,
-    "pageLoad": 25001,
-    "extraction": 65,
-    "colorExtraction": 1166
+    "total": 31093,
+    "pageLoad": 31048
   }
 }

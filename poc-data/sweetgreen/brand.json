@@ -1,0 +1,24 @@
+{
+  "name": "sweetgreen",
+  "slug": "sweetgreen",
+  "usp": "Fresh, plant-forward, earth friendly food.",
+  "logo": {
+    "url": "/sweet-green-logo.png"
+  },
+  "contact": {
+    "website": "https://www.sweetgreen.com",
+    "address": null
+  },
+  "mainDishType": "salad",
+  "tone": "fresh-modern",
+  "notes": {
+    "brandIdentity": "Health-focused, sustainable, modern, clean aesthetic",
+    "signatureItems": [
+      "Harvest Bowl",
+      "Kale Caesar",
+      "Chicken Pesto Parm",
+      "Garlic Parm Cauli Bowl"
+    ],
+    "visualStyle": "Bright, natural lighting, fresh ingredients, vibrant colors"
+  }
+}

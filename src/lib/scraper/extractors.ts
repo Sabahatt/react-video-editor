@@ -1,6 +1,6 @@
 /**
  * DOM Extractors - Functions to extract data from web pages
- * Optimized for restaurant websites
+ * Optimized for restaurant websites and video ad generation
  */
 
 import type { Page } from 'playwright';
@@ -171,7 +171,10 @@ export async function extractImages(page: Page, baseUrl: string, maxImages = 20)
       alt?: string;
       width?: number;
       height?: number;
-      type: 'logo' | 'hero' | 'product' | 'background' | 'unknown';
+      type: 'logo' | 'hero' | 'product' | 'background';
+      productName?: string;
+      productDescription?: string;
+      foodType?: 'pizza' | 'salad' | 'bowl' | 'doughnut' | 'pastry' | 'bread' | 'sides' | 'protein' | 'appetizer';
     }> = [];
 
     const seen = new Set<string>();
@@ -262,13 +265,13 @@ export async function extractImages(page: Page, baseUrl: string, maxImages = 20)
       return null;
     };
 
-    // Helper to determine image type based on context
+    // Helper to determine image type based on context - no 'unknown' return
     const getImageType = (
       img: HTMLImageElement,
       url: string,
       effectiveWidth: number,
       effectiveHeight: number
-    ): 'logo' | 'hero' | 'product' | 'background' | 'unknown' => {
+    ): 'logo' | 'hero' | 'product' | 'background' => {
       const classes = (img.className || '').toLowerCase();
       const alt = (img.alt || '').toLowerCase();
       const id = (img.id || '').toLowerCase();
@@ -286,6 +289,9 @@ export async function extractImages(page: Page, baseUrl: string, maxImages = 20)
         return 'hero';
       }
 
+      // Check for background
+      if (/background|bg|cover/i.test(classes)) return 'background';
+
       // Check for food/product - expand detection
       if (
         /product|menu|food|dish|item|gallery|grid|card|section/i.test(classes + parentClasses + grandparentClasses) ||
@@ -296,22 +302,18 @@ export async function extractImages(page: Page, baseUrl: string, maxImages = 20)
         return 'product';
       }
 
-      // Check for background
-      if (/background|bg|cover/i.test(classes)) return 'background';
-
       // Infer from size - larger images are likely hero or product
       if (effectiveWidth > 600 && effectiveHeight > 400) {
-        return effectiveWidth / effectiveHeight > 1.8 ? 'hero' : 'product';
+        return effectiveWidth / effectiveHeight > 2.5 ? 'hero' : 'product';
       }
 
       // Medium-sized images in gallery context likely products
       if (effectiveWidth > 200 && effectiveHeight > 200) {
-        if (/gallery|grid|list|menu/i.test(parentClasses + grandparentClasses)) {
-          return 'product';
-        }
+        return 'product';
       }
 
-      return 'unknown';
+      // Default to product for restaurant sites - most images are food
+      return 'product';
     };
 
     // 1. Extract from <img> elements
@@ -338,17 +340,86 @@ export async function extractImages(page: Page, baseUrl: string, maxImages = 20)
       const effectiveWidth = width || attrWidth;
       const effectiveHeight = height || attrHeight;
 
-      // Skip tiny images only if we know their size
-      if (effectiveWidth > 0 && effectiveHeight > 0 && (effectiveWidth < 50 || effectiveHeight < 50)) continue;
+      // Skip tiny images (icons) - increased threshold
+      if (effectiveWidth > 0 && effectiveHeight > 0 && (effectiveWidth < 100 || effectiveHeight < 100)) continue;
+
+      // Get product context from alt text first, then nearby elements
+      const altText = img.alt || '';
+
+      // Inline product context extraction (avoid function declarations in page.evaluate)
+      let contextName: string | undefined;
+      let contextDescription: string | undefined;
+
+      // Look for product context in parent containers
+      const parentSelectors = ['figure', 'article', '.menu-item', '.product-card', '.food-item', '[class*="item"]', '[class*="product"]', '[class*="card"]'];
+      let container: Element | null = null;
+      for (const sel of parentSelectors) {
+        container = img.closest(sel);
+        if (container) break;
+      }
+
+      if (container) {
+        // Try to find heading in container
+        const heading = container.querySelector('h1, h2, h3, h4, h5, [class*="title"], [class*="name"]');
+        if (heading?.textContent) {
+          const text = heading.textContent.trim();
+          if (text.length > 2 && text.length < 100) {
+            contextName = text;
+          }
+        }
+
+        // Try to find description
+        const desc = container.querySelector('p, [class*="description"], [class*="desc"]');
+        if (desc?.textContent) {
+          const text = desc.textContent.trim();
+          if (text.length > 10 && text.length < 300) {
+            contextDescription = text;
+          }
+        }
+      }
+
+      // Also check figcaption
+      const figcaption = img.closest('figure')?.querySelector('figcaption');
+      if (figcaption?.textContent && !contextName) {
+        contextName = figcaption.textContent.trim();
+      }
+
+      const productName = contextName || (altText ? altText.replace(/[\u{1F300}-\u{1F9FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]/gu, '').trim() : undefined);
+
+      // Skip drinks
+      const textToCheck = `${productName || ''} ${contextDescription || ''} ${altText}`;
+      if (/\b(drink|beverage|tea|coffee|juice|water|soda|lemonade|smoothie|beer|wine|cocktail)\b/i.test(textToCheck)) continue;
+
+      // Skip UI elements / non-products
+      if (/\b(add topping|order now|view menu|logo|icon|button|arrow)\b/i.test(textToCheck)) continue;
 
       const type = getImageType(img, url, effectiveWidth, effectiveHeight);
 
+      // Skip logos in product extraction (they'll be handled separately)
+      if (type === 'logo') continue;
+
+      // Detect food type inline (avoid IIFE which causes esbuild __name injection)
+      const foodTypeText = `${productName || ''} ${contextDescription || ''} ${altText}`.toLowerCase();
+      let foodType: 'pizza' | 'salad' | 'bowl' | 'doughnut' | 'pastry' | 'bread' | 'sides' | 'protein' | 'appetizer' | undefined;
+      if (/pizza|slice|margherita|pepperoni|sicilian/.test(foodTypeText)) foodType = 'pizza';
+      else if (/salad|greens|kale|caesar|arugula/.test(foodTypeText)) foodType = 'salad';
+      else if (/bowl|harvest|grain|quinoa|rice/.test(foodTypeText)) foodType = 'bowl';
+      else if (/doughnut|donut|old.?fashioned|glazed|fritter/.test(foodTypeText)) foodType = 'doughnut';
+      else if (/pastry|croissant|muffin/.test(foodTypeText)) foodType = 'pastry';
+      else if (/bread|focaccia|baguette/.test(foodTypeText)) foodType = 'bread';
+      else if (/potato|fries|meatball|wings/.test(foodTypeText)) foodType = 'sides';
+      else if (/chicken|steak|salmon|fish|beef/.test(foodTypeText)) foodType = 'protein';
+      else if (/appetizer|starter|antipasto/.test(foodTypeText)) foodType = 'appetizer';
+
       images.push({
         url,
-        alt: img.alt || undefined,
+        alt: altText || undefined,
         width: effectiveWidth || undefined,
         height: effectiveHeight || undefined,
         type,
+        productName: productName || undefined,
+        productDescription: contextDescription,
+        foodType,
       });
     }
 
@@ -638,9 +709,22 @@ export async function extractImages(page: Page, baseUrl: string, maxImages = 20)
       }
     }
 
-    // Sort: prioritize product images, then hero, then others
-    const typePriority = { product: 0, hero: 1, background: 2, logo: 3, unknown: 4 };
-    images.sort((a, b) => typePriority[a.type] - typePriority[b.type]);
+    // Sort: prioritize products with names, then by type, then by size (larger first)
+    images.sort((a, b) => {
+      // First by type
+      const typePriority = { product: 0, hero: 1, background: 2, logo: 3 };
+      const typeCompare = typePriority[a.type] - typePriority[b.type];
+      if (typeCompare !== 0) return typeCompare;
+
+      // Then by whether they have a product name
+      if (a.productName && !b.productName) return -1;
+      if (!a.productName && b.productName) return 1;
+
+      // Then by size (larger images first - better for video)
+      const aSize = (a.width || 0) * (a.height || 0);
+      const bSize = (b.width || 0) * (b.height || 0);
+      return bSize - aSize;
+    });
 
     return images.slice(0, max);
   }, { base: baseUrl, max: maxImages });

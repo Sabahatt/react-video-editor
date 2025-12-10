@@ -1,108 +1,193 @@
 {
   "success": true,
   "data": {
-    "brand": {
-      "name": "Doughnut Vault",
-      "tagline": "LIFE IS SWEET."
-    },
-    "logo": "http://static1.squarespace.com/static/66675789efc1680422bf043f/t/6672d25f5162aa7fa7f5671d/1718800991373/DV_SocialShare.png?format=1500w",
     "images": [
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/0771e5e5-7a3f-470f-86ec-c09a822a6a3e/DV-SiteMock-menu_July_Longest.jpg",
+        "width": 1800,
+        "height": 7923,
+        "type": "product",
+        "productName": "The Classics",
+        "productDescription": "Buttermilk, Triple Chocolate, Pistachio, Lemon Poppyseed, Almond"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/23362ecf-8a4a-4ec5-8416-654ea5c9a6a3/DV-doughnut_mobilelongest.png",
+        "width": 1440,
+        "height": 3511,
+        "type": "product",
+        "productName": "The Classics",
+        "productDescription": "Buttermilk, Triple Chocolate, Pistachio, Lemon Poppyseed, Almond"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/998a91a9-2b13-493d-9b1b-0bd779509614/4X5A9291.jpg",
+        "width": 1909,
+        "height": 995,
+        "type": "product",
+        "productName": "The Classics",
+        "productDescription": "Buttermilk, Triple Chocolate, Pistachio, Lemon Poppyseed, Almond"
+      },
       {
         "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/a34fbdbe-fab1-4355-bf30-589798122201/Doughnut-Vault-Logo.png?format=1500w",
         "alt": "Doughnut Vault",
         "width": 1273,
         "height": 852,
-        "type": "product"
-      },
-      {
-        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/eb8101f5-0fc9-4eb5-a42a-429689c84acb/DV-Hero.png",
-        "width": 1919,
-        "height": 1271,
-        "type": "product"
-      },
-      {
-        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/ee01935b-c312-499f-a38d-05ce900d8d2d/1B9A8047.jpg",
-        "width": 1048,
-        "height": 946,
-        "type": "product"
-      },
-      {
-        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/6a8265a9-22ae-4245-9d27-114efbef2388/4X5A9302.jpg",
-        "width": 1535,
-        "height": 2303,
-        "type": "product"
+        "type": "product",
+        "productName": "Doughnut Vault",
+        "productDescription": "Buttermilk, Triple Chocolate, Pistachio, Lemon Poppyseed, Almond",
+        "foodType": "doughnut"
       },
       {
         "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/45fae570-8794-4029-a44a-e2e842b6eada/donut.png",
         "alt": "A donut",
         "width": 800,
         "height": 753,
-        "type": "product"
+        "type": "product",
+        "productName": "A donut",
+        "productDescription": "Buttermilk, Triple Chocolate, Pistachio, Lemon Poppyseed, Almond",
+        "foodType": "doughnut"
       },
       {
-        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/af3f44e7-d35e-4682-8d7e-b83da96b7e5a/DV-Donuts.png",
-        "alt": "Doughnut vault donuts hand crafted and old fashioned style donuts with classic painted look",
-        "width": 1280,
-        "height": 465,
-        "type": "hero"
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/5aa4ec97-535d-49e3-95e4-9128b61ce60b/_MG_3033-2.png",
+        "alt": "_MG_3033-2.png",
+        "width": 996,
+        "height": 539,
+        "type": "product",
+        "productName": "_MG_3033-2.png"
       },
       {
-        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/e0cc5484-0761-4ec2-a679-d5fff34ebc40/DV-Wingding-12.png",
-        "width": 160,
-        "height": 261,
-        "type": "unknown"
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/3a5cf978-2ec2-471b-b268-5c40ccb8bd2d/Screenshot+2024-07-01+at+11.23.22%E2%80%AFAM.png",
+        "alt": "Screenshot 2024-07-01 at 11.23.22 AM.png",
+        "width": 903,
+        "height": 539,
+        "type": "product",
+        "productName": "Screenshot 2024-07-01 at 11.23.22 AM.png"
       },
       {
-        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/edfb2dc7-6289-48c0-becf-aab8aae433a2/DV-Wingding-13.png",
-        "width": 160,
-        "height": 261,
-        "type": "unknown"
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/50f4e556-9bcd-4609-ba5f-2ac55d7fa15a/_MG_9700.jpg",
+        "alt": "_MG_9700.jpg",
+        "width": 859,
+        "height": 540,
+        "type": "product",
+        "productName": "_MG_9700.jpg"
       },
       {
-        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/c7926c49-42b6-40da-8ee7-f7f69ecaa9fc/DV-Center_wingding.png",
-        "width": 320,
-        "height": 187,
-        "type": "unknown"
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/11b7dd6e-e768-4056-91b0-821a81e5c554/CleanShot+2024-06-14+at+13.53.32%402x.png",
+        "alt": "CleanShot 2024-06-14 at 13.53.32@2x.png",
+        "width": 829,
+        "height": 540,
+        "type": "product",
+        "productName": "CleanShot 2024-06-14 at 13.53.32@2x.png"
       },
       {
-        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/30e7da97-794e-4514-810e-e3c699471bfa/Hogsalt+Logo+Cream_Final-01.png",
-        "width": 320,
-        "height": 65,
-        "type": "unknown"
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/cc219f45-6ff2-438c-a7b5-dfef1d8cfd0a/D57DE37A-2876-436D-977A-69B3939AEED0+%281%29.jpeg",
+        "alt": "D57DE37A-2876-436D-977A-69B3939AEED0 (1).jpeg",
+        "width": 823,
+        "height": 540,
+        "type": "product",
+        "productName": "D57DE37A-2876-436D-977A-69B3939AEED0 (1).jpeg"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/629f629d-fd80-4f1b-8289-b1f336d7468d/DV-Catering_Hero.png",
+        "alt": "DV-Catering_Hero.png",
+        "width": 811,
+        "height": 540,
+        "type": "product",
+        "productName": "DV-Catering_Hero.png"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/8b1b07c7-ebb7-49fb-bdf8-61f8f39ed76b/4X5A9325.jpg",
+        "alt": "4X5A9325.jpg",
+        "width": 810,
+        "height": 540,
+        "type": "product",
+        "productName": "4X5A9325.jpg"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/ee01935b-c312-499f-a38d-05ce900d8d2d/1B9A8047.jpg",
+        "alt": "1B9A8047.jpg",
+        "width": 598,
+        "height": 540,
+        "type": "product",
+        "productName": "1B9A8047.jpg"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/1e99fa65-6881-4de6-9e3c-023b6cc28bcf/DV-doughnutillustrations-24.png",
+        "width": 480,
+        "height": 546,
+        "type": "product",
+        "productName": "The Classics",
+        "productDescription": "Buttermilk, Triple Chocolate, Pistachio, Lemon Poppyseed, Almond"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/c84f6a71-eee1-437e-aa77-868b654826f0/4X5A8150.jpg",
+        "alt": "4X5A8150.jpg",
+        "width": 360,
+        "height": 540,
+        "type": "product",
+        "productName": "4X5A8150.jpg"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/bf64fa48-bd27-4b0b-bc55-30612dc6ddfc/Doughnuts-08.png",
+        "width": 480,
+        "height": 388,
+        "type": "product",
+        "productName": "The Classics",
+        "productDescription": "Buttermilk, Triple Chocolate, Pistachio, Lemon Poppyseed, Almond"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/c851d12f-4ca3-4247-8ccb-2deced925e74/Doughnuts-10.png",
+        "width": 480,
+        "height": 388,
+        "type": "product",
+        "productName": "The Classics",
+        "productDescription": "Buttermilk, Triple Chocolate, Pistachio, Lemon Poppyseed, Almond"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/cf35d8b9-68f6-4bce-948e-fd6982bb97b7/Doughnuts-11.png",
+        "width": 480,
+        "height": 388,
+        "type": "product",
+        "productName": "The Classics",
+        "productDescription": "Buttermilk, Triple Chocolate, Pistachio, Lemon Poppyseed, Almond"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/729e0b61-9618-4c80-b4dc-1609b65a5abe/Doughnuts-07.png",
+        "width": 480,
+        "height": 388,
+        "type": "product",
+        "productName": "The Classics",
+        "productDescription": "Buttermilk, Triple Chocolate, Pistachio, Lemon Poppyseed, Almond"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/13defee5-e993-4272-a672-f87e5d6982d4/Doughnuts-12.png",
+        "width": 480,
+        "height": 388,
+        "type": "product",
+        "productName": "The Classics",
+        "productDescription": "Buttermilk, Triple Chocolate, Pistachio, Lemon Poppyseed, Almond"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/c3d5a2db-4f61-4d85-af30-f094a121ba4b/Doughnuts-09.png",
+        "width": 480,
+        "height": 388,
+        "type": "product",
+        "productName": "The Classics",
+        "productDescription": "Buttermilk, Triple Chocolate, Pistachio, Lemon Poppyseed, Almond"
+      },
+      {
+        "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/a34fbdbe-fab1-4355-bf30-589798122201/Doughnut-Vault-Logo.png",
+        "width": 480,
+        "height": 321,
+        "type": "product",
+        "productName": "The Classics",
+        "productDescription": "Buttermilk, Triple Chocolate, Pistachio, Lemon Poppyseed, Almond"
       }
     ],
-    "colors": {
-      "primary": "#e8e1c8",
-      "secondary": "#666666",
-      "accent": "#609ec4",
-      "background": "#fffdfa",
-      "text": "#001117",
-      "palette": [
-        "#e8e1c8",
-        "#609ec4",
-        "#fffdfa",
-        "#001117",
-        "#333333",
-        "#666666",
-        "#007bff",
-        "#ffffff"
-      ]
-    },
-    "contact": {
-      "hours": "DAILY: 7:30AM – 1:00PM",
-      "website": "https://www.doughnutvault.com/"
-    },
-    "socialLinks": [
-      "https://www.instagram.com/doughnutvault/?hl=en",
-      "https://www.facebook.com/doughnutvault/"
-    ],
-    "scrapedAt": "2025-12-04T20:03:58.932Z",
-    "sourceUrl": "https://www.doughnutvault.com/"
+    "scrapedAt": "2025-12-10T04:10:33.328Z",
+    "sourceUrl": "https://www.doughnutvault.com/the-classics"
   },
   "timing": {
-    "total": 18447,
-    "pageLoad": 16973,
-    "extraction": 56,
-    "colorExtraction": 1226
+    "total": 29371,
+    "pageLoad": 29352
   }
 }

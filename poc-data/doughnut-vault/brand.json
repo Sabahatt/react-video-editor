@@ -1,0 +1,26 @@
+{
+  "name": "Doughnut Vault",
+  "slug": "doughnut-vault",
+  "usp": "Artisanal doughnuts handcrafted daily using old world recipes",
+  "logo": {
+    "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/a34fbdbe-fab1-4355-bf30-589798122201/Doughnut-Vault-Logo.png?format=1500w"
+  },
+  "contact": {
+    "website": "https://www.doughnutvault.com",
+    "address": "401 N Franklin St. Chicago, IL 60654",
+    "hours": "DAILY: 7:30AM - 1:00PM.",
+    "email": "contact@doughtnutvault.com"
+  },
+  "mainDishType": "doughnut",
+  "tone": "artisanal-warm",
+  "notes": {
+    "brandIdentity": "Artisanal, handcrafted, old-fashioned style, Chicago institution",
+    "signatureItems": [
+      "Buttermilk Old Fashioned",
+      "Glazed",
+      "Pistachio",
+      "Stack varieties"
+    ],
+    "visualStyle": "Warm bakery lighting, glossy glazes, soft textures, morning vibes, fresh"
+  }
+}
