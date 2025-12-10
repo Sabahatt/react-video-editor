@@ -45,16 +45,17 @@ interface GenerationStep {
   status: "pending" | "active" | "complete" | "error";
 }
 
+// Simulated delay for UX (makes the demo feel more realistic)
+const simulateDelay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
 export default function Home() {
   const router = useRouter();
   const [selectedRestaurant, setSelectedRestaurant] = useState<string>("");
   const [status, setStatus] = useState<GenerationStatus>("idle");
   const [error, setError] = useState<string>("");
   const [steps, setSteps] = useState<GenerationStep[]>([
-    { name: "Scraping website", status: "pending" },
-    { name: "Generating script", status: "pending" },
-    { name: "Matching visuals", status: "pending" },
-    { name: "Finding stock videos", status: "pending" },
+    { name: "Loading brand data", status: "pending" },
+    { name: "Generating script & scenes", status: "pending" },
     { name: "Building timeline", status: "pending" },
   ]);
 
@@ -76,29 +77,30 @@ export default function Home() {
       return;
     }
 
-    console.log("[Generation] Starting for:", restaurantConfig.name);
+    console.log("[Generation] Starting POC demo for:", restaurantConfig.name);
     setStatus("generating");
     setError("");
     setSteps((prev) => prev.map((step) => ({ ...step, status: "pending" })));
 
     try {
-      // Step 1: Scraping
-      console.log("[Generation] Step 1: Scraping...");
+      // Step 1: Load Brand Data (pre-scraped for POC)
+      console.log("[Generation] Step 1: Loading brand data...");
       updateStep(0, "active");
+      await simulateDelay(600); // Brief delay for UX
       const scrapeRes = await fetch("/api/scrape", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url: restaurantConfig.url }),
       });
       const scrapeResult = await scrapeRes.json();
-      console.log("[Generation] Step 1: Scraping complete, success:", scrapeResult.success);
+      console.log("[Generation] Step 1: Brand data loaded, success:", scrapeResult.success);
       if (!scrapeResult.success) {
-        throw new Error(`Scraping failed: ${scrapeResult.error}`);
+        throw new Error(`Failed to load brand data: ${scrapeResult.error}`);
       }
       updateStep(0, "complete");
 
-      // Step 2: Generate Script
-      console.log("[Generation] Step 2: Generating script...");
+      // Step 2: Generate Script (v3 - includes scene planning, image selection, akool prompts)
+      console.log("[Generation] Step 2: Generating script with scenes...");
       updateStep(1, "active");
       const scriptRes = await fetch("/api/generate-script", {
         method: "POST",
@@ -109,72 +111,77 @@ export default function Home() {
           description: scrapeResult.data?.brand?.description,
           cuisine: scrapeResult.data?.brand?.cuisine,
           tone: restaurantConfig.tone,
-          duration: 10,
+          duration: 20,
           url: restaurantConfig.url,
+          images: scrapeResult.data?.images || [],
         }),
       });
       const scriptResult = await scriptRes.json();
       console.log("[Generation] Step 2: Script generated, success:", scriptResult.success);
+      console.log("[Generation] Scene plan:", scriptResult.scenePlan);
       if (!scriptResult.success) {
         throw new Error(`Script generation failed: ${scriptResult.error}`);
       }
       updateStep(1, "complete");
 
-      // Step 3: Match Visuals
-      console.log("[Generation] Step 3: Matching visuals...");
+      // Step 3: Build Timeline
+      console.log("[Generation] Step 3: Building timeline...");
       updateStep(2, "active");
-      const matchRes = await fetch("/api/match-visuals", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          script: scriptResult.script,
-          scrapedData: scrapeResult.data,
-        }),
-      });
-      const matchResult = await matchRes.json();
-      console.log("[Generation] Step 3: Visuals matched, success:", matchResult.success);
-      if (!matchResult.success) {
-        throw new Error(`Visual matching failed: ${matchResult.error}`);
-      }
-      updateStep(2, "complete");
-
-      // Step 4: Resolve Stock Videos
-      updateStep(3, "active");
-      console.log("[Generation] Step 4: Resolving stock videos...");
-      const stockRes = await fetch("/api/resolve-stock-videos", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          script: matchResult.script,
-          brand: {
-            ...matchResult.brand,
-            cuisine: scrapeResult.data?.brand?.cuisine,
-          },
-        }),
-      });
-      console.log("[Generation] Step 4: Stock videos response received");
-      const stockResult = await stockRes.json();
-      console.log("[Generation] Step 4: Stock videos parsed:", stockResult.success);
-      if (!stockResult.success) {
-        throw new Error(`Stock video resolution failed: ${stockResult.error}`);
-      }
-      updateStep(3, "complete");
-
-      // Step 5: Build Timeline
-      console.log("[Generation] Step 5: Building timeline...");
-      updateStep(4, "active");
       const { buildTimelineDesign } = await import("@/lib/timeline-builder");
-      const design = buildTimelineDesign(stockResult.script, stockResult.brand);
-      console.log("[Generation] Step 5: Timeline built, tracks:", design.tracks?.length);
-      updateStep(4, "complete");
+
+      // Transform script result to format expected by timeline builder
+      const enrichedScript = {
+        fullScript: scriptResult.fullScript,
+        scenes: scriptResult.scenes.map((scene: {
+          sceneId: string;
+          voiceoverText: string;
+          displayText: string;
+          duration: number;
+          visualMode: string;
+          kenBurnsDirection?: string;
+          selectedImage: { url: string; alt: string; foodType?: string } | null;
+          akoolConfig?: { prompt: string } | null;
+        }) => ({
+          id: scene.sceneId,
+          voiceoverText: scene.voiceoverText,
+          displayText: scene.displayText,
+          duration: scene.duration,
+          visualMode: scene.visualMode,
+          kenBurnsDirection: scene.kenBurnsDirection,
+          visual: scene.selectedImage ? {
+            type: scene.visualMode === 'animated' ? 'animated_image' : 'static_image',
+            url: scene.selectedImage.url,
+            alt: scene.selectedImage.alt,
+            prompt: scene.akoolConfig?.prompt,
+          } : {
+            type: 'logo_brand',
+            url: scrapeResult.data?.brand?.logo || null,
+            alt: restaurantConfig.name,
+          },
+          foodType: scene.selectedImage?.foodType,
+        })),
+        tone: scriptResult.tone,
+        totalDuration: scriptResult.totalDuration,
+      };
+
+      const brand = {
+        name: restaurantConfig.name,
+        colors: scrapeResult.data?.brand?.colors,
+        logo: scrapeResult.data?.brand?.logo,
+        cuisine: scrapeResult.data?.brand?.cuisine,
+      };
+
+      const design = buildTimelineDesign(enrichedScript, brand);
+      console.log("[Generation] Step 3: Timeline built, tracks:", design.tracks?.length);
+      updateStep(2, "complete");
 
       setStatus("complete");
       console.log("[Generation] All steps complete, navigating to editor...");
 
       // Store the generated design and media in sessionStorage
       sessionStorage.setItem("generatedDesign", JSON.stringify(design));
-      sessionStorage.setItem("generatedBrand", JSON.stringify(stockResult.brand));
-      sessionStorage.setItem("generatedScript", JSON.stringify(stockResult.script));
+      sessionStorage.setItem("generatedBrand", JSON.stringify(brand));
+      sessionStorage.setItem("generatedScript", JSON.stringify(enrichedScript));
 
       // Navigate to editor
       router.push("/edit");
@@ -324,7 +331,7 @@ export default function Home() {
 
         {/* Footer */}
         <p className="text-center text-xs text-muted-foreground">
-          Pipeline: Scrape → Script → Visual Match → Stock Videos → Editor
+          POC Demo: Brand Data → Script + Scenes → Timeline → Editor
         </p>
       </div>
     </div>

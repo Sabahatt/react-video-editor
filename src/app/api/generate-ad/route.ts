@@ -1,21 +1,23 @@
 /**
- * Ad Generation Orchestration API - v3
+ * Ad Generation Orchestration API - v3 (POC Demo Mode)
  *
  * POC Plan Implementation:
- * 1. Scrape website
+ * 1. Scrape website (uses pre-scraped data for POC restaurants)
  * 2. Generate script with POC brand context
  * 3. Plan scenes (animated vs static with pattern variation)
  * 4. Select images (main dish priority for animated, supporting for static)
  * 5. Generate POC-specific Akool animation prompts
- * 6. Animate images via Akool API (optional, only for animated scenes)
+ * 6. Animate images via Akool API (optional, disabled by default for POC)
  * 7. Build timeline for editor
  *
  * Key Changes in v3:
+ * - Pre-scraped data for POC restaurants (fast, consistent quality)
  * - Scene planner with 5 pattern variations for animated/static balance
  * - Intro always static (USP focus), body has 2 animated + 2 static
  * - Main dish prioritization for animated scenes
  * - POC-specific Akool prompts with texture inference
  * - Ken Burns direction for static scenes
+ * - animateImages defaults to false (no Akool credits for demo)
  */
 
 import { NextRequest, NextResponse } from "next/server";
@@ -32,7 +34,7 @@ import {
   type ScenePlan,
 } from "@/lib/script-generator/scene-planner";
 
-// POC Restaurant URLs
+// POC Restaurant configs
 const POC_RESTAURANTS: Record<
   string,
   { url: string; name: string; tone: string }
@@ -56,7 +58,7 @@ const POC_RESTAURANTS: Record<
 
 interface GenerateAdRequest {
   restaurant: string;
-  /** If true, animate images via Akool API (consumes credits) */
+  /** If true, animate images via Akool API (consumes credits). Defaults to false for POC. */
   animateImages?: boolean;
   /** Optional: Force a specific pattern (0-4) for testing */
   patternIndex?: number;
@@ -65,6 +67,7 @@ interface GenerateAdRequest {
 export async function POST(request: NextRequest) {
   try {
     const body: GenerateAdRequest = await request.json();
+    // Default animateImages to false for POC demo (no Akool credits)
     const { restaurant, animateImages = false, patternIndex } = body;
 
     // Validate restaurant
@@ -80,11 +83,12 @@ export async function POST(request: NextRequest) {
       process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
     console.log(`\n${"=".repeat(60)}`);
-    console.log(`GENERATING AD v3: ${restaurantConfig.name}`);
+    console.log(`GENERATING AD v3 (POC Demo): ${restaurantConfig.name}`);
+    console.log(`  Animation: ${animateImages ? 'Enabled (Akool)' : 'Disabled (Ken Burns only)'}`);
     console.log("=".repeat(60));
 
-    // ============ Step 1: Scrape ============
-    console.log("\n[Step 1] Scraping website...");
+    // ============ Step 1: Scrape (uses pre-scraped POC data automatically) ============
+    console.log("\n[Step 1] Loading brand data...");
     const scrapeRes = await fetch(`${baseUrl}/api/scrape`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -96,7 +100,7 @@ export async function POST(request: NextRequest) {
       throw new Error(`Scraping failed: ${scrapeResult.error}`);
     }
     const scrapedImages = scrapeResult.data?.images || [];
-    console.log(`  ✓ Scraped: ${scrapedImages.length} images`);
+    console.log(`  ✓ Loaded: ${scrapedImages.length} images`);
 
     // ============ Step 2: Generate Script ============
     console.log("\n[Step 2] Generating script...");
