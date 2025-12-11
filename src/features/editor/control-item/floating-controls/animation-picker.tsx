@@ -1,6 +1,6 @@
 import { X } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ADD_ANIMATION } from "@designcombo/state";
+import { ADD_ANIMATION, EDIT_OBJECT } from "@designcombo/state";
 import { dispatch } from "@designcombo/events";
 import useStore from "../../store/use-store";
 import { Animation, presets } from "../../player/animated";
@@ -11,6 +11,65 @@ import { Easing } from "remotion";
 import { PresetName } from "../../player/animated/presets";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { AnimationDuration } from "../common/animation-duration";
+
+const removeAnimation = (
+  type: "in" | "out" | "loop",
+  activeIds: string[],
+  trackItemsMap: any
+) => {
+  if (!activeIds.length) return;
+
+  const currentItem = trackItemsMap[activeIds[0]];
+  const currentAnimations = currentItem?.animations || {};
+
+  // Create new animations object without the removed type
+  const newAnimations = { ...currentAnimations };
+  delete newAnimations[type];
+
+  dispatch(EDIT_OBJECT, {
+    payload: {
+      [activeIds[0]]: {
+        animations: Object.keys(newAnimations).length > 0 ? newAnimations : undefined
+      }
+    }
+  });
+};
+
+export const createNoneButton = (
+  type: "in" | "out" | "loop",
+  activeIds: string[],
+  trackItemsMap: any
+) => {
+  let borderColor = "";
+  if (trackItemsMap && activeIds.length) {
+    const currentItem = trackItemsMap[activeIds[0]];
+    const animations = currentItem?.animations;
+    const hasAnimation = animations?.[type]?.name;
+    if (!hasAnimation) {
+      borderColor = "border-[#006239]";
+    }
+  }
+
+  return (
+    <div
+      key={`none-${type}`}
+      className={`flex cursor-pointer flex-col gap-2 text-center text-xs text-muted-foreground items-center justify-center border ${borderColor}`}
+      onClick={() => removeAnimation(type, activeIds, trackItemsMap)}
+    >
+      <div
+        className="flex items-center justify-center bg-muted/50"
+        style={{
+          width: "60px",
+          height: "60px",
+          borderRadius: "8px"
+        }}
+      >
+        <X className="w-6 h-6 text-muted-foreground" />
+      </div>
+      <div>None</div>
+    </div>
+  );
+};
 
 export const createPresetButtons = (
   filter: (key: string) => boolean,
@@ -142,6 +201,10 @@ export default function AnimationPicker({
 }) {
   const { activeIds, trackItemsMap } = useStore();
 
+  const noneInButton = createNoneButton("in", activeIds, trackItemsMap);
+  const noneOutButton = createNoneButton("out", activeIds, trackItemsMap);
+  const noneLoopButton = createNoneButton("loop", activeIds, trackItemsMap);
+
   const presetInButtons = createPresetButtons(
     (key) => key.includes("In"),
     "in",
@@ -190,12 +253,16 @@ export default function AnimationPicker({
 
         <TabsContent value="in">
           <ScrollArea className="h-[400px] w-full py-2">
-            <div className="grid grid-cols-3 gap-2 py-4">{presetInButtons}</div>
+            <div className="grid grid-cols-3 gap-2 py-4">
+              {noneInButton}
+              {presetInButtons}
+            </div>
           </ScrollArea>
         </TabsContent>
         <TabsContent value="loop">
           <ScrollArea className="h-[400px] w-full py-2">
             <div className="grid grid-cols-3 gap-2 py-4">
+              {noneLoopButton}
               {presetLoopButtons}
             </div>
           </ScrollArea>
@@ -203,6 +270,7 @@ export default function AnimationPicker({
         <TabsContent value="out">
           <ScrollArea className="h-[400px] w-full py-2">
             <div className="grid grid-cols-3 gap-2 py-4">
+              {noneOutButton}
               {presetOutButtons}
             </div>
           </ScrollArea>

@@ -6,9 +6,11 @@ import useLayoutStore from "../../store/use-layout-store";
 import { useIsLargeScreen } from "@/hooks/use-media-query";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import useStore from "../../store/use-store";
-import { createPresetButtons } from "../floating-controls/animation-picker";
+import { createPresetButtons, createNoneButton } from "../floating-controls/animation-picker";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { AnimationDuration } from "./animation-duration";
+import { presets } from "../../player/animated";
+import { useMemo } from "react";
 interface PresetTextProps {
   trackItem: ITrackItem & any;
   properties: any;
@@ -27,6 +29,37 @@ const SelectaAnimation = ({ trackItem }: { trackItem: ITrackItem & IText }) => {
   const { setFloatingControl } = useLayoutStore();
   const isLargeScreen = useIsLargeScreen();
   const { activeIds, trackItemsMap } = useStore();
+
+  // Get the current animation name from the track item
+  const selectedAnimationLabel = useMemo(() => {
+    if (!activeIds.length || !trackItemsMap) return "None";
+    const currentItem = trackItemsMap[activeIds[0]];
+    const animations = currentItem?.animations;
+
+    if (!animations) return "None";
+
+    // Check for any selected animation (in, out, or loop)
+    const animationTypes = ["in", "out", "loop"] as const;
+    const selectedNames: string[] = [];
+
+    for (const type of animationTypes) {
+      const animName = animations[type]?.name;
+      if (animName) {
+        const preset = presets[animName as keyof typeof presets];
+        if (preset?.name) {
+          selectedNames.push(preset.name);
+        }
+      }
+    }
+
+    if (selectedNames.length === 0) return "None";
+    if (selectedNames.length === 1) return selectedNames[0];
+    return `${selectedNames.length} selected`;
+  }, [activeIds, trackItemsMap]);
+
+  const noneInButton = createNoneButton("in", activeIds, trackItemsMap);
+  const noneOutButton = createNoneButton("out", activeIds, trackItemsMap);
+  const noneLoopButton = createNoneButton("loop", activeIds, trackItemsMap);
 
   const presetInButtons = createPresetButtons(
     (key) => key.includes("In"),
@@ -62,7 +95,7 @@ const SelectaAnimation = ({ trackItem }: { trackItem: ITrackItem & IText }) => {
             onClick={() => setFloatingControl("animation-picker")}
           >
             <div className="w-full text-left">
-              <p className="truncate">None</p>
+              <p className="truncate">{selectedAnimationLabel}</p>
             </div>
             <ChevronDown className="text-muted-foreground" size={14} />
           </Button>
@@ -78,6 +111,7 @@ const SelectaAnimation = ({ trackItem }: { trackItem: ITrackItem & IText }) => {
             <TabsContent value="in">
               <ScrollArea className="h-[300px]">
                 <div className="grid grid-cols-[repeat(auto-fit,minmax(100px,1fr))] gap-2 py-4">
+                  {noneInButton}
                   {presetInButtons}
                 </div>
               </ScrollArea>
@@ -85,6 +119,7 @@ const SelectaAnimation = ({ trackItem }: { trackItem: ITrackItem & IText }) => {
             <TabsContent value="loop">
               <ScrollArea className="h-[300px]">
                 <div className="grid grid-cols-[repeat(auto-fit,minmax(100px,1fr))] gap-2 py-4">
+                  {noneLoopButton}
                   {presetLoopButtons}
                 </div>
               </ScrollArea>
@@ -92,6 +127,7 @@ const SelectaAnimation = ({ trackItem }: { trackItem: ITrackItem & IText }) => {
             <TabsContent value="out">
               <ScrollArea className="h-[300px]">
                 <div className="grid grid-cols-[repeat(auto-fit,minmax(100px,1fr))] gap-2 py-4">
+                  {noneOutButton}
                   {presetOutButtons}
                 </div>
               </ScrollArea>
