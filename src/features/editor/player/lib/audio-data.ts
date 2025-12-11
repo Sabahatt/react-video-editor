@@ -33,10 +33,23 @@ export class AudioDataManager {
     } catch (error) {
       console.error(`Error loading audio data for ${src}:`, error);
 
-      // If it's an EncodingError (no audio track), just ignore it
-      if (error instanceof Error && error.name === "EncodingError") {
-        console.log(`No audio track found for ${src}, ignoring`);
-        return;
+      // Handle various audio decoding errors gracefully:
+      // - EncodingError: no audio track in the media
+      // - DOMException with "Unable to decode": browser can't decode the audio format
+      // - Other decoding-related errors
+      if (error instanceof Error) {
+        const errorName = error.name;
+        const errorMessage = error.message?.toLowerCase() || "";
+
+        if (
+          errorName === "EncodingError" ||
+          errorMessage.includes("unable to decode") ||
+          errorMessage.includes("decoding") ||
+          errorMessage.includes("audio data")
+        ) {
+          console.log(`Audio decoding failed for ${src}, ignoring (${errorName}: ${error.message})`);
+          return;
+        }
       }
 
       // For other errors, still throw them

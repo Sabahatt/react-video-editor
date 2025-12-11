@@ -93,11 +93,28 @@ class Audio extends Trimmable {
   }
 
   private async initialize() {
-    const audioData = await getAudioData(this.src);
-    this.barData = audioData;
-    this.bars = this.getBars(0, 0) as any;
-    this.canvas?.requestRenderAll();
-    this.onScrollChange({ scrollLeft: 0 });
+    try {
+      const audioData = await getAudioData(this.src);
+      this.barData = audioData;
+      this.bars = this.getBars(0, 0) as any;
+      this.canvas?.requestRenderAll();
+      this.onScrollChange({ scrollLeft: 0 });
+    } catch (error) {
+      // Handle audio decoding errors gracefully - waveform just won't show
+      if (error instanceof Error) {
+        const errorMessage = error.message?.toLowerCase() || "";
+        if (
+          error.name === "EncodingError" ||
+          errorMessage.includes("unable to decode") ||
+          errorMessage.includes("decoding") ||
+          errorMessage.includes("audio data")
+        ) {
+          console.log(`Audio waveform unavailable for ${this.src}: ${error.message}`);
+          return;
+        }
+      }
+      console.error(`Error loading audio waveform for ${this.src}:`, error);
+    }
   }
 
   public setSrc(src: string) {
