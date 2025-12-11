@@ -163,6 +163,23 @@ const DownloadPopover = ({ stateManager }: { stateManager: StateManager }) => {
 
     console.log({ data });
 
+    // Handle JSON export - direct download
+    if (exportType === "json") {
+      const jsonStr = JSON.stringify(data, null, 2);
+      const blob = new Blob([jsonStr], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `ad-${Date.now()}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      setOpen(false);
+      return;
+    }
+
+    // MP4 export - use render pipeline
     actions.setState({ payload: data });
     actions.startExport();
   };

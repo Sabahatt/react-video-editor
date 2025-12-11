@@ -21,6 +21,9 @@ import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import { Voice, VoiceFilters } from "../interfaces/editor";
+import { dispatch } from "@designcombo/events";
+import { ADD_AUDIO } from "@designcombo/state";
+import { generateId } from "@designcombo/timeline";
 
 export const AiVoice = () => {
   const [text, setText] = useState("");
@@ -213,16 +216,33 @@ export const AiVoice = () => {
       const data = await response.json();
 
       // Handle successful generation
-      // You can add logic here to handle the generated audio
-      // For example, add it to the timeline, play it, etc.
-      if (data.agent?.url) {
-        console.log("Generated audio URL:", data.agent.url);
-        console.log("Audio duration:", data.agent.duration);
+      if (data.agent?.url || data.url) {
+        const audioUrl = data.agent?.url || data.url;
+        console.log("Generated audio URL:", audioUrl);
 
-        toast.success("Voice generated successfully!");
+        // Add the generated audio to the timeline
+        const audioPayload = {
+          id: generateId(),
+          name: `AI Voice - ${selectedVoice.name.split(' - ')[0]}`,
+          type: 'audio' as const,
+          details: {
+            src: audioUrl,
+            volume: 100,
+          },
+          metadata: {
+            voiceId: selectedVoice.id,
+            voiceName: selectedVoice.name,
+            generatedText: text.trim().substring(0, 100),
+          },
+        };
 
-        // TODO: Add the generated audio to the editor timeline
-        // This would typically involve calling a store action or context function
+        dispatch(ADD_AUDIO, {
+          payload: audioPayload,
+          options: {},
+        });
+
+        toast.success("Voice generated and added to timeline!");
+        setText(""); // Clear the text after successful generation
       } else {
         toast.error("Voice generation completed but no audio URL received");
       }

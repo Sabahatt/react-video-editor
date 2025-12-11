@@ -1,47 +1,55 @@
 import { NextRequest, NextResponse } from "next/server";
 
+/**
+ * Fetch voices from ElevenLabs public API
+ * These are free premade voices with working preview URLs
+ */
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { limit = 20, page = 1, query = {} } = body;
-    console.log(query);
+    const { limit = 20, query = {} } = body;
 
-    // Build query with only non-empty arrays
-    const formattedQuery: any = {};
-
-    if (query.languages && query.languages.length > 0) {
-      formattedQuery.languages = query.languages;
-    }
-
-    if (query.genders && query.genders.length > 0) {
-      formattedQuery.genders = query.genders;
-    }
-
-    // Make request to external API
-    const response = await fetch(
-      "https://dubbing-152153811339.us-central1.run.app/search-voices",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-          // Add your API token here when you have one
-          // "Authorization": `Bearer ${process.env.VOICE_API_TOKEN}`,
-        },
-        body: JSON.stringify({
-          limit,
-          page,
-          query: formattedQuery
-        })
+    // Fetch voices from ElevenLabs public API (no API key needed for listing)
+    const response = await fetch("https://api.elevenlabs.io/v1/voices", {
+      headers: {
+        "Accept": "application/json"
       }
-    );
+    });
 
     if (!response.ok) {
-      throw new Error(`External API responded with status: ${response.status}`);
+      throw new Error(`ElevenLabs API error: ${response.status}`);
     }
 
     const data = await response.json();
 
-    return NextResponse.json(data);
+    // Transform ElevenLabs format to our format
+    let voices = data.voices.map((v: any) => ({
+      id: v.voice_id,
+      name: v.name + (v.labels?.descriptive ? ` - ${v.labels.descriptive}` : ''),
+      gender: v.labels?.gender || 'neutral',
+      age: v.labels?.age || 'adult',
+      useCase: v.labels?.use_case || 'general',
+      category: v.category || 'premade',
+      accent: v.labels?.accent || 'american',
+      previewUrl: v.preview_url
+    }));
+
+    // Apply gender filter
+    if (query.genders && query.genders.length > 0) {
+      voices = voices.filter((v: any) => query.genders.includes(v.gender));
+    }
+
+    // Apply language filter (ElevenLabs voices are mostly English)
+    if (query.languages && query.languages.length > 0 && !query.languages.includes('en')) {
+      // Filter out if looking for non-English only
+      voices = [];
+    }
+
+    return NextResponse.json({
+      voices: voices.slice(0, limit),
+      total: voices.length
+    });
+
   } catch (error) {
     console.error("Error fetching voices:", error);
     return NextResponse.json(

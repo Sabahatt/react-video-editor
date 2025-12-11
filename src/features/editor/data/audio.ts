@@ -1,27 +1,17 @@
 import { IAudio } from "@designcombo/types";
 
 export const AUDIOS = [
-  // https://ik.imagekit.io/pablituuu/like_a_player.mp3?updatedAt=1722278521488
-  {
-    id: "xxx0",
-    details: {
-      src: "https://cdn.designcombo.dev/audio/OpenAI%20CEO%20on%20Artificial%20Intelligence%20Changing%20Society.mp3"
-    },
-    name: "Open AI",
-    type: "audio",
-    metadata: {
-      author: "Open AI"
-    }
-  },
+  // === Background Music (Good for ads) ===
   {
     id: "xx1",
     details: {
       src: "https://cdn.designcombo.dev/audio/Dawn%20of%20change.mp3"
     },
-    name: "Dawn of change",
+    name: "Dawn of Change",
     type: "audio",
     metadata: {
-      author: "Roman Senyk"
+      author: "Roman Senyk",
+      mood: "Uplifting"
     }
   },
   {
@@ -32,7 +22,8 @@ export const AUDIOS = [
     name: "Hope",
     type: "audio",
     metadata: {
-      author: "Hugo Dujardin"
+      author: "Hugo Dujardin",
+      mood: "Inspiring"
     }
   },
   {
@@ -43,7 +34,8 @@ export const AUDIOS = [
     name: "Tenderness",
     type: "audio",
     metadata: {
-      author: "Benjamin Tissot"
+      author: "Benjamin Tissot",
+      mood: "Soft"
     }
   },
   {
@@ -51,10 +43,11 @@ export const AUDIOS = [
     details: {
       src: "https://cdn.designcombo.dev/audio/Piano%20Moment.mp3"
     },
-    name: "Piano moment",
+    name: "Piano Moment",
     type: "audio",
     metadata: {
-      author: "Benjamin Tissot"
+      author: "Benjamin Tissot",
+      mood: "Elegant"
     }
-  }
+  },
 ] as Partial<IAudio>[];
