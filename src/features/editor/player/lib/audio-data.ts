@@ -23,7 +23,6 @@ export class AudioDataManager {
 
   private async loadAudioData(src: string, id: string): Promise<void> {
     try {
-      console.log("Loading audio data for", src);
       const data = await getAudioData(src);
       this.audioDatas[id] = {
         data,
@@ -31,29 +30,18 @@ export class AudioDataManager {
       };
       this.cleanupCache();
     } catch (error) {
-      console.error(`Error loading audio data for ${src}:`, error);
-
-      // Handle various audio decoding errors gracefully:
-      // - EncodingError: no audio track in the media
+      // Handle all audio decoding errors gracefully - don't throw
+      // Common cases:
+      // - EncodingError: no audio track in the media (videos without audio)
       // - DOMException with "Unable to decode": browser can't decode the audio format
-      // - Other decoding-related errors
+      // - Network errors when fetching audio
+      // We simply skip loading audio data for items that fail - waveform/visualization won't show
       if (error instanceof Error) {
-        const errorName = error.name;
-        const errorMessage = error.message?.toLowerCase() || "";
-
-        if (
-          errorName === "EncodingError" ||
-          errorMessage.includes("unable to decode") ||
-          errorMessage.includes("decoding") ||
-          errorMessage.includes("audio data")
-        ) {
-          console.log(`Audio decoding failed for ${src}, ignoring (${errorName}: ${error.message})`);
-          return;
-        }
+        console.log(`Audio data unavailable for ${src}: ${error.name} - ${error.message}`);
+      } else {
+        console.log(`Audio data unavailable for ${src}:`, error);
       }
-
-      // For other errors, still throw them
-      throw error;
+      // Don't throw - gracefully handle by not adding to cache
     }
   }
 
@@ -127,7 +115,7 @@ export class AudioDataManager {
     this.items = this.items.map((item) => {
       if (item.id === newItem.id) {
         if (item.details.src !== newItem.details.src) {
-          this.loadAudioData(newItem.details.src, item.id).catch(console.error);
+          this.loadAudioData(newItem.details.src, item.id);
         }
         return newItem;
       }

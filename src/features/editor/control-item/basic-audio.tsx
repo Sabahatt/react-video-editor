@@ -4,8 +4,7 @@ import Volume from "./common/volume";
 import Speed from "./common/speed";
 import React, { useState, useEffect } from "react";
 import { dispatch } from "@designcombo/events";
-import { EDIT_OBJECT, LAYER_REPLACE } from "@designcombo/state";
-import { Button } from "@/components/ui/button";
+import { EDIT_OBJECT } from "@designcombo/state";
 
 const BasicAudio = ({
   trackItem,
