@@ -501,9 +501,9 @@ const BasicCaption = ({
         </div>
       )}
 
-      <div className="flex lg:h-[calc(100vh-58px)] flex-1 flex-col overflow-hidden min-h-[340px]">
-        <ScrollArea className="h-full">
-          <div className="flex flex-col gap-2 px-4 py-4">
+      <div className="flex flex-1 flex-col min-h-0">
+        <ScrollArea className="flex-1 min-h-0">
+          <div className="flex flex-col gap-2 px-4 py-4 pb-32">
             {components
               .filter((comp) => showAll || comp.key === type)
               .map((comp) => (

@@ -38,7 +38,7 @@ const Container = ({ children }: { children: React.ReactNode }) => {
   }, [activeIds, trackItemsMap]);
 
   return (
-    <div className="flex w-[272px] flex-none border-l border-border/80 bg-muted hidden lg:block">
+    <div className="w-[272px] flex-none border-l border-border/80 bg-muted hidden lg:flex lg:flex-col h-[calc(100vh-58px)] overflow-hidden">
       {React.cloneElement(children as React.ReactElement<any>, {
         trackItem
       })}
