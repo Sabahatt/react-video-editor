@@ -14,8 +14,10 @@ export default function Audio({
   const playbackRate = item.playbackRate || 1;
 
   // Calculate trim values - if not set, use full duration based on display
+  // When trim is not set, scale display duration by playbackRate to get source duration
+  // (slower playback = longer display duration for same source content)
   const trimFrom = item.trim?.from ?? 0;
-  const trimTo = item.trim?.to ?? (item.display.to - item.display.from);
+  const trimTo = item.trim?.to ?? ((item.display.to - item.display.from) * playbackRate);
 
   const children = (
     <RemotionAudio
