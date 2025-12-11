@@ -252,24 +252,24 @@ export default function AnimationPicker({
         </TabsList>
 
         <TabsContent value="in">
-          <ScrollArea className="h-[400px] w-full py-2">
-            <div className="grid grid-cols-3 gap-2 py-4">
+          <ScrollArea className="h-[400px] w-full">
+            <div className="grid grid-cols-3 gap-2 pt-4 pb-25">
               {noneInButton}
               {presetInButtons}
             </div>
           </ScrollArea>
         </TabsContent>
         <TabsContent value="loop">
-          <ScrollArea className="h-[400px] w-full py-2">
-            <div className="grid grid-cols-3 gap-2 py-4">
+          <ScrollArea className="h-[400px] w-full">
+            <div className="grid grid-cols-3 gap-2 pt-4 pb-25">
               {noneLoopButton}
               {presetLoopButtons}
             </div>
           </ScrollArea>
         </TabsContent>
         <TabsContent value="out">
-          <ScrollArea className="h-[400px] w-full py-2">
-            <div className="grid grid-cols-3 gap-2 py-4">
+          <ScrollArea className="h-[400px] w-full">
+            <div className="grid grid-cols-3 gap-2 pt-4 pb-25">
               {noneOutButton}
               {presetOutButtons}
             </div>
