@@ -83,18 +83,16 @@ const BasicText = ({
       (font) => font.postScriptName === fontFamily
     );
 
-    if (!currentFont) return;
-
-    const selectedFont = compactFonts.find(
+    const matchedFont = compactFonts.find(
       (font) => font.family === currentFont?.family
     );
 
-    if (!selectedFont) return;
-
-    setSelectedFont({
-      ...selectedFont,
-      name: getStyleNameFromFontName(currentFont.postScriptName)
-    });
+    if (currentFont && matchedFont) {
+      setSelectedFont({
+        ...matchedFont,
+        name: getStyleNameFromFontName(currentFont.postScriptName)
+      });
+    }
 
     setProperties({
       color: trackItem.details.color || "#ffffff",
@@ -102,8 +100,8 @@ const BasicText = ({
       backgroundColor: trackItem.details.backgroundColor || "transparent",
       fontSize: trackItem.details.fontSize || 62,
       fontSizeDisplay: `${trackItem.details.fontSize || 62}px`,
-      fontFamily: selectedFont?.family || "Open Sans",
-      fontFamilyDisplay: selectedFont?.family || "Open Sans",
+      fontFamily: matchedFont?.family || "Open Sans",
+      fontFamilyDisplay: matchedFont?.family || "Open Sans",
       opacity: trackItem.details.opacity || 1,
       opacityDisplay: `${trackItem.details.opacity.toString() || "100"}%`,
       textAlign: trackItem.details.textAlign || "left",
@@ -344,6 +342,7 @@ const BasicText = ({
       key: "textControls",
       component: (
         <TextControls
+          key={trackItem.id}
           trackItem={trackItem}
           properties={properties}
           selectedFont={selectedFont}
@@ -366,6 +365,7 @@ const BasicText = ({
       key: "fontStroke",
       component: (
         <Outline
+          key={trackItem.id}
           label="Font stroke"
           onChageBorderWidth={(v: number) => onChangeBorderWidth(v)}
           onChangeBorderColor={(v: string) => onChangeBorderColor(v)}
@@ -378,6 +378,7 @@ const BasicText = ({
       key: "fontShadow",
       component: (
         <Shadow
+          key={trackItem.id}
           label="Font shadow"
           onChange={(v: IBoxShadow) => onChangeBoxShadow(v)}
           value={
@@ -400,7 +401,7 @@ const BasicText = ({
           {components
             .filter((comp) => showAll || comp.key === type)
             .map((comp) => (
-              <React.Fragment key={comp.key}>{comp.component}</React.Fragment>
+              <React.Fragment key={`${comp.key}-${trackItem.id}`}>{comp.component}</React.Fragment>
             ))}
         </div>
       </ScrollArea>

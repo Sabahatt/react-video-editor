@@ -194,7 +194,7 @@ const BasicVideo = ({
     {
       key: "basic",
       component: (
-        <div className="flex flex-col gap-2">
+        <div key={trackItem.id} className="flex flex-col gap-2">
           <Label className="font-sans text-xs font-semibold text-primary">
             Basic
           </Label>
@@ -226,6 +226,7 @@ const BasicVideo = ({
       key: "outline",
       component: (
         <Outline
+          key={trackItem.id}
           onChageBorderWidth={(v: number) => onChangeBorderWidth(v)}
           onChangeBorderColor={(v: string) => onChangeBorderColor(v)}
           valueBorderWidth={properties.details.borderWidth as number}
@@ -238,6 +239,7 @@ const BasicVideo = ({
       key: "shadow",
       component: (
         <Shadow
+          key={trackItem.id}
           onChange={(v: IBoxShadow) => onChangeBoxShadow(v)}
           value={
             properties.details.boxShadow ?? {
@@ -263,7 +265,7 @@ const BasicVideo = ({
           {components
             .filter((comp) => showAll || comp.key === type)
             .map((comp) => (
-              <React.Fragment key={comp.key}>{comp.component}</React.Fragment>
+              <React.Fragment key={`${comp.key}-${trackItem.id}`}>{comp.component}</React.Fragment>
             ))}
         </div>
       </ScrollArea>

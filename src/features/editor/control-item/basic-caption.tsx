@@ -422,6 +422,7 @@ const BasicCaption = ({
       key: "captionColors",
       component: (
         <CaptionColors
+          key={trackItem.id}
           id={trackItem.id}
           activeColor={properties.activeColor}
           activeFillColor={properties.activeFillColor}
@@ -435,6 +436,7 @@ const BasicCaption = ({
       key: "textControls",
       component: (
         <TextControls
+          key={trackItem.id}
           trackItem={trackItem}
           properties={properties}
           selectedFont={selectedFont}
@@ -453,6 +455,7 @@ const BasicCaption = ({
       key: "fontStroke",
       component: (
         <Outline
+          key={trackItem.id}
           label="Font stroke"
           onChageBorderWidth={(v: number) => onChangeBorderWidth(v)}
           onChangeBorderColor={(v: string) => onChangeBorderColor(v)}
@@ -465,6 +468,7 @@ const BasicCaption = ({
       key: "fontShadow",
       component: (
         <Shadow
+          key={trackItem.id}
           label="Font shadow"
           onChange={(v: IBoxShadow) => onChangeBoxShadow(v)}
           value={properties.boxShadow}
@@ -507,7 +511,7 @@ const BasicCaption = ({
             {components
               .filter((comp) => showAll || comp.key === type)
               .map((comp) => (
-                <React.Fragment key={comp.key}>{comp.component}</React.Fragment>
+                <React.Fragment key={`${comp.key}-${trackItem.id}`}>{comp.component}</React.Fragment>
               ))}
           </div>
         </ScrollArea>

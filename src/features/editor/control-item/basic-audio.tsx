@@ -65,6 +65,7 @@ const BasicAudio = ({
       key: "speed",
       component: (
         <Speed
+          key={trackItem.id}
           value={properties.playbackRate ?? 1}
           onChange={handleChangeSpeed}
         />
@@ -74,6 +75,7 @@ const BasicAudio = ({
       key: "volume",
       component: (
         <Volume
+          key={trackItem.id}
           onChange={(v: number) => handleChangeVolume(v)}
           value={properties.details.volume ?? 100}
         />
@@ -91,7 +93,7 @@ const BasicAudio = ({
           {components
             .filter((comp) => showAll || comp.key === type)
             .map((comp) => (
-              <React.Fragment key={comp.key}>{comp.component}</React.Fragment>
+              <React.Fragment key={`${comp.key}-${trackItem.id}`}>{comp.component}</React.Fragment>
             ))}
         </div>
       </ScrollArea>

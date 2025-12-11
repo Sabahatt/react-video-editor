@@ -197,7 +197,7 @@ const BasicImage = ({
     {
       key: "basic",
       component: (
-        <div className="flex flex-col gap-2">
+        <div key={trackItem.id} className="flex flex-col gap-2">
           <Label className="font-sans text-xs font-semibold">Basic</Label>
 
           <AspectRatio />
@@ -230,6 +230,7 @@ const BasicImage = ({
       key: "outline",
       component: (
         <Outline
+          key={trackItem.id}
           label="Outline"
           onChageBorderWidth={(v: number) => onChangeBorderWidth(v)}
           onChangeBorderColor={(v: string) => onChangeBorderColor(v)}
@@ -242,6 +243,7 @@ const BasicImage = ({
       key: "shadow",
       component: (
         <Shadow
+          key={trackItem.id}
           label="Shadow"
           onChange={(v: IBoxShadow) => onChangeBoxShadow(v)}
           value={
@@ -266,7 +268,7 @@ const BasicImage = ({
           {components
             .filter((comp) => showAll || comp.key === type)
             .map((comp) => (
-              <React.Fragment key={comp.key}>{comp.component}</React.Fragment>
+              <React.Fragment key={`${comp.key}-${trackItem.id}`}>{comp.component}</React.Fragment>
             ))}
         </div>
       </ScrollArea>
