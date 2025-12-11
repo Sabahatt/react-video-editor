@@ -18,16 +18,30 @@ export const Uploads = () => {
   const { setShowUploadModal, uploads, pendingUploads, activeUploads } =
     useUploadStore();
 
-  // Group completed uploads by type
-  const videos = uploads.filter(
-    (upload) => upload.type?.startsWith("video/") || upload.type === "video"
-  );
-  const images = uploads.filter(
-    (upload) => upload.type?.startsWith("image/") || upload.type === "image"
-  );
-  const audios = uploads.filter(
-    (upload) => upload.type?.startsWith("audio/") || upload.type === "audio"
-  );
+  // Helper to determine the media type of an upload
+  const getMediaType = (upload: any): "video" | "image" | "audio" | "unknown" => {
+    const type = upload.type?.toLowerCase() || "";
+    const contentType = upload.contentType?.toLowerCase() || "";
+
+    // Check audio first (highest priority to fix audio appearing in images)
+    if (type === "audio" || type.startsWith("audio/") || contentType.startsWith("audio/")) {
+      return "audio";
+    }
+    // Check video
+    if (type === "video" || type.startsWith("video/") || contentType.startsWith("video/")) {
+      return "video";
+    }
+    // Check image
+    if (type === "image" || type.startsWith("image/") || contentType.startsWith("image/")) {
+      return "image";
+    }
+    return "unknown";
+  };
+
+  // Group completed uploads by type (mutually exclusive)
+  const videos = uploads.filter((upload) => getMediaType(upload) === "video");
+  const images = uploads.filter((upload) => getMediaType(upload) === "image");
+  const audios = uploads.filter((upload) => getMediaType(upload) === "audio");
 
   const handleAddVideo = (video: any) => {
     const srcVideo = video.metadata?.uploadedUrl || video.url;
@@ -98,13 +112,14 @@ export const Uploads = () => {
   );
 
   return (
-    <div className="flex flex-1 flex-col">
+    <div className="flex flex-1 flex-col overflow-hidden">
       <div className="text-text-primary flex h-12 flex-none items-center px-4 text-sm font-medium">
         Your uploads
       </div>
       <ModalUpload />
       <UploadPrompt />
 
+      <ScrollArea className="flex-1 min-h-0">
       {/* Uploads in Progress Section */}
       {(pendingUploads.length > 0 || activeUploads.length > 0) && (
         <div className="p-4">
@@ -139,7 +154,7 @@ export const Uploads = () => {
         </div>
       )}
 
-      <div className="flex flex-col gap-10 p-4">
+      <div className="flex flex-col gap-4 p-4">
         {/* Videos Section */}
         {videos.length > 0 && (
           <div>
@@ -147,38 +162,36 @@ export const Uploads = () => {
               <VideoIcon className="w-4 h-4 text-muted-foreground" />
               <span className="font-medium text-sm">Videos</span>
             </div>
-            <ScrollArea className="max-h-32">
-              <div className="grid grid-cols-3 gap-2 max-w-full">
-                {videos.map((video, idx) => {
-                  const previewUrl = video.metadata?.previewUrl || video.metadata?.thumbnail || video.preview;
-                  const videoUrl = video.metadata?.uploadedUrl || video.url;
-                  return (
-                    <div
-                      className="flex items-center gap-2 flex-col w-full"
-                      key={video.id || idx}
+            <div className="grid grid-cols-3 gap-2">
+              {videos.map((video, idx) => {
+                const previewUrl = video.metadata?.previewUrl || video.metadata?.thumbnail || video.preview;
+                const videoUrl = video.metadata?.uploadedUrl || video.url || video.filePath;
+                return (
+                  <div
+                    className="flex items-center gap-2 flex-col w-full"
+                    key={video.id || `video-${idx}`}
+                  >
+                    <Card
+                      className="w-16 h-16 flex items-center justify-center overflow-hidden relative cursor-pointer bg-muted"
+                      onClick={() => handleAddVideo(video)}
                     >
-                      <Card
-                        className="w-16 h-16 flex items-center justify-center overflow-hidden relative cursor-pointer bg-muted"
-                        onClick={() => handleAddVideo(video)}
-                      >
-                        {previewUrl ? (
-                          <img
-                            src={previewUrl}
-                            alt="Video thumbnail"
-                            className="w-full h-full object-cover"
-                          />
-                        ) : (
-                          <VideoIcon className="w-8 h-8 text-muted-foreground" />
-                        )}
-                      </Card>
-                      <div className="text-xs text-muted-foreground truncate w-full text-center">
-                        {video.file?.name || (videoUrl ? "Video" : "Video")}
-                      </div>
+                      {previewUrl ? (
+                        <img
+                          src={previewUrl}
+                          alt="Video thumbnail"
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <VideoIcon className="w-8 h-8 text-muted-foreground" />
+                      )}
+                    </Card>
+                    <div className="text-xs text-muted-foreground truncate w-full text-center">
+                      {video.file?.name || (videoUrl ? "Video" : "Video")}
                     </div>
-                  );
-                })}
-              </div>
-            </ScrollArea>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         )}
 
@@ -189,37 +202,35 @@ export const Uploads = () => {
               <ImageIcon className="w-4 h-4 text-muted-foreground" />
               <span className="font-medium text-sm">Images</span>
             </div>
-            <ScrollArea className="max-h-32">
-              <div className="grid grid-cols-3 gap-2 max-w-full">
-                {images.map((image, idx) => {
-                  const imageUrl = image.metadata?.uploadedUrl || image.url;
-                  return (
-                    <div
-                      className="flex items-center gap-2 flex-col w-full"
-                      key={image.id || idx}
+            <div className="grid grid-cols-3 gap-2">
+              {images.map((image, idx) => {
+                const imageUrl = image.metadata?.uploadedUrl || image.url || image.filePath;
+                return (
+                  <div
+                    className="flex items-center gap-2 flex-col w-full"
+                    key={image.id || `image-${idx}`}
+                  >
+                    <Card
+                      className="w-16 h-16 flex items-center justify-center overflow-hidden relative cursor-pointer bg-muted"
+                      onClick={() => handleAddImage(image)}
                     >
-                      <Card
-                        className="w-16 h-16 flex items-center justify-center overflow-hidden relative cursor-pointer bg-muted"
-                        onClick={() => handleAddImage(image)}
-                      >
-                        {imageUrl ? (
-                          <img
-                            src={imageUrl}
-                            alt={image.metadata?.alt || "Image thumbnail"}
-                            className="w-full h-full object-cover"
-                          />
-                        ) : (
-                          <ImageIcon className="w-8 h-8 text-muted-foreground" />
-                        )}
-                      </Card>
-                      <div className="text-xs text-muted-foreground truncate w-full text-center">
-                        {image.file?.name || image.metadata?.alt || "Image"}
-                      </div>
+                      {imageUrl ? (
+                        <img
+                          src={imageUrl}
+                          alt={image.metadata?.alt || "Image thumbnail"}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <ImageIcon className="w-8 h-8 text-muted-foreground" />
+                      )}
+                    </Card>
+                    <div className="text-xs text-muted-foreground truncate w-full text-center">
+                      {image.file?.name || image.metadata?.alt || "Image"}
                     </div>
-                  );
-                })}
-              </div>
-            </ScrollArea>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         )}
 
@@ -230,29 +241,28 @@ export const Uploads = () => {
               <Music className="w-4 h-4 text-muted-foreground" />
               <span className="font-medium text-sm">Audios</span>
             </div>
-            <ScrollArea className="max-h-32">
-              <div className="grid grid-cols-3 gap-2 max-w-full">
-                {audios.map((audio, idx) => (
-                  <div
-                    className="flex items-center gap-2 flex-col w-full"
-                    key={audio.id || idx}
+            <div className="grid grid-cols-3 gap-2">
+              {audios.map((audio, idx) => (
+                <div
+                  className="flex items-center gap-2 flex-col w-full"
+                  key={audio.id || `audio-${idx}`}
+                >
+                  <Card
+                    className="w-16 h-16 flex items-center justify-center overflow-hidden relative cursor-pointer bg-muted"
+                    onClick={() => handleAddAudio(audio)}
                   >
-                    <Card
-                      className="w-16 h-16 flex items-center justify-center overflow-hidden relative cursor-pointer"
-                      onClick={() => handleAddAudio(audio)}
-                    >
-                      <Music className="w-8 h-8 text-muted-foreground" />
-                    </Card>
-                    <div className="text-xs text-muted-foreground truncate w-full text-center">
-                      {audio.file?.name || audio.url || "Audio"}
-                    </div>
+                    <Music className="w-8 h-8 text-muted-foreground" />
+                  </Card>
+                  <div className="text-xs text-muted-foreground truncate w-full text-center">
+                    {audio.file?.name || audio.fileName || "Audio"}
                   </div>
-                ))}
-              </div>
-            </ScrollArea>
+                </div>
+              ))}
+            </div>
           </div>
         )}
       </div>
+      </ScrollArea>
     </div>
   );
 };
