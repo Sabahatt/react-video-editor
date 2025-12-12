@@ -7,7 +7,8 @@ import {
   Image as ImageIcon,
   Video as VideoIcon,
   Loader2,
-  UploadIcon
+  UploadIcon,
+  X
 } from "lucide-react";
 import { generateId } from "@designcombo/timeline";
 import { Button } from "@/components/ui/button";
@@ -15,7 +16,7 @@ import useUploadStore from "../store/use-upload-store";
 import ModalUpload from "@/components/modal-upload";
 
 export const Uploads = () => {
-  const { setShowUploadModal, uploads, pendingUploads, activeUploads } =
+  const { setShowUploadModal, uploads, pendingUploads, activeUploads, deleteUpload } =
     useUploadStore();
 
   // Helper to determine the media type of an upload
@@ -168,7 +169,7 @@ export const Uploads = () => {
                 const videoUrl = video.metadata?.uploadedUrl || video.url || video.filePath;
                 return (
                   <div
-                    className="flex items-center gap-2 flex-col w-full"
+                    className="flex items-center gap-2 flex-col w-full group"
                     key={video.id || `video-${idx}`}
                   >
                     <Card
@@ -184,6 +185,15 @@ export const Uploads = () => {
                       ) : (
                         <VideoIcon className="w-8 h-8 text-muted-foreground" />
                       )}
+                      <button
+                        className="absolute top-0.5 right-0.5 p-0.5 rounded-full bg-black/60 text-white opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/80"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          deleteUpload(video.id || video.fileName);
+                        }}
+                      >
+                        <X className="w-3 h-3" />
+                      </button>
                     </Card>
                     <div className="text-xs text-muted-foreground truncate w-full text-center">
                       {video.file?.name || (videoUrl ? "Video" : "Video")}
@@ -207,7 +217,7 @@ export const Uploads = () => {
                 const imageUrl = image.metadata?.uploadedUrl || image.url || image.filePath;
                 return (
                   <div
-                    className="flex items-center gap-2 flex-col w-full"
+                    className="flex items-center gap-2 flex-col w-full group"
                     key={image.id || `image-${idx}`}
                   >
                     <Card
@@ -223,6 +233,15 @@ export const Uploads = () => {
                       ) : (
                         <ImageIcon className="w-8 h-8 text-muted-foreground" />
                       )}
+                      <button
+                        className="absolute top-0.5 right-0.5 p-0.5 rounded-full bg-black/60 text-white opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/80"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          deleteUpload(image.id || image.fileName);
+                        }}
+                      >
+                        <X className="w-3 h-3" />
+                      </button>
                     </Card>
                     <div className="text-xs text-muted-foreground truncate w-full text-center">
                       {image.file?.name || image.metadata?.alt || "Image"}
@@ -244,7 +263,7 @@ export const Uploads = () => {
             <div className="grid grid-cols-3 gap-2">
               {audios.map((audio, idx) => (
                 <div
-                  className="flex items-center gap-2 flex-col w-full"
+                  className="flex items-center gap-2 flex-col w-full group"
                   key={audio.id || `audio-${idx}`}
                 >
                   <Card
@@ -252,6 +271,15 @@ export const Uploads = () => {
                     onClick={() => handleAddAudio(audio)}
                   >
                     <Music className="w-8 h-8 text-muted-foreground" />
+                    <button
+                      className="absolute top-0.5 right-0.5 p-0.5 rounded-full bg-black/60 text-white opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/80"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        deleteUpload(audio.id || audio.fileName);
+                      }}
+                    >
+                      <X className="w-3 h-3" />
+                    </button>
                   </Card>
                   <div className="text-xs text-muted-foreground truncate w-full text-center">
                     {audio.file?.name || audio.fileName || "Audio"}

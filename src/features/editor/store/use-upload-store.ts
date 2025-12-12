@@ -43,6 +43,7 @@ interface IUploadStore {
   removeUpload: (id: string) => void;
   uploads: any[];
   setUploads: (uploads: any[] | ((prev: any[]) => any[])) => void;
+  deleteUpload: (uploadId: string) => void;
 }
 
 const useUploadStore = create<IUploadStore>()(
@@ -183,6 +184,12 @@ const useUploadStore = create<IUploadStore>()(
             typeof uploads === "function"
               ? (uploads as (prev: any[]) => any[])(state.uploads)
               : uploads
+        })),
+      deleteUpload: (uploadId: string) =>
+        set((state) => ({
+          uploads: state.uploads.filter(
+            (u) => u.id !== uploadId && u.fileName !== uploadId
+          )
         }))
     }),
     {
