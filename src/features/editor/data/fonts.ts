@@ -20,7 +20,7 @@ export const FONTS = [
     postScriptName: "MoisterScript",
     preview: "",
     style: "MoisterScript",
-    url: "/fonts/moister script.ttf",
+    url: "/fonts/MoisterScript.ttf",
     category: "handwriting",
     createdAt: "2023-06-20T04:42:55.909Z",
     updatedAt: "2023-06-20T04:42:55.909Z",

@@ -165,18 +165,19 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 				const response = await fetch('/api/autosave?restaurant=default');
 				const result = await response.json();
 
-				if (result.success && result.design) {
+				if (result.success && result.data?.design) {
+					const { design, projectName: savedProjectName, restaurant: savedRestaurant, savedAt } = result.data;
 					// Check if the autosave has actual content
-					const hasContent = result.design.trackItemIds && result.design.trackItemIds.length > 0;
+					const hasContent = design.trackItemIds && design.trackItemIds.length > 0;
 					if (hasContent) {
-						dispatch(DESIGN_LOAD, { payload: result.design });
-						if (result.projectName) {
-							setProjectName(result.projectName);
+						dispatch(DESIGN_LOAD, { payload: design });
+						if (savedProjectName) {
+							setProjectName(savedProjectName);
 						}
-						if (result.restaurant) {
-							setRestaurant(result.restaurant);
+						if (savedRestaurant) {
+							setRestaurant(savedRestaurant);
 						}
-						console.log("[Editor] Restored from autosave:", result.savedAt);
+						console.log("[Editor] Restored from autosave:", savedAt);
 					}
 				}
 			} catch (error) {

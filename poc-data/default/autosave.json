@@ -1,0 +1,1342 @@
+{
+  "projectName": "Untitled video",
+  "restaurant": "default",
+  "savedAt": "2025-12-12T09:20:26.337Z",
+  "design": {
+    "id": "BLiiHvkgkfZXRnUS",
+    "fps": 30,
+    "tracks": [
+      {
+        "id": "xC6rq4LCcBbbkYxrXaW3q",
+        "accepts": [
+          "text",
+          "image",
+          "video",
+          "audio",
+          "composition",
+          "caption",
+          "template",
+          "customTrack",
+          "customTrack2",
+          "illustration",
+          "custom",
+          "main",
+          "shape",
+          "linealAudioBars",
+          "radialAudioBars",
+          "progressFrame",
+          "progressBar",
+          "rect",
+          "progressSquare"
+        ],
+        "type": "audio",
+        "items": [
+          "GQEQyk4ZE2cpqEiS",
+          "rEtK9vlfSMOAoi"
+        ],
+        "magnetic": false,
+        "static": false
+      },
+      {
+        "id": "tDdHCZPFxteKU_g9KnDOg",
+        "accepts": [
+          "text",
+          "image",
+          "video",
+          "audio",
+          "composition",
+          "caption",
+          "template",
+          "customTrack",
+          "customTrack2",
+          "illustration",
+          "custom",
+          "main",
+          "shape",
+          "linealAudioBars",
+          "radialAudioBars",
+          "progressFrame",
+          "progressBar",
+          "rect",
+          "progressSquare"
+        ],
+        "type": "audio",
+        "items": [
+          "lHeIK3ZYRxDvNQD8"
+        ],
+        "magnetic": false,
+        "static": false
+      },
+      {
+        "id": "U1LSVOGFvP7S8r2",
+        "accepts": [
+          "text",
+          "image",
+          "video",
+          "audio",
+          "composition",
+          "caption",
+          "template",
+          "customTrack",
+          "customTrack2",
+          "illustration",
+          "custom",
+          "main",
+          "shape",
+          "linealAudioBars",
+          "radialAudioBars",
+          "progressFrame",
+          "progressBar",
+          "rect",
+          "progressSquare"
+        ],
+        "type": "text",
+        "items": [
+          "mkJVHMhzmH3LydWc"
+        ]
+      },
+      {
+        "id": "eeiYD7PrhOdc2",
+        "accepts": [
+          "text",
+          "image",
+          "video",
+          "audio",
+          "composition",
+          "caption",
+          "template",
+          "customTrack",
+          "customTrack2",
+          "illustration",
+          "custom",
+          "main",
+          "shape",
+          "linealAudioBars",
+          "radialAudioBars",
+          "progressFrame",
+          "progressBar",
+          "rect",
+          "progressSquare"
+        ],
+        "type": "text",
+        "items": [
+          "y5MjRuir6IpwGEB3",
+          "M7sSoWdZrPRQGG9Z",
+          "v6ZIqA1xEcye9Pf",
+          "U88gr8cW9F2Xza",
+          "kdznOku4UocuzQTT"
+        ],
+        "magnetic": false,
+        "static": false
+      },
+      {
+        "id": "V5zSGuDbEwwyjRl",
+        "items": [
+          "mElajGtPWL4BE2OZ"
+        ],
+        "type": "image",
+        "accepts": [
+          "text",
+          "image",
+          "video",
+          "audio",
+          "composition",
+          "caption",
+          "template",
+          "customTrack",
+          "customTrack2",
+          "illustration",
+          "custom",
+          "main",
+          "shape",
+          "linealAudioBars",
+          "radialAudioBars",
+          "progressFrame",
+          "progressBar",
+          "rect",
+          "progressSquare"
+        ]
+      },
+      {
+        "id": "XKySLnaRpPxEBxY6",
+        "items": [
+          "t8rTkzfOpIUXTdlW"
+        ],
+        "type": "image",
+        "accepts": [
+          "text",
+          "image",
+          "video",
+          "audio",
+          "composition",
+          "caption",
+          "template",
+          "customTrack",
+          "customTrack2",
+          "illustration",
+          "custom",
+          "main",
+          "shape",
+          "linealAudioBars",
+          "radialAudioBars",
+          "progressFrame",
+          "progressBar",
+          "rect",
+          "progressSquare"
+        ]
+      },
+      {
+        "id": "XjcjRblGF2IqKVl4rA1js",
+        "items": [
+          "Ql2HfZDhW3RG2h6"
+        ],
+        "type": "video",
+        "accepts": [
+          "text",
+          "image",
+          "video",
+          "progressSquare",
+          "audio",
+          "rect",
+          "composition",
+          "progressBar",
+          "caption",
+          "progressFrame",
+          "template",
+          "radialAudioBars",
+          "customTrack",
+          "linealAudioBars",
+          "customTrack2",
+          "shape",
+          "illustration",
+          "main",
+          "custom"
+        ]
+      },
+      {
+        "id": "9n35SnLMKDA2CJ3fNwAzu",
+        "items": [
+          "scsctwPyjxfZDpE"
+        ],
+        "type": "text",
+        "accepts": [
+          "text",
+          "caption"
+        ],
+        "tempIndex": -5
+      },
+      {
+        "id": "y8sSmEgKh4-lZFdlyiWIf",
+        "items": [
+          "tspCJvB5ZR4MIxlU"
+        ],
+        "type": "text",
+        "accepts": [
+          "text",
+          "caption"
+        ],
+        "tempIndex": -3
+      },
+      {
+        "id": "XUPs50c2sflDY_DX2c006",
+        "items": [
+          "kORqq7ACxQElDeLo",
+          "hjGVRKEHQVA9nw"
+        ],
+        "type": "image",
+        "accepts": [
+          "image",
+          "video"
+        ],
+        "tempIndex": -1
+      },
+      {
+        "id": "TaGSaMRa5Ll4cHKh",
+        "accepts": [
+          "text",
+          "image",
+          "video",
+          "progressSquare",
+          "audio",
+          "rect",
+          "composition",
+          "progressBar",
+          "caption",
+          "progressFrame",
+          "template",
+          "radialAudioBars",
+          "customTrack",
+          "linealAudioBars",
+          "customTrack2",
+          "shape",
+          "illustration",
+          "main",
+          "custom"
+        ],
+        "type": "video",
+        "items": [
+          "YWs6eBQRLkFuT7Xl",
+          "N9Ykm32GzhTwmyMZ",
+          "XVZ6kBqhgnLr4r",
+          "lRJnpuKX4aaTiozO",
+          "vD1Z083FntJCYV",
+          "v3gjlVWrKdSnIvS"
+        ],
+        "name": "Visuals",
+        "static": false,
+        "magnetic": false
+      }
+    ],
+    "size": {
+      "width": 1920,
+      "height": 1080
+    },
+    "trackItemIds": [
+      "N9Ykm32GzhTwmyMZ",
+      "lRJnpuKX4aaTiozO",
+      "vD1Z083FntJCYV",
+      "XVZ6kBqhgnLr4r",
+      "YWs6eBQRLkFuT7Xl",
+      "v3gjlVWrKdSnIvS",
+      "hjGVRKEHQVA9nw",
+      "kORqq7ACxQElDeLo",
+      "tspCJvB5ZR4MIxlU",
+      "scsctwPyjxfZDpE",
+      "Ql2HfZDhW3RG2h6",
+      "t8rTkzfOpIUXTdlW",
+      "mElajGtPWL4BE2OZ",
+      "v6ZIqA1xEcye9Pf",
+      "M7sSoWdZrPRQGG9Z",
+      "y5MjRuir6IpwGEB3",
+      "U88gr8cW9F2Xza",
+      "kdznOku4UocuzQTT",
+      "mkJVHMhzmH3LydWc",
+      "lHeIK3ZYRxDvNQD8",
+      "GQEQyk4ZE2cpqEiS",
+      "rEtK9vlfSMOAoi"
+    ],
+    "transitionsMap": {
+      "YWs6eBQRLkFuT7Xl-vD1Z083FntJCYV": {
+        "id": "YWs6eBQRLkFuT7Xl-vD1Z083FntJCYV",
+        "duration": 1500,
+        "fromId": "YWs6eBQRLkFuT7Xl",
+        "toId": "vD1Z083FntJCYV",
+        "kind": "none",
+        "trackId": "TaGSaMRa5Ll4cHKh",
+        "type": "transition"
+      },
+      "vD1Z083FntJCYV-v3gjlVWrKdSnIvS": {
+        "id": "vD1Z083FntJCYV-v3gjlVWrKdSnIvS",
+        "duration": 1500,
+        "fromId": "vD1Z083FntJCYV",
+        "toId": "v3gjlVWrKdSnIvS",
+        "kind": "none",
+        "trackId": "TaGSaMRa5Ll4cHKh",
+        "type": "transition"
+      },
+      "lRJnpuKX4aaTiozO-N9Ykm32GzhTwmyMZ": {
+        "id": "lRJnpuKX4aaTiozO-N9Ykm32GzhTwmyMZ",
+        "duration": 1500,
+        "fromId": "lRJnpuKX4aaTiozO",
+        "toId": "N9Ykm32GzhTwmyMZ",
+        "kind": "none",
+        "trackId": "TaGSaMRa5Ll4cHKh",
+        "type": "transition"
+      },
+      "N9Ykm32GzhTwmyMZ-XVZ6kBqhgnLr4r": {
+        "id": "N9Ykm32GzhTwmyMZ-XVZ6kBqhgnLr4r",
+        "duration": 1500,
+        "fromId": "N9Ykm32GzhTwmyMZ",
+        "toId": "XVZ6kBqhgnLr4r",
+        "kind": "none",
+        "trackId": "TaGSaMRa5Ll4cHKh",
+        "type": "transition"
+      },
+      "kdznOku4UocuzQTT-y5MjRuir6IpwGEB3": {
+        "id": "kdznOku4UocuzQTT-y5MjRuir6IpwGEB3",
+        "duration": 1500,
+        "fromId": "kdznOku4UocuzQTT",
+        "toId": "y5MjRuir6IpwGEB3",
+        "kind": "none",
+        "trackId": "eeiYD7PrhOdc2",
+        "type": "transition"
+      },
+      "y5MjRuir6IpwGEB3-M7sSoWdZrPRQGG9Z": {
+        "id": "y5MjRuir6IpwGEB3-M7sSoWdZrPRQGG9Z",
+        "duration": 1500,
+        "fromId": "y5MjRuir6IpwGEB3",
+        "toId": "M7sSoWdZrPRQGG9Z",
+        "kind": "none",
+        "trackId": "eeiYD7PrhOdc2",
+        "type": "transition"
+      },
+      "M7sSoWdZrPRQGG9Z-v6ZIqA1xEcye9Pf": {
+        "id": "M7sSoWdZrPRQGG9Z-v6ZIqA1xEcye9Pf",
+        "duration": 1500,
+        "fromId": "M7sSoWdZrPRQGG9Z",
+        "toId": "v6ZIqA1xEcye9Pf",
+        "kind": "none",
+        "trackId": "eeiYD7PrhOdc2",
+        "type": "transition"
+      },
+      "v6ZIqA1xEcye9Pf-U88gr8cW9F2Xza": {
+        "id": "v6ZIqA1xEcye9Pf-U88gr8cW9F2Xza",
+        "duration": 1500,
+        "fromId": "v6ZIqA1xEcye9Pf",
+        "toId": "U88gr8cW9F2Xza",
+        "kind": "none",
+        "trackId": "eeiYD7PrhOdc2",
+        "type": "transition"
+      },
+      "GQEQyk4ZE2cpqEiS-rEtK9vlfSMOAoi": {
+        "id": "GQEQyk4ZE2cpqEiS-rEtK9vlfSMOAoi",
+        "duration": 1500,
+        "fromId": "GQEQyk4ZE2cpqEiS",
+        "toId": "rEtK9vlfSMOAoi",
+        "kind": "none",
+        "trackId": "xC6rq4LCcBbbkYxrXaW3q",
+        "type": "transition"
+      }
+    },
+    "trackItemsMap": {
+      "YWs6eBQRLkFuT7Xl": {
+        "id": "YWs6eBQRLkFuT7Xl",
+        "details": {
+          "width": 2640,
+          "height": 1088,
+          "opacity": 100,
+          "src": "/uploads/1765410508730-Image2Video_freshly_baked_pepperoni_.mp4",
+          "volume": 100,
+          "borderRadius": 0,
+          "borderWidth": 0,
+          "borderColor": "#000000",
+          "boxShadow": {
+            "color": "#000000",
+            "x": 0,
+            "y": 0,
+            "blur": 0
+          },
+          "top": "-4px",
+          "left": "-360px",
+          "transform": "scale(0.7272727272727273)",
+          "blur": 0,
+          "brightness": 100,
+          "flipX": false,
+          "flipY": false,
+          "rotate": "0deg",
+          "visibility": "visible"
+        },
+        "metadata": {
+          "previewUrl": "https://cdn.designcombo.dev/caption_previews/static_preset1.webp"
+        },
+        "trim": {
+          "from": 89.09574468085168,
+          "to": 4663.563829787232
+        },
+        "type": "video",
+        "name": "video",
+        "playbackRate": 1,
+        "display": {
+          "from": 0,
+          "to": 4574.468085106386
+        },
+        "duration": 5062.5,
+        "isMain": false,
+        "animations": {
+          "in": {
+            "name": "fadeIn",
+            "composition": [
+              {
+                "property": "opacity",
+                "from": 0,
+                "to": 1,
+                "durationInFrames": 15,
+                "previewUrl": "https://cdn.designcombo.dev/animations/FadeIn.webp",
+                "name": "Fade"
+              }
+            ]
+          }
+        }
+      },
+      "hjGVRKEHQVA9nw": {
+        "id": "hjGVRKEHQVA9nw",
+        "type": "image",
+        "name": "image",
+        "display": {
+          "from": 11622.340425531924,
+          "to": 18271.27659574469
+        },
+        "playbackRate": 1,
+        "details": {
+          "src": "/uploads/1765412069347-caprese-piz.png",
+          "width": 413,
+          "height": 232,
+          "opacity": 100,
+          "transform": "scale(2.35888, 2.35888)",
+          "border": "none",
+          "borderRadius": 0,
+          "boxShadow": {
+            "color": "#000000",
+            "x": 0,
+            "y": 0,
+            "blur": 0
+          },
+          "top": 157.952,
+          "left": 267.245,
+          "borderWidth": 0,
+          "borderColor": "#000000",
+          "blur": 0,
+          "brightness": 100,
+          "flipX": false,
+          "flipY": false,
+          "rotate": "0deg",
+          "visibility": "visible"
+        },
+        "metadata": {},
+        "animations": {}
+      },
+      "XVZ6kBqhgnLr4r": {
+        "id": "XVZ6kBqhgnLr4r",
+        "type": "image",
+        "name": "image",
+        "display": {
+          "from": 29538.56843112718,
+          "to": 38652.3502340426
+        },
+        "playbackRate": 1,
+        "details": {
+          "src": "https://static.wixstatic.com/media/4801ad_37d7ff93771a43e08d121e663dd0b7d9~mv2.jpg/v1/fill/w_413,h_232,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/4801ad_37d7ff93771a43e08d121e663dd0b7d9~mv2.jpg",
+          "width": 413,
+          "height": 232,
+          "opacity": 100,
+          "transform": "scale(4.648910411622276)",
+          "border": "none",
+          "borderRadius": 0,
+          "boxShadow": {
+            "color": "#000000",
+            "x": 0,
+            "y": 0,
+            "blur": 0
+          },
+          "top": "424px",
+          "left": "753.5px",
+          "borderWidth": 0,
+          "borderColor": "#000000",
+          "blur": 0,
+          "brightness": 100,
+          "flipX": false,
+          "flipY": false,
+          "rotate": "0deg",
+          "visibility": "visible"
+        },
+        "metadata": {},
+        "animations": {
+          "in": {
+            "name": "scaleIn",
+            "composition": [
+              {
+                "property": "scale",
+                "from": 0,
+                "to": 1,
+                "durationInFrames": 15,
+                "previewUrl": "https://cdn.designcombo.dev/animations/ScaleIn.webp",
+                "name": "Scale"
+              }
+            ]
+          }
+        },
+        "isMain": false
+      },
+      "vD1Z083FntJCYV": {
+        "id": "vD1Z083FntJCYV",
+        "details": {
+          "width": 1908,
+          "height": 1080,
+          "opacity": 100,
+          "src": "/uploads/1765511993793-Image2Video_Fresh_Italian_antipasto_.mp4",
+          "volume": 100,
+          "borderRadius": 0,
+          "borderWidth": 0,
+          "borderColor": "#000000",
+          "boxShadow": {
+            "color": "#000000",
+            "x": 0,
+            "y": 0,
+            "blur": 0
+          },
+          "top": "0px",
+          "left": "6px",
+          "transform": "scale(1)",
+          "blur": 0,
+          "brightness": 100,
+          "flipX": false,
+          "flipY": false,
+          "rotate": "0deg",
+          "visibility": "visible"
+        },
+        "metadata": {
+          "previewUrl": "https://cdn.designcombo.dev/caption_previews/static_preset1.webp"
+        },
+        "trim": {
+          "from": 1152.9255319148883,
+          "to": 5062.5
+        },
+        "type": "video",
+        "name": "video",
+        "playbackRate": 1,
+        "display": {
+          "from": 4574.468085106386,
+          "to": 8484.042553191495
+        },
+        "duration": 5062.5,
+        "isMain": false
+      },
+      "lRJnpuKX4aaTiozO": {
+        "id": "lRJnpuKX4aaTiozO",
+        "details": {
+          "width": 2160,
+          "height": 3840,
+          "opacity": 100,
+          "src": "/uploads/1765512492994-picking-up-pizza-slice.mp4",
+          "volume": 100,
+          "borderRadius": 0,
+          "borderWidth": 0,
+          "borderColor": "#000000",
+          "boxShadow": {
+            "color": "#000000",
+            "x": 0,
+            "y": 0,
+            "blur": 0
+          },
+          "top": "-1452.03px",
+          "left": "-119.436px",
+          "transform": "scale(0.880889, 0.880889)",
+          "blur": 0,
+          "brightness": 100,
+          "flipX": false,
+          "flipY": false,
+          "rotate": "0deg",
+          "visibility": "visible"
+        },
+        "metadata": {
+          "previewUrl": "https://cdn.designcombo.dev/caption_previews/static_preset1.webp"
+        },
+        "trim": {
+          "from": 0,
+          "to": 6204.79183538246
+        },
+        "type": "video",
+        "name": "video",
+        "playbackRate": 1,
+        "display": {
+          "from": 18271.27659574469,
+          "to": 24476.06843112715
+        },
+        "duration": 11160,
+        "isMain": false
+      },
+      "N9Ykm32GzhTwmyMZ": {
+        "id": "N9Ykm32GzhTwmyMZ",
+        "details": {
+          "width": 1908,
+          "height": 1080,
+          "opacity": 100,
+          "src": "/uploads/1765512708847-Image2Video_caramel-cheesecake.mp4",
+          "volume": 100,
+          "borderRadius": 0,
+          "borderWidth": 0,
+          "borderColor": "#000000",
+          "boxShadow": {
+            "color": "#000000",
+            "x": 0,
+            "y": 0,
+            "blur": 0
+          },
+          "top": "0px",
+          "left": "6px",
+          "transform": "scale(1)",
+          "blur": 0,
+          "brightness": 100,
+          "flipX": false,
+          "flipY": false,
+          "rotate": "0deg",
+          "visibility": "visible"
+        },
+        "metadata": {
+          "previewUrl": "https://cdn.designcombo.dev/caption_previews/static_preset1.webp"
+        },
+        "trim": {
+          "from": 0,
+          "to": 5062.5
+        },
+        "type": "video",
+        "name": "video",
+        "playbackRate": 1,
+        "display": {
+          "from": 24476.068431127194,
+          "to": 29538.568431127194
+        },
+        "duration": 5062.5,
+        "isMain": false
+      },
+      "kORqq7ACxQElDeLo": {
+        "id": "kORqq7ACxQElDeLo",
+        "type": "image",
+        "name": "image",
+        "display": {
+          "from": 29521.28119708461,
+          "to": 38635.063000000024
+        },
+        "playbackRate": 1,
+        "details": {
+          "src": "https://images.pexels.com/photos/695644/pexels-photo-695644.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "width": 1880,
+          "height": 1253,
+          "opacity": 57,
+          "transform": "scale(1.21169, 1.21169)",
+          "border": "none",
+          "borderRadius": 0,
+          "boxShadow": {
+            "color": "#000000",
+            "x": 0,
+            "y": 0,
+            "blur": 0
+          },
+          "top": "205.327px",
+          "left": "364.803px",
+          "borderWidth": 0,
+          "borderColor": "#000000",
+          "blur": 0,
+          "brightness": 100,
+          "flipX": false,
+          "flipY": false,
+          "rotate": "0deg",
+          "visibility": "visible",
+          "crop": {
+            "x": 363.10860421316966,
+            "y": 50.42637843840116,
+            "width": 1191.3827915736608,
+            "height": 670.1528202601842
+          }
+        },
+        "metadata": {}
+      },
+      "tspCJvB5ZR4MIxlU": {
+        "id": "tspCJvB5ZR4MIxlU",
+        "name": "text",
+        "type": "text",
+        "display": {
+          "from": 29521.281197084612,
+          "to": 38635.06300000002
+        },
+        "details": {
+          "text": "\nORDER NOW\n111 Broadway Santa Monica\nSun-Thu: 12:00 PM - 10:00 PM\njoespizza.com",
+          "fontSize": 95,
+          "fontFamily": "MoisterScript",
+          "fontUrl": "/fonts/MoisterScript.ttf",
+          "fontWeight": "bold",
+          "fontStyle": "normal",
+          "textAlign": "center",
+          "color": "#FFFFFF",
+          "backgroundColor": "transparent",
+          "textDecoration": "none",
+          "lineHeight": "1.5",
+          "letterSpacing": "2px",
+          "wordSpacing": "normal",
+          "border": "none",
+          "opacity": 100,
+          "wordWrap": "normal",
+          "wordBreak": "normal",
+          "borderWidth": 15,
+          "borderColor": "#b60202",
+          "boxShadow": {
+            "color": "rgba(0,0,0,0.9)",
+            "x": 2,
+            "y": 4,
+            "blur": 12
+          },
+          "top": "415.313px",
+          "left": "160px",
+          "width": 1600,
+          "height": 300,
+          "textTransform": "uppercase",
+          "transform": "none",
+          "skewX": 0,
+          "skewY": 0
+        },
+        "metadata": {}
+      },
+      "scsctwPyjxfZDpE": {
+        "id": "scsctwPyjxfZDpE",
+        "name": "text",
+        "type": "text",
+        "display": {
+          "from": 29521.28119708461,
+          "to": 38635.063000000024
+        },
+        "details": {
+          "text": "JOE'S PIZZA",
+          "fontSize": 100,
+          "fontFamily": "MoisterScript",
+          "fontUrl": "/fonts/MoisterScript.ttf",
+          "fontWeight": "bold",
+          "fontStyle": "normal",
+          "textAlign": "center",
+          "color": "#FFFFFF",
+          "backgroundColor": "transparent",
+          "textDecoration": "none",
+          "lineHeight": "1.5",
+          "letterSpacing": "2px",
+          "wordSpacing": "normal",
+          "border": "none",
+          "opacity": 100,
+          "wordWrap": "normal",
+          "wordBreak": "normal",
+          "borderWidth": 15,
+          "borderColor": "#b60202",
+          "boxShadow": {
+            "color": "rgba(0,0,0,0.9)",
+            "x": 2,
+            "y": 4,
+            "blur": 12
+          },
+          "top": "39.7702px",
+          "left": "-281px",
+          "width": 2482,
+          "height": 421,
+          "textTransform": "uppercase",
+          "transform": "none",
+          "skewX": 0,
+          "skewY": 0
+        },
+        "metadata": {}
+      },
+      "Ql2HfZDhW3RG2h6": {
+        "id": "Ql2HfZDhW3RG2h6",
+        "type": "image",
+        "name": "image",
+        "display": {
+          "from": 10340.554369432406,
+          "to": 18271.27659574469
+        },
+        "playbackRate": 1,
+        "details": {
+          "src": "https://static.wixstatic.com/media/4801ad_ec296bae26c34d46860df871ab25bea4~mv2.jpg/v1/fill/w_413,h_232,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/4801ad_ec296bae26c34d46860df871ab25bea4~mv2.jpg",
+          "width": 413,
+          "height": 232,
+          "opacity": 100,
+          "transform": "scale(2.36427, 2.36427)",
+          "border": "none",
+          "borderRadius": 0,
+          "boxShadow": {
+            "color": "#000000",
+            "x": 0,
+            "y": 0,
+            "blur": 0
+          },
+          "top": "158.041px",
+          "left": "1230.36px",
+          "borderWidth": 0,
+          "borderColor": "#000000",
+          "blur": 0,
+          "brightness": 100,
+          "flipX": false,
+          "flipY": false,
+          "rotate": "0deg",
+          "visibility": "visible",
+          "crop": {
+            "x": 2.5959963989257817,
+            "y": 0,
+            "width": 410.4040036010743,
+            "height": 232.00000000000003
+          }
+        },
+        "metadata": {},
+        "animations": {}
+      },
+      "t8rTkzfOpIUXTdlW": {
+        "id": "t8rTkzfOpIUXTdlW",
+        "type": "image",
+        "name": "image",
+        "display": {
+          "from": 10989.265073989556,
+          "to": 18271.27659574469
+        },
+        "playbackRate": 1,
+        "details": {
+          "src": "/uploads/1765412326388-white-piz.png",
+          "width": 413,
+          "height": 232,
+          "opacity": 100,
+          "transform": "scale(2.3165, 2.3165)",
+          "border": "none",
+          "borderRadius": 0,
+          "boxShadow": {
+            "color": "#000000",
+            "x": 0,
+            "y": 0,
+            "blur": 0
+          },
+          "top": "695.569px",
+          "left": "274.771px",
+          "borderWidth": 0,
+          "borderColor": "#000000",
+          "blur": 0,
+          "brightness": 100,
+          "flipX": false,
+          "flipY": false,
+          "rotate": "0deg",
+          "visibility": "visible"
+        },
+        "metadata": {},
+        "animations": {}
+      },
+      "mElajGtPWL4BE2OZ": {
+        "id": "mElajGtPWL4BE2OZ",
+        "type": "image",
+        "name": "image",
+        "display": {
+          "from": 12527.111094750791,
+          "to": 18271.27659574469
+        },
+        "playbackRate": 1,
+        "details": {
+          "src": "https://static.wixstatic.com/media/4801ad_91ee8244d63d48abaacd98db231e77e5~mv2.png/v1/fill/w_413,h_232,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/4801ad_91ee8244d63d48abaacd98db231e77e5~mv2.png",
+          "width": 413,
+          "height": 232,
+          "opacity": 100,
+          "transform": "scale(2.34891, 2.34891)",
+          "border": "none",
+          "borderRadius": 0,
+          "boxShadow": {
+            "color": "#000000",
+            "x": 0,
+            "y": 0,
+            "blur": 0
+          },
+          "top": "704.771px",
+          "left": "1233.16px",
+          "borderWidth": 0,
+          "borderColor": "#000000",
+          "blur": 0,
+          "brightness": 100,
+          "flipX": false,
+          "flipY": false,
+          "rotate": "0deg",
+          "visibility": "visible"
+        },
+        "metadata": {},
+        "animations": {}
+      },
+      "kdznOku4UocuzQTT": {
+        "id": "kdznOku4UocuzQTT",
+        "name": "text",
+        "type": "text",
+        "display": {
+          "from": 0,
+          "to": 1165.9611278804414
+        },
+        "details": {
+          "text": "joe's pizza\n",
+          "fontSize": 130,
+          "fontFamily": "MoisterScript",
+          "fontUrl": "/fonts/MoisterScript.ttf",
+          "fontWeight": "bold",
+          "fontStyle": "normal",
+          "textAlign": "center",
+          "color": "#FFFFFF",
+          "backgroundColor": "transparent",
+          "textDecoration": "none",
+          "lineHeight": "1.5",
+          "letterSpacing": "2px",
+          "wordSpacing": "normal",
+          "border": "none",
+          "opacity": 100,
+          "wordWrap": "normal",
+          "wordBreak": "normal",
+          "borderWidth": 15,
+          "borderColor": "#b60202",
+          "boxShadow": {
+            "color": "rgba(0,0,0,0.9)",
+            "x": 2,
+            "y": 4,
+            "blur": 12
+          },
+          "top": "404.023px",
+          "left": "252.077px",
+          "width": 1417,
+          "height": 202,
+          "textTransform": "uppercase",
+          "transform": "none",
+          "skewX": 0,
+          "skewY": 0
+        },
+        "metadata": {},
+        "isMain": false,
+        "animations": {
+          "in": {
+            "name": "fadeIn",
+            "composition": [
+              {
+                "property": "opacity",
+                "from": 0,
+                "to": 1,
+                "durationInFrames": 15,
+                "previewUrl": "https://cdn.designcombo.dev/animations/FadeIn.webp",
+                "name": "Fade"
+              }
+            ]
+          }
+        }
+      },
+      "U88gr8cW9F2Xza": {
+        "id": "U88gr8cW9F2Xza",
+        "name": "text",
+        "type": "text",
+        "display": {
+          "from": 4155.3228300081055,
+          "to": 4574.468085106386
+        },
+        "details": {
+          "text": "& Organic Salads\n",
+          "fontSize": 90,
+          "fontFamily": "MoisterScript",
+          "fontUrl": "/fonts/MoisterScript.ttf",
+          "fontWeight": "bold",
+          "fontStyle": "normal",
+          "textAlign": "center",
+          "color": "#FFFFFF",
+          "backgroundColor": "transparent",
+          "textDecoration": "none",
+          "lineHeight": "1.5",
+          "letterSpacing": "2px",
+          "wordSpacing": "normal",
+          "border": "none",
+          "opacity": 100,
+          "wordWrap": "normal",
+          "wordBreak": "normal",
+          "borderWidth": 15,
+          "borderColor": "#b60202",
+          "boxShadow": {
+            "color": "rgba(0,0,0,0.9)",
+            "x": 2,
+            "y": 4,
+            "blur": 12
+          },
+          "top": "284.968px",
+          "left": "160px",
+          "width": 1600,
+          "height": 473,
+          "textTransform": "uppercase",
+          "transform": "none",
+          "skewX": 0,
+          "skewY": 0
+        },
+        "metadata": {},
+        "isMain": false
+      },
+      "y5MjRuir6IpwGEB3": {
+        "id": "y5MjRuir6IpwGEB3",
+        "name": "text",
+        "type": "text",
+        "display": {
+          "from": 1165.9611278804414,
+          "to": 2655.322830008104
+        },
+        "details": {
+          "text": "award winning new york\n",
+          "fontSize": 90,
+          "fontFamily": "MoisterScript",
+          "fontUrl": "/fonts/MoisterScript.ttf",
+          "fontWeight": "bold",
+          "fontStyle": "normal",
+          "textAlign": "center",
+          "color": "#FFFFFF",
+          "backgroundColor": "transparent",
+          "textDecoration": "none",
+          "lineHeight": "1.5",
+          "letterSpacing": "2px",
+          "wordSpacing": "normal",
+          "border": "none",
+          "opacity": 100,
+          "wordWrap": "normal",
+          "wordBreak": "normal",
+          "borderWidth": 15,
+          "borderColor": "#b60202",
+          "boxShadow": {
+            "color": "rgba(0,0,0,0.9)",
+            "x": 2,
+            "y": 4,
+            "blur": 12
+          },
+          "top": "284.968px",
+          "left": "160px",
+          "width": 1600,
+          "height": 473,
+          "textTransform": "uppercase",
+          "transform": "none",
+          "skewX": 0,
+          "skewY": 0
+        },
+        "metadata": {},
+        "isMain": false,
+        "animations": {}
+      },
+      "M7sSoWdZrPRQGG9Z": {
+        "id": "M7sSoWdZrPRQGG9Z",
+        "name": "text",
+        "type": "text",
+        "display": {
+          "from": 2655.3228300081046,
+          "to": 3405.3228300081037
+        },
+        "details": {
+          "text": "pies\n",
+          "fontSize": 90,
+          "fontFamily": "MoisterScript",
+          "fontUrl": "/fonts/MoisterScript.ttf",
+          "fontWeight": "bold",
+          "fontStyle": "normal",
+          "textAlign": "center",
+          "color": "#FFFFFF",
+          "backgroundColor": "transparent",
+          "textDecoration": "none",
+          "lineHeight": "1.5",
+          "letterSpacing": "2px",
+          "wordSpacing": "normal",
+          "border": "none",
+          "opacity": 100,
+          "wordWrap": "normal",
+          "wordBreak": "normal",
+          "borderWidth": 15,
+          "borderColor": "#b60202",
+          "boxShadow": {
+            "color": "rgba(0,0,0,0.9)",
+            "x": 2,
+            "y": 4,
+            "blur": 12
+          },
+          "top": "436.723px",
+          "left": "148.261px",
+          "width": 1600,
+          "height": 207,
+          "textTransform": "uppercase",
+          "transform": "none",
+          "skewX": 0,
+          "skewY": 0
+        },
+        "metadata": {},
+        "isMain": false
+      },
+      "v6ZIqA1xEcye9Pf": {
+        "id": "v6ZIqA1xEcye9Pf",
+        "name": "text",
+        "type": "text",
+        "display": {
+          "from": 3405.3228300081037,
+          "to": 4155.322830008104
+        },
+        "details": {
+          "text": "slices\n",
+          "fontSize": 90,
+          "fontFamily": "MoisterScript",
+          "fontUrl": "/fonts/MoisterScript.ttf",
+          "fontWeight": "bold",
+          "fontStyle": "normal",
+          "textAlign": "center",
+          "color": "#FFFFFF",
+          "backgroundColor": "transparent",
+          "textDecoration": "none",
+          "lineHeight": "1.5",
+          "letterSpacing": "2px",
+          "wordSpacing": "normal",
+          "border": "none",
+          "opacity": 100,
+          "wordWrap": "normal",
+          "wordBreak": "normal",
+          "borderWidth": 15,
+          "borderColor": "#b60202",
+          "boxShadow": {
+            "color": "rgba(0,0,0,0.9)",
+            "x": 2,
+            "y": 4,
+            "blur": 12
+          },
+          "top": "443.198px",
+          "left": "154.13px",
+          "width": 1600,
+          "height": 193,
+          "textTransform": "uppercase",
+          "transform": "none",
+          "skewX": 0,
+          "skewY": 0
+        },
+        "metadata": {},
+        "isMain": false
+      },
+      "mkJVHMhzmH3LydWc": {
+        "id": "mkJVHMhzmH3LydWc",
+        "name": "text",
+        "type": "text",
+        "display": {
+          "from": 13271.276595744686,
+          "to": 18271.27659574469
+        },
+        "details": {
+          "text": "All Natural cheese \nno preservatives or artificial ingredients\n",
+          "fontSize": 100,
+          "fontFamily": "MoisterScript",
+          "fontUrl": "/fonts/MoisterScript.ttf",
+          "fontWeight": "bold",
+          "fontStyle": "normal",
+          "textAlign": "center",
+          "color": "#FFFFFF",
+          "backgroundColor": "#29272799",
+          "textDecoration": "none",
+          "lineHeight": "1.5",
+          "letterSpacing": "2px",
+          "wordSpacing": "normal",
+          "border": "none",
+          "opacity": 100,
+          "wordWrap": "normal",
+          "wordBreak": "normal",
+          "borderWidth": 15,
+          "borderColor": "#b60202",
+          "boxShadow": {
+            "color": "rgba(0,0,0,0.9)",
+            "x": 2,
+            "y": 4,
+            "blur": 12
+          },
+          "top": "441.297px",
+          "left": "0px",
+          "width": 1925,
+          "height": 331,
+          "textTransform": "uppercase",
+          "transform": "none",
+          "skewX": 0,
+          "skewY": 0
+        },
+        "metadata": {}
+      },
+      "lHeIK3ZYRxDvNQD8": {
+        "id": "lHeIK3ZYRxDvNQD8",
+        "name": "audio",
+        "type": "audio",
+        "display": {
+          "from": 0,
+          "to": 38635.063
+        },
+        "trim": {
+          "from": 0,
+          "to": 38635.063
+        },
+        "playbackRate": 1,
+        "details": {
+          "src": "/uploads/1765500930389-joespiz-narration.mp3",
+          "volume": 100
+        },
+        "metadata": {},
+        "duration": 38635.063,
+        "isMain": false
+      },
+      "GQEQyk4ZE2cpqEiS": {
+        "id": "GQEQyk4ZE2cpqEiS",
+        "name": "audio",
+        "type": "audio",
+        "display": {
+          "from": 0,
+          "to": 17200
+        },
+        "trim": {
+          "from": 0,
+          "to": 17200
+        },
+        "playbackRate": 1,
+        "details": {
+          "src": "/uploads/1765513455550-ad-ads-background-music-269360.mp3",
+          "volume": 26
+        },
+        "metadata": {},
+        "duration": 65645.68800000001,
+        "isMain": false
+      },
+      "v3gjlVWrKdSnIvS": {
+        "id": "v3gjlVWrKdSnIvS",
+        "details": {
+          "width": 1908,
+          "height": 1080,
+          "opacity": 100,
+          "src": "/uploads/1765530091287-Image2Video_freshly_baked_caprese_pi.mp4",
+          "volume": 100,
+          "borderRadius": 0,
+          "borderWidth": 0,
+          "borderColor": "#000000",
+          "boxShadow": {
+            "color": "#000000",
+            "x": 0,
+            "y": 0,
+            "blur": 0
+          },
+          "top": "0px",
+          "left": "6px",
+          "transform": "scale(1)",
+          "blur": 0,
+          "brightness": 100,
+          "flipX": false,
+          "flipY": false,
+          "rotate": "0deg",
+          "visibility": "visible"
+        },
+        "metadata": {
+          "previewUrl": "https://cdn.designcombo.dev/caption_previews/static_preset1.webp"
+        },
+        "trim": {
+          "from": 115.69148936169594,
+          "to": 4902.925531914891
+        },
+        "type": "video",
+        "name": "video",
+        "playbackRate": 1,
+        "display": {
+          "from": 8484.042553191495,
+          "to": 13271.276595744686
+        },
+        "duration": 5062.5,
+        "isMain": false
+      },
+      "rEtK9vlfSMOAoi": {
+        "id": "rEtK9vlfSMOAoi",
+        "name": "audio",
+        "type": "audio",
+        "display": {
+          "from": 17200,
+          "to": 38652.35023404259
+        },
+        "trim": {
+          "from": 17200,
+          "to": 38652.35023404259
+        },
+        "playbackRate": 1,
+        "details": {
+          "src": "/uploads/1765513455550-ad-ads-background-music-269360.mp3",
+          "volume": 26
+        },
+        "metadata": {},
+        "duration": 65645.68800000001,
+        "isMain": false
+      }
+    },
+    "transitionIds": [
+      "YWs6eBQRLkFuT7Xl-vD1Z083FntJCYV",
+      "vD1Z083FntJCYV-v3gjlVWrKdSnIvS",
+      "lRJnpuKX4aaTiozO-N9Ykm32GzhTwmyMZ",
+      "N9Ykm32GzhTwmyMZ-XVZ6kBqhgnLr4r",
+      "kdznOku4UocuzQTT-y5MjRuir6IpwGEB3",
+      "y5MjRuir6IpwGEB3-M7sSoWdZrPRQGG9Z",
+      "M7sSoWdZrPRQGG9Z-v6ZIqA1xEcye9Pf",
+      "v6ZIqA1xEcye9Pf-U88gr8cW9F2Xza",
+      "GQEQyk4ZE2cpqEiS-rEtK9vlfSMOAoi"
+    ]
+  }
+}
