@@ -169,7 +169,10 @@ const ModalUpload: React.FC<ModalUploadProps> = ({ type = "all" }) => {
         file: f.file,
         type: f.file?.type,
         status: "pending" as const,
-        progress: 0
+        progress: 0,
+        thumbnail: f.file?.type.startsWith("video/")
+          ? videoThumbnails[f.file.name]
+          : undefined
       }));
 
     // Prepare UploadFile object for URL if present

@@ -19,7 +19,8 @@ export interface UploadCallbacks {
 export async function processFileUpload(
   uploadId: string,
   file: File,
-  callbacks: UploadCallbacks
+  callbacks: UploadCallbacks,
+  thumbnail?: string
 ): Promise<any> {
   try {
     // Use local upload endpoint
@@ -46,7 +47,10 @@ export async function processFileUpload(
       filePath: uploadInfo.filePath,
       fileSize: file.size,
       contentType: uploadInfo.contentType,
-      metadata: { uploadedUrl: uploadInfo.url },
+      metadata: {
+        uploadedUrl: uploadInfo.url,
+        ...(thumbnail && { thumbnail })
+      },
       folder: uploadInfo.folder || null,
       type: uploadInfo.contentType.split("/")[0],
       method: "direct",
@@ -114,11 +118,11 @@ export async function processUrlUpload(
 
 export async function processUpload(
   uploadId: string,
-  upload: { file?: File; url?: string },
+  upload: { file?: File; url?: string; thumbnail?: string },
   callbacks: UploadCallbacks
 ): Promise<any> {
   if (upload.file) {
-    return await processFileUpload(uploadId, upload.file, callbacks);
+    return await processFileUpload(uploadId, upload.file, callbacks, upload.thumbnail);
   }
   if (upload.url) {
     return await processUrlUpload(uploadId, upload.url, callbacks);

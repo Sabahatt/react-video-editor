@@ -10,6 +10,7 @@ interface UploadFile {
   status?: "pending" | "uploading" | "uploaded" | "failed";
   progress?: number;
   error?: string;
+  thumbnail?: string;
 }
 
 interface IUploadStore {
@@ -135,7 +136,7 @@ const useUploadStore = create<IUploadStore>()(
           console.log("upload", upload);
           processUpload(
             upload.id,
-            { file: upload.file, url: upload.url },
+            { file: upload.file, url: upload.url, thumbnail: upload.thumbnail },
             callbacks
           )
             .then((uploadData) => {
