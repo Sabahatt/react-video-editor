@@ -82,8 +82,11 @@ export const calculateTextHeight = (props: TextHeightProps) => {
 
   div.innerHTML = cleanText || "a";
 
-  // div.style.visibility = 'hidden';
-  div.style.whiteSpace = "normal";
+  div.style.visibility = "hidden";
+  div.style.position = "absolute";
+  div.style.top = "-9999px";
+  div.style.left = "-9999px";
+  div.style.whiteSpace = "pre-line";
   div.style.overflowWrap = "break-word";
   div.style.wordSpacing = "normal";
   div.style.wordBreak = "normal";
@@ -92,18 +95,12 @@ export const calculateTextHeight = (props: TextHeightProps) => {
   div.style.fontSize = fontSize;
   div.style.fontFamily = family;
   div.style.lineHeight = lineHeight;
-  // div.style.height = 'fit-content';
   div.style.fontWeight = fontWeight;
   div.style.letterSpacing = letterSpacing;
-
-  // div.style.position = "absolute";
-  div.style.top = "100";
-  div.style.left = "100";
 
   div.style.webkitTextStroke = webkitTextStroke;
   div.style.textShadow = textShadow;
   div.style.textTransform = textTransform;
-  div.style.backgroundColor = "red";
 
   div.style.minWidth = `${1}ch`;
 

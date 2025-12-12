@@ -30,11 +30,13 @@ const Composition = () => {
 
   const handleTextChange = (id: string, _: string) => {
     const elRef = document.querySelector(`.id-${id}`) as HTMLDivElement;
-    const containerDiv = elRef.firstElementChild
-      ?.firstElementChild as HTMLDivElement;
-    const textDiv = elRef.firstElementChild?.firstElementChild
-      ?.firstElementChild?.firstElementChild
-      ?.firstElementChild as HTMLDivElement;
+    if (!elRef) return;
+
+    // Find the text layer element by data attribute for more reliable selection
+    const textDiv = elRef.querySelector(
+      `[data-text-id="${id}"]`
+    ) as HTMLDivElement;
+    if (!textDiv) return;
 
     const {
       fontFamily,
@@ -73,8 +75,6 @@ const Composition = () => {
     const currentWidth = elRef.clientWidth;
     if (wordWidth > currentWidth) {
       elRef.style.width = `${wordWidth}px`;
-      textDiv.style.width = `${wordWidth}px`;
-      containerDiv.style.width = `${wordWidth}px`;
     }
 
     const newHeight = calculateTextHeight({
@@ -86,23 +86,30 @@ const Composition = () => {
       text: elRef.innerText || "",
       textShadow: textShadow,
       webkitTextStroke,
-      width: elRef.style.width,
+      width: elRef.style.width || `${currentWidth}px`,
       id: id,
       textTransform
     });
-    const currentHeight = elRef.clientHeight;
-    if (newHeight > currentHeight) {
+
+    // Always update height to match content
+    if (newHeight > 0) {
       elRef.style.height = `${newHeight}px`;
-      textDiv.style.height = `${newHeight}px`;
     }
+
     sceneMoveableRef?.current?.moveable.updateRect();
     sceneMoveableRef?.current?.moveable.forceUpdate();
   };
 
   const onTextBlur = (id: string, _: string) => {
     const elRef = document.querySelector(`.id-${id}`) as HTMLDivElement;
-    const textDiv = elRef.firstElementChild?.firstElementChild
-      ?.firstElementChild as HTMLDivElement;
+    if (!elRef) return;
+
+    // Find the text layer element by data attribute for more reliable selection
+    const textDiv = elRef.querySelector(
+      `[data-text-id="${id}"]`
+    ) as HTMLDivElement;
+    if (!textDiv) return;
+
     const {
       fontFamily,
       fontSize,
@@ -113,8 +120,9 @@ const Composition = () => {
       webkitTextStroke,
       textTransform
     } = textDiv.style;
-    const { width } = elRef.style;
+    const width = elRef.style.width || `${elRef.clientWidth}px`;
     if (!elRef.innerText) return;
+
     const newHeight = calculateTextHeight({
       family: fontFamily,
       fontSize,
@@ -128,11 +136,14 @@ const Composition = () => {
       id: id,
       textTransform
     });
+
+    // Update both width and height on blur to ensure state is synced
     dispatch(EDIT_OBJECT, {
       payload: {
         [id]: {
           details: {
-            height: newHeight
+            height: newHeight,
+            width: elRef.clientWidth
           }
         }
       }

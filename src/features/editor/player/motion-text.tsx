@@ -95,20 +95,15 @@ const TextLayer: React.FC<{
       onInput={(ev) => onChange?.(id, (ev.target as any).innerText)}
       onBlur={(ev) => onBlur?.(id, (ev.target as any).innerText)}
       style={{
-        height: "100%",
+        minHeight: "1em",
         boxShadow: "none",
         outline: "none",
         ...style,
         pointerEvents: editable ? "auto" : "none",
         whiteSpace: "pre-line",
-        width: "100%",
-        display: "flex",
-        alignItems: "center",
-        flexDirection: "column",
-        justifyContent: "center"
+        width: "100%"
       }}
       suppressContentEditableWarning
-      // dangerouslySetInnerHTML={{ __html: content }}
       className="designcombo_textLayer"
     >
       {!editable ? (
