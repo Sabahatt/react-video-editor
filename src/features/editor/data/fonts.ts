@@ -14,6 +14,19 @@ export const DEFAULT_FONT = {
 
 export const FONTS = [
   {
+    id: "font_MoisterScript_001",
+    family: "Moister Script",
+    fullName: "Moister Script Regular",
+    postScriptName: "MoisterScript",
+    preview: "",
+    style: "MoisterScript",
+    url: "/fonts/moister script.ttf",
+    category: "handwriting",
+    createdAt: "2023-06-20T04:42:55.909Z",
+    updatedAt: "2023-06-20T04:42:55.909Z",
+    userId: null
+  },
+  {
     id: "font_n23KxuTNynAlBkw_y0GLEBdc",
     family: "Aguafina Script",
     fullName: "Aguafina Script Regular",

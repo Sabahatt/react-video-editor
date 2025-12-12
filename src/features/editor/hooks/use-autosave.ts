@@ -42,6 +42,13 @@ export function useAutoSave({
         ...stateManager.toJSON(),
       };
 
+      // Prevent saving empty states - check if there's actual content
+      const hasContent = design.trackItemIds && design.trackItemIds.length > 0;
+      if (!hasContent) {
+        console.log('[Auto-Save] Skipped - no content to save');
+        return;
+      }
+
       const currentJson = JSON.stringify(design);
 
       // Skip if nothing changed (unless forced)
@@ -124,6 +131,13 @@ export function useAutoSave({
           id: generateId(),
           ...stateManager.toJSON(),
         };
+
+        // Don't save empty states on unload
+        const hasContent = design.trackItemIds && design.trackItemIds.length > 0;
+        if (!hasContent) {
+          console.log('[Auto-Save] Skipped beforeunload - no content');
+          return;
+        }
 
         navigator.sendBeacon(
           '/api/autosave',

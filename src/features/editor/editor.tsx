@@ -75,89 +75,116 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 	const { setUploads, uploads: existingUploads } = useUploadStore();
 
 	useEffect(() => {
-		// Try to load generated design from sessionStorage
-		const storedDesign = sessionStorage.getItem("generatedDesign");
-		if (storedDesign) {
-			try {
-				const design = JSON.parse(storedDesign);
-				dispatch(DESIGN_LOAD, { payload: design });
+		const loadDesignFromSource = async () => {
+			// Try to load generated design from sessionStorage first
+			const storedDesign = sessionStorage.getItem("generatedDesign");
+			if (storedDesign) {
+				try {
+					const design = JSON.parse(storedDesign);
+					dispatch(DESIGN_LOAD, { payload: design });
 
-				// Extract media from design and add to uploads for the media panel
-				const mediaUploads: Array<{
-					id: string;
-					url: string;
-					type: string;
-					preview?: string;
-					metadata?: { alt?: string; uploadedUrl?: string; previewUrl?: string };
-				}> = [];
+					// Extract media from design and add to uploads for the media panel
+					const mediaUploads: Array<{
+						id: string;
+						url: string;
+						type: string;
+						preview?: string;
+						metadata?: { alt?: string; uploadedUrl?: string; previewUrl?: string };
+					}> = [];
 
-				if (design.trackItemsMap) {
-					Object.values(design.trackItemsMap).forEach((item: any) => {
-						if (item.type === "video" && item.details?.src) {
-							mediaUploads.push({
-								id: `generated_${item.id}`,
-								url: item.details.src,
-								type: "video",
-								// For videos, use preview image if available (from Pexels)
-								preview: item.metadata?.previewUrl,
-								metadata: {
-									alt: item.metadata?.alt || "Generated video",
-									uploadedUrl: item.details.src,
-									previewUrl: item.metadata?.previewUrl,
-								},
-							});
-						} else if (item.type === "image" && item.details?.src) {
-							mediaUploads.push({
-								id: `generated_${item.id}`,
-								url: item.details.src,
-								type: "image",
-								metadata: {
-									alt: item.metadata?.alt || "Generated image",
-									uploadedUrl: item.details.src,
-								},
-							});
-						}
-					});
-				}
-
-				// Add unique media to uploads (avoid duplicates)
-				if (mediaUploads.length > 0) {
-					const existingUrls = new Set(existingUploads.map((u: any) => u.url));
-					const newUploads = mediaUploads.filter((u) => !existingUrls.has(u.url));
-					if (newUploads.length > 0) {
-						setUploads([...existingUploads, ...newUploads]);
+					if (design.trackItemsMap) {
+						Object.values(design.trackItemsMap).forEach((item: any) => {
+							if (item.type === "video" && item.details?.src) {
+								mediaUploads.push({
+									id: `generated_${item.id}`,
+									url: item.details.src,
+									type: "video",
+									// For videos, use preview image if available (from Pexels)
+									preview: item.metadata?.previewUrl,
+									metadata: {
+										alt: item.metadata?.alt || "Generated video",
+										uploadedUrl: item.details.src,
+										previewUrl: item.metadata?.previewUrl,
+									},
+								});
+							} else if (item.type === "image" && item.details?.src) {
+								mediaUploads.push({
+									id: `generated_${item.id}`,
+									url: item.details.src,
+									type: "image",
+									metadata: {
+										alt: item.metadata?.alt || "Generated image",
+										uploadedUrl: item.details.src,
+									},
+								});
+							}
+						});
 					}
-				}
 
-				// Extract restaurant name for auto-save folder
-				const storedBrand = sessionStorage.getItem("generatedBrand");
-				if (storedBrand) {
-					try {
-						const brand = JSON.parse(storedBrand);
-						if (brand.restaurantName) {
-							// Convert to folder-safe name
-							const safeName = brand.restaurantName
-								.toLowerCase()
-								.replace(/[^a-z0-9]+/g, '-')
-								.replace(/^-|-$/g, '');
-							setRestaurant(safeName || 'default');
-							setProjectName(brand.restaurantName + ' Ad');
+					// Add unique media to uploads (avoid duplicates)
+					if (mediaUploads.length > 0) {
+						const existingUrls = new Set(existingUploads.map((u: any) => u.url));
+						const newUploads = mediaUploads.filter((u) => !existingUrls.has(u.url));
+						if (newUploads.length > 0) {
+							setUploads([...existingUploads, ...newUploads]);
 						}
-					} catch (e) {
-						console.error("Failed to parse brand for restaurant name:", e);
 					}
-				}
 
-				// Clear sessionStorage after loading
-				sessionStorage.removeItem("generatedDesign");
-				sessionStorage.removeItem("generatedBrand");
-				sessionStorage.removeItem("generatedScript");
-				console.log("Loaded generated design from sessionStorage");
-			} catch (error) {
-				console.error("Failed to parse stored design:", error);
+					// Extract restaurant name for auto-save folder
+					const storedBrand = sessionStorage.getItem("generatedBrand");
+					if (storedBrand) {
+						try {
+							const brand = JSON.parse(storedBrand);
+							if (brand.restaurantName) {
+								// Convert to folder-safe name
+								const safeName = brand.restaurantName
+									.toLowerCase()
+									.replace(/[^a-z0-9]+/g, '-')
+									.replace(/^-|-$/g, '');
+								setRestaurant(safeName || 'default');
+								setProjectName(brand.restaurantName + ' Ad');
+							}
+						} catch (e) {
+							console.error("Failed to parse brand for restaurant name:", e);
+						}
+					}
+
+					// Clear sessionStorage after loading
+					sessionStorage.removeItem("generatedDesign");
+					sessionStorage.removeItem("generatedBrand");
+					sessionStorage.removeItem("generatedScript");
+					console.log("Loaded generated design from sessionStorage");
+					return; // Successfully loaded from sessionStorage
+				} catch (error) {
+					console.error("Failed to parse stored design:", error);
+				}
 			}
-		}
-		// If no stored design, editor starts empty (user can add items manually)
+
+			// No sessionStorage design - try to load from autosave
+			try {
+				const response = await fetch('/api/autosave?restaurant=default');
+				const result = await response.json();
+
+				if (result.success && result.design) {
+					// Check if the autosave has actual content
+					const hasContent = result.design.trackItemIds && result.design.trackItemIds.length > 0;
+					if (hasContent) {
+						dispatch(DESIGN_LOAD, { payload: result.design });
+						if (result.projectName) {
+							setProjectName(result.projectName);
+						}
+						if (result.restaurant) {
+							setRestaurant(result.restaurant);
+						}
+						console.log("[Editor] Restored from autosave:", result.savedAt);
+					}
+				}
+			} catch (error) {
+				console.log("[Editor] No autosave to restore or fetch failed:", error);
+			}
+		};
+
+		loadDesignFromSource();
 	}, []);
 
 	useEffect(() => {
