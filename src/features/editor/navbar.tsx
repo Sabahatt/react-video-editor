@@ -12,9 +12,20 @@ import {
   ChevronDown,
   Download,
   ProportionsIcon,
-  ShareIcon
+  ShareIcon,
+  CloudIcon,
+  CheckCircle2,
+  Loader2,
+  AlertCircle,
+  Save
 } from "lucide-react";
 import { Label } from "@/components/ui/label";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger
+} from "@/components/ui/tooltip";
 
 import type StateManager from "@designcombo/state";
 import { generateId } from "@designcombo/timeline";
@@ -32,16 +43,26 @@ import {
 import { LogoIcons } from "@/components/shared/logos";
 import Link from "next/link";
 
+interface AutoSaveStatus {
+  lastSaved: Date | null;
+  saving: boolean;
+  error: string | null;
+}
+
 export default function Navbar({
   user,
   stateManager,
   setProjectName,
-  projectName
+  projectName,
+  autoSaveStatus,
+  onManualSave
 }: {
   user: any | null;
   stateManager: StateManager;
   setProjectName: (name: string) => void;
   projectName: string;
+  autoSaveStatus?: AutoSaveStatus;
+  onManualSave?: () => void;
 }) {
   const [title, setTitle] = useState(projectName);
   const isLargeScreen = useIsLargeScreen();
@@ -121,6 +142,9 @@ export default function Navbar({
               width={200}
               inputClassName="border-none outline-none px-1 bg-background text-sm font-medium text-zinc-200"
             />
+            {autoSaveStatus && (
+              <AutoSaveIndicator status={autoSaveStatus} onManualSave={onManualSave} />
+            )}
           </div>
         )}
       </div>
@@ -341,5 +365,76 @@ const ResizeOption = ({
         <div className="text-xs text-muted-foreground">{description}</div>
       </div>
     </div>
+  );
+};
+
+const AutoSaveIndicator = ({
+  status,
+  onManualSave
+}: {
+  status: AutoSaveStatus;
+  onManualSave?: () => void;
+}) => {
+  const formatTime = (date: Date | null) => {
+    if (!date) return "Never";
+    const now = new Date();
+    const diff = Math.floor((now.getTime() - date.getTime()) / 1000);
+    if (diff < 5) return "Just now";
+    if (diff < 60) return `${diff}s ago`;
+    if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
+    return date.toLocaleTimeString();
+  };
+
+  return (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button
+            variant="ghost"
+            size="sm"
+            className="h-6 gap-1 px-2 text-xs text-muted-foreground hover:text-zinc-200"
+            onClick={onManualSave}
+          >
+            {status.saving ? (
+              <>
+                <Loader2 className="h-3 w-3 animate-spin" />
+                <span className="hidden sm:inline">Saving...</span>
+              </>
+            ) : status.error ? (
+              <>
+                <AlertCircle className="h-3 w-3 text-red-400" />
+                <span className="hidden sm:inline text-red-400">Error</span>
+              </>
+            ) : status.lastSaved ? (
+              <>
+                <CheckCircle2 className="h-3 w-3 text-green-400" />
+                <span className="hidden sm:inline">{formatTime(status.lastSaved)}</span>
+              </>
+            ) : (
+              <>
+                <CloudIcon className="h-3 w-3" />
+                <span className="hidden sm:inline">Auto-save</span>
+              </>
+            )}
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent side="bottom">
+          <div className="text-xs">
+            {status.saving ? (
+              "Saving to disk..."
+            ) : status.error ? (
+              <span className="text-red-400">Save failed: {status.error}</span>
+            ) : status.lastSaved ? (
+              <>
+                <div>Last saved: {status.lastSaved.toLocaleTimeString()}</div>
+                <div className="text-muted-foreground">Click to save now</div>
+              </>
+            ) : (
+              "Auto-save enabled (every 30s)"
+            )}
+          </div>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   );
 };

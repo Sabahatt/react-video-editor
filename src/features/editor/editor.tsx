@@ -31,6 +31,7 @@ import { ITrackItem } from "@designcombo/types";
 import useLayoutStore from "./store/use-layout-store";
 import ControlItemHorizontal from "./control-item-horizontal";
 import useUploadStore from "./store/use-upload-store";
+import { useAutoSave } from "./hooks/use-autosave";
 
 const stateManager = new StateManager({
 	size: {
@@ -41,6 +42,7 @@ const stateManager = new StateManager({
 
 const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 	const [projectName, setProjectName] = useState<string>("Untitled video");
+	const [restaurant, setRestaurant] = useState<string>("default");
 	const { scene } = useSceneStore();
 	const timelinePanelRef = useRef<ImperativePanelHandle>(null);
 	const sceneRef = useRef<SceneRef>(null);
@@ -55,6 +57,15 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 		setTypeControlItem,
 	} = useLayoutStore();
 	const isLargeScreen = useIsLargeScreen();
+
+	// Auto-save functionality - saves every 30 seconds
+	const { status: autoSaveStatus, saveNow } = useAutoSave({
+		stateManager,
+		restaurant,
+		projectName,
+		intervalMs: 30000, // 30 seconds
+		enabled: true,
+	});
 
 	useTimelineEvents();
 	useKeyboardShortcuts();
@@ -115,6 +126,25 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 					const newUploads = mediaUploads.filter((u) => !existingUrls.has(u.url));
 					if (newUploads.length > 0) {
 						setUploads([...existingUploads, ...newUploads]);
+					}
+				}
+
+				// Extract restaurant name for auto-save folder
+				const storedBrand = sessionStorage.getItem("generatedBrand");
+				if (storedBrand) {
+					try {
+						const brand = JSON.parse(storedBrand);
+						if (brand.restaurantName) {
+							// Convert to folder-safe name
+							const safeName = brand.restaurantName
+								.toLowerCase()
+								.replace(/[^a-z0-9]+/g, '-')
+								.replace(/^-|-$/g, '');
+							setRestaurant(safeName || 'default');
+							setProjectName(brand.restaurantName + ' Ad');
+						}
+					} catch (e) {
+						console.error("Failed to parse brand for restaurant name:", e);
 					}
 				}
 
@@ -208,6 +238,8 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 				user={null}
 				stateManager={stateManager}
 				setProjectName={setProjectName}
+				autoSaveStatus={autoSaveStatus}
+				onManualSave={saveNow}
 			/>
 			<div className="flex flex-1 overflow-hidden">
 				{isLargeScreen && (
