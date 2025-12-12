@@ -2,6 +2,33 @@ import { NextRequest, NextResponse } from "next/server";
 import { writeFile, mkdir } from "fs/promises";
 import path from "path";
 import { existsSync } from "fs";
+import ffmpeg from "fluent-ffmpeg";
+
+// Generate a thumbnail from a video file
+async function generateVideoThumbnail(
+  videoPath: string,
+  outputDir: string,
+  thumbnailName: string
+): Promise<string | null> {
+  return new Promise((resolve) => {
+    const thumbnailPath = path.join(outputDir, thumbnailName);
+
+    ffmpeg(videoPath)
+      .screenshots({
+        timestamps: [1], // Capture at 1 second
+        filename: thumbnailName,
+        folder: outputDir,
+        size: "320x?" // 320px width, maintain aspect ratio
+      })
+      .on("end", () => {
+        resolve(`/uploads/${thumbnailName}`);
+      })
+      .on("error", (err) => {
+        console.error("Thumbnail generation failed:", err.message);
+        resolve(null);
+      });
+  });
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -32,6 +59,17 @@ export async function POST(request: NextRequest) {
     // Return the public URL
     const url = `/uploads/${fileName}`;
 
+    // Generate thumbnail for video files
+    let thumbnailUrl: string | null = null;
+    if (file.type.startsWith("video/")) {
+      const thumbnailName = `thumb-${timestamp}-${sanitizedName.replace(/\.[^.]+$/, ".jpg")}`;
+      thumbnailUrl = await generateVideoThumbnail(
+        filePath,
+        uploadsDir,
+        thumbnailName
+      );
+    }
+
     return NextResponse.json({
       success: true,
       uploads: [
@@ -40,7 +78,8 @@ export async function POST(request: NextRequest) {
           filePath: url,
           contentType: file.type,
           url: url,
-          folder: null
+          folder: null,
+          ...(thumbnailUrl && { thumbnailUrl })
         }
       ]
     });

@@ -162,6 +162,7 @@ const ModalUpload: React.FC<ModalUploadProps> = ({ type = "all" }) => {
   }
   const handleUpload = async () => {
     // Prepare UploadFile objects for files
+    // Thumbnails are now generated server-side to avoid localStorage quota issues
     const fileUploads = files
       .filter((f) => f.file?.type)
       .map((f) => ({
@@ -169,10 +170,7 @@ const ModalUpload: React.FC<ModalUploadProps> = ({ type = "all" }) => {
         file: f.file,
         type: f.file?.type,
         status: "pending" as const,
-        progress: 0,
-        thumbnail: f.file?.type.startsWith("video/")
-          ? videoThumbnails[f.file.name]
-          : undefined
+        progress: 0
       }));
 
     // Prepare UploadFile object for URL if present

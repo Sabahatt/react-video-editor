@@ -19,8 +19,7 @@ export interface UploadCallbacks {
 export async function processFileUpload(
   uploadId: string,
   file: File,
-  callbacks: UploadCallbacks,
-  thumbnail?: string
+  callbacks: UploadCallbacks
 ): Promise<any> {
   try {
     // Use local upload endpoint
@@ -42,6 +41,7 @@ export async function processFileUpload(
     const uploadInfo = uploads[0];
 
     // Construct upload data from uploadInfo
+    // Use server-generated thumbnail URL instead of base64 to avoid localStorage quota issues
     const uploadData = {
       fileName: uploadInfo.fileName,
       filePath: uploadInfo.filePath,
@@ -49,7 +49,7 @@ export async function processFileUpload(
       contentType: uploadInfo.contentType,
       metadata: {
         uploadedUrl: uploadInfo.url,
-        ...(thumbnail && { thumbnail })
+        ...(uploadInfo.thumbnailUrl && { thumbnail: uploadInfo.thumbnailUrl })
       },
       folder: uploadInfo.folder || null,
       type: uploadInfo.contentType.split("/")[0],
@@ -118,11 +118,11 @@ export async function processUrlUpload(
 
 export async function processUpload(
   uploadId: string,
-  upload: { file?: File; url?: string; thumbnail?: string },
+  upload: { file?: File; url?: string },
   callbacks: UploadCallbacks
 ): Promise<any> {
   if (upload.file) {
-    return await processFileUpload(uploadId, upload.file, callbacks, upload.thumbnail);
+    return await processFileUpload(uploadId, upload.file, callbacks);
   }
   if (upload.url) {
     return await processUrlUpload(uploadId, upload.url, callbacks);

@@ -137,7 +137,7 @@ const useUploadStore = create<IUploadStore>()(
           console.log("upload", upload);
           processUpload(
             upload.id,
-            { file: upload.file, url: upload.url, thumbnail: upload.thumbnail },
+            { file: upload.file, url: upload.url },
             callbacks
           )
             .then((uploadData) => {
