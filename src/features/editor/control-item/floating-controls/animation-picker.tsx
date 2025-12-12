@@ -1,6 +1,6 @@
 import { X } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ADD_ANIMATION, EDIT_OBJECT } from "@designcombo/state";
+import { ADD_ANIMATION } from "@designcombo/state";
 import { dispatch } from "@designcombo/events";
 import useStore from "../../store/use-store";
 import { Animation, presets } from "../../player/animated";
@@ -22,15 +22,20 @@ const removeAnimation = (
   const currentItem = trackItemsMap[activeIds[0]];
   const currentAnimations = currentItem?.animations || {};
 
+  // Check if this animation type exists
+  if (!currentAnimations[type]) return;
+
   // Create new animations object without the removed type
   const newAnimations = { ...currentAnimations };
   delete newAnimations[type];
 
-  dispatch(EDIT_OBJECT, {
+  // ADD_ANIMATION's state handler will completely replace the animations
+  // object when the passed animations don't match existing in/out/loop keys.
+  // By passing the new object without the removed type, it gets replaced.
+  dispatch(ADD_ANIMATION, {
     payload: {
-      [activeIds[0]]: {
-        animations: Object.keys(newAnimations).length > 0 ? newAnimations : undefined
-      }
+      id: activeIds[0],
+      animations: Object.keys(newAnimations).length > 0 ? newAnimations : {}
     }
   });
 };
