@@ -32,13 +32,14 @@ export function useAutoSave({
 
   const lastSavedJsonRef = useRef<string>('');
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const designIdRef = useRef<string>(generateId()); // Stable ID - generated once
 
   const saveNow = useCallback(async (force = false) => {
     if (!stateManager) return;
 
     try {
       const design: IDesign = {
-        id: generateId(),
+        id: designIdRef.current, // Use stable ID instead of generating new one
         ...stateManager.toJSON(),
       };
 
@@ -128,7 +129,7 @@ export function useAutoSave({
       // Use sendBeacon for reliable save on page unload
       if (stateManager) {
         const design: IDesign = {
-          id: generateId(),
+          id: designIdRef.current, // Use stable ID
           ...stateManager.toJSON(),
         };
 
