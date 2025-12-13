@@ -7,6 +7,7 @@ import { ITimelineScaleState } from "@designcombo/types";
 
 class Timeline extends TimelineBase {
   public isShiftKey: boolean = false;
+  public isCtrlKey: boolean = false;
   constructor(
     canvasEl: HTMLCanvasElement,
     options: Partial<TimelineOptions> & {
@@ -17,7 +18,7 @@ class Timeline extends TimelineBase {
   ) {
     super(canvasEl, options); // Call the parent class constructor
 
-    // Add shift keyboard listener
+    // Add shift/ctrl keyboard listener
     window.addEventListener("keydown", this.handleKeyDown);
     window.addEventListener("keyup", this.handleKeyUp);
   }
@@ -26,11 +27,17 @@ class Timeline extends TimelineBase {
     if (event.key === "Shift") {
       this.isShiftKey = true;
     }
+    if (event.key === "Control") {
+      this.isCtrlKey = true;
+    }
   };
 
   private handleKeyUp = (event: KeyboardEvent) => {
     if (event.key === "Shift") {
       this.isShiftKey = false;
+    }
+    if (event.key === "Control") {
+      this.isCtrlKey = false;
     }
   };
 

@@ -13,6 +13,7 @@ import BasicText from "./basic-text";
 import BasicImage from "./basic-image";
 import BasicVideo from "./basic-video";
 import BasicAudio from "./basic-audio";
+import BasicMulti from "./basic-multi";
 import useStore from "../store/use-store";
 import useLayoutStore from "../store/use-layout-store";
 import BasicCaption from "./basic-caption";
@@ -21,6 +22,7 @@ import { LassoSelect } from "lucide-react";
 const Container = ({ children }: { children: React.ReactNode }) => {
   const { activeIds, trackItemsMap, transitionsMap } = useStore();
   const [trackItem, setTrackItem] = useState<ITrackItem | null>(null);
+  const [trackItems, setTrackItems] = useState<ITrackItem[]>([]);
   const { setTrackItem: setLayoutTrackItem } = useLayoutStore();
 
   useEffect(() => {
@@ -30,9 +32,19 @@ const Container = ({ children }: { children: React.ReactNode }) => {
       if (trackItem) {
         setTrackItem(trackItem);
         setLayoutTrackItem(trackItem);
+        setTrackItems([]);
       } else console.log(transitionsMap[id]);
+    } else if (activeIds.length > 1) {
+      // Multiple items selected
+      const items = activeIds
+        .map((id) => trackItemsMap[id])
+        .filter(Boolean) as ITrackItem[];
+      setTrackItems(items);
+      setTrackItem(null);
+      setLayoutTrackItem(null);
     } else {
       setTrackItem(null);
+      setTrackItems([]);
       setLayoutTrackItem(null);
     }
   }, [activeIds, trackItemsMap]);
@@ -40,17 +52,26 @@ const Container = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="w-[272px] flex-none border-l border-border/80 bg-muted hidden lg:flex lg:flex-col h-[calc(100vh-58px)] overflow-hidden">
       {React.cloneElement(children as React.ReactElement<any>, {
-        trackItem
+        trackItem,
+        trackItems
       })}
     </div>
   );
 };
 
 const ActiveControlItem = ({
-  trackItem
+  trackItem,
+  trackItems
 }: {
   trackItem?: ITrackItemAndDetails;
+  trackItems?: ITrackItem[];
 }) => {
+  // Multi-selection mode
+  if (trackItems && trackItems.length > 1) {
+    return <BasicMulti trackItems={trackItems} />;
+  }
+
+  // No selection
   if (!trackItem) {
     return (
       <div className="pb-32 flex flex-1 flex-col items-center justify-center gap-4 text-muted-foreground h-[calc(100vh-58px)]">
@@ -59,6 +80,8 @@ const ActiveControlItem = ({
       </div>
     );
   }
+
+  // Single selection
   return (
     <>
       {
