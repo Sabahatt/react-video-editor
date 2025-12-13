@@ -58,7 +58,7 @@ export const calculateTextStyles = (
   fontFamily: details.fontFamily || "Arial",
   fontWeight: details.fontWeight || "normal",
   lineHeight: details.lineHeight || "normal",
-  letterSpacing: details.letterSpacing || "normal",
+  letterSpacing: details.letterSpacing ? `${details.letterSpacing}px` : "normal",
   wordSpacing: details.wordSpacing || "normal",
   wordWrap: details.wordWrap || "",
   wordBreak: details.wordBreak || "normal",

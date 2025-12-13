@@ -28,6 +28,7 @@ interface ITextControlProps {
   borderColor: string;
   opacity: number;
   boxShadow: IBoxShadow;
+  letterSpacing: number;
 }
 
 const getStyleNameFromFontName = (fontName: string) => {
@@ -65,7 +66,8 @@ const BasicText = ({
       x: 0,
       y: 0,
       blur: 0
-    }
+    },
+    letterSpacing: 0
   });
 
   const [selectedFont, setSelectedFont] = useState<ICompactFont>({
@@ -113,7 +115,8 @@ const BasicText = ({
         x: 0,
         y: 0,
         blur: 0
-      }
+      },
+      letterSpacing: typeof trackItem.details.letterSpacing === 'number' ? trackItem.details.letterSpacing : (parseInt(trackItem.details.letterSpacing) || 0)
     });
   }, [trackItem.id]);
 
@@ -333,6 +336,24 @@ const BasicText = ({
     });
   };
 
+  const onChangeLetterSpacing = (v: number) => {
+    dispatch(EDIT_OBJECT, {
+      payload: {
+        [trackItem.id]: {
+          details: {
+            letterSpacing: v
+          }
+        }
+      }
+    });
+    setProperties((prev) => {
+      return {
+        ...prev,
+        letterSpacing: v
+      } as ITextControlProps;
+    });
+  };
+
   const components = [
     {
       key: "textPreset",
@@ -354,6 +375,7 @@ const BasicText = ({
           onChangeTextAlign={onChangeTextAlign}
           onChangeTextDecoration={onChangeTextDecoration}
           handleChangeOpacity={handleChangeOpacity}
+          onChangeLetterSpacing={onChangeLetterSpacing}
         />
       )
     },

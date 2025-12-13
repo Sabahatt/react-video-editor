@@ -34,6 +34,7 @@ interface TextControlsProps {
   onChangeTextAlign: (v: string) => void;
   onChangeTextDecoration: (v: string) => void;
   handleChangeOpacity: (v: number) => void;
+  onChangeLetterSpacing: (v: number) => void;
 }
 
 export const TextControls = ({
@@ -47,7 +48,8 @@ export const TextControls = ({
   handleBackgroundChange,
   onChangeTextAlign,
   onChangeTextDecoration,
-  handleChangeOpacity
+  handleChangeOpacity,
+  onChangeLetterSpacing
 }: TextControlsProps) => {
   return (
     <div className="flex flex-col gap-2 py-4">
@@ -62,6 +64,7 @@ export const TextControls = ({
         handleChangeFontStyle={handleChangeFontStyle}
       />
       <FontSize value={properties.fontSize} onChange={onChangeFontSize} />
+      <LetterSpacing value={properties.letterSpacing} onChange={onChangeLetterSpacing} />
       <FontColor
         value={properties.color}
         handleColorChange={handleColorChange}
@@ -328,6 +331,62 @@ const FontSize = ({
           }}
           onBlur={handleBlur} // Trigger onBlur event
           onKeyDown={handleKeyDown} // Trigger onKeyDown event
+        />
+      </div>
+    </div>
+  );
+};
+
+const LetterSpacing = ({
+  value,
+  onChange
+}: {
+  value: number;
+  onChange: (v: number) => void;
+}) => {
+  const [localValue, setLocalValue] = useState<string | number>(value ?? 0);
+
+  useEffect(() => {
+    setLocalValue(value ?? 0);
+  }, [value]);
+
+  const handleBlur = () => {
+    if (localValue !== "") {
+      onChange(Number(localValue));
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      if (localValue !== "") {
+        onChange(Number(localValue));
+      }
+    }
+  };
+
+  return (
+    <div className="flex gap-2">
+      <div className="flex flex-1 items-center text-sm text-muted-foreground">
+        Spacing
+      </div>
+      <div className="relative w-32">
+        <Input
+          className="h-8"
+          value={localValue}
+          onChange={(e) => {
+            const newValue = e.target.value;
+
+            // Allow empty string, negative numbers, or positive numbers
+            if (
+              newValue === "" ||
+              newValue === "-" ||
+              !Number.isNaN(Number(newValue))
+            ) {
+              setLocalValue(newValue);
+            }
+          }}
+          onBlur={handleBlur}
+          onKeyDown={handleKeyDown}
         />
       </div>
     </div>

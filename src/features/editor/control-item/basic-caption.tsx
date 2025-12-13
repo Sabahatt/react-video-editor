@@ -448,6 +448,7 @@ const BasicCaption = ({
           onChangeTextDecoration={onChangeTextDecoration}
           handleChangeOpacity={handleChangeOpacity}
           handleBackgroundChange={(v: string) => console.log(v)}
+          onChangeLetterSpacing={(v: number) => console.log(v)}
         />
       )
     },
