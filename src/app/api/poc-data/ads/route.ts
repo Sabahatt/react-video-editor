@@ -1,7 +1,7 @@
 /**
  * API to load pre-made ad designs for POC demo
- * GET /api/poc-data/ads?restaurant=joes-pizza
- * Returns a random pre-made ad design for the restaurant
+ * GET /api/poc-data/ads?restaurant=joes-pizza&template=template-1
+ * Returns a pre-made ad design for the restaurant matching the template
  */
 
 import { NextRequest, NextResponse } from 'next/server';
@@ -12,10 +12,18 @@ export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const restaurant = searchParams.get('restaurant');
+    const template = searchParams.get('template');
 
     if (!restaurant) {
       return NextResponse.json(
         { success: false, error: 'Restaurant parameter is required' },
+        { status: 400 }
+      );
+    }
+
+    if (!template) {
+      return NextResponse.json(
+        { success: false, error: 'Template parameter is required' },
         { status: 400 }
       );
     }
@@ -44,9 +52,20 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Pick a random ad
-    const randomIndex = Math.floor(Math.random() * jsonFiles.length);
-    const selectedFile = jsonFiles[randomIndex];
+    // Filter ads by template (e.g., "template-1" matches files containing "template-1")
+    const templateFiles = jsonFiles.filter(f => f.includes(template));
+
+    if (templateFiles.length === 0) {
+      return NextResponse.json(
+        { success: false, error: `No ad files found for ${restaurant} with ${template}` },
+        { status: 404 }
+      );
+    }
+
+    // Pick the first matching ad (or random if multiple exist)
+    const selectedFile = templateFiles.length === 1
+      ? templateFiles[0]
+      : templateFiles[Math.floor(Math.random() * templateFiles.length)];
     const filePath = path.join(adsDir, selectedFile);
 
     // Read and parse the JSON
@@ -68,7 +87,9 @@ export async function GET(request: NextRequest) {
       design,
       brand,
       adFile: selectedFile,
-      totalAds: jsonFiles.length
+      template,
+      totalAds: jsonFiles.length,
+      templateAds: templateFiles.length
     });
 
   } catch (error) {

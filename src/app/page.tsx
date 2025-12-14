@@ -38,6 +38,19 @@ const POC_RESTAURANTS = [
   },
 ];
 
+const TEMPLATES = [
+  {
+    id: "template-1",
+    name: "Template 1",
+    description: "Classic promotional style",
+  },
+  {
+    id: "template-2",
+    name: "Template 2",
+    description: "Modern dynamic style",
+  },
+];
+
 type GenerationStatus = "idle" | "generating" | "complete" | "error";
 
 interface GenerationStep {
@@ -51,6 +64,7 @@ const simulateDelay = (ms: number) => new Promise(resolve => setTimeout(resolve,
 export default function Home() {
   const router = useRouter();
   const [selectedRestaurant, setSelectedRestaurant] = useState<string>("");
+  const [selectedTemplate, setSelectedTemplate] = useState<string>("");
   const [status, setStatus] = useState<GenerationStatus>("idle");
   const [error, setError] = useState<string>("");
   const [steps, setSteps] = useState<GenerationStep[]>([
@@ -66,7 +80,7 @@ export default function Home() {
   };
 
   const handleGenerate = async () => {
-    if (!selectedRestaurant) return;
+    if (!selectedRestaurant || !selectedTemplate) return;
 
     const restaurantConfig = POC_RESTAURANTS.find((r) => r.id === selectedRestaurant);
     if (!restaurantConfig) return;
@@ -96,7 +110,7 @@ export default function Home() {
       updateStep(1, "active");
       await simulateDelay(1200); // Fake delay for realism
 
-      const adRes = await fetch(`/api/poc-data/ads?restaurant=${selectedRestaurant}`);
+      const adRes = await fetch(`/api/poc-data/ads?restaurant=${selectedRestaurant}&template=${selectedTemplate}`);
       const adResult = await adRes.json();
 
       if (!adResult.success) {
@@ -160,7 +174,10 @@ export default function Home() {
           </label>
           <Select
             value={selectedRestaurant}
-            onValueChange={setSelectedRestaurant}
+            onValueChange={(value) => {
+              setSelectedRestaurant(value);
+              setSelectedTemplate(""); // Reset template when restaurant changes
+            }}
             disabled={status === "generating"}
           >
             <SelectTrigger className="w-full">
@@ -189,8 +206,45 @@ export default function Home() {
               </p>
             </div>
           )}
-
         </div>
+
+        {/* Template Selector - shown after restaurant is selected */}
+        {selectedRestaurant && status === "idle" && (
+          <div className="space-y-4">
+            <label className="text-sm font-medium text-foreground">
+              Select a template
+            </label>
+            <Select
+              value={selectedTemplate}
+              onValueChange={setSelectedTemplate}
+            >
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Choose a template..." />
+              </SelectTrigger>
+              <SelectContent>
+                {TEMPLATES.map((template) => (
+                  <SelectItem key={template.id} value={template.id}>
+                    <div className="flex items-center gap-2">
+                      <span>{template.name}</span>
+                    </div>
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+
+            {/* Selected Template Info */}
+            {selectedTemplate && (
+              <div className="p-4 rounded-lg bg-muted/50 border border-border">
+                <p className="font-medium">
+                  {TEMPLATES.find((t) => t.id === selectedTemplate)?.name}
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  {TEMPLATES.find((t) => t.id === selectedTemplate)?.description}
+                </p>
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Generation Progress */}
         {status === "generating" && (
@@ -235,7 +289,7 @@ export default function Home() {
           className="w-full"
           size="lg"
           onClick={handleGenerate}
-          disabled={!selectedRestaurant || status === "generating"}
+          disabled={!selectedRestaurant || !selectedTemplate || status === "generating"}
         >
           {status === "generating" ? (
             <span className="flex items-center gap-2">
