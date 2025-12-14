@@ -1,0 +1,1190 @@
+{
+  "id": "NyTVM3jj72llHyIk",
+  "fps": 30,
+  "tracks": [
+    {
+      "id": "egQQeKAsryvtx5JfX4rZw",
+      "accepts": [
+        "text",
+        "image",
+        "video",
+        "audio",
+        "composition",
+        "caption",
+        "template",
+        "customTrack",
+        "customTrack2",
+        "illustration",
+        "custom",
+        "main",
+        "shape",
+        "linealAudioBars",
+        "radialAudioBars",
+        "progressFrame",
+        "progressBar",
+        "rect",
+        "progressSquare"
+      ],
+      "type": "audio",
+      "items": [
+        "PvXzOTG7f0m3YSZx"
+      ],
+      "magnetic": false,
+      "static": false
+    },
+    {
+      "id": "9Ifo-9MEZcQ8nd-u6YEr-",
+      "accepts": [
+        "text",
+        "image",
+        "video",
+        "audio",
+        "composition",
+        "caption",
+        "template",
+        "customTrack",
+        "customTrack2",
+        "illustration",
+        "custom",
+        "main",
+        "shape",
+        "linealAudioBars",
+        "radialAudioBars",
+        "progressFrame",
+        "progressBar",
+        "rect",
+        "progressSquare"
+      ],
+      "type": "audio",
+      "items": [
+        "ItMkRP69bv14miU9"
+      ],
+      "magnetic": false,
+      "static": false
+    },
+    {
+      "id": "eeiYD7PrhOdc2",
+      "accepts": [
+        "text",
+        "image",
+        "video",
+        "audio",
+        "composition",
+        "caption",
+        "template",
+        "customTrack",
+        "customTrack2",
+        "illustration",
+        "custom",
+        "main",
+        "shape",
+        "linealAudioBars",
+        "radialAudioBars",
+        "progressFrame",
+        "progressBar",
+        "rect",
+        "progressSquare"
+      ],
+      "type": "text",
+      "items": [
+        "kdznOku4UocuzQTT",
+        "y5MjRuir6IpwGEB3",
+        "M7sSoWdZrPRQGG9Z",
+        "v6ZIqA1xEcye9Pf"
+      ],
+      "magnetic": false,
+      "static": false
+    },
+    {
+      "id": "zsgsstRrAPSmrNqn",
+      "items": [
+        "gcpmOMHYBAdLwjyt"
+      ],
+      "type": "image",
+      "accepts": [
+        "text",
+        "image",
+        "video",
+        "audio",
+        "composition",
+        "caption",
+        "template",
+        "customTrack",
+        "customTrack2",
+        "illustration",
+        "custom",
+        "main",
+        "shape",
+        "linealAudioBars",
+        "radialAudioBars",
+        "progressFrame",
+        "progressBar",
+        "rect",
+        "progressSquare"
+      ]
+    },
+    {
+      "id": "OnnnudhZMUhKEGDx",
+      "items": [
+        "hz7JwWsywAqzmfD0"
+      ],
+      "type": "image",
+      "accepts": [
+        "text",
+        "image",
+        "video",
+        "audio",
+        "composition",
+        "caption",
+        "template",
+        "customTrack",
+        "customTrack2",
+        "illustration",
+        "custom",
+        "main",
+        "shape",
+        "linealAudioBars",
+        "radialAudioBars",
+        "progressFrame",
+        "progressBar",
+        "rect",
+        "progressSquare"
+      ]
+    },
+    {
+      "id": "PT2eBztzUz14x9L",
+      "items": [
+        "fEdPgkF6QmAJE96c"
+      ],
+      "type": "image",
+      "accepts": [
+        "text",
+        "image",
+        "video",
+        "audio",
+        "composition",
+        "caption",
+        "template",
+        "customTrack",
+        "customTrack2",
+        "illustration",
+        "custom",
+        "main",
+        "shape",
+        "linealAudioBars",
+        "radialAudioBars",
+        "progressFrame",
+        "progressBar",
+        "rect",
+        "progressSquare"
+      ]
+    },
+    {
+      "id": "9n35SnLMKDA2CJ3fNwAzu",
+      "items": [
+        "scsctwPyjxfZDpE"
+      ],
+      "type": "text",
+      "accepts": [
+        "text",
+        "caption"
+      ],
+      "tempIndex": -5
+    },
+    {
+      "id": "y8sSmEgKh4-lZFdlyiWIf",
+      "accepts": [
+        "text",
+        "caption"
+      ],
+      "type": "text",
+      "items": [
+        "tspCJvB5ZR4MIxlU"
+      ],
+      "tempIndex": -3
+    },
+    {
+      "id": "xp9Hai5HxpQhuFo",
+      "items": [
+        "V88w24qdhviF6OAl"
+      ],
+      "type": "image",
+      "accepts": [
+        "text",
+        "image",
+        "video",
+        "audio",
+        "composition",
+        "caption",
+        "template",
+        "customTrack",
+        "customTrack2",
+        "illustration",
+        "custom",
+        "main",
+        "shape",
+        "linealAudioBars",
+        "radialAudioBars",
+        "progressFrame",
+        "progressBar",
+        "rect",
+        "progressSquare"
+      ]
+    },
+    {
+      "id": "TaGSaMRa5Ll4cHKh",
+      "accepts": [
+        "text",
+        "image",
+        "video",
+        "composition",
+        "template",
+        "customTrack2",
+        "custom",
+        "shape",
+        "radialAudioBars",
+        "progressBar",
+        "progressSquare",
+        "rect",
+        "progressFrame",
+        "linealAudioBars",
+        "main",
+        "illustration",
+        "customTrack",
+        "caption",
+        "audio"
+      ],
+      "type": "video",
+      "items": [
+        "t83gpZxXxYQLoXE",
+        "LlPqCM82SnYS78IR",
+        "qY0pGnThJkDhAlin",
+        "xA3AIOqdfSNhOQ2C",
+        "DFEweIEKdVFKxcOg",
+        "I690Bn9PF1gIZcUc"
+      ],
+      "magnetic": false,
+      "static": false,
+      "name": "Visuals"
+    },
+    {
+      "id": "Hl7agf1vKOyCf4yS",
+      "accepts": [
+        "image",
+        "video"
+      ],
+      "type": "image",
+      "items": [
+        "mq44VqEAUUj64mz"
+      ]
+    }
+  ],
+  "size": {
+    "width": 1920,
+    "height": 1080
+  },
+  "trackItemIds": [
+    "mq44VqEAUUj64mz",
+    "DFEweIEKdVFKxcOg",
+    "I690Bn9PF1gIZcUc",
+    "xA3AIOqdfSNhOQ2C",
+    "t83gpZxXxYQLoXE",
+    "LlPqCM82SnYS78IR",
+    "qY0pGnThJkDhAlin",
+    "V88w24qdhviF6OAl",
+    "tspCJvB5ZR4MIxlU",
+    "scsctwPyjxfZDpE",
+    "fEdPgkF6QmAJE96c",
+    "hz7JwWsywAqzmfD0",
+    "gcpmOMHYBAdLwjyt",
+    "v6ZIqA1xEcye9Pf",
+    "M7sSoWdZrPRQGG9Z",
+    "y5MjRuir6IpwGEB3",
+    "kdznOku4UocuzQTT",
+    "ItMkRP69bv14miU9",
+    "PvXzOTG7f0m3YSZx"
+  ],
+  "transitionsMap": {
+    "LlPqCM82SnYS78IR-qY0pGnThJkDhAlin": {
+      "id": "LlPqCM82SnYS78IR-qY0pGnThJkDhAlin",
+      "duration": 1500,
+      "fromId": "LlPqCM82SnYS78IR",
+      "toId": "qY0pGnThJkDhAlin",
+      "kind": "none",
+      "trackId": "TaGSaMRa5Ll4cHKh",
+      "type": "transition"
+    },
+    "qY0pGnThJkDhAlin-t83gpZxXxYQLoXE": {
+      "id": "qY0pGnThJkDhAlin-t83gpZxXxYQLoXE",
+      "duration": 1500,
+      "fromId": "qY0pGnThJkDhAlin",
+      "toId": "t83gpZxXxYQLoXE",
+      "kind": "none",
+      "trackId": "TaGSaMRa5Ll4cHKh",
+      "type": "transition"
+    },
+    "t83gpZxXxYQLoXE-xA3AIOqdfSNhOQ2C": {
+      "id": "t83gpZxXxYQLoXE-xA3AIOqdfSNhOQ2C",
+      "duration": 1500,
+      "fromId": "t83gpZxXxYQLoXE",
+      "toId": "xA3AIOqdfSNhOQ2C",
+      "kind": "none",
+      "trackId": "TaGSaMRa5Ll4cHKh",
+      "type": "transition"
+    },
+    "xA3AIOqdfSNhOQ2C-DFEweIEKdVFKxcOg": {
+      "id": "xA3AIOqdfSNhOQ2C-DFEweIEKdVFKxcOg",
+      "duration": 1500,
+      "fromId": "xA3AIOqdfSNhOQ2C",
+      "toId": "DFEweIEKdVFKxcOg",
+      "kind": "none",
+      "trackId": "TaGSaMRa5Ll4cHKh",
+      "type": "transition"
+    },
+    "DFEweIEKdVFKxcOg-I690Bn9PF1gIZcUc": {
+      "id": "DFEweIEKdVFKxcOg-I690Bn9PF1gIZcUc",
+      "duration": 1500,
+      "fromId": "DFEweIEKdVFKxcOg",
+      "toId": "I690Bn9PF1gIZcUc",
+      "kind": "none",
+      "trackId": "TaGSaMRa5Ll4cHKh",
+      "type": "transition"
+    },
+    "kdznOku4UocuzQTT-y5MjRuir6IpwGEB3": {
+      "id": "kdznOku4UocuzQTT-y5MjRuir6IpwGEB3",
+      "duration": 1500,
+      "fromId": "kdznOku4UocuzQTT",
+      "toId": "y5MjRuir6IpwGEB3",
+      "kind": "none",
+      "trackId": "eeiYD7PrhOdc2",
+      "type": "transition"
+    },
+    "y5MjRuir6IpwGEB3-M7sSoWdZrPRQGG9Z": {
+      "id": "y5MjRuir6IpwGEB3-M7sSoWdZrPRQGG9Z",
+      "duration": 1500,
+      "fromId": "y5MjRuir6IpwGEB3",
+      "toId": "M7sSoWdZrPRQGG9Z",
+      "kind": "none",
+      "trackId": "eeiYD7PrhOdc2",
+      "type": "transition"
+    },
+    "M7sSoWdZrPRQGG9Z-v6ZIqA1xEcye9Pf": {
+      "id": "M7sSoWdZrPRQGG9Z-v6ZIqA1xEcye9Pf",
+      "duration": 1500,
+      "fromId": "M7sSoWdZrPRQGG9Z",
+      "toId": "v6ZIqA1xEcye9Pf",
+      "kind": "none",
+      "trackId": "eeiYD7PrhOdc2",
+      "type": "transition"
+    }
+  },
+  "trackItemsMap": {
+    "mq44VqEAUUj64mz": {
+      "id": "mq44VqEAUUj64mz",
+      "type": "image",
+      "name": "image",
+      "display": {
+        "from": 0,
+        "to": 25681.684569263805
+      },
+      "playbackRate": 1,
+      "details": {
+        "src": "https://images.pexels.com/photos/1939485/pexels-photo-1939485.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "width": 867,
+        "height": 1300,
+        "opacity": 0,
+        "transform": "scale(2.27349, 2.27349)",
+        "border": "none",
+        "borderRadius": 0,
+        "boxShadow": {
+          "color": "#000000",
+          "x": 0,
+          "y": 0,
+          "blur": 0
+        },
+        "top": "295.233px",
+        "left": "519.373px",
+        "borderWidth": 0,
+        "borderColor": "#000000",
+        "blur": 3,
+        "brightness": 100,
+        "flipX": false,
+        "flipY": false,
+        "rotate": "0deg",
+        "visibility": "visible",
+        "crop": {
+          "x": 0,
+          "y": 406.15624999999994,
+          "width": 867,
+          "height": 487.68750000000006
+        }
+      },
+      "metadata": {}
+    },
+    "DFEweIEKdVFKxcOg": {
+      "id": "DFEweIEKdVFKxcOg",
+      "details": {
+        "width": 1584,
+        "height": 1080,
+        "opacity": 100,
+        "src": "/uploads/1765678594124-Image2Video_animate_this_image_of_fr__2_.mp4",
+        "volume": 100,
+        "borderRadius": 0,
+        "borderWidth": 0,
+        "borderColor": "#000000",
+        "boxShadow": {
+          "color": "#000000",
+          "x": 0,
+          "y": 0,
+          "blur": 0
+        },
+        "top": "0px",
+        "left": "168px",
+        "transform": "scale(1)",
+        "blur": 0,
+        "brightness": 100,
+        "flipX": false,
+        "flipY": false,
+        "rotate": "0deg",
+        "visibility": "visible"
+      },
+      "metadata": {
+        "previewUrl": "https://cdn.designcombo.dev/caption_previews/static_preset1.webp"
+      },
+      "trim": {
+        "from": 0,
+        "to": 5062.5
+      },
+      "type": "video",
+      "name": "video",
+      "playbackRate": 1,
+      "display": {
+        "from": 22419.642857142873,
+        "to": 27482.142857142873
+      },
+      "duration": 5062.5,
+      "isMain": false
+    },
+    "I690Bn9PF1gIZcUc": {
+      "id": "I690Bn9PF1gIZcUc",
+      "details": {
+        "width": 1344,
+        "height": 1088,
+        "opacity": 100,
+        "src": "/uploads/1765678476559-Image2Video_animate_this_image_of_a___4_.mp4",
+        "volume": 100,
+        "borderRadius": 0,
+        "borderWidth": 0,
+        "borderColor": "#000000",
+        "boxShadow": {
+          "color": "#000000",
+          "x": 0,
+          "y": 0,
+          "blur": 0
+        },
+        "top": "14.047px",
+        "left": "278.304px",
+        "transform": "scale(1.40366, 1.40366)",
+        "blur": 0,
+        "brightness": 100,
+        "flipX": false,
+        "flipY": false,
+        "rotate": "0deg",
+        "visibility": "visible"
+      },
+      "metadata": {
+        "previewUrl": "https://cdn.designcombo.dev/caption_previews/static_preset1.webp"
+      },
+      "trim": {
+        "from": 3229.5811690110345,
+        "to": 5062.5
+      },
+      "type": "video",
+      "name": "video",
+      "playbackRate": 0.4,
+      "display": {
+        "from": 27482.142857142866,
+        "to": 32064.43993461529
+      },
+      "duration": 5062.5,
+      "isMain": false
+    },
+    "xA3AIOqdfSNhOQ2C": {
+      "id": "xA3AIOqdfSNhOQ2C",
+      "details": {
+        "width": 1692,
+        "height": 1080,
+        "opacity": 100,
+        "src": "/uploads/1765677899106-Image2Video_animate_this_image_of_fr__1_.mp4",
+        "volume": 100,
+        "borderRadius": 0,
+        "borderWidth": 0,
+        "borderColor": "#000000",
+        "boxShadow": {
+          "color": "#000000",
+          "x": 0,
+          "y": 0,
+          "blur": 0
+        },
+        "top": "0px",
+        "left": "114px",
+        "transform": "scale(1)",
+        "blur": 0,
+        "brightness": 100,
+        "flipX": false,
+        "flipY": false,
+        "rotate": "0deg",
+        "visibility": "visible"
+      },
+      "metadata": {
+        "previewUrl": "https://cdn.designcombo.dev/caption_previews/static_preset1.webp"
+      },
+      "trim": {
+        "from": 0,
+        "to": 5062.5
+      },
+      "type": "video",
+      "name": "video",
+      "playbackRate": 0.7,
+      "display": {
+        "from": 15187.500000000002,
+        "to": 22419.642857142855
+      },
+      "duration": 5062.5,
+      "isMain": false
+    },
+    "t83gpZxXxYQLoXE": {
+      "id": "t83gpZxXxYQLoXE",
+      "details": {
+        "width": 1620,
+        "height": 1080,
+        "opacity": 100,
+        "src": "/uploads/1765677227931-Image2Video_animate_this_image_of_fr.mp4",
+        "volume": 100,
+        "borderRadius": 0,
+        "borderWidth": 0,
+        "borderColor": "#000000",
+        "boxShadow": {
+          "color": "#000000",
+          "x": 0,
+          "y": 0,
+          "blur": 0
+        },
+        "top": 0.429772,
+        "left": 154.642,
+        "transform": "scale(1.17524, 1.17524)",
+        "blur": 0,
+        "brightness": 100,
+        "flipX": false,
+        "flipY": false,
+        "rotate": "0deg",
+        "visibility": "visible"
+      },
+      "metadata": {
+        "previewUrl": "https://cdn.designcombo.dev/caption_previews/static_preset1.webp"
+      },
+      "trim": {
+        "from": 0,
+        "to": 5062.5
+      },
+      "type": "video",
+      "name": "video",
+      "playbackRate": 1,
+      "display": {
+        "from": 10124.999999999998,
+        "to": 15187.499999999998
+      },
+      "duration": 5062.5,
+      "isMain": false
+    },
+    "LlPqCM82SnYS78IR": {
+      "id": "LlPqCM82SnYS78IR",
+      "details": {
+        "width": 888,
+        "height": 720,
+        "opacity": 100,
+        "src": "/uploads/1765676347511-Image2Video_donut-cake.mp4",
+        "volume": 100,
+        "borderRadius": 0,
+        "borderWidth": 0,
+        "borderColor": "#000000",
+        "boxShadow": {
+          "color": "#000000",
+          "x": 0,
+          "y": 0,
+          "blur": 0
+        },
+        "top": "190.682px",
+        "left": "525.993px",
+        "transform": "scale(2.1882, 2.1882)",
+        "blur": 0,
+        "brightness": 100,
+        "flipX": false,
+        "flipY": false,
+        "rotate": "0deg",
+        "visibility": "visible"
+      },
+      "metadata": {
+        "previewUrl": "https://cdn.designcombo.dev/caption_previews/static_preset1.webp"
+      },
+      "trim": {
+        "from": 0,
+        "to": 5062.5
+      },
+      "type": "video",
+      "name": "video",
+      "playbackRate": 1,
+      "display": {
+        "from": 0,
+        "to": 5062.5
+      },
+      "duration": 5062.5,
+      "isMain": false,
+      "animations": {
+        "in": {
+          "name": "fadeIn",
+          "composition": [
+            {
+              "property": "opacity",
+              "from": 0,
+              "to": 1,
+              "durationInFrames": 15,
+              "previewUrl": "https://cdn.designcombo.dev/animations/FadeIn.webp",
+              "name": "Fade"
+            }
+          ]
+        }
+      }
+    },
+    "qY0pGnThJkDhAlin": {
+      "id": "qY0pGnThJkDhAlin",
+      "details": {
+        "width": 1368,
+        "height": 720,
+        "opacity": 100,
+        "src": "/uploads/1765676347497-Image2Video_donut-hand.mp4",
+        "volume": 100,
+        "borderRadius": 0,
+        "borderWidth": 0,
+        "borderColor": "#000000",
+        "boxShadow": {
+          "color": "#000000",
+          "x": 0,
+          "y": 0,
+          "blur": 0
+        },
+        "top": "180px",
+        "left": "276px",
+        "transform": "scale(1.4035087719298245)",
+        "blur": 0,
+        "brightness": 100,
+        "flipX": false,
+        "flipY": false,
+        "rotate": "0deg",
+        "visibility": "visible"
+      },
+      "metadata": {
+        "previewUrl": "https://cdn.designcombo.dev/caption_previews/static_preset1.webp"
+      },
+      "trim": {
+        "from": 0,
+        "to": 5062.5
+      },
+      "type": "video",
+      "name": "video",
+      "playbackRate": 1,
+      "display": {
+        "from": 5062.5,
+        "to": 10124.999999999998
+      },
+      "duration": 5062.5,
+      "isMain": false
+    },
+    "V88w24qdhviF6OAl": {
+      "id": "V88w24qdhviF6OAl",
+      "type": "image",
+      "name": "image",
+      "display": {
+        "from": 11784.833993696793,
+        "to": 17481.64250433509
+      },
+      "playbackRate": 1,
+      "details": {
+        "src": "/uploads/1765677175577-Doughnuts-07-vanilla-cake.webp",
+        "width": 500,
+        "height": 405,
+        "opacity": 100,
+        "transform": "scale(1.41776, 1.41776)",
+        "border": "none",
+        "borderRadius": 0,
+        "boxShadow": {
+          "color": "#000000",
+          "x": 0,
+          "y": 0,
+          "blur": 0
+        },
+        "top": "49.021px",
+        "left": "81.424px",
+        "borderWidth": 0,
+        "borderColor": "#000000",
+        "blur": 0,
+        "brightness": 100,
+        "flipX": false,
+        "flipY": false,
+        "rotate": "0deg",
+        "visibility": "visible"
+      },
+      "metadata": {}
+    },
+    "tspCJvB5ZR4MIxlU": {
+      "id": "tspCJvB5ZR4MIxlU",
+      "name": "text",
+      "type": "text",
+      "display": {
+        "from": 27482.142857142866,
+        "to": 32064.439934615286
+      },
+      "details": {
+        "text": "Franklin & Kinzie | River North\n7:30am – 'til sold out\ndoughnutvault.com",
+        "fontSize": 60,
+        "fontFamily": "Gluten-Regular",
+        "fontUrl": "https://fonts.gstatic.com/s/gluten/v4/HhyIU5gk9fW7OUdVIPh2wBPxSqQJ_zh2_DMrQqcdJrk.ttf",
+        "fontWeight": "bold",
+        "fontStyle": "normal",
+        "textAlign": "center",
+        "color": "#FFFFFF",
+        "backgroundColor": "#025a7acc",
+        "textDecoration": "none",
+        "lineHeight": "1.5",
+        "letterSpacing": 8,
+        "wordSpacing": "normal",
+        "border": "none",
+        "opacity": 100,
+        "wordWrap": "normal",
+        "wordBreak": "normal",
+        "borderWidth": 10,
+        "borderColor": "#025a7a",
+        "boxShadow": {
+          "color": "rgba(0,0,0,0.9)",
+          "x": 2,
+          "y": 4,
+          "blur": 12
+        },
+        "top": "478.92600000000004px",
+        "left": "182.004px",
+        "width": 1555,
+        "height": 441,
+        "textTransform": "uppercase",
+        "transform": "none",
+        "skewX": 0,
+        "skewY": 0
+      },
+      "metadata": {}
+    },
+    "scsctwPyjxfZDpE": {
+      "id": "scsctwPyjxfZDpE",
+      "name": "text",
+      "type": "text",
+      "display": {
+        "from": 27482.142857142866,
+        "to": 32748.100303951374
+      },
+      "details": {
+        "text": "doughnut vault",
+        "fontSize": 100,
+        "fontFamily": "Gluten-Regular",
+        "fontUrl": "https://fonts.gstatic.com/s/gluten/v4/HhyIU5gk9fW7OUdVIPh2wBPxSqQJ_zh2_DMrQqcdJrk.ttf",
+        "fontWeight": "bold",
+        "fontStyle": "normal",
+        "textAlign": "center",
+        "color": "#FFFFFF",
+        "backgroundColor": "#025a7acc",
+        "textDecoration": "none",
+        "lineHeight": "1.5",
+        "letterSpacing": 8,
+        "wordSpacing": "normal",
+        "border": "none",
+        "opacity": 100,
+        "wordWrap": "normal",
+        "wordBreak": "normal",
+        "borderWidth": 10,
+        "borderColor": "#025a7a",
+        "boxShadow": {
+          "color": "rgba(0,0,0,0.9)",
+          "x": 2,
+          "y": 4,
+          "blur": 12
+        },
+        "top": "329.44399999999996px",
+        "left": "182.358px",
+        "width": 1555,
+        "height": 150,
+        "textTransform": "uppercase",
+        "transform": "none",
+        "skewX": 0,
+        "skewY": 0
+      },
+      "metadata": {}
+    },
+    "fEdPgkF6QmAJE96c": {
+      "id": "fEdPgkF6QmAJE96c",
+      "type": "image",
+      "name": "image",
+      "display": {
+        "from": 10340.554369432419,
+        "to": 15530.255548392517
+      },
+      "playbackRate": 1,
+      "details": {
+        "src": "/uploads/1765677175587-Doughnuts-10-glazed.webp",
+        "width": 500,
+        "height": 405,
+        "opacity": 100,
+        "transform": "scale(1.50541, 1.50541)",
+        "border": "none",
+        "borderRadius": 0,
+        "boxShadow": {
+          "color": "#000000",
+          "x": 0,
+          "y": 0,
+          "blur": 0
+        },
+        "top": "85.8595px",
+        "left": "1301.66px",
+        "borderWidth": 0,
+        "borderColor": "#000000",
+        "blur": 0,
+        "brightness": 100,
+        "flipX": false,
+        "flipY": false,
+        "rotate": "0deg",
+        "visibility": "visible"
+      },
+      "metadata": {}
+    },
+    "hz7JwWsywAqzmfD0": {
+      "id": "hz7JwWsywAqzmfD0",
+      "type": "image",
+      "name": "image",
+      "display": {
+        "from": 11142.767792454142,
+        "to": 16142.767792454142
+      },
+      "playbackRate": 1,
+      "details": {
+        "src": "/uploads/1765677175586-Doughnuts-11-gingerbreak-stack.webp",
+        "width": 500,
+        "height": 405,
+        "opacity": 100,
+        "transform": "scale(1.55445, 1.55445)",
+        "border": "none",
+        "borderRadius": 0,
+        "boxShadow": {
+          "color": "#000000",
+          "x": 0,
+          "y": 0,
+          "blur": 0
+        },
+        "top": 586.663,
+        "left": 52.5363,
+        "borderWidth": 0,
+        "borderColor": "#000000",
+        "blur": 0,
+        "brightness": 100,
+        "flipX": false,
+        "flipY": false,
+        "rotate": "0deg",
+        "visibility": "visible"
+      },
+      "metadata": {}
+    },
+    "gcpmOMHYBAdLwjyt": {
+      "id": "gcpmOMHYBAdLwjyt",
+      "type": "image",
+      "name": "image",
+      "display": {
+        "from": 12527.111094750791,
+        "to": 16861.489848477428
+      },
+      "playbackRate": 1,
+      "details": {
+        "src": "/uploads/1765677175588-Doughnuts-08-classic-oldfashioned.webp",
+        "width": 500,
+        "height": 405,
+        "opacity": 100,
+        "transform": "scale(1.578, 1.578)",
+        "border": "none",
+        "borderRadius": 0,
+        "boxShadow": {
+          "color": "#000000",
+          "x": 0,
+          "y": 0,
+          "blur": 0
+        },
+        "top": "618.038px",
+        "left": "1295.82px",
+        "borderWidth": 0,
+        "borderColor": "#000000",
+        "blur": 0,
+        "brightness": 100,
+        "flipX": false,
+        "flipY": false,
+        "rotate": "0deg",
+        "visibility": "visible"
+      },
+      "metadata": {}
+    },
+    "v6ZIqA1xEcye9Pf": {
+      "id": "v6ZIqA1xEcye9Pf",
+      "name": "text",
+      "type": "text",
+      "display": {
+        "from": 4360.659464035928,
+        "to": 6145.446966850402
+      },
+      "details": {
+        "text": "old world recipes\n",
+        "fontSize": 100,
+        "fontFamily": "Gluten-Regular",
+        "fontUrl": "https://fonts.gstatic.com/s/gluten/v4/HhyIU5gk9fW7OUdVIPh2wBPxSqQJ_zh2_DMrQqcdJrk.ttf",
+        "fontWeight": "bold",
+        "fontStyle": "normal",
+        "textAlign": "center",
+        "color": "#FFFFFF",
+        "backgroundColor": "transparent",
+        "textDecoration": "none",
+        "lineHeight": "1.5",
+        "letterSpacing": 8,
+        "wordSpacing": "normal",
+        "border": "none",
+        "opacity": 100,
+        "wordWrap": "normal",
+        "wordBreak": "normal",
+        "borderWidth": 10,
+        "borderColor": "#025a7a",
+        "boxShadow": {
+          "color": "rgba(0,0,0,0.9)",
+          "x": 2,
+          "y": 4,
+          "blur": 12
+        },
+        "top": "453.909px",
+        "left": "485.721px",
+        "width": 1124,
+        "height": 150,
+        "textTransform": "uppercase",
+        "transform": "none",
+        "skewX": 0,
+        "skewY": 0
+      },
+      "metadata": {},
+      "isMain": false
+    },
+    "M7sSoWdZrPRQGG9Z": {
+      "id": "M7sSoWdZrPRQGG9Z",
+      "name": "text",
+      "type": "text",
+      "display": {
+        "from": 3175.727011705811,
+        "to": 4360.659464035928
+      },
+      "details": {
+        "text": "hand crafted daily\n",
+        "fontSize": 100,
+        "fontFamily": "Gluten-Regular",
+        "fontUrl": "https://fonts.gstatic.com/s/gluten/v4/HhyIU5gk9fW7OUdVIPh2wBPxSqQJ_zh2_DMrQqcdJrk.ttf",
+        "fontWeight": "bold",
+        "fontStyle": "normal",
+        "textAlign": "center",
+        "color": "#FFFFFF",
+        "backgroundColor": "transparent",
+        "textDecoration": "none",
+        "lineHeight": "1.5",
+        "letterSpacing": "2px",
+        "wordSpacing": "normal",
+        "border": "none",
+        "opacity": 100,
+        "wordWrap": "normal",
+        "wordBreak": "normal",
+        "borderWidth": 10,
+        "borderColor": "#025a7a",
+        "boxShadow": {
+          "color": "rgba(0,0,0,0.9)",
+          "x": 2,
+          "y": 4,
+          "blur": 12
+        },
+        "top": "487.096px",
+        "left": "383.903px",
+        "width": 1167,
+        "height": 150,
+        "textTransform": "uppercase",
+        "transform": "none",
+        "skewX": 0,
+        "skewY": 0
+      },
+      "metadata": {},
+      "isMain": false
+    },
+    "y5MjRuir6IpwGEB3": {
+      "id": "y5MjRuir6IpwGEB3",
+      "name": "text",
+      "type": "text",
+      "display": {
+        "from": 1660.2996392549549,
+        "to": 3175.7270117058106
+      },
+      "details": {
+        "text": "artisanal",
+        "fontSize": 100,
+        "fontFamily": "Gluten-Regular",
+        "fontUrl": "https://fonts.gstatic.com/s/gluten/v4/HhyIU5gk9fW7OUdVIPh2wBPxSqQJ_zh2_DMrQqcdJrk.ttf",
+        "fontWeight": "bold",
+        "fontStyle": "normal",
+        "textAlign": "center",
+        "color": "#FFFFFF",
+        "backgroundColor": "transparent",
+        "textDecoration": "none",
+        "lineHeight": "1.5",
+        "letterSpacing": 8,
+        "wordSpacing": "normal",
+        "border": "none",
+        "opacity": 100,
+        "wordWrap": "normal",
+        "wordBreak": "normal",
+        "borderWidth": 10,
+        "borderColor": "#025a7a",
+        "boxShadow": {
+          "color": "rgba(0,0,0,0.9)",
+          "x": 2,
+          "y": 4,
+          "blur": 12
+        },
+        "top": "463.343px",
+        "left": "678.239px",
+        "width": 568,
+        "height": 300,
+        "textTransform": "uppercase",
+        "transform": "none",
+        "skewX": 0,
+        "skewY": 0
+      },
+      "metadata": {},
+      "isMain": false,
+      "animations": {}
+    },
+    "kdznOku4UocuzQTT": {
+      "id": "kdznOku4UocuzQTT",
+      "name": "text",
+      "type": "text",
+      "display": {
+        "from": 0,
+        "to": 1660.2996392549549
+      },
+      "details": {
+        "text": "doughnut vault",
+        "fontSize": 130,
+        "fontFamily": "Gluten-Regular",
+        "fontUrl": "https://fonts.gstatic.com/s/gluten/v4/HhyIU5gk9fW7OUdVIPh2wBPxSqQJ_zh2_DMrQqcdJrk.ttf",
+        "fontWeight": "bold",
+        "fontStyle": "normal",
+        "textAlign": "center",
+        "color": "#FFFFFF",
+        "backgroundColor": "transparent",
+        "textDecoration": "none",
+        "lineHeight": "1.5",
+        "letterSpacing": 8,
+        "wordSpacing": "normal",
+        "border": "none",
+        "opacity": 100,
+        "wordWrap": "normal",
+        "wordBreak": "normal",
+        "borderWidth": 10,
+        "borderColor": "#025a7a",
+        "boxShadow": {
+          "color": "rgba(0,0,0,0.9)",
+          "x": 2,
+          "y": 4,
+          "blur": 12
+        },
+        "top": "442.523px",
+        "left": "251.277px",
+        "width": 1417,
+        "height": 247,
+        "textTransform": "uppercase",
+        "transform": "none",
+        "skewX": 0,
+        "skewY": 0
+      },
+      "metadata": {},
+      "isMain": false,
+      "animations": {
+        "in": {
+          "name": "fadeIn",
+          "composition": [
+            {
+              "property": "opacity",
+              "from": 0,
+              "to": 1,
+              "durationInFrames": 15,
+              "previewUrl": "https://cdn.designcombo.dev/animations/FadeIn.webp",
+              "name": "Fade"
+            }
+          ]
+        }
+      }
+    },
+    "ItMkRP69bv14miU9": {
+      "id": "ItMkRP69bv14miU9",
+      "name": "audio",
+      "type": "audio",
+      "display": {
+        "from": 0,
+        "to": 31843.250000000007
+      },
+      "trim": {
+        "from": 0,
+        "to": 31843.25
+      },
+      "playbackRate": 1,
+      "details": {
+        "src": "/uploads/1765676500171-ElevenLabs_2025-12-14T01_37_35_Matilda_pre_sp100_s50_sb75_se20_b_m2.mp3",
+        "volume": 100
+      },
+      "metadata": {},
+      "duration": 31843.25,
+      "isMain": false
+    },
+    "PvXzOTG7f0m3YSZx": {
+      "id": "PvXzOTG7f0m3YSZx",
+      "name": "audio",
+      "type": "audio",
+      "display": {
+        "from": 0,
+        "to": 31966.66666666666
+      },
+      "trim": {
+        "from": 0,
+        "to": 31966.666666666664
+      },
+      "playbackRate": 1,
+      "details": {
+        "src": "/uploads/1765678977083-inspiring-marketing-advertising-music-336557.mp3",
+        "volume": 20
+      },
+      "metadata": {},
+      "duration": 118909.375,
+      "isMain": false
+    }
+  },
+  "transitionIds": [
+    "LlPqCM82SnYS78IR-qY0pGnThJkDhAlin",
+    "qY0pGnThJkDhAlin-t83gpZxXxYQLoXE",
+    "t83gpZxXxYQLoXE-xA3AIOqdfSNhOQ2C",
+    "xA3AIOqdfSNhOQ2C-DFEweIEKdVFKxcOg",
+    "DFEweIEKdVFKxcOg-I690Bn9PF1gIZcUc",
+    "kdznOku4UocuzQTT-y5MjRuir6IpwGEB3",
+    "y5MjRuir6IpwGEB3-M7sSoWdZrPRQGG9Z",
+    "M7sSoWdZrPRQGG9Z-v6ZIqA1xEcye9Pf"
+  ]
+}

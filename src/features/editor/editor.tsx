@@ -74,6 +74,69 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 
 	const { setUploads, uploads: existingUploads } = useUploadStore();
 
+	// Extract media (video, image, audio) from a design's trackItemsMap
+	const extractMediaFromDesign = (design: any) => {
+		const mediaUploads: Array<{
+			id: string;
+			url: string;
+			type: string;
+			preview?: string;
+			metadata?: { alt?: string; uploadedUrl?: string; previewUrl?: string };
+		}> = [];
+
+		if (design.trackItemsMap) {
+			Object.values(design.trackItemsMap).forEach((item: any) => {
+				if (item.type === "video" && item.details?.src) {
+					mediaUploads.push({
+						id: `design_${item.id}`,
+						url: item.details.src,
+						type: "video",
+						preview: item.metadata?.previewUrl,
+						metadata: {
+							alt: item.metadata?.alt || "Video",
+							uploadedUrl: item.details.src,
+							previewUrl: item.metadata?.previewUrl,
+						},
+					});
+				} else if (item.type === "image" && item.details?.src) {
+					mediaUploads.push({
+						id: `design_${item.id}`,
+						url: item.details.src,
+						type: "image",
+						metadata: {
+							alt: item.metadata?.alt || "Image",
+							uploadedUrl: item.details.src,
+						},
+					});
+				} else if (item.type === "audio" && item.details?.src) {
+					mediaUploads.push({
+						id: `design_${item.id}`,
+						url: item.details.src,
+						type: "audio",
+						metadata: {
+							alt: item.metadata?.alt || "Audio",
+							uploadedUrl: item.details.src,
+						},
+					});
+				}
+			});
+		}
+
+		return mediaUploads;
+	};
+
+	// Add extracted media to uploads, avoiding duplicates
+	const syncMediaToUploads = (mediaUploads: any[]) => {
+		if (mediaUploads.length > 0) {
+			const existingUrls = new Set(existingUploads.map((u: any) => u.url));
+			const newUploads = mediaUploads.filter((u) => !existingUrls.has(u.url));
+			if (newUploads.length > 0) {
+				setUploads([...existingUploads, ...newUploads]);
+				console.log(`[Editor] Synced ${newUploads.length} media items to uploads`);
+			}
+		}
+	};
+
 	useEffect(() => {
 		const loadDesignFromSource = async () => {
 			// Try to load generated design from sessionStorage first
@@ -83,52 +146,9 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 					const design = JSON.parse(storedDesign);
 					dispatch(DESIGN_LOAD, { payload: design });
 
-					// Extract media from design and add to uploads for the media panel
-					const mediaUploads: Array<{
-						id: string;
-						url: string;
-						type: string;
-						preview?: string;
-						metadata?: { alt?: string; uploadedUrl?: string; previewUrl?: string };
-					}> = [];
-
-					if (design.trackItemsMap) {
-						Object.values(design.trackItemsMap).forEach((item: any) => {
-							if (item.type === "video" && item.details?.src) {
-								mediaUploads.push({
-									id: `generated_${item.id}`,
-									url: item.details.src,
-									type: "video",
-									// For videos, use preview image if available (from Pexels)
-									preview: item.metadata?.previewUrl,
-									metadata: {
-										alt: item.metadata?.alt || "Generated video",
-										uploadedUrl: item.details.src,
-										previewUrl: item.metadata?.previewUrl,
-									},
-								});
-							} else if (item.type === "image" && item.details?.src) {
-								mediaUploads.push({
-									id: `generated_${item.id}`,
-									url: item.details.src,
-									type: "image",
-									metadata: {
-										alt: item.metadata?.alt || "Generated image",
-										uploadedUrl: item.details.src,
-									},
-								});
-							}
-						});
-					}
-
-					// Add unique media to uploads (avoid duplicates)
-					if (mediaUploads.length > 0) {
-						const existingUrls = new Set(existingUploads.map((u: any) => u.url));
-						const newUploads = mediaUploads.filter((u) => !existingUrls.has(u.url));
-						if (newUploads.length > 0) {
-							setUploads([...existingUploads, ...newUploads]);
-						}
-					}
+					// Extract and sync media to uploads panel
+					const mediaUploads = extractMediaFromDesign(design);
+					syncMediaToUploads(mediaUploads);
 
 					// Extract restaurant name for auto-save folder
 					const storedBrand = sessionStorage.getItem("generatedBrand");
@@ -177,6 +197,11 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 						if (savedRestaurant) {
 							setRestaurant(savedRestaurant);
 						}
+
+						// Extract and sync media to uploads panel from autosave
+						const mediaUploads = extractMediaFromDesign(design);
+						syncMediaToUploads(mediaUploads);
+
 						console.log("[Editor] Restored from autosave:", savedAt);
 					}
 				}

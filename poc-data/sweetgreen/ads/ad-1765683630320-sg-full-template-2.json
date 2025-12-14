@@ -1,0 +1,1012 @@
+{
+  "id": "HudNu6wAv7eJTtDn",
+  "fps": 30,
+  "tracks": [
+    {
+      "id": "h01SoluKM9uuf5BEbU7eM",
+      "accepts": [
+        "text",
+        "image",
+        "video",
+        "audio",
+        "composition",
+        "caption",
+        "template",
+        "customTrack",
+        "customTrack2",
+        "illustration",
+        "custom",
+        "main",
+        "shape",
+        "linealAudioBars",
+        "radialAudioBars",
+        "progressFrame",
+        "progressBar",
+        "rect",
+        "progressSquare"
+      ],
+      "type": "audio",
+      "items": [
+        "bIw14TzgfX10y1tf"
+      ],
+      "magnetic": false,
+      "static": false
+    },
+    {
+      "id": "d3fny5EYWD_5-TIZi4q_3",
+      "accepts": [
+        "text",
+        "image",
+        "video",
+        "audio",
+        "composition",
+        "caption",
+        "template",
+        "customTrack",
+        "customTrack2",
+        "illustration",
+        "custom",
+        "main",
+        "shape",
+        "linealAudioBars",
+        "radialAudioBars",
+        "progressFrame",
+        "progressBar",
+        "rect",
+        "progressSquare"
+      ],
+      "type": "audio",
+      "items": [
+        "xn0yPYWl1byFuzN"
+      ],
+      "magnetic": false,
+      "static": false
+    },
+    {
+      "id": "eeiYD7PrhOdc2",
+      "accepts": [
+        "text",
+        "image",
+        "video",
+        "audio",
+        "composition",
+        "caption",
+        "template",
+        "customTrack",
+        "customTrack2",
+        "illustration",
+        "custom",
+        "main",
+        "shape",
+        "linealAudioBars",
+        "radialAudioBars",
+        "progressFrame",
+        "progressBar",
+        "rect",
+        "progressSquare"
+      ],
+      "type": "text",
+      "items": [
+        "kdznOku4UocuzQTT",
+        "y5MjRuir6IpwGEB3",
+        "H69CAgN47GH0vQ",
+        "zFsZWOI5WHE0OSBY"
+      ],
+      "magnetic": false,
+      "static": false
+    },
+    {
+      "id": "9n35SnLMKDA2CJ3fNwAzu",
+      "accepts": [
+        "text",
+        "caption"
+      ],
+      "type": "text",
+      "items": [
+        "scsctwPyjxfZDpE"
+      ],
+      "tempIndex": -5
+    },
+    {
+      "id": "y8sSmEgKh4-lZFdlyiWIf",
+      "items": [
+        "tspCJvB5ZR4MIxlU"
+      ],
+      "type": "text",
+      "accepts": [
+        "text",
+        "caption"
+      ],
+      "tempIndex": -3
+    },
+    {
+      "id": "TaGSaMRa5Ll4cHKh",
+      "accepts": [
+        "text",
+        "image",
+        "video",
+        "audio",
+        "composition",
+        "caption",
+        "template",
+        "customTrack",
+        "customTrack2",
+        "illustration",
+        "custom",
+        "main",
+        "shape",
+        "linealAudioBars",
+        "radialAudioBars",
+        "progressFrame",
+        "progressBar",
+        "rect",
+        "progressSquare"
+      ],
+      "type": "video",
+      "items": [
+        "we1xOgkGyf9px18h",
+        "LvFJf6QUCz9lFZJ",
+        "ALhqA9XUV7rxe7oZ",
+        "FKv982yZ6LUcdN6s",
+        "Lzr19vROLSGqxKR6",
+        "R52mUubAGHutQSS",
+        "VawoynAuc33Lcs6B",
+        "AIPclmR1RyfwTYC"
+      ],
+      "magnetic": false,
+      "static": false,
+      "name": "Visuals"
+    },
+    {
+      "id": "GeimkJfunMbZDTjk",
+      "items": [
+        "cs21UzwqvWjQJYJW"
+      ],
+      "type": "image",
+      "accepts": [
+        "text",
+        "image",
+        "video",
+        "audio",
+        "composition",
+        "caption",
+        "template",
+        "customTrack",
+        "customTrack2",
+        "illustration",
+        "custom",
+        "main",
+        "shape",
+        "linealAudioBars",
+        "radialAudioBars",
+        "progressFrame",
+        "progressBar",
+        "rect",
+        "progressSquare"
+      ]
+    }
+  ],
+  "size": {
+    "width": 1920,
+    "height": 1080
+  },
+  "trackItemIds": [
+    "cs21UzwqvWjQJYJW",
+    "AIPclmR1RyfwTYC",
+    "VawoynAuc33Lcs6B",
+    "R52mUubAGHutQSS",
+    "Lzr19vROLSGqxKR6",
+    "FKv982yZ6LUcdN6s",
+    "ALhqA9XUV7rxe7oZ",
+    "LvFJf6QUCz9lFZJ",
+    "we1xOgkGyf9px18h",
+    "tspCJvB5ZR4MIxlU",
+    "scsctwPyjxfZDpE",
+    "zFsZWOI5WHE0OSBY",
+    "H69CAgN47GH0vQ",
+    "y5MjRuir6IpwGEB3",
+    "kdznOku4UocuzQTT",
+    "xn0yPYWl1byFuzN",
+    "bIw14TzgfX10y1tf"
+  ],
+  "transitionsMap": {
+    "we1xOgkGyf9px18h-LvFJf6QUCz9lFZJ": {
+      "id": "we1xOgkGyf9px18h-LvFJf6QUCz9lFZJ",
+      "duration": 1500,
+      "fromId": "we1xOgkGyf9px18h",
+      "toId": "LvFJf6QUCz9lFZJ",
+      "kind": "none",
+      "trackId": "TaGSaMRa5Ll4cHKh",
+      "type": "transition"
+    },
+    "LvFJf6QUCz9lFZJ-ALhqA9XUV7rxe7oZ": {
+      "id": "LvFJf6QUCz9lFZJ-ALhqA9XUV7rxe7oZ",
+      "duration": 1500,
+      "fromId": "LvFJf6QUCz9lFZJ",
+      "toId": "ALhqA9XUV7rxe7oZ",
+      "kind": "none",
+      "trackId": "TaGSaMRa5Ll4cHKh",
+      "type": "transition"
+    },
+    "ALhqA9XUV7rxe7oZ-FKv982yZ6LUcdN6s": {
+      "id": "ALhqA9XUV7rxe7oZ-FKv982yZ6LUcdN6s",
+      "duration": 1500,
+      "fromId": "ALhqA9XUV7rxe7oZ",
+      "toId": "FKv982yZ6LUcdN6s",
+      "kind": "none",
+      "trackId": "TaGSaMRa5Ll4cHKh",
+      "type": "transition"
+    },
+    "FKv982yZ6LUcdN6s-Lzr19vROLSGqxKR6": {
+      "id": "FKv982yZ6LUcdN6s-Lzr19vROLSGqxKR6",
+      "duration": 1500,
+      "fromId": "FKv982yZ6LUcdN6s",
+      "toId": "Lzr19vROLSGqxKR6",
+      "kind": "none",
+      "trackId": "TaGSaMRa5Ll4cHKh",
+      "type": "transition"
+    },
+    "Lzr19vROLSGqxKR6-R52mUubAGHutQSS": {
+      "id": "Lzr19vROLSGqxKR6-R52mUubAGHutQSS",
+      "duration": 1500,
+      "fromId": "Lzr19vROLSGqxKR6",
+      "toId": "R52mUubAGHutQSS",
+      "kind": "none",
+      "trackId": "TaGSaMRa5Ll4cHKh",
+      "type": "transition"
+    },
+    "R52mUubAGHutQSS-VawoynAuc33Lcs6B": {
+      "id": "R52mUubAGHutQSS-VawoynAuc33Lcs6B",
+      "duration": 1500,
+      "fromId": "R52mUubAGHutQSS",
+      "toId": "VawoynAuc33Lcs6B",
+      "kind": "none",
+      "trackId": "TaGSaMRa5Ll4cHKh",
+      "type": "transition"
+    },
+    "VawoynAuc33Lcs6B-AIPclmR1RyfwTYC": {
+      "id": "VawoynAuc33Lcs6B-AIPclmR1RyfwTYC",
+      "duration": 1500,
+      "fromId": "VawoynAuc33Lcs6B",
+      "toId": "AIPclmR1RyfwTYC",
+      "kind": "none",
+      "trackId": "TaGSaMRa5Ll4cHKh",
+      "type": "transition"
+    },
+    "kdznOku4UocuzQTT-y5MjRuir6IpwGEB3": {
+      "id": "kdznOku4UocuzQTT-y5MjRuir6IpwGEB3",
+      "duration": 1500,
+      "fromId": "kdznOku4UocuzQTT",
+      "toId": "y5MjRuir6IpwGEB3",
+      "kind": "none",
+      "trackId": "eeiYD7PrhOdc2",
+      "type": "transition"
+    },
+    "y5MjRuir6IpwGEB3-H69CAgN47GH0vQ": {
+      "id": "y5MjRuir6IpwGEB3-H69CAgN47GH0vQ",
+      "duration": 1500,
+      "fromId": "y5MjRuir6IpwGEB3",
+      "toId": "H69CAgN47GH0vQ",
+      "kind": "none",
+      "trackId": "eeiYD7PrhOdc2",
+      "type": "transition"
+    },
+    "H69CAgN47GH0vQ-zFsZWOI5WHE0OSBY": {
+      "id": "H69CAgN47GH0vQ-zFsZWOI5WHE0OSBY",
+      "duration": 1500,
+      "fromId": "H69CAgN47GH0vQ",
+      "toId": "zFsZWOI5WHE0OSBY",
+      "kind": "none",
+      "trackId": "eeiYD7PrhOdc2",
+      "type": "transition"
+    }
+  },
+  "trackItemsMap": {
+    "cs21UzwqvWjQJYJW": {
+      "id": "cs21UzwqvWjQJYJW",
+      "type": "image",
+      "name": "image",
+      "display": {
+        "from": 0,
+        "to": 26462.000000000015
+      },
+      "playbackRate": 1,
+      "details": {
+        "src": "/uploads/1765682157135-sg-bg.png",
+        "width": 573,
+        "height": 192,
+        "opacity": 100,
+        "transform": "scale(5.71785, 5.71785)",
+        "border": "none",
+        "borderRadius": 0,
+        "boxShadow": {
+          "color": "#000000",
+          "x": 0,
+          "y": 0,
+          "blur": 0
+        },
+        "top": 452.283,
+        "left": 789.534,
+        "borderWidth": 0,
+        "borderColor": "#000000",
+        "blur": 0,
+        "brightness": 100,
+        "flipX": false,
+        "flipY": false,
+        "rotate": "0deg",
+        "visibility": "visible"
+      },
+      "metadata": {}
+    },
+    "AIPclmR1RyfwTYC": {
+      "id": "AIPclmR1RyfwTYC",
+      "details": {
+        "width": 3840,
+        "height": 2160,
+        "opacity": 100,
+        "src": "/uploads/1765683185017-4473185-uhd_3840_2160_25fps.mp4",
+        "volume": 100,
+        "borderRadius": 0,
+        "borderWidth": 0,
+        "borderColor": "#000000",
+        "boxShadow": {
+          "color": "#000000",
+          "x": 0,
+          "y": 0,
+          "blur": 0
+        },
+        "top": "-540px",
+        "left": "-960px",
+        "transform": "scale(0.5)",
+        "blur": 0,
+        "brightness": 100,
+        "flipX": false,
+        "flipY": false,
+        "rotate": "0deg",
+        "visibility": "visible"
+      },
+      "metadata": {
+        "previewUrl": "https://cdn.designcombo.dev/caption_previews/static_preset1.webp"
+      },
+      "trim": {
+        "from": 0,
+        "to": 7458.494699256423
+      },
+      "type": "video",
+      "name": "video",
+      "playbackRate": 1,
+      "display": {
+        "from": 19003.505300743593,
+        "to": 26462.000000000015
+      },
+      "duration": 11320,
+      "isMain": false
+    },
+    "VawoynAuc33Lcs6B": {
+      "id": "VawoynAuc33Lcs6B",
+      "details": {
+        "width": 1080,
+        "height": 1080,
+        "opacity": 100,
+        "src": "/uploads/1765682849577-Image2Video_animate_this_image_of_a___3_.mp4",
+        "volume": 100,
+        "borderRadius": 0,
+        "borderWidth": 0,
+        "borderColor": "#000000",
+        "boxShadow": {
+          "color": "#000000",
+          "x": 0,
+          "y": 0,
+          "blur": 0
+        },
+        "top": "50.9454px",
+        "left": "424.139px",
+        "transform": "scale(1.80661, 1.80661)",
+        "blur": 0,
+        "brightness": 100,
+        "flipX": false,
+        "flipY": false,
+        "rotate": "0deg",
+        "visibility": "visible"
+      },
+      "metadata": {
+        "previewUrl": "https://cdn.designcombo.dev/caption_previews/static_preset1.webp"
+      },
+      "trim": {
+        "from": 0,
+        "to": 5062.5
+      },
+      "type": "video",
+      "name": "video",
+      "playbackRate": 1,
+      "display": {
+        "from": 13941.005300743589,
+        "to": 19003.50530074359
+      },
+      "duration": 5062.5,
+      "isMain": false
+    },
+    "R52mUubAGHutQSS": {
+      "id": "R52mUubAGHutQSS",
+      "details": {
+        "width": 1088,
+        "height": 1088,
+        "opacity": 100,
+        "src": "/uploads/1765682849571-Image2Video_animate_this_image_of_a___1_.mp4",
+        "volume": 100,
+        "borderRadius": 0,
+        "borderWidth": 0,
+        "borderColor": "#000000",
+        "boxShadow": {
+          "color": "#000000",
+          "x": 0,
+          "y": 0,
+          "blur": 0
+        },
+        "top": "64.4216px",
+        "left": "414.185px",
+        "transform": "scale(1.7682, 1.7682)",
+        "blur": 0,
+        "brightness": 100,
+        "flipX": false,
+        "flipY": false,
+        "rotate": "0deg",
+        "visibility": "visible"
+      },
+      "metadata": {
+        "previewUrl": "https://cdn.designcombo.dev/caption_previews/static_preset1.webp"
+      },
+      "trim": {
+        "from": 0,
+        "to": 5062.5
+      },
+      "type": "video",
+      "name": "video",
+      "playbackRate": 1,
+      "display": {
+        "from": 8878.505300743587,
+        "to": 13941.005300743587
+      },
+      "duration": 5062.5,
+      "isMain": false
+    },
+    "Lzr19vROLSGqxKR6": {
+      "id": "Lzr19vROLSGqxKR6",
+      "type": "image",
+      "name": "image",
+      "display": {
+        "from": 7968.205661488633,
+        "to": 8878.505300743587
+      },
+      "playbackRate": 1,
+      "details": {
+        "src": "/uploads/1765682711913-SG_Web_Image_Salad_Hummus_Crunch.png",
+        "width": 600,
+        "height": 600,
+        "opacity": 100,
+        "transform": "scale(1.8)",
+        "border": "none",
+        "borderRadius": 0,
+        "boxShadow": {
+          "color": "#000000",
+          "x": 0,
+          "y": 0,
+          "blur": 0
+        },
+        "top": "240px",
+        "left": "660px",
+        "borderWidth": 0,
+        "borderColor": "#000000",
+        "blur": 0,
+        "brightness": 100,
+        "flipX": false,
+        "flipY": false,
+        "rotate": "0deg",
+        "visibility": "visible"
+      },
+      "metadata": {},
+      "isMain": false
+    },
+    "FKv982yZ6LUcdN6s": {
+      "id": "FKv982yZ6LUcdN6s",
+      "type": "image",
+      "name": "image",
+      "display": {
+        "from": 7057.906022233678,
+        "to": 7968.205661488633
+      },
+      "playbackRate": 1,
+      "details": {
+        "src": "/uploads/1765682711910-SG_Web_Image_Bowl_Shroomami.png",
+        "width": 600,
+        "height": 600,
+        "opacity": 100,
+        "transform": "scale(1.8)",
+        "border": "none",
+        "borderRadius": 0,
+        "boxShadow": {
+          "color": "#000000",
+          "x": 0,
+          "y": 0,
+          "blur": 0
+        },
+        "top": "240px",
+        "left": "660px",
+        "borderWidth": 0,
+        "borderColor": "#000000",
+        "blur": 0,
+        "brightness": 100,
+        "flipX": false,
+        "flipY": false,
+        "rotate": "0deg",
+        "visibility": "visible"
+      },
+      "metadata": {},
+      "isMain": false
+    },
+    "ALhqA9XUV7rxe7oZ": {
+      "id": "ALhqA9XUV7rxe7oZ",
+      "type": "image",
+      "name": "image",
+      "display": {
+        "from": 6147.606382978724,
+        "to": 7057.906022233678
+      },
+      "playbackRate": 1,
+      "details": {
+        "src": "/uploads/1765682711907-SG_Web_Image_Bowl_Chicken_Avocado_Ranch.png",
+        "width": 600,
+        "height": 600,
+        "opacity": 100,
+        "transform": "scale(1.8)",
+        "border": "none",
+        "borderRadius": 0,
+        "boxShadow": {
+          "color": "#000000",
+          "x": 0,
+          "y": 0,
+          "blur": 0
+        },
+        "top": "240px",
+        "left": "660px",
+        "borderWidth": 0,
+        "borderColor": "#000000",
+        "blur": 0,
+        "brightness": 100,
+        "flipX": false,
+        "flipY": false,
+        "rotate": "0deg",
+        "visibility": "visible"
+      },
+      "metadata": {},
+      "isMain": false
+    },
+    "LvFJf6QUCz9lFZJ": {
+      "id": "LvFJf6QUCz9lFZJ",
+      "type": "image",
+      "name": "image",
+      "display": {
+        "from": 5062.5,
+        "to": 6147.606382978724
+      },
+      "playbackRate": 1,
+      "details": {
+        "src": "/uploads/1765682711900-SG_Web_Image_Bowl_Chicken_Pesto_Parm.png",
+        "width": 600,
+        "height": 600,
+        "opacity": 100,
+        "transform": "scale(1.8)",
+        "border": "none",
+        "borderRadius": 0,
+        "boxShadow": {
+          "color": "#000000",
+          "x": 0,
+          "y": 0,
+          "blur": 0
+        },
+        "top": "240px",
+        "left": "660px",
+        "borderWidth": 0,
+        "borderColor": "#000000",
+        "blur": 0,
+        "brightness": 100,
+        "flipX": false,
+        "flipY": false,
+        "rotate": "0deg",
+        "visibility": "visible"
+      },
+      "metadata": {},
+      "isMain": false
+    },
+    "we1xOgkGyf9px18h": {
+      "id": "we1xOgkGyf9px18h",
+      "details": {
+        "width": 1080,
+        "height": 1080,
+        "opacity": 100,
+        "src": "/uploads/1765682245610-Image2Video_animate_this_image_of_a_.mp4",
+        "volume": 100,
+        "borderRadius": 0,
+        "borderWidth": 0,
+        "borderColor": "#000000",
+        "boxShadow": {
+          "color": "#000000",
+          "x": 0,
+          "y": 0,
+          "blur": 0
+        },
+        "top": "-3.95884px",
+        "left": "425.208px",
+        "transform": "scale(1.76861, 1.76861)",
+        "blur": 0,
+        "brightness": 100,
+        "flipX": false,
+        "flipY": false,
+        "rotate": "0deg",
+        "visibility": "visible"
+      },
+      "metadata": {
+        "previewUrl": "https://cdn.designcombo.dev/caption_previews/static_preset1.webp"
+      },
+      "trim": {
+        "from": 0,
+        "to": 5062.5
+      },
+      "type": "video",
+      "name": "video",
+      "playbackRate": 1,
+      "display": {
+        "from": 0,
+        "to": 5062.5
+      },
+      "duration": 5062.5,
+      "isMain": false
+    },
+    "tspCJvB5ZR4MIxlU": {
+      "id": "tspCJvB5ZR4MIxlU",
+      "name": "text",
+      "type": "text",
+      "display": {
+        "from": 20133.42751969375,
+        "to": 26462.000000000007
+      },
+      "details": {
+        "text": "over 200 locations nationwide. download the app to find yours or visit sweetgreen.com",
+        "fontSize": 60,
+        "fontFamily": "ComicNeue-Regular",
+        "fontUrl": "https://fonts.gstatic.com/s/comicneue/v3/4UaHrEJDsxBrF37olUeDx63j5pN1MwI.ttf",
+        "fontWeight": "bold",
+        "fontStyle": "normal",
+        "textAlign": "center",
+        "color": "#FFFFFF",
+        "backgroundColor": "#1f4f46cc",
+        "textDecoration": "none",
+        "lineHeight": "1.5",
+        "letterSpacing": 8,
+        "wordSpacing": "normal",
+        "border": "none",
+        "opacity": 100,
+        "wordWrap": "normal",
+        "wordBreak": "normal",
+        "borderWidth": 10,
+        "borderColor": "#1f4f46",
+        "boxShadow": {
+          "color": "rgba(0,0,0,0.9)",
+          "x": 2,
+          "y": 4,
+          "blur": 12
+        },
+        "top": "478.92600000000004px",
+        "left": "182.004px",
+        "width": 1555,
+        "height": 295,
+        "textTransform": "uppercase",
+        "transform": "none",
+        "skewX": 0,
+        "skewY": 0
+      },
+      "metadata": {}
+    },
+    "scsctwPyjxfZDpE": {
+      "id": "scsctwPyjxfZDpE",
+      "name": "text",
+      "type": "text",
+      "display": {
+        "from": 20133.42751969375,
+        "to": 26462.00000000001
+      },
+      "details": {
+        "text": "sweet green",
+        "fontSize": 100,
+        "fontFamily": "ComicNeue-Regular",
+        "fontUrl": "https://fonts.gstatic.com/s/comicneue/v3/4UaHrEJDsxBrF37olUeDx63j5pN1MwI.ttf",
+        "fontWeight": "bold",
+        "fontStyle": "normal",
+        "textAlign": "center",
+        "color": "#FFFFFF",
+        "backgroundColor": "#1f4f46cc",
+        "textDecoration": "none",
+        "lineHeight": "1.5",
+        "letterSpacing": 8,
+        "wordSpacing": "normal",
+        "border": "none",
+        "opacity": 100,
+        "wordWrap": "normal",
+        "wordBreak": "normal",
+        "borderWidth": 10,
+        "borderColor": "#1f4f46",
+        "boxShadow": {
+          "color": "rgba(0,0,0,0.9)",
+          "x": 2,
+          "y": 4,
+          "blur": 12
+        },
+        "top": "329.44399999999996px",
+        "left": "182.358px",
+        "width": 1555,
+        "height": 150,
+        "textTransform": "uppercase",
+        "transform": "none",
+        "skewX": 0,
+        "skewY": 0
+      },
+      "metadata": {}
+    },
+    "zFsZWOI5WHE0OSBY": {
+      "id": "zFsZWOI5WHE0OSBY",
+      "name": "text",
+      "type": "text",
+      "display": {
+        "from": 2410.2996392549544,
+        "to": 3160.2996392549544
+      },
+      "details": {
+        "text": "earth friendly",
+        "fontSize": 100,
+        "fontFamily": "ComicNeue-Regular",
+        "fontUrl": "https://fonts.gstatic.com/s/comicneue/v3/4UaHrEJDsxBrF37olUeDx63j5pN1MwI.ttf",
+        "fontWeight": "bold",
+        "fontStyle": "normal",
+        "textAlign": "center",
+        "color": "#FFFFFF",
+        "backgroundColor": "transparent",
+        "textDecoration": "none",
+        "lineHeight": "1.5",
+        "letterSpacing": 8,
+        "wordSpacing": "normal",
+        "border": "none",
+        "opacity": 100,
+        "wordWrap": "normal",
+        "wordBreak": "normal",
+        "borderWidth": 10,
+        "borderColor": "#1f4f46",
+        "boxShadow": {
+          "color": "rgba(0,0,0,0.9)",
+          "x": 2,
+          "y": 4,
+          "blur": 12
+        },
+        "top": "463.343px",
+        "left": "517.039px",
+        "width": 915,
+        "height": 150,
+        "textTransform": "uppercase",
+        "transform": "none",
+        "skewX": 0,
+        "skewY": 0
+      },
+      "metadata": {},
+      "isMain": false,
+      "animations": {}
+    },
+    "H69CAgN47GH0vQ": {
+      "id": "H69CAgN47GH0vQ",
+      "name": "text",
+      "type": "text",
+      "display": {
+        "from": 1660.2996392549549,
+        "to": 2410.299639254955
+      },
+      "details": {
+        "text": "plant forward",
+        "fontSize": 100,
+        "fontFamily": "ComicNeue-Regular",
+        "fontUrl": "https://fonts.gstatic.com/s/comicneue/v3/4UaHrEJDsxBrF37olUeDx63j5pN1MwI.ttf",
+        "fontWeight": "bold",
+        "fontStyle": "normal",
+        "textAlign": "center",
+        "color": "#FFFFFF",
+        "backgroundColor": "transparent",
+        "textDecoration": "none",
+        "lineHeight": "1.5",
+        "letterSpacing": 8,
+        "wordSpacing": "normal",
+        "border": "none",
+        "opacity": 100,
+        "wordWrap": "normal",
+        "wordBreak": "normal",
+        "borderWidth": 10,
+        "borderColor": "#1f4f46",
+        "boxShadow": {
+          "color": "rgba(0,0,0,0.9)",
+          "x": 2,
+          "y": 4,
+          "blur": 12
+        },
+        "top": "463.343px",
+        "left": "517.039px",
+        "width": 884,
+        "height": 150,
+        "textTransform": "uppercase",
+        "transform": "none",
+        "skewX": 0,
+        "skewY": 0
+      },
+      "metadata": {},
+      "isMain": false,
+      "animations": {}
+    },
+    "y5MjRuir6IpwGEB3": {
+      "id": "y5MjRuir6IpwGEB3",
+      "name": "text",
+      "type": "text",
+      "display": {
+        "from": 910.2996392549546,
+        "to": 1660.2996392549546
+      },
+      "details": {
+        "text": "fresh",
+        "fontSize": 100,
+        "fontFamily": "ComicNeue-Regular",
+        "fontUrl": "https://fonts.gstatic.com/s/comicneue/v3/4UaHrEJDsxBrF37olUeDx63j5pN1MwI.ttf",
+        "fontWeight": "bold",
+        "fontStyle": "normal",
+        "textAlign": "center",
+        "color": "#FFFFFF",
+        "backgroundColor": "transparent",
+        "textDecoration": "none",
+        "lineHeight": "1.5",
+        "letterSpacing": 8,
+        "wordSpacing": "normal",
+        "border": "none",
+        "opacity": 100,
+        "wordWrap": "normal",
+        "wordBreak": "normal",
+        "borderWidth": 10,
+        "borderColor": "#1f4f46",
+        "boxShadow": {
+          "color": "rgba(0,0,0,0.9)",
+          "x": 2,
+          "y": 4,
+          "blur": 12
+        },
+        "top": "463.343px",
+        "left": "678.239px",
+        "width": 568,
+        "height": 150,
+        "textTransform": "uppercase",
+        "transform": "none",
+        "skewX": 0,
+        "skewY": 0
+      },
+      "metadata": {},
+      "isMain": false,
+      "animations": {}
+    },
+    "kdznOku4UocuzQTT": {
+      "id": "kdznOku4UocuzQTT",
+      "name": "text",
+      "type": "text",
+      "display": {
+        "from": 0,
+        "to": 910.2996392549546
+      },
+      "details": {
+        "text": "sweet green",
+        "fontSize": 130,
+        "fontFamily": "ComicNeue-Regular",
+        "fontUrl": "https://fonts.gstatic.com/s/comicneue/v3/4UaHrEJDsxBrF37olUeDx63j5pN1MwI.ttf",
+        "fontWeight": "bold",
+        "fontStyle": "normal",
+        "textAlign": "center",
+        "color": "#FFFFFF",
+        "backgroundColor": "transparent",
+        "textDecoration": "none",
+        "lineHeight": "1.5",
+        "letterSpacing": 8,
+        "wordSpacing": "normal",
+        "border": "none",
+        "opacity": 100,
+        "wordWrap": "normal",
+        "wordBreak": "normal",
+        "borderWidth": 10,
+        "borderColor": "#00473c",
+        "boxShadow": {
+          "color": "rgba(0,0,0,0.9)",
+          "x": 2,
+          "y": 4,
+          "blur": 12
+        },
+        "top": "442.523px",
+        "left": "251.277px",
+        "width": 1417,
+        "height": 195,
+        "textTransform": "uppercase",
+        "transform": "none",
+        "skewX": 0,
+        "skewY": 0
+      },
+      "metadata": {},
+      "isMain": false,
+      "animations": {
+        "in": {
+          "name": "fadeIn",
+          "composition": [
+            {
+              "property": "opacity",
+              "from": 0,
+              "to": 1,
+              "durationInFrames": 15,
+              "previewUrl": "https://cdn.designcombo.dev/animations/FadeIn.webp",
+              "name": "Fade"
+            }
+          ]
+        }
+      }
+    },
+    "xn0yPYWl1byFuzN": {
+      "id": "xn0yPYWl1byFuzN",
+      "name": "audio",
+      "type": "audio",
+      "display": {
+        "from": 0,
+        "to": 26462.000000000015
+      },
+      "trim": {
+        "from": 0,
+        "to": 26462
+      },
+      "playbackRate": 1,
+      "details": {
+        "src": "/uploads/1765681955646-ElevenLabs_2025-12-14T03_11_59_Sarah_pre_sp100_s50_sb75_se26_b_m2-sg.mp3",
+        "volume": 100
+      },
+      "metadata": {},
+      "duration": 26462,
+      "isMain": false
+    },
+    "bIw14TzgfX10y1tf": {
+      "id": "bIw14TzgfX10y1tf",
+      "name": "audio",
+      "type": "audio",
+      "display": {
+        "from": 0,
+        "to": 26500
+      },
+      "trim": {
+        "from": 0,
+        "to": 26500
+      },
+      "playbackRate": 1,
+      "details": {
+        "src": "/uploads/1765683566937-food-travel-149597.mp3",
+        "volume": 20
+      },
+      "metadata": {},
+      "duration": 56973.063,
+      "isMain": false
+    }
+  },
+  "transitionIds": [
+    "we1xOgkGyf9px18h-LvFJf6QUCz9lFZJ",
+    "LvFJf6QUCz9lFZJ-ALhqA9XUV7rxe7oZ",
+    "ALhqA9XUV7rxe7oZ-FKv982yZ6LUcdN6s",
+    "FKv982yZ6LUcdN6s-Lzr19vROLSGqxKR6",
+    "Lzr19vROLSGqxKR6-R52mUubAGHutQSS",
+    "R52mUubAGHutQSS-VawoynAuc33Lcs6B",
+    "VawoynAuc33Lcs6B-AIPclmR1RyfwTYC",
+    "kdznOku4UocuzQTT-y5MjRuir6IpwGEB3",
+    "y5MjRuir6IpwGEB3-H69CAgN47GH0vQ",
+    "H69CAgN47GH0vQ-zFsZWOI5WHE0OSBY"
+  ]
+}

@@ -1,0 +1,1000 @@
+{
+  "id": "Y5lL3bEJdshwZnuH",
+  "fps": 30,
+  "tracks": [
+    {
+      "id": "cIbTvuYNqEL_4LL36PfP8",
+      "accepts": [
+        "text",
+        "image",
+        "video",
+        "audio",
+        "composition",
+        "caption",
+        "template",
+        "customTrack",
+        "customTrack2",
+        "illustration",
+        "custom",
+        "main",
+        "shape",
+        "linealAudioBars",
+        "radialAudioBars",
+        "progressFrame",
+        "progressBar",
+        "rect",
+        "progressSquare"
+      ],
+      "type": "audio",
+      "items": [
+        "pT7JTvsGej1ybW1"
+      ],
+      "magnetic": false,
+      "static": false
+    },
+    {
+      "id": "XTrmGrfbjxhGsQgg27AYt",
+      "accepts": [
+        "text",
+        "image",
+        "video",
+        "audio",
+        "composition",
+        "caption",
+        "template",
+        "customTrack",
+        "customTrack2",
+        "illustration",
+        "custom",
+        "main",
+        "shape",
+        "linealAudioBars",
+        "radialAudioBars",
+        "progressFrame",
+        "progressBar",
+        "rect",
+        "progressSquare"
+      ],
+      "type": "audio",
+      "items": [
+        "MWR1NqwKgUe2WoZr"
+      ],
+      "magnetic": false,
+      "static": false
+    },
+    {
+      "id": "eeiYD7PrhOdc2",
+      "accepts": [
+        "text",
+        "image",
+        "video",
+        "audio",
+        "composition",
+        "caption",
+        "template",
+        "customTrack",
+        "customTrack2",
+        "illustration",
+        "custom",
+        "main",
+        "shape",
+        "linealAudioBars",
+        "radialAudioBars",
+        "progressFrame",
+        "progressBar",
+        "rect",
+        "progressSquare"
+      ],
+      "type": "text",
+      "items": [
+        "kdznOku4UocuzQTT",
+        "y5MjRuir6IpwGEB3",
+        "v6ZIqA1xEcye9Pf",
+        "M7sSoWdZrPRQGG9Z"
+      ],
+      "magnetic": false,
+      "static": false
+    },
+    {
+      "id": "9n35SnLMKDA2CJ3fNwAzu",
+      "accepts": [
+        "text",
+        "caption"
+      ],
+      "type": "text",
+      "items": [
+        "scsctwPyjxfZDpE"
+      ],
+      "tempIndex": -5
+    },
+    {
+      "id": "y8sSmEgKh4-lZFdlyiWIf",
+      "items": [
+        "tspCJvB5ZR4MIxlU"
+      ],
+      "type": "text",
+      "accepts": [
+        "text",
+        "caption"
+      ],
+      "tempIndex": -3
+    },
+    {
+      "id": "TaGSaMRa5Ll4cHKh",
+      "accepts": [
+        "text",
+        "image",
+        "video",
+        "audio",
+        "composition",
+        "caption",
+        "template",
+        "customTrack",
+        "customTrack2",
+        "illustration",
+        "custom",
+        "main",
+        "shape",
+        "linealAudioBars",
+        "radialAudioBars",
+        "progressFrame",
+        "progressBar",
+        "rect",
+        "progressSquare"
+      ],
+      "type": "video",
+      "items": [
+        "lHYntIR5iLX9QFa9",
+        "V88w24qdhviF6OAl",
+        "bH5XoNhcgUasy32y",
+        "fEdPgkF6QmAJE96c",
+        "yXLM4iGYp42r8a",
+        "hz7JwWsywAqzmfD0",
+        "fo80nn8kcRdQLkw",
+        "gcpmOMHYBAdLwjyt"
+      ],
+      "magnetic": false,
+      "static": false,
+      "name": "Visuals"
+    },
+    {
+      "id": "jGdnZqHcw9IjV0yi",
+      "items": [
+        "Qe2gmHymrPai57x"
+      ],
+      "type": "image",
+      "accepts": [
+        "text",
+        "image",
+        "video",
+        "audio",
+        "composition",
+        "caption",
+        "template",
+        "customTrack",
+        "customTrack2",
+        "illustration",
+        "custom",
+        "main",
+        "shape",
+        "linealAudioBars",
+        "radialAudioBars",
+        "progressFrame",
+        "progressBar",
+        "rect",
+        "progressSquare"
+      ]
+    }
+  ],
+  "size": {
+    "width": 1920,
+    "height": 1080
+  },
+  "trackItemIds": [
+    "Qe2gmHymrPai57x",
+    "bH5XoNhcgUasy32y",
+    "yXLM4iGYp42r8a",
+    "fo80nn8kcRdQLkw",
+    "lHYntIR5iLX9QFa9",
+    "gcpmOMHYBAdLwjyt",
+    "V88w24qdhviF6OAl",
+    "hz7JwWsywAqzmfD0",
+    "fEdPgkF6QmAJE96c",
+    "tspCJvB5ZR4MIxlU",
+    "scsctwPyjxfZDpE",
+    "v6ZIqA1xEcye9Pf",
+    "M7sSoWdZrPRQGG9Z",
+    "y5MjRuir6IpwGEB3",
+    "kdznOku4UocuzQTT",
+    "MWR1NqwKgUe2WoZr",
+    "pT7JTvsGej1ybW1"
+  ],
+  "transitionsMap": {
+    "lHYntIR5iLX9QFa9-V88w24qdhviF6OAl": {
+      "id": "lHYntIR5iLX9QFa9-V88w24qdhviF6OAl",
+      "duration": 1500,
+      "fromId": "lHYntIR5iLX9QFa9",
+      "toId": "V88w24qdhviF6OAl",
+      "kind": "none",
+      "trackId": "TaGSaMRa5Ll4cHKh",
+      "type": "transition"
+    },
+    "V88w24qdhviF6OAl-fEdPgkF6QmAJE96c": {
+      "id": "V88w24qdhviF6OAl-fEdPgkF6QmAJE96c",
+      "duration": 1500,
+      "fromId": "V88w24qdhviF6OAl",
+      "toId": "fEdPgkF6QmAJE96c",
+      "kind": "none",
+      "trackId": "TaGSaMRa5Ll4cHKh",
+      "type": "transition"
+    },
+    "fEdPgkF6QmAJE96c-hz7JwWsywAqzmfD0": {
+      "id": "fEdPgkF6QmAJE96c-hz7JwWsywAqzmfD0",
+      "duration": 1500,
+      "fromId": "fEdPgkF6QmAJE96c",
+      "toId": "hz7JwWsywAqzmfD0",
+      "kind": "none",
+      "trackId": "TaGSaMRa5Ll4cHKh",
+      "type": "transition"
+    },
+    "hz7JwWsywAqzmfD0-gcpmOMHYBAdLwjyt": {
+      "id": "hz7JwWsywAqzmfD0-gcpmOMHYBAdLwjyt",
+      "duration": 1500,
+      "fromId": "hz7JwWsywAqzmfD0",
+      "toId": "gcpmOMHYBAdLwjyt",
+      "kind": "none",
+      "trackId": "TaGSaMRa5Ll4cHKh",
+      "type": "transition"
+    },
+    "gcpmOMHYBAdLwjyt-fo80nn8kcRdQLkw": {
+      "id": "gcpmOMHYBAdLwjyt-fo80nn8kcRdQLkw",
+      "duration": 1500,
+      "fromId": "gcpmOMHYBAdLwjyt",
+      "toId": "fo80nn8kcRdQLkw",
+      "kind": "none",
+      "trackId": "TaGSaMRa5Ll4cHKh",
+      "type": "transition"
+    },
+    "fo80nn8kcRdQLkw-yXLM4iGYp42r8a": {
+      "id": "fo80nn8kcRdQLkw-yXLM4iGYp42r8a",
+      "duration": 1500,
+      "fromId": "fo80nn8kcRdQLkw",
+      "toId": "yXLM4iGYp42r8a",
+      "kind": "none",
+      "trackId": "TaGSaMRa5Ll4cHKh",
+      "type": "transition"
+    },
+    "kdznOku4UocuzQTT-y5MjRuir6IpwGEB3": {
+      "id": "kdznOku4UocuzQTT-y5MjRuir6IpwGEB3",
+      "duration": 1500,
+      "fromId": "kdznOku4UocuzQTT",
+      "toId": "y5MjRuir6IpwGEB3",
+      "kind": "none",
+      "trackId": "eeiYD7PrhOdc2",
+      "type": "transition"
+    },
+    "y5MjRuir6IpwGEB3-M7sSoWdZrPRQGG9Z": {
+      "id": "y5MjRuir6IpwGEB3-M7sSoWdZrPRQGG9Z",
+      "duration": 1500,
+      "fromId": "y5MjRuir6IpwGEB3",
+      "toId": "M7sSoWdZrPRQGG9Z",
+      "kind": "none",
+      "trackId": "eeiYD7PrhOdc2",
+      "type": "transition"
+    },
+    "M7sSoWdZrPRQGG9Z-v6ZIqA1xEcye9Pf": {
+      "id": "M7sSoWdZrPRQGG9Z-v6ZIqA1xEcye9Pf",
+      "duration": 1500,
+      "fromId": "M7sSoWdZrPRQGG9Z",
+      "toId": "v6ZIqA1xEcye9Pf",
+      "kind": "none",
+      "trackId": "eeiYD7PrhOdc2",
+      "type": "transition"
+    }
+  },
+  "trackItemsMap": {
+    "Qe2gmHymrPai57x": {
+      "id": "Qe2gmHymrPai57x",
+      "type": "image",
+      "name": "image",
+      "display": {
+        "from": 0,
+        "to": 29427.828992366038
+      },
+      "playbackRate": 1,
+      "details": {
+        "src": "/uploads/1765681247120-dv-bg.png",
+        "width": 330,
+        "height": 207,
+        "opacity": 100,
+        "transform": "scale(5.97563, 5.97563)",
+        "border": "none",
+        "borderRadius": 0,
+        "boxShadow": {
+          "color": "#000000",
+          "x": 0,
+          "y": 0,
+          "blur": 0
+        },
+        "top": 432.029,
+        "left": 789.705,
+        "borderWidth": 0,
+        "borderColor": "#000000",
+        "blur": 0,
+        "brightness": 100,
+        "flipX": false,
+        "flipY": false,
+        "rotate": "0deg",
+        "visibility": "visible"
+      },
+      "metadata": {}
+    },
+    "bH5XoNhcgUasy32y": {
+      "id": "bH5XoNhcgUasy32y",
+      "details": {
+        "width": 3840,
+        "height": 2160,
+        "opacity": 100,
+        "src": "/uploads/1765680809719-7034534-uhd_3840_2160_25fps.mp4",
+        "volume": 100,
+        "borderRadius": 0,
+        "borderWidth": 0,
+        "borderColor": "#000000",
+        "boxShadow": {
+          "color": "#000000",
+          "x": 0,
+          "y": 0,
+          "blur": 0
+        },
+        "top": "-540px",
+        "left": "-960px",
+        "transform": "scale(0.5)",
+        "blur": 0,
+        "brightness": 100,
+        "flipX": false,
+        "flipY": false,
+        "rotate": "0deg",
+        "visibility": "visible"
+      },
+      "metadata": {
+        "previewUrl": "https://cdn.designcombo.dev/caption_previews/static_preset1.webp"
+      },
+      "trim": {
+        "from": 0,
+        "to": 7480
+      },
+      "type": "video",
+      "name": "video",
+      "playbackRate": 1,
+      "display": {
+        "from": 21940,
+        "to": 29420
+      },
+      "duration": 7480,
+      "isMain": false
+    },
+    "yXLM4iGYp42r8a": {
+      "id": "yXLM4iGYp42r8a",
+      "details": {
+        "width": 1620,
+        "height": 1080,
+        "opacity": 100,
+        "src": "/uploads/1765680809425-Image2Video_animate_this_image_of_ha.mp4",
+        "volume": 100,
+        "borderRadius": 0,
+        "borderWidth": 0,
+        "borderColor": "#000000",
+        "boxShadow": {
+          "color": "#000000",
+          "x": 0,
+          "y": 0,
+          "blur": 0
+        },
+        "top": "-27.1692px",
+        "left": "151.44px",
+        "transform": "scale(1.1837, 1.1837)",
+        "blur": 0,
+        "brightness": 100,
+        "flipX": false,
+        "flipY": false,
+        "rotate": "0deg",
+        "visibility": "visible"
+      },
+      "metadata": {
+        "previewUrl": "https://cdn.designcombo.dev/caption_previews/static_preset1.webp"
+      },
+      "trim": {
+        "from": 1605.0531914893618,
+        "to": 5062.5
+      },
+      "type": "video",
+      "name": "video",
+      "playbackRate": 1,
+      "display": {
+        "from": 18422.539893617024,
+        "to": 21879.986702127662
+      },
+      "duration": 5062.5,
+      "isMain": false
+    },
+    "fo80nn8kcRdQLkw": {
+      "id": "fo80nn8kcRdQLkw",
+      "details": {
+        "width": 1188,
+        "height": 1080,
+        "opacity": 100,
+        "src": "/uploads/1765680550773-Image2Video_animate_this_image_of_st.mp4",
+        "volume": 100,
+        "borderRadius": 0,
+        "borderWidth": 0,
+        "borderColor": "#000000",
+        "boxShadow": {
+          "color": "#000000",
+          "x": 0,
+          "y": 0,
+          "blur": 0
+        },
+        "top": -303.115,
+        "left": 370.226,
+        "transform": "scale(1.62145, 1.62145)",
+        "blur": 0,
+        "brightness": 100,
+        "flipX": false,
+        "flipY": false,
+        "rotate": "0deg",
+        "visibility": "visible"
+      },
+      "metadata": {
+        "previewUrl": "https://cdn.designcombo.dev/caption_previews/static_preset1.webp"
+      },
+      "trim": {
+        "from": 0,
+        "to": 5062.5
+      },
+      "type": "video",
+      "name": "video",
+      "playbackRate": 1,
+      "display": {
+        "from": 13360.03989361702,
+        "to": 18422.539893617024
+      },
+      "duration": 5062.5,
+      "isMain": false
+    },
+    "lHYntIR5iLX9QFa9": {
+      "id": "lHYntIR5iLX9QFa9",
+      "details": {
+        "width": 1332,
+        "height": 1080,
+        "opacity": 100,
+        "src": "/uploads/1765679322699-Image2Video_animate_this_image_of_a___5_.mp4",
+        "volume": 100,
+        "borderRadius": 0,
+        "borderWidth": 0,
+        "borderColor": "#000000",
+        "boxShadow": {
+          "color": "#000000",
+          "x": 0,
+          "y": 0,
+          "blur": 0
+        },
+        "top": "168.132px",
+        "left": "294.765px",
+        "transform": "scale(1.43945, 1.43945)",
+        "blur": 0,
+        "brightness": 100,
+        "flipX": false,
+        "flipY": false,
+        "rotate": "0deg",
+        "visibility": "visible"
+      },
+      "metadata": {
+        "previewUrl": "https://cdn.designcombo.dev/caption_previews/static_preset1.webp"
+      },
+      "trim": {
+        "from": 0,
+        "to": 5062.5
+      },
+      "type": "video",
+      "name": "video",
+      "playbackRate": 0.8,
+      "display": {
+        "from": 0,
+        "to": 7910.15625
+      },
+      "duration": 5062.5,
+      "isMain": false
+    },
+    "gcpmOMHYBAdLwjyt": {
+      "id": "gcpmOMHYBAdLwjyt",
+      "type": "image",
+      "name": "image",
+      "display": {
+        "from": 12610.03989361702,
+        "to": 13360.039893617022
+      },
+      "playbackRate": 1,
+      "details": {
+        "src": "/uploads/1765677175588-Doughnuts-08-classic-oldfashioned.webp",
+        "width": 500,
+        "height": 405,
+        "opacity": 100,
+        "transform": "scale(2.63789, 2.63789)",
+        "border": "none",
+        "borderRadius": 0,
+        "boxShadow": {
+          "color": "#000000",
+          "x": 0,
+          "y": 0,
+          "blur": 0
+        },
+        "top": "342.608px",
+        "left": "718.787px",
+        "borderWidth": 0,
+        "borderColor": "#000000",
+        "blur": 0,
+        "brightness": 100,
+        "flipX": false,
+        "flipY": false,
+        "rotate": "0deg",
+        "visibility": "visible"
+      },
+      "metadata": {},
+      "isMain": false
+    },
+    "V88w24qdhviF6OAl": {
+      "id": "V88w24qdhviF6OAl",
+      "type": "image",
+      "name": "image",
+      "display": {
+        "from": 7929.188829787236,
+        "to": 9737.699468085108
+      },
+      "playbackRate": 1,
+      "details": {
+        "src": "/uploads/1765677175577-Doughnuts-07-vanilla-cake.webp",
+        "width": 500,
+        "height": 405,
+        "opacity": 100,
+        "transform": "scale(2.61394, 2.61394)",
+        "border": "none",
+        "borderRadius": 0,
+        "boxShadow": {
+          "color": "#000000",
+          "x": 0,
+          "y": 0,
+          "blur": 0
+        },
+        "top": "347.34px",
+        "left": "708.084px",
+        "borderWidth": 0,
+        "borderColor": "#000000",
+        "blur": 0,
+        "brightness": 100,
+        "flipX": false,
+        "flipY": false,
+        "rotate": "0deg",
+        "visibility": "visible"
+      },
+      "metadata": {},
+      "isMain": false
+    },
+    "hz7JwWsywAqzmfD0": {
+      "id": "hz7JwWsywAqzmfD0",
+      "type": "image",
+      "name": "image",
+      "display": {
+        "from": 11067.48670212766,
+        "to": 12610.039893617022
+      },
+      "playbackRate": 1,
+      "details": {
+        "src": "/uploads/1765677175586-Doughnuts-11-gingerbreak-stack.webp",
+        "width": 500,
+        "height": 405,
+        "opacity": 100,
+        "transform": "scale(2.61462, 2.61463)",
+        "border": "none",
+        "borderRadius": 0,
+        "boxShadow": {
+          "color": "#000000",
+          "x": 0,
+          "y": 0,
+          "blur": 0
+        },
+        "top": "338.116px",
+        "left": "715.682px",
+        "borderWidth": 0,
+        "borderColor": "#000000",
+        "blur": 0,
+        "brightness": 100,
+        "flipX": false,
+        "flipY": false,
+        "rotate": "0deg",
+        "visibility": "visible"
+      },
+      "metadata": {},
+      "isMain": false
+    },
+    "fEdPgkF6QmAJE96c": {
+      "id": "fEdPgkF6QmAJE96c",
+      "type": "image",
+      "name": "image",
+      "display": {
+        "from": 9737.699468085108,
+        "to": 11067.48670212766
+      },
+      "playbackRate": 1,
+      "details": {
+        "src": "/uploads/1765677175587-Doughnuts-10-glazed.webp",
+        "width": 500,
+        "height": 405,
+        "opacity": 100,
+        "transform": "scale(2.64382, 2.64382)",
+        "border": "none",
+        "borderRadius": 0,
+        "boxShadow": {
+          "color": "#000000",
+          "x": 0,
+          "y": 0,
+          "blur": 0
+        },
+        "top": "352.987px",
+        "left": "707.577px",
+        "borderWidth": 0,
+        "borderColor": "#000000",
+        "blur": 0,
+        "brightness": 100,
+        "flipX": false,
+        "flipY": false,
+        "rotate": "0deg",
+        "visibility": "visible"
+      },
+      "metadata": {},
+      "isMain": false
+    },
+    "tspCJvB5ZR4MIxlU": {
+      "id": "tspCJvB5ZR4MIxlU",
+      "name": "text",
+      "type": "text",
+      "display": {
+        "from": 24845.531914893618,
+        "to": 29427.828992366038
+      },
+      "details": {
+        "text": "Franklin & Kinzie | River North\n7:30am – 'til sold out\ndoughnutvault.com",
+        "fontSize": 60,
+        "fontFamily": "Gluten-Regular",
+        "fontUrl": "https://fonts.gstatic.com/s/gluten/v4/HhyIU5gk9fW7OUdVIPh2wBPxSqQJ_zh2_DMrQqcdJrk.ttf",
+        "fontWeight": "bold",
+        "fontStyle": "normal",
+        "textAlign": "center",
+        "color": "#FFFFFF",
+        "backgroundColor": "#025a7acc",
+        "textDecoration": "none",
+        "lineHeight": "1.5",
+        "letterSpacing": 8,
+        "wordSpacing": "normal",
+        "border": "none",
+        "opacity": 100,
+        "wordWrap": "normal",
+        "wordBreak": "normal",
+        "borderWidth": 10,
+        "borderColor": "#025a7a",
+        "boxShadow": {
+          "color": "rgba(0,0,0,0.9)",
+          "x": 2,
+          "y": 4,
+          "blur": 12
+        },
+        "top": "478.92600000000004px",
+        "left": "182.004px",
+        "width": 1555,
+        "height": 441,
+        "textTransform": "uppercase",
+        "transform": "none",
+        "skewX": 0,
+        "skewY": 0
+      },
+      "metadata": {}
+    },
+    "scsctwPyjxfZDpE": {
+      "id": "scsctwPyjxfZDpE",
+      "name": "text",
+      "type": "text",
+      "display": {
+        "from": 24845.531914893618,
+        "to": 29427.828992366038
+      },
+      "details": {
+        "text": "doughnut vault",
+        "fontSize": 100,
+        "fontFamily": "Gluten-Regular",
+        "fontUrl": "https://fonts.gstatic.com/s/gluten/v4/HhyIU5gk9fW7OUdVIPh2wBPxSqQJ_zh2_DMrQqcdJrk.ttf",
+        "fontWeight": "bold",
+        "fontStyle": "normal",
+        "textAlign": "center",
+        "color": "#FFFFFF",
+        "backgroundColor": "#025a7acc",
+        "textDecoration": "none",
+        "lineHeight": "1.5",
+        "letterSpacing": 8,
+        "wordSpacing": "normal",
+        "border": "none",
+        "opacity": 100,
+        "wordWrap": "normal",
+        "wordBreak": "normal",
+        "borderWidth": 10,
+        "borderColor": "#025a7a",
+        "boxShadow": {
+          "color": "rgba(0,0,0,0.9)",
+          "x": 2,
+          "y": 4,
+          "blur": 12
+        },
+        "top": "329.44399999999996px",
+        "left": "182.358px",
+        "width": 1555,
+        "height": 150,
+        "textTransform": "uppercase",
+        "transform": "none",
+        "skewX": 0,
+        "skewY": 0
+      },
+      "metadata": {}
+    },
+    "v6ZIqA1xEcye9Pf": {
+      "id": "v6ZIqA1xEcye9Pf",
+      "name": "text",
+      "type": "text",
+      "display": {
+        "from": 4360.659464035928,
+        "to": 6145.446966850402
+      },
+      "details": {
+        "text": "old world recipes\n",
+        "fontSize": 100,
+        "fontFamily": "Gluten-Regular",
+        "fontUrl": "https://fonts.gstatic.com/s/gluten/v4/HhyIU5gk9fW7OUdVIPh2wBPxSqQJ_zh2_DMrQqcdJrk.ttf",
+        "fontWeight": "bold",
+        "fontStyle": "normal",
+        "textAlign": "center",
+        "color": "#FFFFFF",
+        "backgroundColor": "transparent",
+        "textDecoration": "none",
+        "lineHeight": "1.5",
+        "letterSpacing": 8,
+        "wordSpacing": "normal",
+        "border": "none",
+        "opacity": 100,
+        "wordWrap": "normal",
+        "wordBreak": "normal",
+        "borderWidth": 10,
+        "borderColor": "#025a7a",
+        "boxShadow": {
+          "color": "rgba(0,0,0,0.9)",
+          "x": 2,
+          "y": 4,
+          "blur": 12
+        },
+        "top": "453.909px",
+        "left": "485.721px",
+        "width": 1124,
+        "height": 150,
+        "textTransform": "uppercase",
+        "transform": "none",
+        "skewX": 0,
+        "skewY": 0
+      },
+      "metadata": {},
+      "isMain": false
+    },
+    "M7sSoWdZrPRQGG9Z": {
+      "id": "M7sSoWdZrPRQGG9Z",
+      "name": "text",
+      "type": "text",
+      "display": {
+        "from": 3175.727011705811,
+        "to": 4360.659464035928
+      },
+      "details": {
+        "text": "hand crafted daily\n",
+        "fontSize": 100,
+        "fontFamily": "Gluten-Regular",
+        "fontUrl": "https://fonts.gstatic.com/s/gluten/v4/HhyIU5gk9fW7OUdVIPh2wBPxSqQJ_zh2_DMrQqcdJrk.ttf",
+        "fontWeight": "bold",
+        "fontStyle": "normal",
+        "textAlign": "center",
+        "color": "#FFFFFF",
+        "backgroundColor": "transparent",
+        "textDecoration": "none",
+        "lineHeight": "1.5",
+        "letterSpacing": "2px",
+        "wordSpacing": "normal",
+        "border": "none",
+        "opacity": 100,
+        "wordWrap": "normal",
+        "wordBreak": "normal",
+        "borderWidth": 10,
+        "borderColor": "#025a7a",
+        "boxShadow": {
+          "color": "rgba(0,0,0,0.9)",
+          "x": 2,
+          "y": 4,
+          "blur": 12
+        },
+        "top": "487.096px",
+        "left": "383.903px",
+        "width": 1167,
+        "height": 150,
+        "textTransform": "uppercase",
+        "transform": "none",
+        "skewX": 0,
+        "skewY": 0
+      },
+      "metadata": {},
+      "isMain": false
+    },
+    "y5MjRuir6IpwGEB3": {
+      "id": "y5MjRuir6IpwGEB3",
+      "name": "text",
+      "type": "text",
+      "display": {
+        "from": 1660.2996392549549,
+        "to": 3175.7270117058106
+      },
+      "details": {
+        "text": "artisanal",
+        "fontSize": 100,
+        "fontFamily": "Gluten-Regular",
+        "fontUrl": "https://fonts.gstatic.com/s/gluten/v4/HhyIU5gk9fW7OUdVIPh2wBPxSqQJ_zh2_DMrQqcdJrk.ttf",
+        "fontWeight": "bold",
+        "fontStyle": "normal",
+        "textAlign": "center",
+        "color": "#FFFFFF",
+        "backgroundColor": "transparent",
+        "textDecoration": "none",
+        "lineHeight": "1.5",
+        "letterSpacing": 8,
+        "wordSpacing": "normal",
+        "border": "none",
+        "opacity": 100,
+        "wordWrap": "normal",
+        "wordBreak": "normal",
+        "borderWidth": 10,
+        "borderColor": "#025a7a",
+        "boxShadow": {
+          "color": "rgba(0,0,0,0.9)",
+          "x": 2,
+          "y": 4,
+          "blur": 12
+        },
+        "top": "463.343px",
+        "left": "678.239px",
+        "width": 568,
+        "height": 300,
+        "textTransform": "uppercase",
+        "transform": "none",
+        "skewX": 0,
+        "skewY": 0
+      },
+      "metadata": {},
+      "isMain": false,
+      "animations": {}
+    },
+    "kdznOku4UocuzQTT": {
+      "id": "kdznOku4UocuzQTT",
+      "name": "text",
+      "type": "text",
+      "display": {
+        "from": 0,
+        "to": 1660.2996392549549
+      },
+      "details": {
+        "text": "doughnut vault",
+        "fontSize": 130,
+        "fontFamily": "Gluten-Regular",
+        "fontUrl": "https://fonts.gstatic.com/s/gluten/v4/HhyIU5gk9fW7OUdVIPh2wBPxSqQJ_zh2_DMrQqcdJrk.ttf",
+        "fontWeight": "bold",
+        "fontStyle": "normal",
+        "textAlign": "center",
+        "color": "#FFFFFF",
+        "backgroundColor": "transparent",
+        "textDecoration": "none",
+        "lineHeight": "1.5",
+        "letterSpacing": 8,
+        "wordSpacing": "normal",
+        "border": "none",
+        "opacity": 100,
+        "wordWrap": "normal",
+        "wordBreak": "normal",
+        "borderWidth": 10,
+        "borderColor": "#025a7a",
+        "boxShadow": {
+          "color": "rgba(0,0,0,0.9)",
+          "x": 2,
+          "y": 4,
+          "blur": 12
+        },
+        "top": "442.523px",
+        "left": "251.277px",
+        "width": 1417,
+        "height": 247,
+        "textTransform": "uppercase",
+        "transform": "none",
+        "skewX": 0,
+        "skewY": 0
+      },
+      "metadata": {},
+      "isMain": false,
+      "animations": {
+        "in": {
+          "name": "fadeIn",
+          "composition": [
+            {
+              "property": "opacity",
+              "from": 0,
+              "to": 1,
+              "durationInFrames": 15,
+              "previewUrl": "https://cdn.designcombo.dev/animations/FadeIn.webp",
+              "name": "Fade"
+            }
+          ]
+        }
+      }
+    },
+    "MWR1NqwKgUe2WoZr": {
+      "id": "MWR1NqwKgUe2WoZr",
+      "name": "audio",
+      "type": "audio",
+      "display": {
+        "from": 0,
+        "to": 29440
+      },
+      "trim": {
+        "from": 0,
+        "to": 29440
+      },
+      "playbackRate": 1,
+      "details": {
+        "src": "/uploads/1765680333053-ElevenLabs_2025-12-14T02_45_02_Liam_pre_sp100_s50_sb75_se0_b_m2-dv-liam.mp3",
+        "volume": 100
+      },
+      "metadata": {},
+      "duration": 29440,
+      "isMain": false
+    },
+    "pT7JTvsGej1ybW1": {
+      "id": "pT7JTvsGej1ybW1",
+      "name": "audio",
+      "type": "audio",
+      "display": {
+        "from": 0,
+        "to": 29466.666666666664
+      },
+      "trim": {
+        "from": 0,
+        "to": 29466.666666666664
+      },
+      "playbackRate": 1,
+      "details": {
+        "src": "/uploads/1765681384728-background-music-cooking-food-337628.mp3",
+        "volume": 19
+      },
+      "metadata": {},
+      "duration": 70896.31300000001,
+      "isMain": false
+    }
+  },
+  "transitionIds": [
+    "lHYntIR5iLX9QFa9-V88w24qdhviF6OAl",
+    "V88w24qdhviF6OAl-fEdPgkF6QmAJE96c",
+    "fEdPgkF6QmAJE96c-hz7JwWsywAqzmfD0",
+    "hz7JwWsywAqzmfD0-gcpmOMHYBAdLwjyt",
+    "gcpmOMHYBAdLwjyt-fo80nn8kcRdQLkw",
+    "fo80nn8kcRdQLkw-yXLM4iGYp42r8a",
+    "kdznOku4UocuzQTT-y5MjRuir6IpwGEB3",
+    "y5MjRuir6IpwGEB3-M7sSoWdZrPRQGG9Z",
+    "M7sSoWdZrPRQGG9Z-v6ZIqA1xEcye9Pf"
+  ]
+}

@@ -1,0 +1,1148 @@
+{
+  "id": "sJv2ZjEwk8qeli",
+  "fps": 30,
+  "tracks": [
+    {
+      "id": "1ks-CHKJytDOQ_Ht2xQge",
+      "accepts": [
+        "text",
+        "image",
+        "video",
+        "audio",
+        "composition",
+        "caption",
+        "template",
+        "customTrack",
+        "customTrack2",
+        "illustration",
+        "custom",
+        "main",
+        "shape",
+        "linealAudioBars",
+        "radialAudioBars",
+        "progressFrame",
+        "progressBar",
+        "rect",
+        "progressSquare"
+      ],
+      "type": "audio",
+      "items": [
+        "mSWm36ualQvsTIl8"
+      ],
+      "magnetic": false,
+      "static": false
+    },
+    {
+      "id": "8e9DOfIYp4VOP1RrICGFZ",
+      "accepts": [
+        "text",
+        "image",
+        "video",
+        "audio",
+        "composition",
+        "caption",
+        "template",
+        "customTrack",
+        "customTrack2",
+        "illustration",
+        "custom",
+        "main",
+        "shape",
+        "linealAudioBars",
+        "radialAudioBars",
+        "progressFrame",
+        "progressBar",
+        "rect",
+        "progressSquare"
+      ],
+      "type": "audio",
+      "items": [
+        "OmLY7jqslzPOXO"
+      ],
+      "magnetic": false,
+      "static": false
+    },
+    {
+      "id": "eeiYD7PrhOdc2",
+      "accepts": [
+        "text",
+        "image",
+        "video",
+        "audio",
+        "composition",
+        "caption",
+        "template",
+        "customTrack",
+        "customTrack2",
+        "illustration",
+        "custom",
+        "main",
+        "shape",
+        "linealAudioBars",
+        "radialAudioBars",
+        "progressFrame",
+        "progressBar",
+        "rect",
+        "progressSquare"
+      ],
+      "type": "text",
+      "items": [
+        "y5MjRuir6IpwGEB3",
+        "kdznOku4UocuzQTT",
+        "M7sSoWdZrPRQGG9Z",
+        "v6ZIqA1xEcye9Pf"
+      ],
+      "magnetic": false,
+      "static": false
+    },
+    {
+      "id": "pbQ9xdNpbA4Mmh91",
+      "items": [
+        "SHsfK7jRhfP3y58H"
+      ],
+      "type": "image",
+      "accepts": [
+        "text",
+        "image",
+        "video",
+        "audio",
+        "composition",
+        "caption",
+        "template",
+        "customTrack",
+        "customTrack2",
+        "illustration",
+        "custom",
+        "main",
+        "shape",
+        "linealAudioBars",
+        "radialAudioBars",
+        "progressFrame",
+        "progressBar",
+        "rect",
+        "progressSquare"
+      ]
+    },
+    {
+      "id": "kJ9m5EAK2MPEhJsV",
+      "items": [
+        "c3mzhBoXB7ND"
+      ],
+      "type": "image",
+      "accepts": [
+        "text",
+        "image",
+        "video",
+        "audio",
+        "composition",
+        "caption",
+        "template",
+        "customTrack",
+        "customTrack2",
+        "illustration",
+        "custom",
+        "main",
+        "shape",
+        "linealAudioBars",
+        "radialAudioBars",
+        "progressFrame",
+        "progressBar",
+        "rect",
+        "progressSquare"
+      ]
+    },
+    {
+      "id": "ppIHMIUMrpDz0wE",
+      "items": [
+        "l58RaJOqULptxejk"
+      ],
+      "type": "image",
+      "accepts": [
+        "text",
+        "image",
+        "video",
+        "audio",
+        "composition",
+        "caption",
+        "template",
+        "customTrack",
+        "customTrack2",
+        "illustration",
+        "custom",
+        "main",
+        "shape",
+        "linealAudioBars",
+        "radialAudioBars",
+        "progressFrame",
+        "progressBar",
+        "rect",
+        "progressSquare"
+      ]
+    },
+    {
+      "id": "9n35SnLMKDA2CJ3fNwAzu",
+      "items": [
+        "scsctwPyjxfZDpE"
+      ],
+      "type": "text",
+      "accepts": [
+        "text",
+        "caption"
+      ],
+      "tempIndex": -5
+    },
+    {
+      "id": "y8sSmEgKh4-lZFdlyiWIf",
+      "items": [
+        "tspCJvB5ZR4MIxlU"
+      ],
+      "type": "text",
+      "accepts": [
+        "text",
+        "caption"
+      ],
+      "tempIndex": -3
+    },
+    {
+      "id": "roaodInOHR6JH4lb",
+      "accepts": [
+        "text",
+        "image",
+        "video",
+        "audio",
+        "composition",
+        "caption",
+        "template",
+        "customTrack",
+        "customTrack2",
+        "illustration",
+        "custom",
+        "main",
+        "shape",
+        "linealAudioBars",
+        "radialAudioBars",
+        "progressFrame",
+        "progressBar",
+        "rect",
+        "progressSquare"
+      ],
+      "type": "image",
+      "items": [
+        "euflPBIeCecbI2u"
+      ]
+    },
+    {
+      "id": "TaGSaMRa5Ll4cHKh",
+      "accepts": [
+        "text",
+        "image",
+        "video",
+        "template",
+        "custom",
+        "radialAudioBars",
+        "progressSquare",
+        "progressFrame",
+        "main",
+        "customTrack",
+        "audio",
+        "caption",
+        "illustration",
+        "linealAudioBars",
+        "rect",
+        "progressBar",
+        "shape",
+        "customTrack2",
+        "composition"
+      ],
+      "type": "video",
+      "items": [
+        "HggABC9V1mqknI2",
+        "cifjmPaj7zjJIDay",
+        "u86YHFpnHhIi1t95",
+        "kkq5NxymnRPV9Bir",
+        "rSpOFSyKv6UxUzF"
+      ],
+      "name": "Visuals",
+      "static": false,
+      "magnetic": false
+    },
+    {
+      "id": "Hl7agf1vKOyCf4yS",
+      "accepts": [
+        "image",
+        "video"
+      ],
+      "type": "image",
+      "items": [
+        "mq44VqEAUUj64mz"
+      ]
+    }
+  ],
+  "size": {
+    "width": 1920,
+    "height": 1080
+  },
+  "trackItemIds": [
+    "mq44VqEAUUj64mz",
+    "rSpOFSyKv6UxUzF",
+    "kkq5NxymnRPV9Bir",
+    "u86YHFpnHhIi1t95",
+    "cifjmPaj7zjJIDay",
+    "HggABC9V1mqknI2",
+    "euflPBIeCecbI2u",
+    "tspCJvB5ZR4MIxlU",
+    "scsctwPyjxfZDpE",
+    "l58RaJOqULptxejk",
+    "c3mzhBoXB7ND",
+    "SHsfK7jRhfP3y58H",
+    "v6ZIqA1xEcye9Pf",
+    "M7sSoWdZrPRQGG9Z",
+    "y5MjRuir6IpwGEB3",
+    "kdznOku4UocuzQTT",
+    "OmLY7jqslzPOXO",
+    "mSWm36ualQvsTIl8"
+  ],
+  "transitionsMap": {
+    "HggABC9V1mqknI2-cifjmPaj7zjJIDay": {
+      "id": "HggABC9V1mqknI2-cifjmPaj7zjJIDay",
+      "duration": 1500,
+      "fromId": "HggABC9V1mqknI2",
+      "toId": "cifjmPaj7zjJIDay",
+      "kind": "none",
+      "trackId": "TaGSaMRa5Ll4cHKh",
+      "type": "transition"
+    },
+    "cifjmPaj7zjJIDay-u86YHFpnHhIi1t95": {
+      "id": "cifjmPaj7zjJIDay-u86YHFpnHhIi1t95",
+      "duration": 1500,
+      "fromId": "cifjmPaj7zjJIDay",
+      "toId": "u86YHFpnHhIi1t95",
+      "kind": "none",
+      "trackId": "TaGSaMRa5Ll4cHKh",
+      "type": "transition"
+    },
+    "kkq5NxymnRPV9Bir-rSpOFSyKv6UxUzF": {
+      "id": "kkq5NxymnRPV9Bir-rSpOFSyKv6UxUzF",
+      "duration": 1500,
+      "fromId": "kkq5NxymnRPV9Bir",
+      "toId": "rSpOFSyKv6UxUzF",
+      "kind": "none",
+      "trackId": "TaGSaMRa5Ll4cHKh",
+      "type": "transition"
+    },
+    "kdznOku4UocuzQTT-y5MjRuir6IpwGEB3": {
+      "id": "kdznOku4UocuzQTT-y5MjRuir6IpwGEB3",
+      "duration": 1500,
+      "fromId": "kdznOku4UocuzQTT",
+      "toId": "y5MjRuir6IpwGEB3",
+      "kind": "none",
+      "trackId": "eeiYD7PrhOdc2",
+      "type": "transition"
+    },
+    "y5MjRuir6IpwGEB3-M7sSoWdZrPRQGG9Z": {
+      "id": "y5MjRuir6IpwGEB3-M7sSoWdZrPRQGG9Z",
+      "duration": 1500,
+      "fromId": "y5MjRuir6IpwGEB3",
+      "toId": "M7sSoWdZrPRQGG9Z",
+      "kind": "none",
+      "trackId": "eeiYD7PrhOdc2",
+      "type": "transition"
+    },
+    "M7sSoWdZrPRQGG9Z-v6ZIqA1xEcye9Pf": {
+      "id": "M7sSoWdZrPRQGG9Z-v6ZIqA1xEcye9Pf",
+      "duration": 1500,
+      "fromId": "M7sSoWdZrPRQGG9Z",
+      "toId": "v6ZIqA1xEcye9Pf",
+      "kind": "none",
+      "trackId": "eeiYD7PrhOdc2",
+      "type": "transition"
+    }
+  },
+  "trackItemsMap": {
+    "mq44VqEAUUj64mz": {
+      "id": "mq44VqEAUUj64mz",
+      "type": "image",
+      "name": "image",
+      "display": {
+        "from": 0,
+        "to": 25681.684569263805
+      },
+      "playbackRate": 1,
+      "details": {
+        "src": "https://images.pexels.com/photos/1939485/pexels-photo-1939485.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "width": 867,
+        "height": 1300,
+        "opacity": 100,
+        "transform": "scale(2.27349, 2.27349)",
+        "border": "none",
+        "borderRadius": 0,
+        "boxShadow": {
+          "color": "#000000",
+          "x": 0,
+          "y": 0,
+          "blur": 0
+        },
+        "top": "295.233px",
+        "left": "519.373px",
+        "borderWidth": 0,
+        "borderColor": "#000000",
+        "blur": 3,
+        "brightness": 100,
+        "flipX": false,
+        "flipY": false,
+        "rotate": "0deg",
+        "visibility": "visible",
+        "crop": {
+          "x": 0,
+          "y": 406.15624999999994,
+          "width": 867,
+          "height": 487.68750000000006
+        }
+      },
+      "metadata": {}
+    },
+    "rSpOFSyKv6UxUzF": {
+      "id": "rSpOFSyKv6UxUzF",
+      "details": {
+        "width": 720,
+        "height": 720,
+        "opacity": 100,
+        "src": "/uploads/1765673578545-Image2Video_close-up_of_blackened_ch.mp4",
+        "volume": 100,
+        "borderRadius": 0,
+        "borderWidth": 0,
+        "borderColor": "#000000",
+        "boxShadow": {
+          "color": "#000000",
+          "x": 0,
+          "y": 0,
+          "blur": 0
+        },
+        "top": "180px",
+        "left": "600px",
+        "transform": "scale(1.5)",
+        "blur": 0,
+        "brightness": 100,
+        "flipX": false,
+        "flipY": false,
+        "rotate": "0deg",
+        "visibility": "visible"
+      },
+      "metadata": {
+        "previewUrl": "https://cdn.designcombo.dev/caption_previews/static_preset1.webp"
+      },
+      "trim": {
+        "from": 3692.4188887545342,
+        "to": 5062.5
+      },
+      "type": "video",
+      "name": "video",
+      "playbackRate": 0.8,
+      "display": {
+        "from": 19973.013272407694,
+        "to": 25681.6845692638
+      },
+      "duration": 5062.5,
+      "isMain": false,
+      "animations": {
+        "in": {
+          "name": "scaleIn",
+          "composition": [
+            {
+              "property": "scale",
+              "from": 0,
+              "to": 1,
+              "durationInFrames": 15,
+              "previewUrl": "https://cdn.designcombo.dev/animations/ScaleIn.webp",
+              "name": "Scale"
+            }
+          ]
+        }
+      }
+    },
+    "kkq5NxymnRPV9Bir": {
+      "id": "kkq5NxymnRPV9Bir",
+      "details": {
+        "width": 720,
+        "height": 720,
+        "opacity": 100,
+        "src": "/uploads/1765673392411-Image2Video_Crisp_leafy_kale_caesar_.mp4",
+        "volume": 100,
+        "borderRadius": 0,
+        "borderWidth": 0,
+        "borderColor": "#000000",
+        "boxShadow": {
+          "color": "#000000",
+          "x": 0,
+          "y": 0,
+          "blur": 0
+        },
+        "top": "180px",
+        "left": "600px",
+        "transform": "scale(1.5)",
+        "blur": 0,
+        "brightness": 100,
+        "flipX": false,
+        "flipY": false,
+        "rotate": "0deg",
+        "visibility": "visible"
+      },
+      "metadata": {
+        "previewUrl": "https://cdn.designcombo.dev/caption_previews/static_preset1.webp"
+      },
+      "trim": {
+        "from": 80.38686819830785,
+        "to": 5062.5
+      },
+      "type": "video",
+      "name": "video",
+      "playbackRate": 1,
+      "display": {
+        "from": 14990.900140606,
+        "to": 19973.01327240769
+      },
+      "duration": 5062.5,
+      "isMain": false
+    },
+    "u86YHFpnHhIi1t95": {
+      "id": "u86YHFpnHhIi1t95",
+      "details": {
+        "width": 1080,
+        "height": 1080,
+        "opacity": 100,
+        "src": "/uploads/1765672494060-Image2Video_animate_this_image_of_a_.mp4",
+        "volume": 100,
+        "borderRadius": 0,
+        "borderWidth": 0,
+        "borderColor": "#000000",
+        "boxShadow": {
+          "color": "#000000",
+          "x": 0,
+          "y": 0,
+          "blur": 0
+        },
+        "top": "0px",
+        "left": "420px",
+        "transform": "scale(1)",
+        "blur": 0,
+        "brightness": 100,
+        "flipX": false,
+        "flipY": false,
+        "rotate": "0deg",
+        "visibility": "visible"
+      },
+      "metadata": {
+        "previewUrl": "https://cdn.designcombo.dev/caption_previews/static_preset1.webp"
+      },
+      "trim": {
+        "from": 0,
+        "to": 5062.5
+      },
+      "type": "video",
+      "name": "video",
+      "playbackRate": 1,
+      "display": {
+        "from": 8222.074468085115,
+        "to": 13284.574468085115
+      },
+      "duration": 5062.5,
+      "isMain": false
+    },
+    "cifjmPaj7zjJIDay": {
+      "id": "cifjmPaj7zjJIDay",
+      "details": {
+        "width": 720,
+        "height": 720,
+        "opacity": 100,
+        "src": "/uploads/1765671380394-Image2Video_close-up_of_blackened_ch__1_.mp4",
+        "volume": 100,
+        "borderRadius": 0,
+        "borderWidth": 0,
+        "borderColor": "#000000",
+        "boxShadow": {
+          "color": "#000000",
+          "x": 0,
+          "y": 0,
+          "blur": 0
+        },
+        "top": "180px",
+        "left": "600px",
+        "transform": "scale(1.5)",
+        "blur": 0,
+        "brightness": 100,
+        "flipX": false,
+        "flipY": false,
+        "rotate": "0deg",
+        "visibility": "visible"
+      },
+      "metadata": {
+        "previewUrl": "https://cdn.designcombo.dev/caption_previews/static_preset1.webp"
+      },
+      "trim": {
+        "from": 0,
+        "to": 3159.5744680851053
+      },
+      "type": "video",
+      "name": "video",
+      "playbackRate": 1,
+      "display": {
+        "from": 5062.500000000002,
+        "to": 8222.074468085111
+      },
+      "duration": 5062.5,
+      "isMain": false
+    },
+    "HggABC9V1mqknI2": {
+      "id": "HggABC9V1mqknI2",
+      "details": {
+        "width": 720,
+        "height": 720,
+        "opacity": 100,
+        "src": "/uploads/1765670292603-Image2Video_Shaved_parmesan_crisps_g.mp4",
+        "volume": 100,
+        "borderRadius": 0,
+        "borderWidth": 0,
+        "borderColor": "#000000",
+        "boxShadow": {
+          "color": "#000000",
+          "x": 0,
+          "y": 0,
+          "blur": 0
+        },
+        "top": "168.4px",
+        "left": "592.752px",
+        "transform": "scale(1.5)",
+        "blur": 0,
+        "brightness": 100,
+        "flipX": false,
+        "flipY": false,
+        "rotate": "0deg",
+        "visibility": "visible"
+      },
+      "metadata": {
+        "previewUrl": "https://cdn.designcombo.dev/caption_previews/static_preset1.webp"
+      },
+      "trim": {
+        "from": 0,
+        "to": 5062.5
+      },
+      "type": "video",
+      "name": "video",
+      "playbackRate": 1,
+      "display": {
+        "from": 0,
+        "to": 5062.5
+      },
+      "duration": 5062.5,
+      "isMain": false
+    },
+    "euflPBIeCecbI2u": {
+      "id": "euflPBIeCecbI2u",
+      "type": "image",
+      "name": "image",
+      "display": {
+        "from": 11622.34042553193,
+        "to": 17476.32335539892
+      },
+      "playbackRate": 1,
+      "details": {
+        "src": "/uploads/1765672792372-SG_Web_Image_Bowl_Crispy_Rice_Bowl.png",
+        "width": 600,
+        "height": 600,
+        "opacity": 100,
+        "transform": "scale(1.60044, 1.60044)",
+        "border": "none",
+        "borderRadius": 0,
+        "boxShadow": {
+          "color": "#000000",
+          "x": 0,
+          "y": 0,
+          "blur": 0
+        },
+        "top": "105.945px",
+        "left": "173.181px",
+        "borderWidth": 0,
+        "borderColor": "#000000",
+        "blur": 0,
+        "brightness": 100,
+        "flipX": false,
+        "flipY": false,
+        "rotate": "0deg",
+        "visibility": "visible",
+        "crop": {
+          "x": 0,
+          "y": 131.25,
+          "width": 600,
+          "height": 337.49999999999994
+        }
+      },
+      "metadata": {}
+    },
+    "tspCJvB5ZR4MIxlU": {
+      "id": "tspCJvB5ZR4MIxlU",
+      "name": "text",
+      "type": "text",
+      "display": {
+        "from": 19973.013272407698,
+        "to": 25681.6845692638
+      },
+      "details": {
+        "text": "Over 200 locations nationwide. Download the app to find yours or visit sweetgreen.com",
+        "fontSize": 60,
+        "fontFamily": "ComicNeue-Regular",
+        "fontUrl": "https://fonts.gstatic.com/s/comicneue/v3/4UaHrEJDsxBrF37olUeDx63j5pN1MwI.ttf",
+        "fontWeight": "bold",
+        "fontStyle": "normal",
+        "textAlign": "center",
+        "color": "#FFFFFF",
+        "backgroundColor": "#00473ccc",
+        "textDecoration": "none",
+        "lineHeight": "1.5",
+        "letterSpacing": 8,
+        "wordSpacing": "normal",
+        "border": "none",
+        "opacity": 100,
+        "wordWrap": "normal",
+        "wordBreak": "normal",
+        "borderWidth": 10,
+        "borderColor": "#00473c",
+        "boxShadow": {
+          "color": "rgba(0,0,0,0.9)",
+          "x": 2,
+          "y": 4,
+          "blur": 12
+        },
+        "top": "478.92600000000004px",
+        "left": "182.004px",
+        "width": 1555,
+        "height": 441,
+        "textTransform": "uppercase",
+        "transform": "none",
+        "skewX": 0,
+        "skewY": 0
+      },
+      "metadata": {}
+    },
+    "scsctwPyjxfZDpE": {
+      "id": "scsctwPyjxfZDpE",
+      "name": "text",
+      "type": "text",
+      "display": {
+        "from": 19973.013272407698,
+        "to": 25681.6845692638
+      },
+      "details": {
+        "text": "sweet green",
+        "fontSize": 100,
+        "fontFamily": "ComicNeue-Regular",
+        "fontUrl": "https://fonts.gstatic.com/s/comicneue/v3/4UaHrEJDsxBrF37olUeDx63j5pN1MwI.ttf",
+        "fontWeight": "bold",
+        "fontStyle": "normal",
+        "textAlign": "center",
+        "color": "#FFFFFF",
+        "backgroundColor": "#00473ccc",
+        "textDecoration": "none",
+        "lineHeight": "1.5",
+        "letterSpacing": 8,
+        "wordSpacing": "normal",
+        "border": "none",
+        "opacity": 100,
+        "wordWrap": "normal",
+        "wordBreak": "normal",
+        "borderWidth": 10,
+        "borderColor": "#00473c",
+        "boxShadow": {
+          "color": "rgba(0,0,0,0.9)",
+          "x": 2,
+          "y": 4,
+          "blur": 12
+        },
+        "top": "329.44399999999996px",
+        "left": "182.358px",
+        "width": 1555,
+        "height": 150,
+        "textTransform": "uppercase",
+        "transform": "none",
+        "skewX": 0,
+        "skewY": 0
+      },
+      "metadata": {}
+    },
+    "l58RaJOqULptxejk": {
+      "id": "l58RaJOqULptxejk",
+      "type": "image",
+      "name": "image",
+      "display": {
+        "from": 10340.554369432419,
+        "to": 15530.255548392515
+      },
+      "playbackRate": 1,
+      "details": {
+        "src": "/uploads/1765671648070-ChickenCauliPlate.png",
+        "width": 600,
+        "height": 600,
+        "opacity": 100,
+        "transform": "scale(1.61854, 1.61854)",
+        "border": "none",
+        "borderRadius": 0,
+        "boxShadow": {
+          "color": "#000000",
+          "x": 0,
+          "y": 0,
+          "blur": 0
+        },
+        "top": "103.551px",
+        "left": "1135.06px",
+        "borderWidth": 0,
+        "borderColor": "#000000",
+        "blur": 0,
+        "brightness": 100,
+        "flipX": false,
+        "flipY": false,
+        "rotate": "0deg",
+        "visibility": "visible",
+        "crop": {
+          "x": 0,
+          "y": 131.25,
+          "width": 600,
+          "height": 337.49999999999994
+        }
+      },
+      "metadata": {}
+    },
+    "c3mzhBoXB7ND": {
+      "id": "c3mzhBoXB7ND",
+      "type": "image",
+      "name": "image",
+      "display": {
+        "from": 10989.265073989556,
+        "to": 16137.448643517972
+      },
+      "playbackRate": 1,
+      "details": {
+        "src": "/uploads/1765671648085-SG_Web_Image_Plate_Hot_Honey_Chicken.png",
+        "width": 600,
+        "height": 600,
+        "opacity": 100,
+        "transform": "scale(1.61694, 1.61694)",
+        "border": "none",
+        "borderRadius": 0,
+        "boxShadow": {
+          "color": "#000000",
+          "x": 0,
+          "y": 0,
+          "blur": 0
+        },
+        "top": 638.627,
+        "left": 188.981,
+        "borderWidth": 0,
+        "borderColor": "#000000",
+        "blur": 0,
+        "brightness": 100,
+        "flipX": false,
+        "flipY": false,
+        "rotate": "0deg",
+        "visibility": "visible",
+        "crop": {
+          "x": 0,
+          "y": 129.40387432391825,
+          "width": 600,
+          "height": 337.49999999999994
+        }
+      },
+      "metadata": {}
+    },
+    "SHsfK7jRhfP3y58H": {
+      "id": "SHsfK7jRhfP3y58H",
+      "type": "image",
+      "name": "image",
+      "display": {
+        "from": 12527.11109475079,
+        "to": 16856.17069954125
+      },
+      "playbackRate": 1,
+      "details": {
+        "src": "/uploads/1765671648083-SG_Web_Image_Plate_Caramelized_Garlic_Steak.png",
+        "width": 600,
+        "height": 600,
+        "opacity": 100,
+        "transform": "scale(1.62934, 1.62934)",
+        "border": "none",
+        "borderRadius": 0,
+        "boxShadow": {
+          "color": "#000000",
+          "x": 0,
+          "y": 0,
+          "blur": 0
+        },
+        "top": "644.986px",
+        "left": "1141.63px",
+        "borderWidth": 0,
+        "borderColor": "#000000",
+        "blur": 0,
+        "brightness": 100,
+        "flipX": false,
+        "flipY": false,
+        "rotate": "0deg",
+        "visibility": "visible",
+        "crop": {
+          "x": 0,
+          "y": 131.25,
+          "width": 600,
+          "height": 337.49999999999994
+        }
+      },
+      "metadata": {}
+    },
+    "v6ZIqA1xEcye9Pf": {
+      "id": "v6ZIqA1xEcye9Pf",
+      "name": "text",
+      "type": "text",
+      "display": {
+        "from": 2665.961127880443,
+        "to": 3415.961127880443
+      },
+      "details": {
+        "text": "earth friendly\n",
+        "fontSize": 100,
+        "fontFamily": "ComicNeue-Regular",
+        "fontUrl": "https://fonts.gstatic.com/s/comicneue/v3/4UaHrEJDsxBrF37olUeDx63j5pN1MwI.ttf",
+        "fontWeight": "bold",
+        "fontStyle": "normal",
+        "textAlign": "center",
+        "color": "#FFFFFF",
+        "backgroundColor": "transparent",
+        "textDecoration": "none",
+        "lineHeight": "1.5",
+        "letterSpacing": 8,
+        "wordSpacing": "normal",
+        "border": "none",
+        "opacity": 100,
+        "wordWrap": "normal",
+        "wordBreak": "normal",
+        "borderWidth": 10,
+        "borderColor": "#00473c",
+        "boxShadow": {
+          "color": "rgba(0,0,0,0.9)",
+          "x": 2,
+          "y": 4,
+          "blur": 12
+        },
+        "top": "453.909px",
+        "left": "485.721px",
+        "width": 985,
+        "height": 150,
+        "textTransform": "uppercase",
+        "transform": "none",
+        "skewX": 0,
+        "skewY": 0
+      },
+      "metadata": {},
+      "isMain": false
+    },
+    "M7sSoWdZrPRQGG9Z": {
+      "id": "M7sSoWdZrPRQGG9Z",
+      "name": "text",
+      "type": "text",
+      "display": {
+        "from": 1915.9611278804412,
+        "to": 2665.9611278804405
+      },
+      "details": {
+        "text": "plant-forward\n",
+        "fontSize": 100,
+        "fontFamily": "ComicNeue-Regular",
+        "fontUrl": "https://fonts.gstatic.com/s/comicneue/v3/4UaHrEJDsxBrF37olUeDx63j5pN1MwI.ttf",
+        "fontWeight": "bold",
+        "fontStyle": "normal",
+        "textAlign": "center",
+        "color": "#FFFFFF",
+        "backgroundColor": "transparent",
+        "textDecoration": "none",
+        "lineHeight": "1.5",
+        "letterSpacing": "2px",
+        "wordSpacing": "normal",
+        "border": "none",
+        "opacity": 100,
+        "wordWrap": "normal",
+        "wordBreak": "normal",
+        "borderWidth": 10,
+        "borderColor": "#00473c",
+        "boxShadow": {
+          "color": "rgba(0,0,0,0.9)",
+          "x": 2,
+          "y": 4,
+          "blur": 12
+        },
+        "top": "463.995px",
+        "left": "577.306px",
+        "width": 786,
+        "height": 150,
+        "textTransform": "uppercase",
+        "transform": "none",
+        "skewX": 0,
+        "skewY": 0
+      },
+      "metadata": {},
+      "isMain": false
+    },
+    "y5MjRuir6IpwGEB3": {
+      "id": "y5MjRuir6IpwGEB3",
+      "name": "text",
+      "type": "text",
+      "display": {
+        "from": 1165.9611278804414,
+        "to": 1915.9611278804414
+      },
+      "details": {
+        "text": "fresh",
+        "fontSize": 100,
+        "fontFamily": "ComicNeue-Regular",
+        "fontUrl": "https://fonts.gstatic.com/s/comicneue/v3/4UaHrEJDsxBrF37olUeDx63j5pN1MwI.ttf",
+        "fontWeight": "bold",
+        "fontStyle": "normal",
+        "textAlign": "center",
+        "color": "#FFFFFF",
+        "backgroundColor": "transparent",
+        "textDecoration": "none",
+        "lineHeight": "1.5",
+        "letterSpacing": 8,
+        "wordSpacing": "normal",
+        "border": "none",
+        "opacity": 100,
+        "wordWrap": "normal",
+        "wordBreak": "normal",
+        "borderWidth": 10,
+        "borderColor": "#00473c",
+        "boxShadow": {
+          "color": "rgba(0,0,0,0.9)",
+          "x": 2,
+          "y": 4,
+          "blur": 12
+        },
+        "top": "454.343px",
+        "left": "776.7px",
+        "width": 391,
+        "height": 150,
+        "textTransform": "uppercase",
+        "transform": "none",
+        "skewX": 0,
+        "skewY": 0
+      },
+      "metadata": {},
+      "isMain": false,
+      "animations": {}
+    },
+    "kdznOku4UocuzQTT": {
+      "id": "kdznOku4UocuzQTT",
+      "name": "text",
+      "type": "text",
+      "display": {
+        "from": 0,
+        "to": 1165.9611278804414
+      },
+      "details": {
+        "text": "sweet green\n",
+        "fontSize": 130,
+        "fontFamily": "ComicNeue-Regular",
+        "fontUrl": "https://fonts.gstatic.com/s/comicneue/v3/4UaHrEJDsxBrF37olUeDx63j5pN1MwI.ttf",
+        "fontWeight": "bold",
+        "fontStyle": "normal",
+        "textAlign": "center",
+        "color": "#FFFFFF",
+        "backgroundColor": "transparent",
+        "textDecoration": "none",
+        "lineHeight": "1.5",
+        "letterSpacing": 8,
+        "wordSpacing": "normal",
+        "border": "none",
+        "opacity": 100,
+        "wordWrap": "normal",
+        "wordBreak": "normal",
+        "borderWidth": 10,
+        "borderColor": "#00473c",
+        "boxShadow": {
+          "color": "rgba(0,0,0,0.9)",
+          "x": 2,
+          "y": 4,
+          "blur": 12
+        },
+        "top": "442.523px",
+        "left": "251.277px",
+        "width": 1417,
+        "height": 195,
+        "textTransform": "uppercase",
+        "transform": "none",
+        "skewX": 0,
+        "skewY": 0
+      },
+      "metadata": {},
+      "isMain": false,
+      "animations": {
+        "in": {
+          "name": "fadeIn",
+          "composition": [
+            {
+              "property": "opacity",
+              "from": 0,
+              "to": 1,
+              "durationInFrames": 15,
+              "previewUrl": "https://cdn.designcombo.dev/animations/FadeIn.webp",
+              "name": "Fade"
+            }
+          ]
+        }
+      }
+    },
+    "OmLY7jqslzPOXO": {
+      "id": "OmLY7jqslzPOXO",
+      "name": "audio",
+      "type": "audio",
+      "display": {
+        "from": 0,
+        "to": 24659.563000000006
+      },
+      "trim": {
+        "from": 0,
+        "to": 24659.563
+      },
+      "playbackRate": 1,
+      "details": {
+        "src": "/uploads/1765670748717-sweetgreen-narration.mp3",
+        "volume": 100
+      },
+      "metadata": {},
+      "duration": 24659.563,
+      "isMain": false
+    },
+    "mSWm36ualQvsTIl8": {
+      "id": "mSWm36ualQvsTIl8",
+      "name": "audio",
+      "type": "audio",
+      "display": {
+        "from": 0,
+        "to": 25700
+      },
+      "trim": {
+        "from": 0,
+        "to": 25700
+      },
+      "playbackRate": 1,
+      "details": {
+        "src": "/uploads/1765674316468-ad-379101.mp3",
+        "volume": 21
+      },
+      "metadata": {},
+      "duration": 109035.094,
+      "isMain": false
+    }
+  },
+  "transitionIds": [
+    "HggABC9V1mqknI2-cifjmPaj7zjJIDay",
+    "cifjmPaj7zjJIDay-u86YHFpnHhIi1t95",
+    "kkq5NxymnRPV9Bir-rSpOFSyKv6UxUzF",
+    "kdznOku4UocuzQTT-y5MjRuir6IpwGEB3",
+    "y5MjRuir6IpwGEB3-M7sSoWdZrPRQGG9Z",
+    "M7sSoWdZrPRQGG9Z-v6ZIqA1xEcye9Pf"
+  ]
+}
