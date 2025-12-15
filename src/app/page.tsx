@@ -174,7 +174,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-lg text-[#71717a] max-w-xl mx-auto"
           >
-            AI-powered video generation in seconds. Just paste a URL and watch the magic happen.
+            AI-powered video generation at your fingertips.
           </motion.p>
         </motion.div>
 

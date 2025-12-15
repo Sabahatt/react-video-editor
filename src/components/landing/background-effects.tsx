@@ -12,7 +12,7 @@ export function BackgroundEffects() {
       <div
         className="absolute inset-0"
         style={{
-          background: "radial-gradient(ellipse at 50% 50%, rgba(15,15,20,1) 0%, rgba(3,3,3,1) 70%)",
+          background: "radial-gradient(ellipse at 50% 50%, rgba(29, 29, 38, 1) 0%, rgba(21, 21, 21, 1) 70%)",
         }}
       />
 
@@ -22,7 +22,7 @@ export function BackgroundEffects() {
         style={{
           top: "-20%",
           left: "-10%",
-          background: "radial-gradient(circle, rgba(0,216,214,0.15) 0%, rgba(0,216,214,0.05) 40%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(0, 216, 212, 0.23) 0%, rgba(0, 216, 212, 0.1) 40%, transparent 70%)",
           filter: "blur(80px)",
         }}
       />
@@ -32,7 +32,7 @@ export function BackgroundEffects() {
         style={{
           top: "30%",
           right: "-20%",
-          background: "radial-gradient(circle, rgba(139,92,246,0.12) 0%, rgba(139,92,246,0.04) 40%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(138, 92, 246, 0.3) 0%, rgba(138, 92, 246, 0.13) 40%, transparent 70%)",
           filter: "blur(100px)",
         }}
       />
@@ -110,7 +110,7 @@ export function BackgroundEffects() {
             height: Math.random() * 2 + 1,
           }}
           animate={{
-            opacity: [0.1, 0.4, 0.1],
+            opacity: [0.6, 0.4, 0.2],
           }}
           transition={{
             duration: Math.random() * 3 + 2,
