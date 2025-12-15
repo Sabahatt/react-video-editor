@@ -7,7 +7,7 @@ import useKeyboardShortcuts from "./hooks/use-keyboard-shortcuts";
 import Scene from "./scene";
 import { SceneRef } from "./scene/scene.types";
 import StateManager, { DESIGN_LOAD } from "@designcombo/state";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import {
 	ResizableHandle,
 	ResizablePanel,
@@ -32,6 +32,10 @@ import useLayoutStore from "./store/use-layout-store";
 import ControlItemHorizontal from "./control-item-horizontal";
 import useUploadStore from "./store/use-upload-store";
 import { useAutoSave } from "./hooks/use-autosave";
+import { usePipelineStore } from "@/store/use-pipeline-store";
+import { PipelineProgressPanel } from "@/components/pipeline/pipeline-progress-panel";
+import { EditorLockedOverlay } from "@/components/pipeline/editor-locked-overlay";
+import { useRouter } from "next/navigation";
 
 const stateManager = new StateManager({
 	size: {
@@ -40,7 +44,10 @@ const stateManager = new StateManager({
 	},
 });
 
+const simulateDelay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
 const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
+	const router = useRouter();
 	const [projectName, setProjectName] = useState<string>("Untitled video");
 	const [restaurant, setRestaurant] = useState<string>("default");
 	const { scene } = useSceneStore();
@@ -57,6 +64,22 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 		setTypeControlItem,
 	} = useLayoutStore();
 	const isLargeScreen = useIsLargeScreen();
+
+	// Pipeline store
+	const {
+		isGenerating,
+		isComplete,
+		error: pipelineError,
+		restaurant: pipelineRestaurant,
+		template: pipelineTemplate,
+		updateStep,
+		setDesign,
+		setError: setPipelineError,
+		completePipeline,
+		resetPipeline,
+	} = usePipelineStore();
+
+	const pipelineRanRef = useRef(false);
 
 	// Auto-save functionality - saves every 30 seconds
 	const { status: autoSaveStatus, saveNow } = useAutoSave({
@@ -139,7 +162,13 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 
 	useEffect(() => {
 		const loadDesignFromSource = async () => {
-			// Try to load generated design from sessionStorage first
+			// If pipeline is active, don't load from other sources - pipeline will handle it
+			if (isGenerating) {
+				console.log("[Editor] Pipeline active, skipping design load from other sources");
+				return;
+			}
+
+			// Try to load generated design from sessionStorage first (legacy support)
 			const storedDesign = sessionStorage.getItem("generatedDesign");
 			if (storedDesign) {
 				try {
@@ -211,7 +240,7 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 		};
 
 		loadDesignFromSource();
-	}, []);
+	}, [isGenerating]);
 
 	useEffect(() => {
 		setCompactFonts(getCompactFontData(FONTS));
@@ -284,6 +313,93 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 		setLoaded(true);
 	}, []);
 
+	// Pipeline simulation - runs when coming from landing page with generation active
+	useEffect(() => {
+		const runPipeline = async () => {
+			// Only run if pipeline is generating and hasn't already run
+			if (!isGenerating || pipelineRanRef.current || !pipelineRestaurant || !pipelineTemplate) {
+				return;
+			}
+
+			pipelineRanRef.current = true;
+			console.log("[Pipeline] Starting simulation for", pipelineRestaurant, pipelineTemplate);
+
+			try {
+				// Step 1: Analyzing website
+				updateStep(0, "active");
+				await simulateDelay(1000);
+				updateStep(0, "complete");
+
+				// Step 2: Extracting brand data
+				updateStep(1, "active");
+				await simulateDelay(1400);
+				updateStep(1, "complete");
+
+				// Step 3: Generating AI script
+				updateStep(2, "active");
+				await simulateDelay(1800);
+				updateStep(2, "complete");
+
+				// Step 4: Building timeline (fetch the pre-made ad)
+				updateStep(3, "active");
+				await simulateDelay(1000);
+
+				const adRes = await fetch(`/api/poc-data/ads?restaurant=${pipelineRestaurant}&template=${pipelineTemplate}`);
+				const adResult = await adRes.json();
+
+				if (!adResult.success) {
+					throw new Error(adResult.error || "Failed to load ad template");
+				}
+
+				updateStep(3, "complete");
+
+				// Step 5: Finalizing
+				updateStep(4, "active");
+				await simulateDelay(800);
+				updateStep(4, "complete");
+
+				// Store the design data
+				setDesign(adResult.design, adResult.brand);
+
+				// Small delay for visual feedback
+				await simulateDelay(500);
+
+				// Load the design into the editor
+				dispatch(DESIGN_LOAD, { payload: adResult.design });
+
+				// Extract and sync media
+				const mediaUploads = extractMediaFromDesign(adResult.design);
+				syncMediaToUploads(mediaUploads);
+
+				// Set project name from brand
+				if (adResult.brand?.restaurantName) {
+					const safeName = adResult.brand.restaurantName
+						.toLowerCase()
+						.replace(/[^a-z0-9]+/g, '-')
+						.replace(/^-|-$/g, '');
+					setRestaurant(safeName || 'default');
+					setProjectName(adResult.brand.restaurantName + ' Ad');
+				}
+
+				// Complete the pipeline
+				completePipeline();
+				console.log("[Pipeline] Complete!");
+
+			} catch (err) {
+				console.error("[Pipeline] Error:", err);
+				setPipelineError(err instanceof Error ? err.message : "An error occurred");
+			}
+		};
+
+		runPipeline();
+	}, [isGenerating, pipelineRestaurant, pipelineTemplate]);
+
+	// Handler to return to homepage on pipeline error
+	const handleReturnToHome = useCallback(() => {
+		resetPipeline();
+		router.push("/");
+	}, [resetPipeline, router]);
+
 	return (
 		<div className="flex h-screen w-screen flex-col overflow-hidden relative">
 			{/* Ambient gradient background - matching landing page */}
@@ -316,6 +432,13 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 					}}
 				/>
 			</div>
+
+			{/* Pipeline locked overlay */}
+			<EditorLockedOverlay />
+
+			{/* Pipeline progress panel */}
+			<PipelineProgressPanel onRetry={handleReturnToHome} />
+
 			<Navbar
 				projectName={projectName}
 				user={null}

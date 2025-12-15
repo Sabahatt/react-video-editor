@@ -1,0 +1,120 @@
+"use client";
+
+import { create } from "zustand";
+
+export interface PipelineStep {
+  name: string;
+  status: "pending" | "active" | "complete" | "error";
+}
+
+interface PipelineState {
+  // Pipeline status
+  isGenerating: boolean;
+  isComplete: boolean;
+  error: string | null;
+
+  // Steps
+  steps: PipelineStep[];
+
+  // Generation params (set from landing page)
+  restaurant: string | null;
+  template: string | null;
+  options: Record<string, string>;
+  url: string | null;
+
+  // Design data (loaded during pipeline)
+  design: any | null;
+  brand: any | null;
+
+  // Actions
+  startPipeline: (url: string, restaurant: string, template: string, options: Record<string, string>) => void;
+  updateStep: (index: number, status: PipelineStep["status"]) => void;
+  setDesign: (design: any, brand?: any) => void;
+  setError: (error: string) => void;
+  completePipeline: () => void;
+  resetPipeline: () => void;
+}
+
+const INITIAL_STEPS: PipelineStep[] = [
+  { name: "Analyzing website...", status: "pending" },
+  { name: "Extracting brand data...", status: "pending" },
+  { name: "Generating AI script...", status: "pending" },
+  { name: "Building video timeline...", status: "pending" },
+  { name: "Finalizing your ad...", status: "pending" },
+];
+
+export const usePipelineStore = create<PipelineState>((set, get) => ({
+  // Initial state
+  isGenerating: false,
+  isComplete: false,
+  error: null,
+  steps: INITIAL_STEPS.map(s => ({ ...s })),
+  restaurant: null,
+  template: null,
+  options: {},
+  url: null,
+  design: null,
+  brand: null,
+
+  // Actions
+  startPipeline: (url, restaurant, template, options) => {
+    set({
+      isGenerating: true,
+      isComplete: false,
+      error: null,
+      url,
+      restaurant,
+      template,
+      options,
+      design: null,
+      brand: null,
+      steps: INITIAL_STEPS.map(s => ({ ...s, status: "pending" as const })),
+    });
+  },
+
+  updateStep: (index, status) => {
+    set(state => ({
+      steps: state.steps.map((step, i) =>
+        i === index ? { ...step, status } : step
+      ),
+    }));
+  },
+
+  setDesign: (design, brand) => {
+    set({ design, brand: brand || null });
+  },
+
+  setError: (error) => {
+    const { steps } = get();
+    const activeIndex = steps.findIndex(s => s.status === "active");
+    set({
+      error,
+      isGenerating: false,
+      steps: steps.map((step, i) =>
+        i === activeIndex ? { ...step, status: "error" as const } : step
+      ),
+    });
+  },
+
+  completePipeline: () => {
+    set({
+      isGenerating: false,
+      isComplete: true,
+    });
+  },
+
+  resetPipeline: () => {
+    set({
+      isGenerating: false,
+      isComplete: false,
+      error: null,
+      steps: INITIAL_STEPS.map(s => ({ ...s })),
+      restaurant: null,
+      template: null,
+      options: {},
+      url: null,
+      design: null,
+      brand: null,
+    });
+  },
+}));

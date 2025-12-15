@@ -2,18 +2,10 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { BackgroundEffects } from "@/components/landing/background-effects";
 import { UrlInput } from "@/components/landing/url-input";
-import { GenerationProgress, GenerationStep } from "@/components/landing/generation-progress";
-
-const GENERATION_STEPS: GenerationStep[] = [
-  { name: "Analyzing website...", status: "pending" },
-  { name: "Extracting brand data...", status: "pending" },
-  { name: "Generating AI script...", status: "pending" },
-  { name: "Building video timeline...", status: "pending" },
-  { name: "Finalizing your ad...", status: "pending" },
-];
+import { usePipelineStore } from "@/store/use-pipeline-store";
 
 // URL pattern matching for POC restaurants
 const getRestaurantFromUrl = (url: string): string | null => {
@@ -30,19 +22,11 @@ const getRestaurantFromUrl = (url: string): string | null => {
   return null;
 };
 
-const simulateDelay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
-
 export default function Home() {
   const router = useRouter();
-  const [isGenerating, setIsGenerating] = useState(false);
-  const [steps, setSteps] = useState<GenerationStep[]>(GENERATION_STEPS);
   const [error, setError] = useState<string>("");
-
-  const updateStep = (index: number, status: GenerationStep["status"]) => {
-    setSteps(prev =>
-      prev.map((step, i) => (i === index ? { ...step, status } : step))
-    );
-  };
+  const [isLoading, setIsLoading] = useState(false);
+  const { startPipeline, resetPipeline } = usePipelineStore();
 
   const handleGenerate = async (url: string, options: Record<string, string>) => {
     const restaurant = getRestaurantFromUrl(url);
@@ -52,79 +36,25 @@ export default function Home() {
       return;
     }
 
+    setIsLoading(true);
+
     // Map style option to template
     const template = options.style === "classic" ? "template-2" : "template-1";
-
-    setIsGenerating(true);
-    setError("");
-    setSteps(GENERATION_STEPS.map(s => ({ ...s, status: "pending" as const })));
 
     // Log selected options (for future use)
     console.log("[Generation] Options:", options);
 
-    try {
-      // Step 1: Analyzing website
-      updateStep(0, "active");
-      await simulateDelay(800);
-      updateStep(0, "complete");
+    // Start the pipeline in the store (this will be picked up by the editor)
+    startPipeline(url, restaurant, template, options);
 
-      // Step 2: Extracting brand data
-      updateStep(1, "active");
-      await simulateDelay(1200);
-      updateStep(1, "complete");
-
-      // Step 3: Generating AI script
-      updateStep(2, "active");
-      await simulateDelay(1500);
-      updateStep(2, "complete");
-
-      // Step 4: Building timeline (fetch the pre-made ad)
-      updateStep(3, "active");
-      await simulateDelay(800);
-
-      const adRes = await fetch(`/api/poc-data/ads?restaurant=${restaurant}&template=${template}`);
-      const adResult = await adRes.json();
-
-      if (!adResult.success) {
-        throw new Error(adResult.error || "Failed to load ad template");
-      }
-
-      updateStep(3, "complete");
-
-      // Step 5: Finalizing
-      updateStep(4, "active");
-      await simulateDelay(500);
-      updateStep(4, "complete");
-
-      // Store the design in sessionStorage
-      sessionStorage.setItem("generatedDesign", JSON.stringify(adResult.design));
-      if (adResult.brand) {
-        sessionStorage.setItem("generatedBrand", JSON.stringify(adResult.brand));
-      }
-
-      // Small delay before navigation for visual feedback
-      await simulateDelay(300);
-      router.push("/edit");
-    } catch (err) {
-      console.error("[Generation] Error:", err);
-      setError(err instanceof Error ? err.message : "An error occurred");
-      setSteps(currentSteps => {
-        const activeIndex = currentSteps.findIndex(s => s.status === "active");
-        if (activeIndex >= 0) {
-          return currentSteps.map((step, i) =>
-            i === activeIndex ? { ...step, status: "error" as const } : step
-          );
-        }
-        return currentSteps;
-      });
-      setIsGenerating(false);
-    }
+    // Navigate to editor immediately - pipeline runs there
+    router.push("/edit");
   };
 
   const handleReset = () => {
-    setIsGenerating(false);
     setError("");
-    setSteps(GENERATION_STEPS.map(s => ({ ...s, status: "pending" as const })));
+    setIsLoading(false);
+    resetPipeline();
   };
 
   return (
@@ -178,75 +108,34 @@ export default function Home() {
           </motion.p>
         </motion.div>
 
-        {/* Main Input / Progress Area */}
-        <AnimatePresence mode="wait">
-          {!isGenerating ? (
+        {/* Main Input Area */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <UrlInput
+            onGenerate={handleGenerate}
+            isGenerating={isLoading}
+          />
+
+          {/* Error display */}
+          {error && (
             <motion.div
-              key="input"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
+              className="mt-4 text-center"
             >
-              <UrlInput
-                onGenerate={handleGenerate}
-                isGenerating={isGenerating}
-              />
-
-              {/* Error display */}
-              {error && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="mt-4 text-center"
-                >
-                  <p className="text-sm text-red-400">{error}</p>
-                  <button
-                    onClick={handleReset}
-                    className="mt-2 text-sm text-white/50 hover:text-[#00d8d6] underline underline-offset-4 transition-colors"
-                  >
-                    Try again
-                  </button>
-                </motion.div>
-              )}
-
-              {/* Hint text */}
-              {/* <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.4 }}
-                className="text-center text-sm text-[#52525b] mt-6"
+              <p className="text-sm text-red-400">{error}</p>
+              <button
+                onClick={handleReset}
+                className="mt-2 text-sm text-white/50 hover:text-[#00d8d6] underline underline-offset-4 transition-colors"
               >
-                Try: joespizza.com, doughnutvault.com, or sweetgreen.com
-              </motion.p> */}
-            </motion.div>
-          ) : (
-            <motion.div
-              key="progress"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              <GenerationProgress steps={steps} error={error} />
-
-              {error && (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="mt-4 text-center"
-                >
-                  <button
-                    onClick={handleReset}
-                    className="text-sm text-white/50 hover:text-[#00d8d6] underline underline-offset-4 transition-colors"
-                  >
-                    Try again
-                  </button>
-                </motion.div>
-              )}
+                Try again
+              </button>
             </motion.div>
           )}
-        </AnimatePresence>
+        </motion.div>
       </div>
     </div>
   );
