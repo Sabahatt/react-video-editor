@@ -50,11 +50,11 @@ const TransitionsMenuItem = ({
       renderCustomPreview={<div style={style} />}
       shouldDisplayPreview={shouldDisplayPreview}
     >
-      <div>
-        <div>
+      <div className="cursor-pointer group">
+        <div className="rounded-lg overflow-hidden border border-white/[0.06] group-hover:border-[#00d8d6]/30 group-hover:shadow-[0_0_10px_rgba(0,216,214,0.1)] transition-all">
           <div style={style} draggable={false} />
         </div>
-        <div className="flex h-6 items-center overflow-ellipsis text-nowrap text-[12px] capitalize text-muted-foreground">
+        <div className="flex h-6 items-center overflow-ellipsis text-nowrap text-[12px] capitalize text-muted-foreground group-hover:text-[#00d8d6] transition-colors">
           {transition.name || transition.type}
         </div>
       </div>

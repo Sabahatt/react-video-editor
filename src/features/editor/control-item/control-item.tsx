@@ -50,7 +50,16 @@ const Container = ({ children }: { children: React.ReactNode }) => {
   }, [activeIds, trackItemsMap]);
 
   return (
-    <div className="w-[272px] flex-none border-l border-border/80 bg-muted hidden lg:flex lg:flex-col h-[calc(100vh-58px)] overflow-hidden">
+    <div
+      className="w-[272px] flex-none hidden lg:flex lg:flex-col h-[calc(100vh-58px)] overflow-hidden"
+      style={{
+        background: "linear-gradient(180deg, rgba(10,10,10,0.95) 0%, rgba(5,5,5,0.98) 100%)",
+        backdropFilter: "blur(24px)",
+        WebkitBackdropFilter: "blur(24px)",
+        borderLeft: "1px solid rgba(255,255,255,0.04)",
+        boxShadow: "inset 1px 0 0 rgba(255,255,255,0.03), -8px 0 32px rgba(0,0,0,0.2)",
+      }}
+    >
       {React.cloneElement(children as React.ReactElement<any>, {
         trackItem,
         trackItems
@@ -74,9 +83,14 @@ const ActiveControlItem = ({
   // No selection
   if (!trackItem) {
     return (
-      <div className="pb-32 flex flex-1 flex-col items-center justify-center gap-4 text-muted-foreground h-[calc(100vh-58px)]">
-        <LassoSelect />
-        <span className="text-zinc-500">No item selected</span>
+      <div className="pb-32 flex flex-1 flex-col items-center justify-center gap-4 text-muted-foreground h-[calc(100vh-58px)] px-6">
+        <div className="p-4 rounded-2xl bg-gradient-to-br from-[#00d8d6]/10 to-[#8b5cf6]/10 border border-white/[0.06]">
+          <LassoSelect className="w-6 h-6 text-[#00d8d6]/60" />
+        </div>
+        <div className="text-center">
+          <span className="text-zinc-400 text-sm">No item selected</span>
+          <p className="text-zinc-600 text-xs mt-1">Select an item on the timeline to edit</p>
+        </div>
       </div>
     );
   }

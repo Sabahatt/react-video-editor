@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Loader2, ChevronDown, Pause, Play } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
@@ -18,7 +18,6 @@ import {
 } from "@/components/ui/select";
 
 import { Label } from "@/components/ui/label";
-import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import { Voice, VoiceFilters } from "../interfaces/editor";
 import { dispatch } from "@designcombo/events";
@@ -297,7 +296,7 @@ export const AiVoice = () => {
                   (() => {
                     const displayName = selectedVoice.name.split("-")[0].trim();
                     return (
-                      <div
+                      <button
                         aria-label="Change selected voice"
                         onClick={(e) => {
                           if (
@@ -307,28 +306,11 @@ export const AiVoice = () => {
                           )
                             return;
                         }}
-                        onKeyDown={(e) => {
-                          if (e.key === "Enter" || e.key === " ") {
-                            if (
-                              (e.target as HTMLElement).closest(
-                                ".voice-preview-btn"
-                              )
-                            )
-                              return;
-                            e.preventDefault();
-                            e.currentTarget.click();
-                          }
-                        }}
-                        className={cn(
-                          buttonVariants({ variant: "outline" }),
-                          "flex-1 min-w-0 h-7 justify-between text-xs w-full relative"
-                        )}
+                        className="w-full flex items-center justify-between h-9 px-3 rounded-lg text-sm bg-white/[0.03] border border-white/[0.08] hover:border-[#00d8d6]/30 hover:bg-[#00d8d6]/5 transition-colors"
                       >
                         <div className="flex items-center gap-2 flex-1 min-w-0">
-                          <Button
-                            size="icon"
-                            variant="ghost"
-                            className="h-5 w-5 flex-shrink-0 p-0 hover:bg-transparent voice-preview-btn"
+                          <span
+                            className="h-5 w-5 flex-shrink-0 flex items-center justify-center hover:text-[#00d8d6] voice-preview-btn cursor-pointer"
                             onClick={(e) => {
                               e.stopPropagation();
                               handlePlayPause(
@@ -342,27 +324,23 @@ export const AiVoice = () => {
                             ) : (
                               <Play className="h-3 w-3" />
                             )}
-                          </Button>
+                          </span>
                           <span className="truncate">{displayName}</span>
                         </div>
-                        <ChevronDown className="h-4 w-4 flex-shrink-0" />
-                      </div>
+                        <ChevronDown className="h-4 w-4 flex-shrink-0 text-muted-foreground" />
+                      </button>
                     );
                   })()
                 ) : (
-                  <Button
-                    variant="outline"
-                    className="flex-1 min-w-0 h-7 justify-between text-xs w-full"
-                    type="button"
-                  >
-                    <span className="truncate">Select voice</span>
-                    <ChevronDown className="h-4 w-4 flex-shrink-0" />
-                  </Button>
+                  <button className="w-full flex items-center justify-between h-9 px-3 rounded-lg text-sm bg-white/[0.03] border border-white/[0.08] hover:border-[#00d8d6]/30 hover:bg-[#00d8d6]/5 transition-colors">
+                    <span className="truncate text-muted-foreground">Select voice</span>
+                    <ChevronDown className="h-4 w-4 flex-shrink-0 text-muted-foreground" />
+                  </button>
                 )}
               </PopoverTrigger>
               <PopoverContent
                 side="bottom"
-                className="w-[420px] max-h-[500px] overflow-hidden bg-zinc-900 text-white p-0"
+                className="w-[420px] max-h-[500px] overflow-hidden p-0 bg-[#0a0a0a]/95 backdrop-blur-xl border border-[#00d8d6]/20 shadow-[0_8px_32px_rgba(0,0,0,0.5),0_0_20px_rgba(0,216,214,0.1)]"
                 align="start"
               >
                 <div className="space-y-4">
@@ -376,10 +354,7 @@ export const AiVoice = () => {
                         applyFilters(newFilters);
                       }}
                     >
-                      <SelectTrigger
-                        id="language-select"
-                        className="w-1/2 bg-zinc-800 border-zinc-700"
-                      >
+                      <SelectTrigger id="language-select" className="w-1/2">
                         <span className="flex items-center gap-2">
                           <span className="fi fi-{filters.language}" />
                           <SelectValue placeholder="Language" />
@@ -402,10 +377,7 @@ export const AiVoice = () => {
                         applyFilters(newFilters);
                       }}
                     >
-                      <SelectTrigger
-                        id="gender-select"
-                        className="w-1/2 bg-zinc-800 border-zinc-700"
-                      >
+                      <SelectTrigger id="gender-select" className="w-1/2">
                         <SelectValue placeholder="Gender" />
                       </SelectTrigger>
                       <SelectContent>
@@ -426,7 +398,7 @@ export const AiVoice = () => {
                         return (
                           <div
                             key={voice.id}
-                            className={`flex items-center px-2 rounded-lg py-2 cursor-pointer transition-colors ${isRowSelected ? "bg-blue-600 text-white" : "hover:bg-zinc-800/80 text-white/90"}`}
+                            className={`flex items-center px-2 rounded-lg py-2 cursor-pointer transition-colors ${isRowSelected ? "bg-[#00d8d6]/20 text-[#00d8d6] border border-[#00d8d6]/30" : "hover:bg-[#00d8d6]/10 text-white/90 border border-transparent"}`}
                             onClick={() => {
                               setSelectedVoice(voice);
                               setIsPopoverOpen(false);
@@ -436,8 +408,8 @@ export const AiVoice = () => {
                               <div className="flex items-center gap-2">
                                 <Button
                                   size="icon"
-                                  variant={isRowSelected ? "secondary" : "ghost"}
-                                  className={`flex-shrink-0 ${isRowSelected ? "bg-white/20 text-white" : "text-white/80"}`}
+                                  variant="ghost"
+                                  className={`flex-shrink-0 ${isRowSelected ? "bg-[#00d8d6]/20 text-[#00d8d6]" : "text-white/60 hover:text-[#00d8d6] hover:bg-[#00d8d6]/10"}`}
                                   onClick={(e) => {
                                     e.stopPropagation();
                                     handlePlayPause(voice.id, voice.previewUrl);
@@ -470,14 +442,14 @@ export const AiVoice = () => {
                               <div className="flex flex-wrap gap-1 mt-1">
                                 <Badge
                                   variant="secondary"
-                                  className="text-xs bg-zinc-700/60 border-none text-white/90 rounded-sm"
+                                  className="text-xs bg-white/[0.06] border border-white/[0.08] text-white/70 rounded-md"
                                 >
                                   {voice.gender.charAt(0).toUpperCase() + voice.gender.slice(1)}
                                 </Badge>
                                 {voice.age && (
                                   <Badge
                                     variant="secondary"
-                                    className="text-xs bg-zinc-700/60 border-none text-white/90 rounded-sm"
+                                    className="text-xs bg-white/[0.06] border border-white/[0.08] text-white/70 rounded-md"
                                   >
                                     {voice.age.charAt(0).toUpperCase() + voice.age.slice(1)}
                                   </Badge>
@@ -485,7 +457,7 @@ export const AiVoice = () => {
                                 {voice.useCase && (
                                   <Badge
                                     variant="secondary"
-                                    className="text-xs bg-zinc-700/60 border-none text-white/90 rounded-sm"
+                                    className="text-xs bg-white/[0.06] border border-white/[0.08] text-white/70 rounded-md"
                                   >
                                     {voice.useCase}
                                   </Badge>
@@ -493,7 +465,7 @@ export const AiVoice = () => {
                                 {voice.category && (
                                   <Badge
                                     variant="secondary"
-                                    className="text-xs bg-zinc-700/60 border-none text-white/90 rounded-sm"
+                                    className="text-xs bg-white/[0.06] border border-white/[0.08] text-white/70 rounded-md"
                                   >
                                     {voice.category}
                                   </Badge>
@@ -520,7 +492,7 @@ export const AiVoice = () => {
           <Button
             onClick={handleGenerate}
             disabled={!text.trim() || !selectedVoice || isGenerating}
-            className="flex items-center gap-2 w-full"
+            className="flex items-center gap-2 w-full bg-gradient-to-r from-[#00d8d6] to-[#8b5cf6] text-white hover:shadow-[0_0_20px_rgba(0,216,214,0.3)] transition-all duration-300"
             size={"sm"}
           >
             {isGenerating ? (

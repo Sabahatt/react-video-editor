@@ -45,8 +45,10 @@ const SceneEmpty = () => {
         >
           <DroppableArea
             onDragStateChange={setIsDraggingOver}
-            className={`absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 transform items-center justify-center border border-dashed text-center transition-colors duration-200 ease-in-out ${
-              isDraggingOver ? "border-white bg-white/10" : "border-white/15"
+            className={`absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-xl text-center transition-all duration-300 ease-in-out ${
+              isDraggingOver
+                ? "border-2 border-[#00d8d6] bg-[#00d8d6]/10 shadow-[0_0_30px_rgba(0,216,214,0.2)]"
+                : "border border-dashed border-white/20 hover:border-[#00d8d6]/40 hover:shadow-[0_0_20px_rgba(0,216,214,0.1)]"
             }`}
             style={{
               width: desiredSize.width,
@@ -54,12 +56,12 @@ const SceneEmpty = () => {
             }}
           >
             <div className="flex flex-col items-center justify-center gap-4 pb-12">
-              <div className="hover:bg-primary-dark cursor-pointer rounded-md border bg-primary p-2 text-secondary transition-colors duration-200">
-                <PlusIcon className="h-5 w-5" aria-hidden="true" />
+              <div className="cursor-pointer rounded-xl p-3 bg-gradient-to-r from-[#00d8d6] to-[#8b5cf6] text-white shadow-[0_0_20px_rgba(0,216,214,0.3)] hover:shadow-[0_0_30px_rgba(0,216,214,0.4)] transition-all duration-300">
+                <PlusIcon className="h-6 w-6" aria-hidden="true" />
               </div>
-              <div className="flex flex-col gap-px">
-                <p className="text-sm text-muted-foreground">Click to upload</p>
-                <p className="text-xs text-muted-foreground/70">
+              <div className="flex flex-col gap-1">
+                <p className="text-sm text-zinc-300 font-medium">Click to upload</p>
+                <p className="text-xs text-muted-foreground">
                   Or drag and drop files here
                 </p>
               </div>

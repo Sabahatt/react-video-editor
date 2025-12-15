@@ -143,6 +143,7 @@ const Header = () => {
         height: "50px",
         flex: "none"
       }}
+      className="border-b border-white/[0.06] bg-gradient-to-r from-[#8b5cf6]/[0.02] via-transparent to-[#00d8d6]/[0.02]"
     >
       <div
         style={{
@@ -170,7 +171,7 @@ const Header = () => {
               onClick={doActiveDelete}
               variant={"ghost"}
               size={isLargeScreen ? "sm" : "icon"}
-              className="flex items-center gap-1 px-2"
+              className="flex items-center gap-1 px-2 text-muted-foreground hover:text-[#00d8d6] hover:bg-[#00d8d6]/10 transition-colors"
             >
               <Trash size={14} />{" "}
               <span className="hidden lg:block">Delete</span>
@@ -181,7 +182,7 @@ const Header = () => {
               onClick={doActiveSplit}
               variant={"ghost"}
               size={isLargeScreen ? "sm" : "icon"}
-              className="flex items-center gap-1 px-2"
+              className="flex items-center gap-1 px-2 text-muted-foreground hover:text-[#00d8d6] hover:bg-[#00d8d6]/10 transition-colors"
             >
               <SquareSplitHorizontal size={15} />{" "}
               <span className="hidden lg:block">Split</span>
@@ -193,77 +194,62 @@ const Header = () => {
               }}
               variant={"ghost"}
               size={isLargeScreen ? "sm" : "icon"}
-              className="flex items-center gap-1 px-2"
+              className="flex items-center gap-1 px-2 text-muted-foreground hover:text-[#00d8d6] hover:bg-[#00d8d6]/10 transition-colors"
             >
               <SquareSplitHorizontal size={15} />{" "}
               <span className="hidden lg:block">Clone</span>
             </Button>
           </div>
-          <div className="flex items-center justify-center">
-            <div>
-              <Button
-                className="hidden lg:inline-flex"
-                onClick={doActiveDelete}
-                variant={"ghost"}
-                size={"icon"}
-              >
-                <IconPlayerSkipBack size={14} />
-              </Button>
-              <Button
-                onClickCapture={(e) => {
-                  if (playing) {
-                    return handlePause();
-                  }
-                  handlePlay(e);
-                }}
-                variant={"ghost"}
-                size={"icon"}
-              >
-                {playing ? (
-                  <IconPlayerPauseFilled size={14} />
-                ) : (
-                  <IconPlayerPlayFilled size={14} />
-                )}
-              </Button>
-              <Button
-                className="hidden lg:inline-flex"
-                onClick={doActiveSplit}
-                variant={"ghost"}
-                size={"icon"}
-              >
-                <IconPlayerSkipForward size={14} />
-              </Button>
-            </div>
-            <div
-              className="text-xs font-light flex"
-              style={{
-                alignItems: "center",
-                gridTemplateColumns: "54px 4px 54px",
-                paddingTop: "2px",
-                justifyContent: "center"
-              }}
+          <div className="flex items-center justify-center gap-2">
+            <Button
+              className="hidden lg:inline-flex h-7 w-7 text-muted-foreground hover:text-[#00d8d6] hover:bg-[#00d8d6]/10 transition-colors"
+              onClick={doActiveDelete}
+              variant={"ghost"}
+              size={"icon"}
             >
-              <div
-                className="font-medium text-zinc-200"
-                style={{
-                  display: "flex",
-                  justifyContent: "center"
-                }}
+              <IconPlayerSkipBack size={14} />
+            </Button>
+            <Button
+              onClickCapture={(e) => {
+                if (playing) {
+                  return handlePause();
+                }
+                handlePlay(e);
+              }}
+              variant={"ghost"}
+              size={"icon"}
+              className={`h-7 w-7 transition-all duration-200 ${
+                playing
+                  ? "text-[#00d8d6] bg-[#00d8d6]/15"
+                  : "text-muted-foreground hover:text-[#00d8d6] hover:bg-[#00d8d6]/10"
+              }`}
+            >
+              {playing ? (
+                <IconPlayerPauseFilled size={14} />
+              ) : (
+                <IconPlayerPlayFilled size={14} />
+              )}
+            </Button>
+            <Button
+              className="hidden lg:inline-flex h-7 w-7 text-muted-foreground hover:text-[#00d8d6] hover:bg-[#00d8d6]/10 transition-colors"
+              onClick={doActiveSplit}
+              variant={"ghost"}
+              size={"icon"}
+            >
+              <IconPlayerSkipForward size={14} />
+            </Button>
+            <div className="text-xs flex items-center gap-1 ml-1">
+              <span
+                className="font-medium text-[#00d8d6]"
                 data-current-time={currentFrame / fps}
                 id="video-current-time"
               >
                 {frameToTimeString({ frame: currentFrame }, { fps })}
-              </div>
-              <span className="px-1">|</span>
-              <div
-                className="text-muted-foreground hidden lg:block"
-                style={{
-                  display: "flex",
-                  justifyContent: "center"
-                }}
-              >
+              </span>
+              <span className="text-white/30">/</span>
+              <span className="text-muted-foreground hidden lg:inline">
                 {timeToString({ time: duration })}
-              </div>
+              </span>
             </div>
           </div>
 
@@ -310,41 +296,39 @@ const ZoomControl = ({
   };
 
   return (
-    <div className="flex items-center justify-end">
-      <div className="flex lg:border-l pl-4 pr-2">
-        <Button size={"icon"} variant={"ghost"} onClick={onZoomOutClick}>
-          <ZoomOut size={16} />
-        </Button>
-        <Slider
-          className="w-28 hidden lg:flex"
-          value={[localValue]}
-          min={0}
-          max={12}
-          step={1}
-          onValueChange={(e) => {
-            setLocalValue(e[0]); // Update local state
-          }}
-          onValueCommit={() => {
-            const zoom = getZoomByIndex(localValue);
-            onChangeTimelineScale(zoom); // Propagate value to parent when user commits change
-          }}
-        />
-        <Button size={"icon"} variant={"ghost"} onClick={onZoomInClick}>
-          <ZoomIn size={16} />
-        </Button>
-        <Button onClick={onZoomFitClick} variant={"ghost"} size={"icon"}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            viewBox="0 0 24 24"
-          >
-            <path
-              fill="currentColor"
-              d="M20 8V6h-2q-.425 0-.712-.288T17 5t.288-.712T18 4h2q.825 0 1.413.588T22 6v2q0 .425-.288.713T21 9t-.712-.288T20 8M2 8V6q0-.825.588-1.412T4 4h2q.425 0 .713.288T7 5t-.288.713T6 6H4v2q0 .425-.288.713T3 9t-.712-.288T2 8m18 12h-2q-.425 0-.712-.288T17 19t.288-.712T18 18h2v-2q0-.425.288-.712T21 15t.713.288T22 16v2q0 .825-.587 1.413T20 20M4 20q-.825 0-1.412-.587T2 18v-2q0-.425.288-.712T3 15t.713.288T4 16v2h2q.425 0 .713.288T7 19t-.288.713T6 20zm2-6v-4q0-.825.588-1.412T8 8h8q.825 0 1.413.588T18 10v4q0 .825-.587 1.413T16 16H8q-.825 0-1.412-.587T6 14"
-            />
-          </svg>
-        </Button>
-      </div>
+    <div className="flex items-center justify-end gap-1 pr-2">
+      <Button size={"icon"} variant={"ghost"} onClick={onZoomOutClick} className="h-7 w-7 text-muted-foreground hover:text-[#00d8d6] hover:bg-[#00d8d6]/10 transition-colors">
+        <ZoomOut size={14} />
+      </Button>
+      <Slider
+        className="w-20 hidden lg:flex"
+        value={[localValue]}
+        min={0}
+        max={12}
+        step={1}
+        onValueChange={(e) => {
+          setLocalValue(e[0]);
+        }}
+        onValueCommit={() => {
+          const zoom = getZoomByIndex(localValue);
+          onChangeTimelineScale(zoom);
+        }}
+      />
+      <Button size={"icon"} variant={"ghost"} onClick={onZoomInClick} className="h-7 w-7 text-muted-foreground hover:text-[#00d8d6] hover:bg-[#00d8d6]/10 transition-colors">
+        <ZoomIn size={14} />
+      </Button>
+      <Button onClick={onZoomFitClick} variant={"ghost"} size={"icon"} className="h-7 w-7 text-muted-foreground hover:text-[#8b5cf6] hover:bg-[#8b5cf6]/10 transition-colors">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="14"
+          viewBox="0 0 24 24"
+        >
+          <path
+            fill="currentColor"
+            d="M20 8V6h-2q-.425 0-.712-.288T17 5t.288-.712T18 4h2q.825 0 1.413.588T22 6v2q0 .425-.288.713T21 9t-.712-.288T20 8M2 8V6q0-.825.588-1.412T4 4h2q.425 0 .713.288T7 5t-.288.713T6 6H4v2q0 .425-.288.713T3 9t-.712-.288T2 8m18 12h-2q-.425 0-.712-.288T17 19t.288-.712T18 18h2v-2q0-.425.288-.712T21 15t.713.288T22 16v2q0 .825-.587 1.413T20 20M4 20q-.825 0-1.412-.587T2 18v-2q0-.425.288-.712T3 15t.713.288T4 16v2h2q.425 0 .713.288T7 19t-.288.713T6 20zm2-6v-4q0-.825.588-1.412T8 8h8q.825 0 1.413.588T18 10v4q0 .825-.587 1.413T16 16H8q-.825 0-1.412-.587T6 14"
+          />
+        </svg>
+      </Button>
     </div>
   );
 };

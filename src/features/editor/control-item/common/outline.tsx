@@ -77,7 +77,7 @@ function Outline({
               <PopoverContent
                 side="bottom"
                 align="end"
-                className="z-[300] w-[280px] p-4"
+                className="z-[300] w-[280px] p-4 bg-[#0a0a0a]/95 backdrop-blur-xl border-white/[0.08]"
               >
                 <ColorPicker
                   value={localValueBorderColor}

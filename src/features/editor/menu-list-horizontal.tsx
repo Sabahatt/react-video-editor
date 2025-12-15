@@ -66,9 +66,14 @@ function MenuButton({ item, isActive, onClick }: MenuButtonProps) {
   return (
     <Button
       onClick={onClick}
-      variant={isActive ? "default" : "ghost"}
+      variant="ghost"
       size={"sm"}
-      className="text-muted-foreground"
+      className={cn(
+        "transition-all duration-200",
+        isActive
+          ? "bg-[#00d8d6]/15 text-[#00d8d6] border border-[#00d8d6]/30"
+          : "text-muted-foreground hover:text-[#00d8d6] hover:bg-[#00d8d6]/10"
+      )}
     >
       {item.label}
     </Button>
@@ -106,7 +111,7 @@ export default function MenuListHorizontal() {
 
   return (
     <>
-      <div className="flex h-12 items-center border-t">
+      <div className="flex h-12 items-center border-t border-white/[0.06] bg-background/80 backdrop-blur-xl">
         <ScrollArea className="w-full px-2">
           <div className="flex items-center justify-center space-x-4 min-w-max px-4">
             {menuItems.map((item) => (
@@ -125,7 +130,7 @@ export default function MenuListHorizontal() {
       {/* Drawer only on mobile/tablet - conditionally mounted */}
       {!isLargeScreen && (
         <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
-          <DrawerContent className="max-h-[80vh] min-h-[340px] mt-0">
+          <DrawerContent className="max-h-[80vh] min-h-[340px] mt-0 bg-[#0a0a0a]/95 backdrop-blur-xl border-white/[0.08]">
             <VisuallyHidden>
               <DrawerHeader>
                 <DrawerTitle>Menu Options</DrawerTitle>

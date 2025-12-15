@@ -139,17 +139,17 @@ const FontBackground = ({
             <PopoverContent
               side="bottom"
               align="end"
-              className="z-[300] w-[280px] p-4"
+              className="z-[300] w-[280px] p-4 bg-[#0a0a0a]/95 backdrop-blur-xl border-white/[0.08]"
             >
-              <div className="drag-handle flex w-[266px] cursor-grab justify-between rounded-t-lg bg-popover px-4 pt-4">
-                <p className="text-sm font-bold">Fill</p>
+              <div className="drag-handle flex w-[266px] cursor-grab justify-between rounded-t-lg px-4 pt-4">
+                <p className="text-sm font-bold text-zinc-200">Fill</p>
                 <div
                   className="h-4 w-4"
                   onClick={() => {
                     setOpen(false);
                   }}
                 >
-                  <X className="h-4 w-4 cursor-pointer font-extrabold text-muted-foreground" />
+                  <X className="h-4 w-4 cursor-pointer font-extrabold text-muted-foreground hover:text-[#00d8d6] transition-colors" />
                 </div>
               </div>
               <ColorPicker
@@ -235,17 +235,17 @@ const FontColor = ({
             <PopoverContent
               side="bottom"
               align="end"
-              className="z-[300] w-[280px] p-4"
+              className="z-[300] w-[280px] p-4 bg-[#0a0a0a]/95 backdrop-blur-xl border-white/[0.08]"
             >
-              <div className="drag-handle flex w-[266px] cursor-grab justify-between rounded-t-lg bg-popover px-4 pt-4">
-                <p className="text-sm font-bold">Color</p>
+              <div className="drag-handle flex w-[266px] cursor-grab justify-between rounded-t-lg px-4 pt-4">
+                <p className="text-sm font-bold text-zinc-200">Color</p>
                 <div
                   className="h-4 w-4"
                   onClick={() => {
                     setOpen(false);
                   }}
                 >
-                  <X className="h-4 w-4 cursor-pointer font-extrabold text-muted-foreground" />
+                  <X className="h-4 w-4 cursor-pointer font-extrabold text-muted-foreground hover:text-[#00d8d6] transition-colors" />
                 </div>
               </div>
               <ColorPicker
@@ -445,8 +445,8 @@ const FontFamily = ({
               </Button>
             </PopoverTrigger>
 
-            <PopoverContent className="z-[300] w-full p-0 -ml-4">
-              <div className="relative flex items-center rounded-md border focus-within:ring-1 focus-within:ring-ring pl-2">
+            <PopoverContent className="z-[300] w-full p-0 -ml-4 bg-[#0a0a0a]/95 backdrop-blur-xl border-white/[0.08]">
+              <div className="relative flex items-center rounded-md border border-white/[0.06] focus-within:ring-1 focus-within:ring-[#00d8d6]/50 pl-2">
                 <Search className="h-5 w-5 text-muted-foreground" />
                 <Input
                   type="email"
@@ -466,7 +466,7 @@ const FontFamily = ({
                           onChangeFontFamily(font, trackItem);
                         }
                       }}
-                      className="cursor-pointer px-2 py-1 hover:bg-zinc-800/50"
+                      className="cursor-pointer px-2 py-1 hover:bg-[#00d8d6]/10 transition-colors"
                     >
                       <img
                         style={{ filter: "invert(100%)" }}
@@ -514,7 +514,7 @@ const FontStyle = ({
             </Button>
           </PopoverTrigger>
 
-          <PopoverContent className="z-[300] w-28 p-0">
+          <PopoverContent className="z-[300] w-28 p-0 bg-[#0a0a0a]/95 backdrop-blur-xl border-white/[0.08]">
             {selectedFont.styles.map((style, index) => {
               const fontFamilyEnd = style.postScriptName.lastIndexOf("-");
               const styleName = style.postScriptName
@@ -522,7 +522,7 @@ const FontStyle = ({
                 .replace("Italic", " Italic");
               return (
                 <div
-                  className="flex h-6 cursor-pointer items-center px-2 py-3.5 text-sm text-zinc-300 hover:bg-zinc-800 hover:text-zinc-100"
+                  className="flex h-6 cursor-pointer items-center px-2 py-3.5 text-sm text-zinc-300 hover:bg-[#00d8d6]/10 hover:text-[#00d8d6] transition-colors"
                   key={index}
                   onClick={() => handleChangeFontStyle(style)}
                 >
@@ -638,7 +638,7 @@ const Alignment = ({
               </Button>
             </PopoverTrigger>
 
-            <PopoverContent className="z-[300] w-32 p-0 py-1">
+            <PopoverContent className="z-[300] w-32 p-0 py-1 bg-[#0a0a0a]/95 backdrop-blur-xl border-white/[0.08]">
               {fontAlignmentOptions.map((option, index) => {
                 return (
                   <div
@@ -646,7 +646,7 @@ const Alignment = ({
                       setLocalValue(option.value);
                       onChange(option.value);
                     }}
-                    className="flex h-8 cursor-pointer items-center px-4 text-sm text-zinc-200 hover:bg-zinc-800/50"
+                    className="flex h-8 cursor-pointer items-center px-4 text-sm text-zinc-200 hover:bg-[#00d8d6]/10 hover:text-[#00d8d6] transition-colors"
                     key={index}
                   >
                     {option.label}
@@ -701,12 +701,12 @@ const FontCase = ({ id }: { id: string }) => {
               </Button>
             </PopoverTrigger>
 
-            <PopoverContent className="z-[300] w-32 p-0 py-1">
+            <PopoverContent className="z-[300] w-32 p-0 py-1 bg-[#0a0a0a]/95 backdrop-blur-xl border-white/[0.08]">
               {fontCaseOptions.map((option, index) => {
                 return (
                   <div
                     onClick={() => onChangeFontCase(option.value)}
-                    className="flex h-8 cursor-pointer items-center px-4 text-sm text-zinc-200 hover:bg-zinc-800/50"
+                    className="flex h-8 cursor-pointer items-center px-4 text-sm text-zinc-200 hover:bg-[#00d8d6]/10 hover:text-[#00d8d6] transition-colors"
                     key={index}
                   >
                     {option.label}

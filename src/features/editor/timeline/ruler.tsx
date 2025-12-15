@@ -112,8 +112,8 @@ const Ruler = (props: RulerProps) => {
     const segments = scale.segments;
     context.clearRect(0, 0, width, height);
     context.save();
-    context.strokeStyle = "#71717a";
-    context.fillStyle = "#71717a";
+    context.strokeStyle = "#52525b";
+    context.fillStyle = "rgba(0, 216, 214, 0.7)"; // Teal accent for time labels
     context.lineWidth = 1;
     context.font = `${SMALL_FONT_SIZE}px ${SECONDARY_FONT}`;
     context.textBaseline = "top";
@@ -398,11 +398,12 @@ const Ruler = (props: RulerProps) => {
 
   return (
     <div
-      className="border-t border-border"
+      className="border-t border-white/[0.04]"
       style={{
         position: "relative",
         width: "100%",
-        height: `${canvasSize.height}px`
+        height: `${canvasSize.height}px`,
+        background: "linear-gradient(180deg, rgba(0,216,214,0.02) 0%, transparent 100%)"
       }}
     >
       <canvas

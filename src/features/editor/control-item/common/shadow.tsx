@@ -69,17 +69,17 @@ function Shadow({
               <PopoverContent
                 side="bottom"
                 align="end"
-                className="z-[300] w-[280px] p-4"
+                className="z-[300] w-[280px] p-4 bg-[#0a0a0a]/95 backdrop-blur-xl border-white/[0.08]"
               >
-                <div className="drag-handle flex w-[266px] cursor-grab justify-between rounded-t-lg bg-popover px-4 pt-4">
-                  <p className="text-sm font-bold">Shadow</p>
+                <div className="drag-handle flex w-[266px] cursor-grab justify-between rounded-t-lg px-4 pt-4">
+                  <p className="text-sm font-bold text-zinc-200">Shadow</p>
                   <div
                     className="h-4 w-4"
                     onClick={() => {
                       setOpen(false);
                     }}
                   >
-                    <X className="h-4 w-4 cursor-pointer font-extrabold text-muted-foreground" />
+                    <X className="h-4 w-4 cursor-pointer font-extrabold text-muted-foreground hover:text-[#00d8d6] transition-colors" />
                   </div>
                 </div>
                 <ColorPicker

@@ -53,22 +53,22 @@ export default function FontFamilyPicker() {
   return (
     <div
       ref={floatingRef}
-      className="absolute right-2 top-2 z-[200] w-56 border bg-sidebar p-0"
+      className="absolute right-2 top-2 z-[200] w-56 glass-panel-glow rounded-xl p-0 glow-mixed"
     >
-      <div className="handle flex cursor-grab justify-between px-2 py-4">
-        <p className="text-sm font-bold">Fonts</p>
+      <div className="handle flex cursor-grab justify-between px-3 py-4 border-b border-white/[0.04]">
+        <p className="text-sm font-bold text-gradient">Fonts</p>
         <div className="h-4 w-4" onClick={() => setFloatingControl("")}>
-          <X className="h-4 w-4 cursor-pointer font-extrabold text-muted-foreground" />
+          <X className="h-4 w-4 cursor-pointer font-extrabold text-muted-foreground hover:text-[#00d8d6] transition-colors" />
         </div>
       </div>
-      <div className="flex items-center p-2">
-        <SearchIcon className="mr-2 h-4 w-4 shrink-0 opacity-50" />
+      <div className="flex items-center px-3 py-2 border-b border-white/[0.04]">
+        <SearchIcon className="mr-2 h-4 w-4 shrink-0 text-muted-foreground" />
         <input
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search font..."
-          className="w-full rounded-md bg-transparent p-1 text-sm text-muted-foreground outline-none"
+          className="w-full rounded-md bg-transparent p-1 text-sm text-muted-foreground outline-none placeholder:text-white/30 focus:text-zinc-200"
         />
       </div>
       <ScrollArea className="h-[400px] w-full py-2">
@@ -81,7 +81,7 @@ export default function FontFamilyPicker() {
                   onChangeFontFamily(font, trackItem);
                 }
               }}
-              className="cursor-pointer px-2 py-1 hover:bg-zinc-800/50"
+              className="cursor-pointer px-2 py-1 hover:bg-[#00d8d6]/10 transition-colors"
             >
               <img
                 style={{ filter: "invert(100%)" }}

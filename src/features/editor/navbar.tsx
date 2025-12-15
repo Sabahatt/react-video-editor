@@ -103,7 +103,7 @@ export default function Navbar({
         display: "grid",
         gridTemplateColumns: isLargeScreen ? "320px 1fr 320px" : "1fr 1fr 1fr"
       }}
-      className="bg-muted pointer-events-none flex h-11 items-center border-b border-border/80 px-2"
+      className="glass-panel-darker pointer-events-none flex h-11 items-center px-2"
     >
       <DownloadProgressModal />
 
@@ -115,7 +115,7 @@ export default function Navbar({
         <div className=" pointer-events-auto flex h-10 items-center px-1.5">
           <Button
             onClick={handleUndo}
-            className="text-muted-foreground"
+            className="text-muted-foreground hover:text-[#00d8d6] hover:bg-[#00d8d6]/10"
             variant="ghost"
             size="icon"
           >
@@ -123,7 +123,7 @@ export default function Navbar({
           </Button>
           <Button
             onClick={handleRedo}
-            className="text-muted-foreground"
+            className="text-muted-foreground hover:text-[#00d8d6] hover:bg-[#00d8d6]/10"
             variant="ghost"
             size="icon"
           >
@@ -151,20 +151,20 @@ export default function Navbar({
 
       <div className="flex h-11 items-center justify-end gap-2">
         <div className=" pointer-events-auto flex h-10 items-center gap-2 rounded-md px-2.5">
-          <Link href="https://discord.gg/Jmxsd5f2jp" target="_blank">
-            <Button className="h-7 rounded-lg" variant={"outline"}>
+          {/* <Link href="https://discord.gg/Jmxsd5f2jp" target="_blank">
+            <Button className="h-7 rounded-lg border-white/[0.08] hover:border-[#00d8d6]/30 hover:bg-[#00d8d6]/10 hover:text-[#00d8d6]" variant={"outline"}>
               <LogoIcons.discord className="w-6 h-6" />
               <span className="hidden md:block">Join Us</span>
             </Button>
-          </Link>
-          <Button
-            className="flex h-7 gap-1 border border-border"
+          </Link> */}
+          {/* <Button
+            className="flex h-7 gap-1 border-white/[0.08] hover:border-[#00d8d6]/30 hover:bg-[#00d8d6]/10 hover:text-[#00d8d6]"
             variant="outline"
             size={isMediumScreen ? "sm" : "icon"}
           >
             <ShareIcon width={18} />{" "}
             <span className="hidden md:block">Share</span>
-          </Button>
+          </Button> */}
 
           <DownloadPopover stateManager={stateManager} />
         </div>
@@ -212,7 +212,7 @@ const DownloadPopover = ({ stateManager }: { stateManager: StateManager }) => {
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button
-          className="flex h-7 gap-1 border border-border"
+          className="flex h-7 gap-1 bg-gradient-to-r from-[#00d8d6] to-[#8b5cf6] text-white hover:shadow-[0_0_20px_rgba(0,216,214,0.3)] transition-all duration-300"
           size={isMediumScreen ? "sm" : "icon"}
         >
           <Download width={18} />{" "}
@@ -221,20 +221,25 @@ const DownloadPopover = ({ stateManager }: { stateManager: StateManager }) => {
       </PopoverTrigger>
       <PopoverContent
         align="end"
-        className="bg-sidebar z-[250] flex w-60 flex-col gap-4"
+        sideOffset={8}
+        className="z-[250] flex w-56 flex-col gap-3 p-3"
       >
-        <Label>Export settings</Label>
+        <Label className="text-zinc-200 text-sm">Export settings</Label>
 
         <Popover open={isExportTypeOpen} onOpenChange={setIsExportTypeOpen}>
           <PopoverTrigger asChild>
-            <Button className="w-full justify-between" variant="outline">
-              <div>{exportType.toUpperCase()}</div>
-              <ChevronDown width={16} />
-            </Button>
+            <button className="w-full flex items-center justify-between h-9 px-3 rounded-lg text-sm bg-white/[0.03] border border-white/[0.08] hover:border-[#00d8d6]/30 hover:bg-[#00d8d6]/5 transition-colors">
+              <span>{exportType.toUpperCase()}</span>
+              <ChevronDown width={14} className="text-muted-foreground" />
+            </button>
           </PopoverTrigger>
-          <PopoverContent className="bg-background z-[251] w-[--radix-popover-trigger-width] px-2 py-2">
+          <PopoverContent
+            align="start"
+            sideOffset={4}
+            className="z-[251] w-[var(--radix-popover-trigger-width)] min-w-full p-1 bg-[#0a0a0a]/95 backdrop-blur-xl border border-[#00d8d6]/20 shadow-[0_8px_32px_rgba(0,0,0,0.5),0_0_20px_rgba(0,216,214,0.1)]"
+          >
             <div
-              className="flex h-7 items-center rounded-sm px-3 text-sm hover:cursor-pointer hover:bg-zinc-800"
+              className={`flex h-8 items-center rounded-lg px-3 text-sm cursor-pointer transition-all duration-150 ${exportType === "mp4" ? "bg-[#00d8d6]/15 text-[#00d8d6]" : "text-white/60 hover:bg-[#00d8d6]/10 hover:text-[#00d8d6]"}`}
               onClick={() => {
                 actions.setExportType("mp4");
                 setIsExportTypeOpen(false);
@@ -243,7 +248,7 @@ const DownloadPopover = ({ stateManager }: { stateManager: StateManager }) => {
               MP4
             </div>
             <div
-              className="flex h-7 items-center rounded-sm px-3 text-sm hover:cursor-pointer hover:bg-zinc-800"
+              className={`flex h-8 items-center rounded-lg px-3 text-sm cursor-pointer transition-all duration-150 ${exportType === "json" ? "bg-[#00d8d6]/15 text-[#00d8d6]" : "text-white/60 hover:bg-[#00d8d6]/10 hover:text-[#00d8d6]"}`}
               onClick={() => {
                 actions.setExportType("json");
                 setIsExportTypeOpen(false);
@@ -254,11 +259,9 @@ const DownloadPopover = ({ stateManager }: { stateManager: StateManager }) => {
           </PopoverContent>
         </Popover>
 
-        <div>
-          <Button onClick={handleExport} className="w-full">
-            Export
-          </Button>
-        </div>
+        <Button onClick={handleExport} className="w-full bg-gradient-to-r from-[#00d8d6] to-[#8b5cf6] text-white hover:shadow-[0_0_15px_rgba(0,216,214,0.3)] h-9">
+          Export
+        </Button>
       </PopoverContent>
     </Popover>
   );
@@ -326,7 +329,7 @@ const ResizeVideo = () => {
           <div>Resize</div>
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="z-[250] w-60 px-2.5 py-3">
+      <PopoverContent className="z-[250] w-60 px-2.5 py-3 bg-[#0a0a0a]/95 backdrop-blur-xl border-white/[0.08]">
         <div className="text-sm">
           {RESIZE_OPTIONS.map((option, index) => (
             <ResizeOption
@@ -355,13 +358,13 @@ const ResizeOption = ({
   return (
     <div
       onClick={() => handleResize(value)}
-      className="flex cursor-pointer items-center rounded-md p-2 hover:bg-zinc-50/10"
+      className="flex cursor-pointer items-center rounded-md p-2 hover:bg-[#00d8d6]/10 hover:text-[#00d8d6] transition-colors"
     >
       <div className="w-8 text-muted-foreground">
         <Icon size={20} />
       </div>
       <div>
-        <div>{label}</div>
+        <div className="text-zinc-200">{label}</div>
         <div className="text-xs text-muted-foreground">{description}</div>
       </div>
     </div>
@@ -392,7 +395,7 @@ const AutoSaveIndicator = ({
           <Button
             variant="ghost"
             size="sm"
-            className="h-6 gap-1 px-2 text-xs text-muted-foreground hover:text-zinc-200"
+            className="h-6 gap-1 px-2 text-xs text-muted-foreground hover:text-[#00d8d6] hover:bg-[#00d8d6]/10"
             onClick={onManualSave}
           >
             {status.saving ? (
@@ -407,7 +410,7 @@ const AutoSaveIndicator = ({
               </>
             ) : status.lastSaved ? (
               <>
-                <CheckCircle2 className="h-3 w-3 text-green-400" />
+                <CheckCircle2 className="h-3 w-3 text-[#00d8d6]" />
                 <span className="hidden sm:inline">{formatTime(status.lastSaved)}</span>
               </>
             ) : (
@@ -418,7 +421,7 @@ const AutoSaveIndicator = ({
             )}
           </Button>
         </TooltipTrigger>
-        <TooltipContent side="bottom">
+        <TooltipContent side="bottom" className="bg-[#0a0a0a]/95 backdrop-blur-xl border-white/[0.08]">
           <div className="text-xs">
             {status.saving ? (
               "Saving to disk..."

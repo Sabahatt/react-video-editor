@@ -102,19 +102,19 @@ export const Uploads = () => {
 
   const UploadPrompt = () => (
     <div className="flex items-center justify-center px-4">
-      <Button
-        className="w-full cursor-pointer"
+      <button
+        className="w-full cursor-pointer py-2.5 px-4 rounded-xl text-sm font-medium text-white bg-gradient-to-r from-[#00d8d6] to-[#8b5cf6] hover:shadow-[0_0_20px_rgba(0,216,214,0.3)] transition-all duration-300 flex items-center justify-center gap-2"
         onClick={() => setShowUploadModal(true)}
       >
         <UploadIcon className="w-4 h-4" />
-        <span className="ml-2">Upload</span>
-      </Button>
+        <span>Upload</span>
+      </button>
     </div>
   );
 
   return (
     <div className="flex flex-1 flex-col overflow-hidden">
-      <div className="text-text-primary flex h-12 flex-none items-center px-4 text-sm font-medium">
+      <div className="text-zinc-200 flex h-12 flex-none items-center px-4 text-sm font-medium">
         Your uploads
       </div>
       <ModalUpload />
@@ -173,7 +173,7 @@ export const Uploads = () => {
                     key={video.id || `video-${idx}`}
                   >
                     <Card
-                      className="w-16 h-16 flex items-center justify-center overflow-hidden relative cursor-pointer bg-muted"
+                      className="w-16 h-16 flex items-center justify-center overflow-hidden relative cursor-pointer bg-muted/50 border-white/[0.06] hover:border-[#00d8d6]/30 hover:shadow-[0_0_10px_rgba(0,216,214,0.1)] transition-all"
                       onClick={() => handleAddVideo(video)}
                     >
                       {previewUrl ? (
@@ -221,7 +221,7 @@ export const Uploads = () => {
                     key={image.id || `image-${idx}`}
                   >
                     <Card
-                      className="w-16 h-16 flex items-center justify-center overflow-hidden relative cursor-pointer bg-muted"
+                      className="w-16 h-16 flex items-center justify-center overflow-hidden relative cursor-pointer bg-muted/50 border-white/[0.06] hover:border-[#00d8d6]/30 hover:shadow-[0_0_10px_rgba(0,216,214,0.1)] transition-all"
                       onClick={() => handleAddImage(image)}
                     >
                       {imageUrl ? (
@@ -267,7 +267,7 @@ export const Uploads = () => {
                   key={audio.id || `audio-${idx}`}
                 >
                   <Card
-                    className="w-16 h-16 flex items-center justify-center overflow-hidden relative cursor-pointer bg-muted"
+                    className="w-16 h-16 flex items-center justify-center overflow-hidden relative cursor-pointer bg-muted/50 border-white/[0.06] hover:border-[#00d8d6]/30 hover:shadow-[0_0_10px_rgba(0,216,214,0.1)] transition-all"
                     onClick={() => handleAddAudio(audio)}
                   >
                     <Music className="w-8 h-8 text-muted-foreground" />

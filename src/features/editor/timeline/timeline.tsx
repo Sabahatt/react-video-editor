@@ -304,8 +304,22 @@ const Timeline = ({ stateManager }: { stateManager: StateManager }) => {
     <div
       ref={timelineContainerRef}
       id={"timeline-container"}
-      className="bg-muted relative h-full w-full overflow-hidden"
+      className="relative h-full w-full overflow-hidden"
+      style={{
+        background: "linear-gradient(180deg, rgba(10,10,10,0.85) 0%, rgba(5,5,5,0.95) 100%)",
+        backdropFilter: "blur(20px)",
+        WebkitBackdropFilter: "blur(20px)",
+        borderTop: "1px solid rgba(255,255,255,0.06)",
+        boxShadow: "inset 0 1px 0 rgba(255,255,255,0.03), 0 -8px 32px rgba(0,0,0,0.3)",
+      }}
     >
+      {/* Subtle gradient glow at top of timeline */}
+      <div
+        className="absolute top-0 left-0 right-0 h-px pointer-events-none"
+        style={{
+          background: "linear-gradient(90deg, transparent 0%, rgba(0,216,214,0.3) 50%, transparent 100%)"
+        }}
+      />
       <Header />
       <Ruler
         onClick={onClickRuler}
@@ -316,15 +330,23 @@ const Timeline = ({ stateManager }: { stateManager: StateManager }) => {
       <div className="flex">
         <div
           style={{
-            width: timelineOffsetX
+            width: timelineOffsetX,
+            background: "linear-gradient(180deg, rgba(139,92,246,0.03) 0%, rgba(0,216,214,0.02) 100%)"
           }}
-          className="relative flex-none"
+          className="relative flex-none border-r border-white/[0.04]"
         />
         <div style={{ height: canvasSize.height }} className="relative flex-1">
+          {/* Gradient overlay for premium look */}
+          <div
+            className="absolute inset-0 pointer-events-none z-0"
+            style={{
+              background: "linear-gradient(135deg, rgba(139,92,246,0.02) 0%, rgba(0,216,214,0.015) 50%, rgba(139,92,246,0.02) 100%)"
+            }}
+          />
           <div
             style={{ height: canvasSize.height }}
             ref={containerRef}
-            className="absolute top-0 w-full"
+            className="absolute top-0 w-full z-[1]"
           >
             <canvas id="designcombo-timeline-canvas" ref={canvasElRef} />
           </div>

@@ -59,7 +59,9 @@ export const MenuItem = () => {
   const isLargeScreen = useIsLargeScreen();
 
   return (
-    <div className={`${isLargeScreen ? "w-[300px]" : "w-full"} flex-1 flex`}>
+    <div
+      className={`${isLargeScreen ? "w-[300px]" : "w-full"} flex-1 flex border-r border-white/[0.04] bg-gradient-to-b from-[#8b5cf6]/[0.02] via-transparent to-[#00d8d6]/[0.02]`}
+    >
       <ActiveMenuItem />
     </div>
   );

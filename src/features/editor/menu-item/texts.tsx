@@ -16,10 +16,10 @@ export const Texts = () => {
       options: {}
     });
   };
-  
+
   return (
     <div className="flex flex-1 flex-col">
-      <div className="text-text-primary flex h-12 flex-none items-center px-4 text-sm font-medium">
+      <div className="text-zinc-200 flex h-12 flex-none items-center px-4 text-sm font-medium">
         Text
       </div>
       <div className="flex flex-col gap-2 px-4">
@@ -34,10 +34,7 @@ export const Texts = () => {
         >
           <div
             onClick={handleAddText}
-            className={cn(
-              buttonVariants({ variant: "default" }),
-              "cursor-pointer"
-            )}
+            className="cursor-pointer w-full py-2.5 px-4 rounded-xl text-sm font-medium text-white bg-gradient-to-r from-[#00d8d6] to-[#8b5cf6] hover:shadow-[0_0_20px_rgba(0,216,214,0.3)] transition-all duration-300 text-center"
           >
             Add text
           </div>

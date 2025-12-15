@@ -19,7 +19,7 @@ class Caption extends Resizable {
 
   constructor(props: CaptionsProps) {
     super(props);
-    this.fill = "#1B272C";
+    this.fill = "#162030"; // Dark teal-blue for captions
     this.tScale = props.tScale;
     this.display = props.display;
     this.text = props.text;
@@ -31,8 +31,38 @@ class Caption extends Resizable {
 
   public _render(ctx: CanvasRenderingContext2D) {
     super._render(ctx);
+    this.drawGradientBackground(ctx);
     this.drawTextIdentity(ctx);
     this.updateSelected(ctx);
+  }
+
+  public drawGradientBackground(ctx: CanvasRenderingContext2D) {
+    ctx.save();
+
+    // Create gradient from teal-blue
+    const gradient = ctx.createLinearGradient(
+      -this.width / 2,
+      -this.height / 2,
+      this.width / 2,
+      this.height / 2
+    );
+    gradient.addColorStop(0, "rgba(0, 200, 200, 0.18)"); // Teal start
+    gradient.addColorStop(0.5, "rgba(0, 150, 180, 0.12)"); // Blue-teal middle
+    gradient.addColorStop(1, "rgba(0, 200, 200, 0.08)"); // Teal end
+
+    // Draw rounded rect with gradient
+    ctx.beginPath();
+    ctx.roundRect(
+      -this.width / 2,
+      -this.height / 2,
+      this.width,
+      this.height,
+      4
+    );
+    ctx.fillStyle = gradient;
+    ctx.fill();
+
+    ctx.restore();
   }
 
   public drawTextIdentity(ctx: CanvasRenderingContext2D) {
@@ -78,13 +108,23 @@ class Caption extends Resizable {
   }
 
   public updateSelected(ctx: CanvasRenderingContext2D) {
-    const borderColor = this.isSelected
-      ? "rgba(255, 255, 255,1.0)"
-      : "rgba(255, 255, 255,0.05)";
     const borderWidth = 2;
     const innerRadius = 4;
 
     ctx.save();
+
+    // Add glow effect when selected
+    if (this.isSelected) {
+      ctx.shadowColor = "rgba(0, 216, 214, 0.6)";
+      ctx.shadowBlur = 12;
+      ctx.shadowOffsetX = 0;
+      ctx.shadowOffsetY = 0;
+    }
+
+    const borderColor = this.isSelected
+      ? "rgba(0, 216, 214, 1.0)"
+      : "rgba(0, 216, 214, 0.3)";
+
     ctx.fillStyle = borderColor;
 
     // Create a path for the outer rectangle (no radius)

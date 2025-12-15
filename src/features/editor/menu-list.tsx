@@ -77,21 +77,20 @@ const MenuButton = memo<{
   const IconComponent = item.icon;
 
   return (
-    <Button
+    <button
       onClick={handleClick}
       className={cn(
-        "transition-colors duration-200 hover:bg-secondary/80",
+        "flex flex-col items-center gap-1 py-2 px-1 rounded-lg transition-all duration-200 w-12",
         isActive
-          ? "bg-secondary text-secondary-foreground"
-          : "text-muted-foreground hover:text-foreground"
+          ? "bg-gradient-to-b from-[#00d8d6]/20 to-[#00d8d6]/5 text-[#00d8d6] shadow-[0_0_12px_rgba(0,216,214,0.15)]"
+          : "text-muted-foreground hover:text-[#00d8d6] hover:bg-[#00d8d6]/5"
       )}
-      variant="ghost"
-      size="icon"
       aria-label={item.ariaLabel}
       aria-pressed={isActive}
     >
-      {IconComponent ? <IconComponent width={16} height={16} /> : null}
-    </Button>
+      {IconComponent ? <IconComponent width={18} height={18} /> : null}
+      <span className="text-[9px] font-medium">{item.label}</span>
+    </button>
   );
 });
 
@@ -133,7 +132,7 @@ function MenuList() {
   return (
     <>
       <nav
-        className="flex w-14 flex-col items-center gap-1 border-r border-border/80 py-2"
+        className="flex w-[60px] flex-col items-center gap-0.5 py-2 border-r border-white/[0.04] bg-gradient-to-b from-[#8b5cf6]/[0.02] via-transparent to-[#00d8d6]/[0.02]"
         role="toolbar"
         aria-label="Editor tools"
       >
@@ -156,9 +155,9 @@ function MenuList() {
       {/* Drawer only on mobile/tablet - conditionally mounted */}
       {!isLargeScreen && (
         <Drawer open={drawerOpen} onOpenChange={handleDrawerOpenChange}>
-          <DrawerContent className="max-h-[80vh]">
+          <DrawerContent className="max-h-[80vh] glass-panel-glow">
             <DrawerHeader>
-              <DrawerTitle className="capitalize">{activeMenuItem}</DrawerTitle>
+              <DrawerTitle className="capitalize text-zinc-200">{activeMenuItem}</DrawerTitle>
             </DrawerHeader>
             <div className="flex-1 overflow-auto">
               <MenuItem />

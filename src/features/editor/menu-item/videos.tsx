@@ -212,16 +212,18 @@ const VideoItem = ({
         }
         className="relative flex w-full items-center justify-center overflow-hidden bg-background pb-2 group cursor-pointer"
       >
-        <img
-          draggable={false}
-          src={video.preview}
-          className="h-full w-full rounded-md object-cover"
-          alt="Video preview"
-        />
+        <div className="rounded-lg overflow-hidden border border-white/[0.06] group-hover:border-[#00d8d6]/30 group-hover:shadow-[0_0_10px_rgba(0,216,214,0.1)] transition-all">
+          <img
+            draggable={false}
+            src={video.preview}
+            className="h-full w-full object-cover"
+            alt="Video preview"
+          />
+        </div>
         {/* Play button overlay */}
-        <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity rounded-md">
+        <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg">
           <div className="rounded-full p-1">
-            <PlusIcon className="h-6 w-6 fill-current" />
+            <PlusIcon className="h-6 w-6 fill-current text-[#00d8d6]" />
           </div>
         </div>
         {/* Duration badge */}

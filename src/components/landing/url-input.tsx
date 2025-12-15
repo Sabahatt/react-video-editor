@@ -34,8 +34,6 @@ const DROPDOWN_OPTIONS: DropdownConfig[] = [
     options: [
       { id: "dynamic", name: "Dynamic" },
       { id: "classic", name: "Classic" },
-      { id: "minimal", name: "Minimal" },
-      { id: "bold", name: "Bold" },
     ],
   },
   {
