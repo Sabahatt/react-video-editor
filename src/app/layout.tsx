@@ -30,10 +30,10 @@ const outfit = Outfit({
 
 export const metadata = createMetadata({
   title: {
-    template: "%s | Combo",
-    default: "Combo"
+    template: "%s | Adify",
+    default: "Adify"
   },
-  description: "AI Video generator for the next gen web.",
+  description: "Turn any website into a stunning video ad with AI.",
   metadataBase: baseUrl
 });
 

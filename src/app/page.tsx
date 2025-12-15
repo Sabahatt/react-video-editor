@@ -2,146 +2,114 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { motion, AnimatePresence } from "framer-motion";
+import { BackgroundEffects } from "@/components/landing/background-effects";
+import { UrlInput } from "@/components/landing/url-input";
+import { GenerationProgress, GenerationStep } from "@/components/landing/generation-progress";
 
-const POC_RESTAURANTS = [
-  {
-    id: "joes-pizza",
-    name: "Joe's Pizza",
-    description: "NYC's iconic pizza since 1975",
-    cuisine: "Italian",
-    url: "https://www.joespizza.com/menu-joes-pizza-santa-monica-venice",
-    tone: "playful",
-  },
-  {
-    id: "doughnut-vault",
-    name: "The Doughnut Vault",
-    description: "Chicago's artisan donuts",
-    cuisine: "Bakery",
-    url: "https://www.doughnutvault.com/",
-    tone: "friendly",
-  },
-  {
-    id: "sweetgreen",
-    name: "Sweetgreen",
-    description: "Healthy salads & bowls",
-    cuisine: "Healthy",
-    url: "https://www.sweetgreen.com/",
-    tone: "professional",
-  },
+const GENERATION_STEPS: GenerationStep[] = [
+  { name: "Analyzing website...", status: "pending" },
+  { name: "Extracting brand data...", status: "pending" },
+  { name: "Generating AI script...", status: "pending" },
+  { name: "Building video timeline...", status: "pending" },
+  { name: "Finalizing your ad...", status: "pending" },
 ];
 
-const TEMPLATES = [
-  {
-    id: "template-1",
-    name: "Template 1",
-    description: "Classic promotional style",
-  },
-  {
-    id: "template-2",
-    name: "Template 2",
-    description: "Modern dynamic style",
-  },
-];
+// URL pattern matching for POC restaurants
+const getRestaurantFromUrl = (url: string): string | null => {
+  const lowerUrl = url.toLowerCase();
+  if (lowerUrl.includes("joespizza") || lowerUrl.includes("joes-pizza") || lowerUrl.includes("joe")) {
+    return "joes-pizza";
+  }
+  if (lowerUrl.includes("doughnutvault") || lowerUrl.includes("doughnut-vault") || lowerUrl.includes("doughnut")) {
+    return "doughnut-vault";
+  }
+  if (lowerUrl.includes("sweetgreen") || lowerUrl.includes("sweet")) {
+    return "sweetgreen";
+  }
+  return null;
+};
 
-type GenerationStatus = "idle" | "generating" | "complete" | "error";
-
-interface GenerationStep {
-  name: string;
-  status: "pending" | "active" | "complete" | "error";
-}
-
-// Simulated delay for UX (makes the demo feel more realistic)
 const simulateDelay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
 export default function Home() {
   const router = useRouter();
-  const [selectedRestaurant, setSelectedRestaurant] = useState<string>("");
-  const [selectedTemplate, setSelectedTemplate] = useState<string>("");
-  const [status, setStatus] = useState<GenerationStatus>("idle");
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [steps, setSteps] = useState<GenerationStep[]>(GENERATION_STEPS);
   const [error, setError] = useState<string>("");
-  const [steps, setSteps] = useState<GenerationStep[]>([
-    { name: "Loading brand data", status: "pending" },
-    { name: "Preparing video ad", status: "pending" },
-    { name: "Building timeline", status: "pending" },
-  ]);
 
-  const updateStep = (index: number, stepStatus: GenerationStep["status"]) => {
-    setSteps((prev) =>
-      prev.map((step, i) => (i === index ? { ...step, status: stepStatus } : step))
+  const updateStep = (index: number, status: GenerationStep["status"]) => {
+    setSteps(prev =>
+      prev.map((step, i) => (i === index ? { ...step, status } : step))
     );
   };
 
-  const handleGenerate = async () => {
-    if (!selectedRestaurant || !selectedTemplate) return;
+  const handleGenerate = async (url: string, options: Record<string, string>) => {
+    const restaurant = getRestaurantFromUrl(url);
 
-    const restaurantConfig = POC_RESTAURANTS.find((r) => r.id === selectedRestaurant);
-    if (!restaurantConfig) return;
-
-    // Prevent double invocation
-    if (status === "generating") {
-      console.log("[Generation] Already generating, ignoring...");
+    if (!restaurant) {
+      setError("Please enter a URL from one of our supported restaurants: Joe's Pizza, The Doughnut Vault, or Sweetgreen");
       return;
     }
 
-    console.log("[Generation] Loading pre-made ad for:", restaurantConfig.name);
-    setStatus("generating");
+    // Map style option to template
+    const template = options.style === "classic" ? "template-2" : "template-1";
+
+    setIsGenerating(true);
     setError("");
-    setSteps([
-      { name: "Loading brand data", status: "pending" },
-      { name: "Preparing video ad", status: "pending" },
-      { name: "Building timeline", status: "pending" },
-    ]);
+    setSteps(GENERATION_STEPS.map(s => ({ ...s, status: "pending" as const })));
+
+    // Log selected options (for future use)
+    console.log("[Generation] Options:", options);
 
     try {
-      // Step 1: Simulate loading brand data
+      // Step 1: Analyzing website
       updateStep(0, "active");
       await simulateDelay(800);
       updateStep(0, "complete");
 
-      // Step 2: Load pre-made ad design
+      // Step 2: Extracting brand data
       updateStep(1, "active");
-      await simulateDelay(1200); // Fake delay for realism
+      await simulateDelay(1200);
+      updateStep(1, "complete");
 
-      const adRes = await fetch(`/api/poc-data/ads?restaurant=${selectedRestaurant}&template=${selectedTemplate}`);
+      // Step 3: Generating AI script
+      updateStep(2, "active");
+      await simulateDelay(1500);
+      updateStep(2, "complete");
+
+      // Step 4: Building timeline (fetch the pre-made ad)
+      updateStep(3, "active");
+      await simulateDelay(800);
+
+      const adRes = await fetch(`/api/poc-data/ads?restaurant=${restaurant}&template=${template}`);
       const adResult = await adRes.json();
 
       if (!adResult.success) {
-        throw new Error(adResult.error || "Failed to load pre-made ad");
+        throw new Error(adResult.error || "Failed to load ad template");
       }
 
-      console.log("[Generation] Loaded pre-made ad:", adResult.adFile);
-      updateStep(1, "complete");
+      updateStep(3, "complete");
 
-      // Step 3: Finalize timeline
-      updateStep(2, "active");
-      await simulateDelay(600);
-      updateStep(2, "complete");
+      // Step 5: Finalizing
+      updateStep(4, "active");
+      await simulateDelay(500);
+      updateStep(4, "complete");
 
-      setStatus("complete");
-      console.log("[Generation] All steps complete, navigating to editor...");
-
-      // Store the pre-made design in sessionStorage
+      // Store the design in sessionStorage
       sessionStorage.setItem("generatedDesign", JSON.stringify(adResult.design));
       if (adResult.brand) {
         sessionStorage.setItem("generatedBrand", JSON.stringify(adResult.brand));
       }
 
-      // Navigate to editor
+      // Small delay before navigation for visual feedback
+      await simulateDelay(300);
       router.push("/edit");
     } catch (err) {
       console.error("[Generation] Error:", err);
-      setStatus("error");
       setError(err instanceof Error ? err.message : "An error occurred");
-      setSteps((currentSteps) => {
-        const activeIndex = currentSteps.findIndex((s) => s.status === "active");
+      setSteps(currentSteps => {
+        const activeIndex = currentSteps.findIndex(s => s.status === "active");
         if (activeIndex >= 0) {
           return currentSteps.map((step, i) =>
             i === activeIndex ? { ...step, status: "error" as const } : step
@@ -149,181 +117,136 @@ export default function Home() {
         }
         return currentSteps;
       });
+      setIsGenerating(false);
     }
   };
 
-  const selectedInfo = POC_RESTAURANTS.find((r) => r.id === selectedRestaurant);
+  const handleReset = () => {
+    setIsGenerating(false);
+    setError("");
+    setSteps(GENERATION_STEPS.map(s => ({ ...s, status: "pending" as const })));
+  };
 
   return (
-    <div className="min-h-screen bg-background flex flex-col items-center justify-center p-8">
-      <div className="max-w-md w-full space-y-8">
-        {/* Header */}
-        <div className="text-center space-y-2">
-          <h1 className="text-3xl font-bold text-foreground">
-            Restaurant Ad Generator
-          </h1>
-          <p className="text-muted-foreground">
-            Generate a video ad from any restaurant website
-          </p>
-        </div>
+    <div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
+      <BackgroundEffects />
 
-        {/* Restaurant Selector */}
-        <div className="space-y-4">
-          <label className="text-sm font-medium text-foreground">
-            Select a restaurant (POC)
-          </label>
-          <Select
-            value={selectedRestaurant}
-            onValueChange={(value) => {
-              setSelectedRestaurant(value);
-              setSelectedTemplate(""); // Reset template when restaurant changes
-            }}
-            disabled={status === "generating"}
-          >
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Choose a restaurant..." />
-            </SelectTrigger>
-            <SelectContent>
-              {POC_RESTAURANTS.map((restaurant) => (
-                <SelectItem key={restaurant.id} value={restaurant.id}>
-                  <div className="flex items-center gap-2">
-                    <span>{restaurant.name}</span>
-                    <span className="text-xs text-muted-foreground">
-                      ({restaurant.cuisine})
-                    </span>
-                  </div>
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-
-          {/* Selected Restaurant Info */}
-          {selectedInfo && status === "idle" && (
-            <div className="p-4 rounded-lg bg-muted/50 border border-border">
-              <p className="font-medium">{selectedInfo.name}</p>
-              <p className="text-sm text-muted-foreground">
-                {selectedInfo.description}
-              </p>
-            </div>
-          )}
-        </div>
-
-        {/* Template Selector - shown after restaurant is selected */}
-        {selectedRestaurant && status === "idle" && (
-          <div className="space-y-4">
-            <label className="text-sm font-medium text-foreground">
-              Select a template
-            </label>
-            <Select
-              value={selectedTemplate}
-              onValueChange={setSelectedTemplate}
-            >
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Choose a template..." />
-              </SelectTrigger>
-              <SelectContent>
-                {TEMPLATES.map((template) => (
-                  <SelectItem key={template.id} value={template.id}>
-                    <div className="flex items-center gap-2">
-                      <span>{template.name}</span>
-                    </div>
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-
-            {/* Selected Template Info */}
-            {selectedTemplate && (
-              <div className="p-4 rounded-lg bg-muted/50 border border-border">
-                <p className="font-medium">
-                  {TEMPLATES.find((t) => t.id === selectedTemplate)?.name}
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  {TEMPLATES.find((t) => t.id === selectedTemplate)?.description}
-                </p>
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* Generation Progress */}
-        {status === "generating" && (
-          <div className="space-y-3 p-4 rounded-lg bg-muted/50 border border-border">
-            <p className="text-sm font-medium">Generating your ad...</p>
-            {steps.map((step, index) => (
-              <div key={index} className="flex items-center gap-3">
-                <div
-                  className={`w-2 h-2 rounded-full ${
-                    step.status === "complete"
-                      ? "bg-green-500"
-                      : step.status === "active"
-                      ? "bg-blue-500 animate-pulse"
-                      : step.status === "error"
-                      ? "bg-red-500"
-                      : "bg-muted-foreground/30"
-                  }`}
-                />
-                <span
-                  className={`text-sm ${
-                    step.status === "active"
-                      ? "text-foreground"
-                      : "text-muted-foreground"
-                  }`}
-                >
-                  {step.name}
-                </span>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* Error Message */}
-        {status === "error" && (
-          <div className="p-4 rounded-lg bg-destructive/10 border border-destructive/20">
-            <p className="text-sm text-destructive">{error}</p>
-          </div>
-        )}
-
-        {/* Generate Button */}
-        <Button
-          className="w-full"
-          size="lg"
-          onClick={handleGenerate}
-          disabled={!selectedRestaurant || !selectedTemplate || status === "generating"}
+      <div className="relative z-10 w-full max-w-4xl mx-auto px-6 py-12">
+        {/* Hero Section */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
         >
-          {status === "generating" ? (
-            <span className="flex items-center gap-2">
-              <svg
-                className="animate-spin h-4 w-4"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle
-                  className="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                />
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                />
-              </svg>
-              Generating...
-            </span>
-          ) : (
-            "Generate Ad"
-          )}
-        </Button>
+          {/* Logo/Brand */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="mb-6"
+          >
+            <h1 className="text-7xl font-bold tracking-tight uppercase">
+              <span className="bg-gradient-to-r from-[#00d8d6] to-[#8b5cf6] bg-clip-text text-transparent">
+                Adify
+              </span>
+            </h1>
+          </motion.div>
 
-        {/* Footer */}
-        <p className="text-center text-xs text-muted-foreground">
-          POC Demo: Brand Data → Script + Scenes → Timeline → Editor
-        </p>
+          {/* Headline */}
+          <motion.h2
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#fafafa] mb-4 leading-tight"
+          >
+            Turn any website into a
+            <br />
+            <span className="bg-gradient-to-r from-[#00d8d6] via-[#8b5cf6] to-[#00d8d6] bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
+              stunning video ad
+            </span>
+          </motion.h2>
+
+          {/* Subheadline */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-lg text-[#71717a] max-w-xl mx-auto"
+          >
+            AI-powered video generation in seconds. Just paste a URL and watch the magic happen.
+          </motion.p>
+        </motion.div>
+
+        {/* Main Input / Progress Area */}
+        <AnimatePresence mode="wait">
+          {!isGenerating ? (
+            <motion.div
+              key="input"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+            >
+              <UrlInput
+                onGenerate={handleGenerate}
+                isGenerating={isGenerating}
+              />
+
+              {/* Error display */}
+              {error && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mt-4 text-center"
+                >
+                  <p className="text-sm text-red-400">{error}</p>
+                  <button
+                    onClick={handleReset}
+                    className="mt-2 text-sm text-white/50 hover:text-[#00d8d6] underline underline-offset-4 transition-colors"
+                  >
+                    Try again
+                  </button>
+                </motion.div>
+              )}
+
+              {/* Hint text */}
+              {/* <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4 }}
+                className="text-center text-sm text-[#52525b] mt-6"
+              >
+                Try: joespizza.com, doughnutvault.com, or sweetgreen.com
+              </motion.p> */}
+            </motion.div>
+          ) : (
+            <motion.div
+              key="progress"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+            >
+              <GenerationProgress steps={steps} error={error} />
+
+              {error && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="mt-4 text-center"
+                >
+                  <button
+                    onClick={handleReset}
+                    className="text-sm text-white/50 hover:text-[#00d8d6] underline underline-offset-4 transition-colors"
+                  >
+                    Try again
+                  </button>
+                </motion.div>
+              )}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );

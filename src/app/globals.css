@@ -79,12 +79,68 @@
   --color-destructive-foreground: var(--destructive-foreground);
 
   --animate-border-beam: border-beam calc(var(--duration) * 1s) infinite linear;
+  --animate-gradient: gradient 3s linear infinite;
 
   @keyframes border-beam {
     to {
       offset-distance: 100%;
     }
   }
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @keyframes float-slow {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+    }
+    50% {
+      transform: translate(50px, 30px) scale(1.05);
+    }
+  }
+
+  @keyframes float-slower {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+    }
+    50% {
+      transform: translate(-40px, 40px) scale(1.03);
+    }
+  }
+
+  @keyframes float-medium {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+    }
+    50% {
+      transform: translate(30px, -30px) scale(1.02);
+    }
+  }
+
+  @keyframes pulse-slow {
+    0%, 100% {
+      opacity: 0.5;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+      opacity: 0.7;
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+  }
+
+  --animate-float-slow: float-slow 20s ease-in-out infinite;
+  --animate-float-slower: float-slower 25s ease-in-out infinite;
+  --animate-float-medium: float-medium 18s ease-in-out infinite;
+  --animate-pulse-slow: pulse-slow 8s ease-in-out infinite;
 }
 
 :root {
@@ -245,6 +301,19 @@
     .masonry-sm {
       column-width: 100px;
     }
+  }
+
+  .animate-float-slow {
+    animation: float-slow 20s ease-in-out infinite;
+  }
+  .animate-float-slower {
+    animation: float-slower 25s ease-in-out infinite;
+  }
+  .animate-float-medium {
+    animation: float-medium 18s ease-in-out infinite;
+  }
+  .animate-pulse-slow {
+    animation: pulse-slow 8s ease-in-out infinite;
   }
 }
 
