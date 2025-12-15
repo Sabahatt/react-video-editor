@@ -33,10 +33,10 @@ const MENU_ITEMS = [
     ariaLabel: "Add and manage video content"
   },
   {
-    id: "captions",
-    icon: Icons.captions,
-    label: "Captions",
-    ariaLabel: "Add and edit captions"
+    id: "ai-video",
+    icon: Icons.smart,
+    label: "AI Video",
+    ariaLabel: "Generate video from image using AI"
   },
   {
     id: "images",

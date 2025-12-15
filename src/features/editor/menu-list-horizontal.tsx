@@ -34,9 +34,9 @@ const menuItems: MenuItemData[] = [
     icon: Icons.video
   },
   {
-    id: "captions",
-    label: "Captions",
-    icon: Icons.captions
+    id: "ai-video",
+    label: "AI Video",
+    icon: Icons.smart
   },
   {
     id: "images",

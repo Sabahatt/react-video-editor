@@ -5,7 +5,7 @@ import { Audios } from "./audios";
 import { Elements } from "./elements";
 import { Images } from "./images";
 import { Videos } from "./videos";
-import { Captions } from "./captions";
+import { AiVideo } from "./ai-video";
 import { VoiceOver } from "./voice-over";
 import { useIsLargeScreen } from "@/hooks/use-media-query";
 import { Uploads } from "./uploads";
@@ -26,8 +26,8 @@ const ActiveMenuItem = () => {
   if (activeMenuItem === "videos") {
     return <Videos />;
   }
-  if (activeMenuItem === "captions") {
-    return <Captions />;
+  if (activeMenuItem === "ai-video") {
+    return <AiVideo />;
   }
 
   if (activeMenuItem === "audios") {
