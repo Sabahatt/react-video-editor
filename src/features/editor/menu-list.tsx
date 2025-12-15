@@ -132,10 +132,17 @@ function MenuList() {
   return (
     <>
       <nav
-        className="flex w-[60px] flex-col items-center gap-0.5 py-2 border-r border-white/[0.04] bg-gradient-to-b from-[#8b5cf6]/[0.02] via-transparent to-[#00d8d6]/[0.02]"
+        className="flex w-[60px] flex-col items-center gap-0.5 py-2 border-r border-white/[0.04] bg-gradient-to-b from-[#8b5cf6]/[0.02] via-transparent to-[#00d8d6]/[0.02] relative"
         role="toolbar"
         aria-label="Editor tools"
       >
+        {/* Subtle gradient accent on right border */}
+        <div
+          className="absolute right-0 top-0 bottom-0 w-px pointer-events-none"
+          style={{
+            background: "linear-gradient(180deg, rgba(139,92,246,0.25) 0%, rgba(0,216,214,0.15) 50%, rgba(139,92,246,0.25) 100%)"
+          }}
+        />
         {MENU_ITEMS.map((item) => {
           const isActive =
             (drawerOpen && activeMenuItem === item.id) ||

@@ -103,14 +103,21 @@ export default function Navbar({
         display: "grid",
         gridTemplateColumns: isLargeScreen ? "320px 1fr 320px" : "1fr 1fr 1fr"
       }}
-      className="glass-panel-darker pointer-events-none flex h-11 items-center px-2"
+      className="glass-panel-darker pointer-events-none flex h-11 items-center px-2 relative bg-gradient-to-r from-[#8b5cf6]/[0.03] via-transparent to-[#00d8d6]/[0.03]"
     >
+      {/* Subtle gradient line at bottom */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-px"
+        style={{
+          background: "linear-gradient(90deg, transparent 0%, rgba(139,92,246,0.3) 30%, rgba(0,216,214,0.3) 70%, transparent 100%)"
+        }}
+      />
       <DownloadProgressModal />
 
       <div className="flex items-center gap-2">
-        <div className="pointer-events-auto flex h-11 w-11 items-center justify-center rounded-md text-zinc-200">
+        {/* <div className="pointer-events-auto flex h-11 w-11 items-center justify-center rounded-md text-zinc-200">
           <LogoIcons.scenify />
-        </div>
+        </div> */}
 
         <div className=" pointer-events-auto flex h-10 items-center px-1.5">
           <Button

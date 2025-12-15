@@ -51,7 +51,7 @@ const Container = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div
-      className="w-[272px] flex-none hidden lg:flex lg:flex-col h-[calc(100vh-58px)] overflow-hidden"
+      className="w-[272px] flex-none hidden lg:flex lg:flex-col h-[calc(100vh-58px)] overflow-hidden relative"
       style={{
         background: "linear-gradient(180deg, rgba(10,10,10,0.95) 0%, rgba(5,5,5,0.98) 100%)",
         backdropFilter: "blur(24px)",
@@ -60,6 +60,20 @@ const Container = ({ children }: { children: React.ReactNode }) => {
         boxShadow: "inset 1px 0 0 rgba(255,255,255,0.03), -8px 0 32px rgba(0,0,0,0.2)",
       }}
     >
+      {/* Subtle gradient accent on left border */}
+      <div
+        className="absolute left-0 top-0 bottom-0 w-px pointer-events-none"
+        style={{
+          background: "linear-gradient(180deg, rgba(139,92,246,0.4) 0%, rgba(0,216,214,0.2) 50%, rgba(139,92,246,0.4) 100%)"
+        }}
+      />
+      {/* Top corner glow */}
+      <div
+        className="absolute top-0 left-0 w-32 h-32 pointer-events-none opacity-30"
+        style={{
+          background: "radial-gradient(circle at top left, rgba(139,92,246,0.15) 0%, transparent 70%)"
+        }}
+      />
       {React.cloneElement(children as React.ReactElement<any>, {
         trackItem,
         trackItems

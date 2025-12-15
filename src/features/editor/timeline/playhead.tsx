@@ -95,7 +95,7 @@ const Playhead = ({ scrollLeft }: { scrollLeft: number }) => {
       <div
         style={{
           borderRadius: "0 0 6px 6px",
-          boxShadow: "0 0 12px rgba(0, 216, 212, 0.42), 0 0 24px rgba(0, 216, 212, 0.23)"
+          boxShadow: "0 0 12px rgba(173, 0, 216, 0.25), 0 0 24px rgba(180, 0, 216, 0.23)"
         }}
         className="absolute top-0 h-5 w-3 -translate-x-1/2 transform bg-gradient-to-b from-[#00d8d6] to-[#00b8b6] text-xs font-semibold"
       />
@@ -105,7 +105,7 @@ const Playhead = ({ scrollLeft }: { scrollLeft: number }) => {
         <div
           className="absolute top-0 h-full w-0.5 -translate-x-1/2 transform bg-[#00d8d6]"
           style={{
-            boxShadow: "0 0 8px rgba(0, 216, 214, 0.6), 0 0 16px rgba(0, 216, 214, 0.3)"
+            boxShadow: "0 0 8px rgba(209, 0, 216, 0.35), 0 0 16px rgba(216, 0, 187, 0.3)"
           }}
         />
       </div>
