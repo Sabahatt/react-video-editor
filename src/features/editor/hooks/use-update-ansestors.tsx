@@ -1,5 +1,5 @@
 import { PlayerRef } from "@remotion/player";
-import { RefObject, useEffect, useRef } from "react";
+import { RefObject, useEffect } from "react";
 import useStore from "../store/use-store";
 import { dispatch } from "@designcombo/events";
 import { ENTER_EDIT_MODE } from "@designcombo/state";
@@ -13,7 +13,6 @@ export default function useUpdateAnsestors({
   playerRef: RefObject<PlayerRef> | null;
 }) {
   const { trackItemIds, activeIds } = useStore();
-  const lastClickRef = useRef<{ id: string; time: number } | null>(null);
 
   useEffect(() => {
     if (!playing) {
@@ -41,11 +40,8 @@ export default function useUpdateAnsestors({
   useEffect(() => {
     if (activeIds.length !== 1) {
       dispatch(ENTER_EDIT_MODE, {
-        payload: {
-          id: null
-        }
+        payload: { id: null }
       });
-      lastClickRef.current = null;
       return;
     }
     const element = getTargetById(activeIds[0]);
@@ -55,38 +51,14 @@ export default function useUpdateAnsestors({
 
     const handleDoubleClick = (e: MouseEvent) => {
       dispatch(ENTER_EDIT_MODE, {
-        payload: {
-          id: activeIds[0]
-        }
+        payload: { id: activeIds[0] }
       });
       e.stopPropagation();
     };
 
-    // Also handle single click to enter edit mode if already selected
-    // This helps when double-click timing is missed
-    const handleClick = (e: MouseEvent) => {
-      const now = Date.now();
-      const lastClick = lastClickRef.current;
-
-      // If clicked same element within 500ms, treat as double-click
-      if (lastClick && lastClick.id === activeIds[0] && now - lastClick.time < 500) {
-        dispatch(ENTER_EDIT_MODE, {
-          payload: {
-            id: activeIds[0]
-          }
-        });
-        e.stopPropagation();
-        lastClickRef.current = null;
-      } else {
-        lastClickRef.current = { id: activeIds[0], time: now };
-      }
-    };
-
     element.addEventListener("dblclick", handleDoubleClick);
-    element.addEventListener("click", handleClick);
     return () => {
       element.removeEventListener("dblclick", handleDoubleClick);
-      element.removeEventListener("click", handleClick);
     };
   }, [activeIds]);
 

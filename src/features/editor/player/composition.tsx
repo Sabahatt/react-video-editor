@@ -196,6 +196,42 @@ const Composition = () => {
     return () => subscription.unsubscribe();
   }, [editableTextId]);
 
+  // Click outside to exit edit mode
+  useEffect(() => {
+    if (!editableTextId) return;
+
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const textElement = document.querySelector(`[data-text-id="${editableTextId}"]`);
+
+      // If click is outside the text element, exit edit mode
+      if (textElement && !textElement.contains(target)) {
+        // Save text before exiting
+        const text = (textElement as HTMLElement).innerText || "";
+        if (trackItemIds.includes(editableTextId)) {
+          dispatch(EDIT_OBJECT, {
+            payload: {
+              [editableTextId]: {
+                details: { text }
+              }
+            }
+          });
+        }
+        setEditableTextId(null);
+      }
+    };
+
+    // Use setTimeout to avoid immediate trigger from the double-click that entered edit mode
+    const timeoutId = setTimeout(() => {
+      document.addEventListener("mousedown", handleClickOutside);
+    }, 100);
+
+    return () => {
+      clearTimeout(timeoutId);
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [editableTextId, trackItemIds]);
+
   return (
     <>
       {groupedItems.map((group, index) => {

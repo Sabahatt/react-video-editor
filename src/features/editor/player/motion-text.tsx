@@ -1,6 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { TextAnimated } from "./animated/text-animated";
 import { ITextDetails } from "@designcombo/types";
+import { dispatch } from "@designcombo/events";
+import { ENTER_EDIT_MODE } from "@designcombo/state";
 
 const TextLayer: React.FC<{
   id: string;
@@ -40,13 +42,21 @@ const TextLayer: React.FC<{
   const [data, setData] = useState(content);
   const divRef = useRef<HTMLDivElement>(null);
 
+  const exitEditMode = useCallback(() => {
+    dispatch(ENTER_EDIT_MODE, {
+      payload: { id: null }
+    });
+  }, []);
+
   useEffect(() => {
     if (editable && divRef.current) {
       const element = divRef.current;
       element.focus();
+      // Place cursor at end instead of selecting all (industry standard)
       const selection = window.getSelection();
       const range = document.createRange();
       range.selectNodeContents(element);
+      range.collapse(false); // Collapse to END
       selection?.removeAllRanges();
       selection?.addRange(range);
     } else {
@@ -60,44 +70,50 @@ const TextLayer: React.FC<{
       setData(content);
     }
   }, [content]);
-  // Function to move caret to the end
-  const moveCaretToEnd = () => {
-    if (divRef.current) {
-      const selection = window.getSelection();
-      const range = document.createRange();
-      range.selectNodeContents(divRef.current);
-      range.collapse(false); // Collapse the range to the end of the content
-      selection?.removeAllRanges();
-      selection?.addRange(range);
+  const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Escape") {
+      e.preventDefault();
+      e.stopPropagation();
+      exitEditMode();
     }
-  };
+  }, [exitEditMode]);
 
-  // OnClick handler to move caret if all text is selected
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.stopPropagation();
+  const handlePaste = useCallback((e: React.ClipboardEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    const text = e.clipboardData.getData("text/plain");
     const selection = window.getSelection();
-    const element = divRef.current;
+    if (!selection?.rangeCount) return;
 
-    if (selection?.rangeCount && element) {
-      const range = selection.getRangeAt(0);
-      if (range.endOffset - range.startOffset === element.textContent?.length) {
-        // All text is selected, move caret to the end
-        moveCaretToEnd();
-      }
+    const range = selection.getRangeAt(0);
+    range.deleteContents();
+    range.insertNode(document.createTextNode(text));
+    range.collapse(false);
+    selection.removeAllRanges();
+    selection.addRange(range);
+
+    if (divRef.current) {
+      onChange?.(id, divRef.current.innerText);
     }
-  };
+  }, [id, onChange]);
+
+  const handleClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+  }, []);
   return (
     <div
       data-text-id={id}
       ref={divRef}
       contentEditable={editable}
       onClick={handleClick}
+      onKeyDown={handleKeyDown}
+      onPaste={handlePaste}
       onInput={(ev) => onChange?.(id, (ev.target as any).innerText)}
       onBlur={(ev) => onBlur?.(id, (ev.target as any).innerText)}
       style={{
         minHeight: "1em",
-        boxShadow: "none",
+        boxShadow: editable ? "0 0 0 2px rgba(251, 146, 60, 0.5)" : "none",
         outline: "none",
+        borderRadius: editable ? "2px" : undefined,
         ...style,
         pointerEvents: editable ? "auto" : "none",
         whiteSpace: "pre-line",
