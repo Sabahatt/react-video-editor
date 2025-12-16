@@ -387,16 +387,16 @@ class Video extends Trimmable {
   public drawGradientOverlay(ctx: CanvasRenderingContext2D) {
     ctx.save();
 
-    // Create gradient overlay from purple/teal for premium feel
+    // Create gradient overlay from pink/coral for premium feel
     const gradient = ctx.createLinearGradient(
       -this.width / 2,
       -this.height / 2,
       this.width / 2,
       this.height / 2
     );
-    gradient.addColorStop(0, "rgba(139, 92, 246, 0.12)"); // Purple start
-    gradient.addColorStop(0.5, "rgba(0, 216, 214, 0.08)"); // Teal middle
-    gradient.addColorStop(1, "rgba(139, 92, 246, 0.12)"); // Purple end
+    gradient.addColorStop(0, "rgba(244, 114, 182, 0.12)"); // Pink start
+    gradient.addColorStop(0.5, "rgba(251, 146, 60, 0.08)"); // Coral middle
+    gradient.addColorStop(1, "rgba(244, 114, 182, 0.12)"); // Pink end
 
     // Draw rounded rect with gradient
     ctx.beginPath();
@@ -518,7 +518,7 @@ class Video extends Trimmable {
 
     // Add glow effect when selected
     if (this.isSelected) {
-      ctx.shadowColor = "rgba(0, 216, 214, 0.6)";
+      ctx.shadowColor = "rgba(251, 146, 60, 0.6)";
       ctx.shadowBlur = 12;
       ctx.shadowOffsetX = 0;
       ctx.shadowOffsetY = 0;
@@ -526,8 +526,8 @@ class Video extends Trimmable {
 
     // Gradient border for selected, subtle border for unselected
     const borderColor = this.isSelected
-      ? "rgba(0, 216, 214, 1.0)"
-      : "rgba(139, 92, 246, 0.3)";
+      ? "rgba(251, 146, 60, 1.0)"
+      : "rgba(244, 114, 182, 0.3)";
 
     ctx.fillStyle = borderColor;
 

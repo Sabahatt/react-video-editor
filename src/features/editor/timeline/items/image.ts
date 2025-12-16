@@ -38,16 +38,16 @@ class Image extends Resizable {
   public drawGradientOverlay(ctx: CanvasRenderingContext2D) {
     ctx.save();
 
-    // Create gradient overlay from teal/purple for premium feel
+    // Create gradient overlay from coral/pink for premium feel
     const gradient = ctx.createLinearGradient(
       -this.width / 2,
       -this.height / 2,
       this.width / 2,
       this.height / 2
     );
-    gradient.addColorStop(0, "rgba(0, 216, 214, 0.1)"); // Teal start
-    gradient.addColorStop(0.5, "rgba(139, 92, 246, 0.08)"); // Purple middle
-    gradient.addColorStop(1, "rgba(0, 216, 214, 0.1)"); // Teal end
+    gradient.addColorStop(0, "rgba(251, 146, 60, 0.1)"); // Coral start
+    gradient.addColorStop(0.5, "rgba(244, 114, 182, 0.08)"); // Pink middle
+    gradient.addColorStop(1, "rgba(251, 146, 60, 0.1)"); // Coral end
 
     // Draw rounded rect with gradient
     ctx.beginPath();
@@ -93,15 +93,15 @@ class Image extends Resizable {
 
     // Add glow effect when selected
     if (this.isSelected) {
-      ctx.shadowColor = "rgba(0, 216, 214, 0.6)";
+      ctx.shadowColor = "rgba(251, 146, 60, 0.6)";
       ctx.shadowBlur = 12;
       ctx.shadowOffsetX = 0;
       ctx.shadowOffsetY = 0;
     }
 
     const borderColor = this.isSelected
-      ? "rgba(0, 216, 214, 1.0)"
-      : "rgba(139, 92, 246, 0.3)";
+      ? "rgba(251, 146, 60, 1.0)"
+      : "rgba(244, 114, 182, 0.3)";
 
     ctx.fillStyle = borderColor;
 

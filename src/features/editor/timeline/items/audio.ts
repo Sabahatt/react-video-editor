@@ -168,16 +168,16 @@ class Audio extends Trimmable {
   public drawGradientBackground(ctx: CanvasRenderingContext2D) {
     ctx.save();
 
-    // Create gradient from purple to darker purple
+    // Create gradient from pink to darker pink
     const gradient = ctx.createLinearGradient(
       -this.width / 2,
       -this.height / 2,
       this.width / 2,
       this.height / 2
     );
-    gradient.addColorStop(0, "rgba(139, 92, 246, 0.25)"); // Purple start
-    gradient.addColorStop(0.5, "rgba(109, 40, 217, 0.2)"); // Darker purple middle
-    gradient.addColorStop(1, "rgba(139, 92, 246, 0.15)"); // Purple end
+    gradient.addColorStop(0, "rgba(244, 114, 182, 0.25)"); // Pink start
+    gradient.addColorStop(0.5, "rgba(219, 39, 119, 0.2)"); // Darker pink middle
+    gradient.addColorStop(1, "rgba(244, 114, 182, 0.15)"); // Pink end
 
     // Draw rounded rect with gradient
     ctx.beginPath();
@@ -221,15 +221,15 @@ class Audio extends Trimmable {
 
     // Add glow effect when selected
     if (this.isSelected) {
-      ctx.shadowColor = "rgba(139, 92, 246, 0.6)";
+      ctx.shadowColor = "rgba(244, 114, 182, 0.6)";
       ctx.shadowBlur = 12;
       ctx.shadowOffsetX = 0;
       ctx.shadowOffsetY = 0;
     }
 
     const borderColor = this.isSelected
-      ? "rgba(139, 92, 246, 1.0)"
-      : "rgba(139, 92, 246, 0.3)";
+      ? "rgba(244, 114, 182, 1.0)"
+      : "rgba(244, 114, 182, 0.3)";
 
     ctx.fillStyle = borderColor;
 
@@ -294,8 +294,8 @@ class Audio extends Trimmable {
     ctx.roundRect(0, 0, this.offscreenCanvas!.width, this.height, this.rx);
     ctx.clip();
 
-    // Draw waveform with gradient purple/teal color
-    ctx.fillStyle = "rgba(139, 92, 246, 0.8)"; // Purple waveform
+    // Draw waveform with gradient pink color
+    ctx.fillStyle = "rgba(244, 114, 182, 0.8)"; // Pink waveform
     ctx.imageSmoothingEnabled = false;
 
     // Calculate which bars are visible

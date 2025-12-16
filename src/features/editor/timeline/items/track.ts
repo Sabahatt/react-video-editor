@@ -26,14 +26,14 @@ class Track extends TrackBase {
       ctx.translate(-this.width / 2, -this.height / 2);
       ctx.translate(0, 12);
       ctx.font = "600 12px 'Inter variable'";
-      ctx.fillStyle = "rgba(0, 216, 214, 0.5)"; // Teal colored hint text
+      ctx.fillStyle = "rgba(251, 146, 60, 0.5)"; // Coral colored hint text
       ctx.textAlign = "left";
       ctx.clip();
       ctx.fillText("Drag and drop media here", 32, 12);
 
       ctx.translate(8, 1);
 
-      ctx.fillStyle = "rgba(0, 216, 214, 0.5)"; // Teal colored icon
+      ctx.fillStyle = "rgba(251, 146, 60, 0.5)"; // Coral colored icon
       ctx.fill(textPath);
       ctx.restore();
     }
@@ -42,16 +42,16 @@ class Track extends TrackBase {
   private drawTrackGradient(ctx: CanvasRenderingContext2D) {
     ctx.save();
 
-    // Create subtle gradient from left to right with teal/purple hints
+    // Create subtle gradient from left to right with coral/pink hints
     const gradient = ctx.createLinearGradient(
       -this.width / 2,
       0,
       this.width / 2,
       0
     );
-    gradient.addColorStop(0, "rgba(0, 216, 214, 0.02)");
-    gradient.addColorStop(0.5, "rgba(139, 92, 246, 0.015)");
-    gradient.addColorStop(1, "rgba(0, 216, 214, 0.02)");
+    gradient.addColorStop(0, "rgba(251, 146, 60, 0.02)");
+    gradient.addColorStop(0.5, "rgba(244, 114, 182, 0.015)");
+    gradient.addColorStop(1, "rgba(251, 146, 60, 0.02)");
 
     ctx.fillStyle = gradient;
     ctx.fillRect(-this.width / 2, -this.height / 2, this.width, this.height);

@@ -18,9 +18,6 @@ export function createMetadata(override: Metadata): Metadata {
       description: override.description ?? undefined,
       images: "/banner.png",
       ...override.twitter
-    },
-    icons: {
-      icon: "/icon.svg"
     }
   };
 }

@@ -39,16 +39,16 @@ class Caption extends Resizable {
   public drawGradientBackground(ctx: CanvasRenderingContext2D) {
     ctx.save();
 
-    // Create gradient from teal-blue
+    // Create gradient from coral-orange
     const gradient = ctx.createLinearGradient(
       -this.width / 2,
       -this.height / 2,
       this.width / 2,
       this.height / 2
     );
-    gradient.addColorStop(0, "rgba(0, 200, 200, 0.18)"); // Teal start
-    gradient.addColorStop(0.5, "rgba(0, 150, 180, 0.12)"); // Blue-teal middle
-    gradient.addColorStop(1, "rgba(0, 200, 200, 0.08)"); // Teal end
+    gradient.addColorStop(0, "rgba(251, 146, 60, 0.18)"); // Coral start
+    gradient.addColorStop(0.5, "rgba(234, 88, 12, 0.12)"); // Orange middle
+    gradient.addColorStop(1, "rgba(251, 146, 60, 0.08)"); // Coral end
 
     // Draw rounded rect with gradient
     ctx.beginPath();
@@ -115,15 +115,15 @@ class Caption extends Resizable {
 
     // Add glow effect when selected
     if (this.isSelected) {
-      ctx.shadowColor = "rgba(0, 216, 214, 0.6)";
+      ctx.shadowColor = "rgba(251, 146, 60, 0.6)";
       ctx.shadowBlur = 12;
       ctx.shadowOffsetX = 0;
       ctx.shadowOffsetY = 0;
     }
 
     const borderColor = this.isSelected
-      ? "rgba(0, 216, 214, 1.0)"
-      : "rgba(0, 216, 214, 0.3)";
+      ? "rgba(251, 146, 60, 1.0)"
+      : "rgba(251, 146, 60, 0.3)";
 
     ctx.fillStyle = borderColor;
 

@@ -113,7 +113,7 @@ const Ruler = (props: RulerProps) => {
     context.clearRect(0, 0, width, height);
     context.save();
     context.strokeStyle = "#52525b";
-    context.fillStyle = "rgba(0, 216, 214, 0.7)"; // Teal accent for time labels
+    context.fillStyle = "rgba(251, 146, 60, 0.8)"; // Coral accent for time labels
     context.lineWidth = 1;
     context.font = `${SMALL_FONT_SIZE}px ${SECONDARY_FONT}`;
     context.textBaseline = "top";
@@ -403,7 +403,7 @@ const Ruler = (props: RulerProps) => {
         position: "relative",
         width: "100%",
         height: `${canvasSize.height}px`,
-        background: "linear-gradient(180deg, rgba(0,216,214,0.02) 0%, transparent 100%)"
+        background: "linear-gradient(180deg, rgba(251,146,60,0.02) 0%, transparent 100%)"
       }}
     >
       <canvas

@@ -140,8 +140,8 @@ const Timeline = ({ stateManager }: { stateManager: StateManager }) => {
         width: containerWidth,
         height: 0
       },
-      selectionColor: "rgba(0, 216, 214,0.1)",
-      selectionBorderColor: "rgba(0, 216, 214,1.0)",
+      selectionColor: "rgba(251, 146, 60, 0.1)",
+      selectionBorderColor: "rgba(251, 146, 60, 1.0)",
       onScroll,
       onResizeCanvas,
       scale: scale,
@@ -317,7 +317,7 @@ const Timeline = ({ stateManager }: { stateManager: StateManager }) => {
       <div
         className="absolute top-0 left-0 right-0 h-px pointer-events-none"
         style={{
-          background: "linear-gradient(90deg, transparent 0%, rgba(0,216,214,0.3) 50%, transparent 100%)"
+          background: "linear-gradient(90deg, transparent 0%, rgba(251,146,60,0.3) 50%, transparent 100%)"
         }}
       />
       <Header />
@@ -331,7 +331,7 @@ const Timeline = ({ stateManager }: { stateManager: StateManager }) => {
         <div
           style={{
             width: timelineOffsetX,
-            background: "linear-gradient(180deg, rgba(139,92,246,0.03) 0%, rgba(0,216,214,0.02) 100%)"
+            background: "linear-gradient(180deg, rgba(244,114,182,0.03) 0%, rgba(251,146,60,0.02) 100%)"
           }}
           className="relative flex-none border-r border-white/[0.04]"
         />
@@ -340,7 +340,7 @@ const Timeline = ({ stateManager }: { stateManager: StateManager }) => {
           <div
             className="absolute inset-0 pointer-events-none z-0"
             style={{
-              background: "linear-gradient(135deg, rgba(139,92,246,0.02) 0%, rgba(0,216,214,0.015) 50%, rgba(139,92,246,0.02) 100%)"
+              background: "linear-gradient(135deg, rgba(244,114,182,0.02) 0%, rgba(251,146,60,0.015) 50%, rgba(244,114,182,0.02) 100%)"
             }}
           />
           <div
