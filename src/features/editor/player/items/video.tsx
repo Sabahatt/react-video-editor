@@ -31,33 +31,9 @@ export const Video = ({
   const { durationInFrames } = calculateFrames(item.display, fps);
   const currentFrame = (frame || 0) - (item.display.from * fps) / 1000;
 
-  // Calculate trim values - if not set, use full duration based on display
-  // When trim is not set, scale display duration by playbackRate to get source duration
-  // (slower playback = longer display duration for same source content)
+  // Calculate trim start - if not set, start from beginning
   const trimFrom = item.trim?.from ?? 0;
-  const trimTo = item.trim?.to ?? ((item.display.to - item.display.from) * playbackRate);
   const startFromFrame = Math.round((trimFrom / 1000) * fps);
-  const endAtFrame = Math.round((trimTo / 1000) * fps) || undefined;
-
-  // Debug: Calculate what endAt SHOULD be based on display duration and playback rate
-  // The source frames needed = (display duration in ms) * playbackRate / 1000 * fps
-  const expectedSourceFrames = Math.round(((item.display.to - item.display.from) * playbackRate / 1000) * fps);
-
-  // Debug logging
-  console.log('[Video Debug]', {
-    playbackRate,
-    'item.trim': item.trim,
-    'item.duration': item.duration,
-    'display.from': item.display.from,
-    'display.to': item.display.to,
-    'displayDuration': item.display.to - item.display.from,
-    trimFrom,
-    trimTo,
-    startFromFrame,
-    endAtFrame,
-    expectedSourceFrames,
-    durationInFrames
-  });
 
   const children = (
     <BoxAnim

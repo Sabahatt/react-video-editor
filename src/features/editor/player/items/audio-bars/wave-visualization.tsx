@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo, useMemo } from "react";
 import { Easing, useCurrentFrame, useVideoConfig } from "remotion";
 import { getRMS, processAudioFftValue } from "./audio-utils";
 
@@ -68,7 +68,8 @@ interface WaveProps extends BaseWaveProps {
   amplitude: number;
 }
 
-export const Wave: React.FC<WaveProps> = ({
+// Memoized Wave component
+export const Wave: React.FC<WaveProps> = memo(({
   sections = 12,
   offsetPixels,
   amplitude,
@@ -153,7 +154,7 @@ export const Wave: React.FC<WaveProps> = ({
       </svg>
     </div>
   );
-};
+});
 
 interface WaveVisualizationProps extends BaseWaveProps {
   frequencyData: number[];
@@ -162,7 +163,8 @@ interface WaveVisualizationProps extends BaseWaveProps {
   minDb?: number;
 }
 
-export const WaveVisualization: React.FC<WaveVisualizationProps> = ({
+// Memoized WaveVisualization component
+export const WaveVisualization: React.FC<WaveVisualizationProps> = memo(({
   frequencyData,
   width,
   height,
@@ -176,12 +178,16 @@ export const WaveVisualization: React.FC<WaveVisualizationProps> = ({
 
   if (!frequencyData) return null;
 
-  const amplitudes = frequencyData
-    .slice(0.25 * frequencyData.length)
-    .map((v) => processAudioFftValue(v, { maxDb, minDb }));
-
-  const amplitude = height * getRMS(amplitudes);
-  const currentTime = frame / fps;
+  // Memoize amplitude calculations
+  const { amplitude, currentTime } = useMemo(() => {
+    const amplitudes = frequencyData
+      .slice(0.25 * frequencyData.length)
+      .map((v) => processAudioFftValue(v, { maxDb, minDb }));
+    return {
+      amplitude: height * getRMS(amplitudes),
+      currentTime: frame / fps
+    };
+  }, [frequencyData, maxDb, minDb, height, frame, fps]);
 
   return (
     <div style={{ width, height }}>
@@ -194,4 +200,4 @@ export const WaveVisualization: React.FC<WaveVisualizationProps> = ({
       />
     </div>
   );
-};
+});

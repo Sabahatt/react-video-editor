@@ -21,11 +21,18 @@ import {
 } from "../utils/timeline";
 import { useCurrentPlayerFrame } from "../hooks/use-current-frame";
 import { Slider } from "@/components/ui/slider";
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import useUpdateAnsestors from "../hooks/use-update-ansestors";
 import { ITimelineScaleState } from "@designcombo/types";
 import { useIsLargeScreen } from "@/hooks/use-media-query";
 import { useTimelineOffsetX } from "../hooks/use-timeline-offset";
+
+// Use individual selectors to prevent unnecessary re-renders
+const selectDuration = (state: ReturnType<typeof useStore.getState>) => state.duration;
+const selectFps = (state: ReturnType<typeof useStore.getState>) => state.fps;
+const selectScale = (state: ReturnType<typeof useStore.getState>) => state.scale;
+const selectPlayerRef = (state: ReturnType<typeof useStore.getState>) => state.playerRef;
+const selectActiveIds = (state: ReturnType<typeof useStore.getState>) => state.activeIds;
 
 const IconPlayerPlayFilled = ({ size }: { size: number }) => (
   <svg
@@ -86,7 +93,12 @@ const IconPlayerSkipForward = ({ size }: { size: number }) => (
 );
 const Header = () => {
   const [playing, setPlaying] = useState(false);
-  const { duration, fps, scale, playerRef, activeIds } = useStore();
+  // Use individual selectors to minimize re-renders
+  const duration = useStore(selectDuration);
+  const fps = useStore(selectFps);
+  const scale = useStore(selectScale);
+  const playerRef = useStore(selectPlayerRef);
+  const activeIds = useStore(selectActiveIds);
   const isLargeScreen = useIsLargeScreen();
   useUpdateAnsestors({ playing, playerRef });
 

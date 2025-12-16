@@ -8,6 +8,9 @@ import {
 } from "@designcombo/state";
 import useStore from "../store/use-store";
 
+// Use individual selectors to prevent unnecessary re-renders
+const selectActiveIds = (state: ReturnType<typeof useStore.getState>) => state.activeIds;
+
 /**
  * Hook to handle keyboard shortcuts for the editor
  *
@@ -20,7 +23,7 @@ import useStore from "../store/use-store";
  * - Ctrl/Cmd + V: Paste copied items (clones them)
  */
 const useKeyboardShortcuts = () => {
-  const { activeIds } = useStore();
+  const activeIds = useStore(selectActiveIds);
   const copiedIdsRef = useRef<string[]>([]);
 
   useEffect(() => {

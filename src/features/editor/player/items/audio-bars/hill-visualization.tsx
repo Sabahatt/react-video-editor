@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo, useMemo } from "react";
 import { CSSProperties, useEffect, useRef, useState } from "react";
 import { random, useCurrentFrame } from "remotion";
 import { processAudioFftValue } from "./audio-utils";
@@ -50,7 +50,8 @@ interface HillsProps {
   copies?: number;
 }
 
-export const Hills: React.FC<HillsProps> = ({
+// Memoized Hills component
+export const Hills: React.FC<HillsProps> = memo(({
   values,
   width = 400,
   height = 100,
@@ -166,15 +167,16 @@ export const Hills: React.FC<HillsProps> = ({
       </svg>
     </div>
   );
-};
+});
 
+// Memoized HillsVisualization component
 export const HillsVisualization: React.FC<
   Omit<HillsProps, "values"> & {
     frequencyData: number[];
     maxDb?: number;
     minDb?: number;
   }
-> = ({
+> = memo(({
   width,
   height,
   frequencyData,
@@ -201,7 +203,11 @@ export const HillsVisualization: React.FC<
 
   if (!frequencyData) return null;
 
-  const amplitudes = getHills({ frequencyData, minDb, maxDb });
+  // Memoize amplitudes calculation
+  const amplitudes = useMemo(() =>
+    getHills({ frequencyData, minDb, maxDb }),
+    [frequencyData, minDb, maxDb]
+  );
 
   return (
     <div ref={containerRef} style={{ width, height }}>
@@ -217,4 +223,4 @@ export const HillsVisualization: React.FC<
       />
     </div>
   );
-};
+});

@@ -13,8 +13,17 @@ import { LAYER_PREFIX, LAYER_SELECTION } from "@designcombo/state";
 import { TIMELINE_SEEK, TIMELINE_PREFIX } from "@designcombo/timeline";
 import { getSafeCurrentFrame } from "../utils/time";
 
+// Use individual selectors to prevent unnecessary re-renders
+const selectPlayerRef = (state: ReturnType<typeof useStore.getState>) => state.playerRef;
+const selectFps = (state: ReturnType<typeof useStore.getState>) => state.fps;
+const selectTimeline = (state: ReturnType<typeof useStore.getState>) => state.timeline;
+const selectSetState = (state: ReturnType<typeof useStore.getState>) => state.setState;
+
 const useTimelineEvents = () => {
-  const { playerRef, fps, timeline, setState } = useStore();
+  const playerRef = useStore(selectPlayerRef);
+  const fps = useStore(selectFps);
+  const timeline = useStore(selectTimeline);
+  const setState = useStore(selectSetState);
 
   //handle player events
   useEffect(() => {

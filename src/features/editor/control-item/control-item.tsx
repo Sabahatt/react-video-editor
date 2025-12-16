@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import {
   IAudio,
   ICaption,
@@ -19,8 +19,13 @@ import useLayoutStore from "../store/use-layout-store";
 import BasicCaption from "./basic-caption";
 import { LassoSelect, PanelRightClose, PanelRightOpen } from "lucide-react";
 
+// Use individual selectors to prevent unnecessary re-renders
+const selectActiveIds = (state: ReturnType<typeof useStore.getState>) => state.activeIds;
+const selectTrackItemsMap = (state: ReturnType<typeof useStore.getState>) => state.trackItemsMap;
+
 const Container = ({ children }: { children: React.ReactNode }) => {
-  const { activeIds, trackItemsMap, transitionsMap } = useStore();
+  const activeIds = useStore(selectActiveIds);
+  const trackItemsMap = useStore(selectTrackItemsMap);
   const [trackItem, setTrackItem] = useState<ITrackItem | null>(null);
   const [trackItems, setTrackItems] = useState<ITrackItem[]>([]);
   const { showControlItem, setShowControlItem, setTrackItem: setLayoutTrackItem } = useLayoutStore();

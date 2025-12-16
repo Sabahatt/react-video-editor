@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, useCallback } from "react";
 import Header from "./header";
 import Ruler from "./ruler";
 import { timeMsToUnits, unitsToTimeMs } from "@designcombo/timeline";
@@ -35,6 +35,15 @@ import PreviewTrackItem from "./items/preview-drag-item";
 import { useTimelineOffsetX } from "../hooks/use-timeline-offset";
 import { useStateManagerEvents } from "../hooks/use-state-manager-events";
 
+// Use individual selectors to prevent unnecessary re-renders
+const selectScale = (state: ReturnType<typeof useStore.getState>) => state.scale;
+const selectPlayerRef = (state: ReturnType<typeof useStore.getState>) => state.playerRef;
+const selectFps = (state: ReturnType<typeof useStore.getState>) => state.fps;
+const selectDuration = (state: ReturnType<typeof useStore.getState>) => state.duration;
+const selectSetState = (state: ReturnType<typeof useStore.getState>) => state.setState;
+const selectTimeline = (state: ReturnType<typeof useStore.getState>) => state.timeline;
+const selectSetTimeline = (state: ReturnType<typeof useStore.getState>) => state.setTimeline;
+
 CanvasTimeline.registerItems({
   Text,
   Image,
@@ -61,15 +70,21 @@ const Timeline = ({ stateManager }: { stateManager: StateManager }) => {
   const canvasRef = useRef<CanvasTimeline | null>(null);
   const verticalScrollbarVpRef = useRef<HTMLDivElement>(null);
   const horizontalScrollbarVpRef = useRef<HTMLDivElement>(null);
-  const { scale, playerRef, fps, duration, setState, timeline } = useStore();
+  // Use individual selectors to minimize re-renders
+  const scale = useStore(selectScale);
+  const playerRef = useStore(selectPlayerRef);
+  const fps = useStore(selectFps);
+  const duration = useStore(selectDuration);
+  const setState = useStore(selectSetState);
+  const timeline = useStore(selectTimeline);
+  const setTimeline = useStore(selectSetTimeline);
+
   const currentFrame = useCurrentPlayerFrame(playerRef);
   const [canvasSize, setCanvasSize] = useState(EMPTY_SIZE);
   const [size, setSize] = useState<{ width: number; height: number }>(
     EMPTY_SIZE
   );
   const timelineOffsetX = useTimelineOffsetX();
-
-  const { setTimeline } = useStore();
 
   // Use the extracted state manager events hook
   useStateManagerEvents(stateManager);

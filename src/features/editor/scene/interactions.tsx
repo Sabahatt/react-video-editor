@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import { Selection, Moveable } from "@interactify/toolkit";
 import { getIdFromClassName } from "../utils/scene";
 import { dispatch } from "@designcombo/events";
@@ -17,6 +17,14 @@ import {
   calculateTextHeight,
   htmlToPlainText
 } from "../utils/text";
+
+// Use individual selectors to prevent unnecessary re-renders
+const selectActiveIds = (state: ReturnType<typeof useStore.getState>) => state.activeIds;
+const selectSetState = (state: ReturnType<typeof useStore.getState>) => state.setState;
+const selectTrackItemsMap = (state: ReturnType<typeof useStore.getState>) => state.trackItemsMap;
+const selectPlayerRef = (state: ReturnType<typeof useStore.getState>) => state.playerRef;
+const selectSetSceneMoveableRef = (state: ReturnType<typeof useStore.getState>) => state.setSceneMoveableRef;
+const selectTrackItemIds = (state: ReturnType<typeof useStore.getState>) => state.trackItemIds;
 
 let holdGroupPosition: Record<string, any> | null = null;
 let dragStartEnd = false;
@@ -59,14 +67,15 @@ export function SceneInteractions({
 }: SceneInteractionsProps) {
   const [targets, setTargets] = useState<HTMLDivElement[]>([]);
   const [selection, setSelection] = useState<Selection>();
-  const {
-    activeIds,
-    setState,
-    trackItemsMap,
-    playerRef,
-    setSceneMoveableRef,
-    trackItemIds
-  } = useStore();
+
+  // Use individual selectors to minimize re-renders
+  const activeIds = useStore(selectActiveIds);
+  const setState = useStore(selectSetState);
+  const trackItemsMap = useStore(selectTrackItemsMap);
+  const playerRef = useStore(selectPlayerRef);
+  const setSceneMoveableRef = useStore(selectSetSceneMoveableRef);
+  const trackItemIds = useStore(selectTrackItemIds);
+
   const moveableRef = useRef<Moveable>(null);
   const [selectionInfo, setSelectionInfo] =
     useState<SelectionInfo>(emptySelection);

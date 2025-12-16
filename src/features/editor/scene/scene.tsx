@@ -1,5 +1,5 @@
 import { Player } from "../player";
-import { useRef, useImperativeHandle, forwardRef } from "react";
+import { useRef, useImperativeHandle, forwardRef, memo } from "react";
 import useStore from "../store/use-store";
 import StateManager from "@designcombo/state";
 import SceneEmpty from "./empty";
@@ -8,6 +8,10 @@ import useZoom from "../hooks/use-zoom";
 import { SceneInteractions } from "./interactions";
 import { SceneRef } from "./scene.types";
 
+// Use individual selectors to prevent unnecessary re-renders
+const selectSize = (state: ReturnType<typeof useStore.getState>) => state.size;
+const selectTrackItemIds = (state: ReturnType<typeof useStore.getState>) => state.trackItemIds;
+
 const Scene = forwardRef<
   SceneRef,
   {
@@ -15,7 +19,8 @@ const Scene = forwardRef<
   }
 >(({ stateManager }, ref) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { size, trackItemIds } = useStore();
+  const size = useStore(selectSize);
+  const trackItemIds = useStore(selectTrackItemIds);
   const { zoom, handlePinch, recalculateZoom } = useZoom(
     containerRef as React.RefObject<HTMLDivElement>,
     size

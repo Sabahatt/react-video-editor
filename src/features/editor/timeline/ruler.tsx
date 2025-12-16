@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, memo } from "react";
 
 import {
   PREVIEW_FRAME_WIDTH,
@@ -10,6 +10,9 @@ import { formatTimelineUnit } from "../utils/format";
 import useStore from "../store/use-store";
 import { debounce } from "lodash";
 import { useTimelineOffsetX } from "../hooks/use-timeline-offset";
+
+// Use individual selectors to prevent unnecessary re-renders
+const selectScale = (state: ReturnType<typeof useStore.getState>) => state.scale;
 
 interface RulerProps {
   height?: number;
@@ -36,7 +39,7 @@ const Ruler = (props: RulerProps) => {
     onClick,
     onScroll
   } = props;
-  const { scale } = useStore();
+  const scale = useStore(selectScale);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [canvasContext, setCanvasContext] =
     useState<CanvasRenderingContext2D | null>(null);

@@ -7,7 +7,7 @@ import useKeyboardShortcuts from "./hooks/use-keyboard-shortcuts";
 import Scene from "./scene";
 import { SceneRef } from "./scene/scene.types";
 import StateManager, { DESIGN_LOAD } from "@designcombo/state";
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback, memo } from "react";
 import {
 	ResizableHandle,
 	ResizablePanel,
@@ -37,6 +37,12 @@ import { PipelineProgressPanel } from "@/components/pipeline/pipeline-progress-p
 import { EditorLockedOverlay } from "@/components/pipeline/editor-locked-overlay";
 import { useRouter } from "next/navigation";
 
+// Use individual selectors to prevent unnecessary re-renders
+const selectTimeline = (state: ReturnType<typeof useStore.getState>) => state.timeline;
+const selectPlayerRef = (state: ReturnType<typeof useStore.getState>) => state.playerRef;
+const selectActiveIds = (state: ReturnType<typeof useStore.getState>) => state.activeIds;
+const selectTrackItemsMap = (state: ReturnType<typeof useStore.getState>) => state.trackItemsMap;
+
 const stateManager = new StateManager({
 	size: {
 		width: 1920,
@@ -53,8 +59,12 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 	const { scene } = useSceneStore();
 	const timelinePanelRef = useRef<ImperativePanelHandle>(null);
 	const sceneRef = useRef<SceneRef>(null);
-	const { timeline, playerRef } = useStore();
-	const { activeIds, trackItemsMap, transitionsMap } = useStore();
+
+	// Use individual selectors to minimize re-renders
+	const timeline = useStore(selectTimeline);
+	const playerRef = useStore(selectPlayerRef);
+	const activeIds = useStore(selectActiveIds);
+	const trackItemsMap = useStore(selectTrackItemsMap);
 	const [loaded, setLoaded] = useState(false);
 	const [trackItem, setTrackItem] = useState<ITrackItem | null>(null);
 	const {

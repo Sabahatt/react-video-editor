@@ -1,5 +1,5 @@
 import { SequenceItem } from "./sequence-item";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo, useCallback, useRef } from "react";
 import { dispatch, filter, subject } from "@designcombo/events";
 import { EDIT_OBJECT, ENTER_EDIT_MODE } from "@designcombo/state";
 import { groupTrackItems } from "../utils/track-items";
@@ -8,27 +8,63 @@ import { calculateTextHeight } from "../utils/text";
 import { useCurrentFrame } from "remotion";
 import useStore from "../store/use-store";
 
+// Use individual selectors to prevent unnecessary re-renders
+const selectTrackItemIds = (state: ReturnType<typeof useStore.getState>) => state.trackItemIds;
+const selectTrackItemsMap = (state: ReturnType<typeof useStore.getState>) => state.trackItemsMap;
+const selectFps = (state: ReturnType<typeof useStore.getState>) => state.fps;
+const selectSceneMoveableRef = (state: ReturnType<typeof useStore.getState>) => state.sceneMoveableRef;
+const selectSize = (state: ReturnType<typeof useStore.getState>) => state.size;
+const selectTransitionsMap = (state: ReturnType<typeof useStore.getState>) => state.transitionsMap;
+
+// Reusable measurement element (created once, reused for all measurements)
+let measurementDiv: HTMLDivElement | null = null;
+const getMeasurementDiv = () => {
+  if (!measurementDiv) {
+    measurementDiv = document.createElement("div");
+    measurementDiv.style.visibility = "hidden";
+    measurementDiv.style.position = "absolute";
+    measurementDiv.style.top = "-1000px";
+    measurementDiv.style.whiteSpace = "nowrap";
+    document.body.appendChild(measurementDiv);
+  }
+  return measurementDiv;
+};
+
 const Composition = () => {
   const [editableTextId, setEditableTextId] = useState<string | null>(null);
-  const {
-    trackItemIds,
-    trackItemsMap,
-    fps,
-    sceneMoveableRef,
-    size,
-    transitionsMap,
-    structure,
-    activeIds
-  } = useStore();
+
+  // Use individual selectors to minimize re-renders
+  const trackItemIds = useStore(selectTrackItemIds);
+  const trackItemsMap = useStore(selectTrackItemsMap);
+  const fps = useStore(selectFps);
+  const sceneMoveableRef = useStore(selectSceneMoveableRef);
+  const size = useStore(selectSize);
+  const transitionsMap = useStore(selectTransitionsMap);
+
   const frame = useCurrentFrame();
 
-  const groupedItems = groupTrackItems({
+  // Debounce timer ref for text change updates
+  const textChangeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Memoize groupedItems to avoid recalculation on every render
+  const groupedItems = useMemo(() => groupTrackItems({
     trackItemIds,
     transitionsMap,
     trackItemsMap: trackItemsMap
-  });
+  }), [trackItemIds, transitionsMap, trackItemsMap]);
 
-  const handleTextChange = (id: string, _: string) => {
+  // Debounced moveable update to prevent excessive layout recalculations
+  const debouncedMoveableUpdate = useCallback(() => {
+    if (textChangeTimerRef.current) {
+      clearTimeout(textChangeTimerRef.current);
+    }
+    textChangeTimerRef.current = setTimeout(() => {
+      sceneMoveableRef?.current?.moveable.updateRect();
+      sceneMoveableRef?.current?.moveable.forceUpdate();
+    }, 50); // 50ms debounce
+  }, [sceneMoveableRef]);
+
+  const handleTextChange = useCallback((id: string, _: string) => {
     const elRef = document.querySelector(`.id-${id}`) as HTMLDivElement;
     if (!elRef) return;
 
@@ -57,19 +93,14 @@ const Composition = () => {
       ""
     );
 
-    // Create temporary element to measure longest word width
-    const tempDiv = document.createElement("div");
-    tempDiv.style.visibility = "hidden";
-    tempDiv.style.position = "absolute";
-    tempDiv.style.top = "-1000px";
+    // Reuse measurement element instead of creating/destroying on every keystroke
+    const tempDiv = getMeasurementDiv();
     tempDiv.style.fontSize = fontSize;
     tempDiv.style.fontFamily = fontFamily;
     tempDiv.style.fontWeight = fontWeight;
     tempDiv.style.letterSpacing = letterSpacing;
     tempDiv.textContent = longestWord;
-    document.body.appendChild(tempDiv);
     const wordWidth = tempDiv.offsetWidth;
-    document.body.removeChild(tempDiv);
 
     // Expand width if word is wider than current container
     const currentWidth = elRef.clientWidth;
@@ -96,9 +127,9 @@ const Composition = () => {
       elRef.style.height = `${newHeight}px`;
     }
 
-    sceneMoveableRef?.current?.moveable.updateRect();
-    sceneMoveableRef?.current?.moveable.forceUpdate();
-  };
+    // Debounced update to prevent layout thrashing
+    debouncedMoveableUpdate();
+  }, [debouncedMoveableUpdate]);
 
   const onTextBlur = (id: string, _: string) => {
     const elRef = document.querySelector(`.id-${id}`) as HTMLDivElement;
@@ -231,6 +262,15 @@ const Composition = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [editableTextId, trackItemIds]);
+
+  // Cleanup debounce timer on unmount
+  useEffect(() => {
+    return () => {
+      if (textChangeTimerRef.current) {
+        clearTimeout(textChangeTimerRef.current);
+      }
+    };
+  }, []);
 
   return (
     <>

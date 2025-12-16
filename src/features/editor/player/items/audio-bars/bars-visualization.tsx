@@ -1,7 +1,8 @@
-import { CSSProperties, useEffect, useRef, useState } from "react";
+import { CSSProperties, useEffect, useRef, useState, useMemo, memo } from "react";
 import { useCurrentFrame } from "remotion";
 import { processAudioFftValue } from "./audio-utils";
 
+// Memoized bar calculation to prevent recalculation on every render
 export const getBars = ({
   totalWidth,
   itemWidth,
@@ -43,7 +44,8 @@ interface BarsProps {
   maxAmplitude?: number;
 }
 
-const Bars: React.FC<BarsProps> = ({
+// Memoized Bars component to prevent unnecessary re-renders
+const Bars: React.FC<BarsProps> = memo(({
   values,
   width = 400,
   height = 100,
@@ -89,15 +91,16 @@ const Bars: React.FC<BarsProps> = ({
       </svg>
     </div>
   );
-};
+});
 
+// Memoized BarsVisualization component
 export const BarsVisualization: React.FC<
   Omit<BarsProps, "values"> & {
     frequencyData: number[];
     maxDb?: number;
     minDb?: number;
   }
-> = ({
+> = memo(({
   width,
   height,
   frequencyData,
@@ -122,13 +125,14 @@ export const BarsVisualization: React.FC<
 
   const { width: w, height: h } = size;
 
-  const amplitudes = getBars({
+  // Memoize amplitudes calculation
+  const amplitudes = useMemo(() => getBars({
     totalWidth: w,
     itemWidth: lineThickness + gapSize,
     frequencyData,
     maxDb,
     minDb
-  });
+  }), [w, lineThickness, gapSize, frequencyData, maxDb, minDb]);
 
   return (
     <div ref={containerRef} style={{ width, height }}>
@@ -144,4 +148,4 @@ export const BarsVisualization: React.FC<
       />
     </div>
   );
-};
+});

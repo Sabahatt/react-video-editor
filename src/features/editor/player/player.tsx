@@ -3,9 +3,20 @@ import Composition from "./composition";
 import { Player as RemotionPlayer, PlayerRef } from "@remotion/player";
 import useStore from "../store/use-store";
 
+// Use individual selectors to prevent unnecessary re-renders
+const selectSetPlayerRef = (state: ReturnType<typeof useStore.getState>) => state.setPlayerRef;
+const selectDuration = (state: ReturnType<typeof useStore.getState>) => state.duration;
+const selectFps = (state: ReturnType<typeof useStore.getState>) => state.fps;
+const selectSize = (state: ReturnType<typeof useStore.getState>) => state.size;
+const selectBackground = (state: ReturnType<typeof useStore.getState>) => state.background;
+
 const Player = () => {
   const playerRef = useRef<PlayerRef>(null);
-  const { setPlayerRef, duration, fps, size, background } = useStore();
+  const setPlayerRef = useStore(selectSetPlayerRef);
+  const duration = useStore(selectDuration);
+  const fps = useStore(selectFps);
+  const size = useStore(selectSize);
+  const background = useStore(selectBackground);
 
   useEffect(() => {
     setPlayerRef(playerRef as React.RefObject<PlayerRef>);

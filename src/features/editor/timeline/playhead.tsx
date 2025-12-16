@@ -1,12 +1,21 @@
 import { useCurrentPlayerFrame } from "../hooks/use-current-frame";
 import useStore from "../store/use-store";
-import { MouseEvent, TouchEvent, useEffect, useRef, useState } from "react";
+import { MouseEvent, TouchEvent, useEffect, useRef, useState, memo } from "react";
 import { timeMsToUnits, unitsToTimeMs } from "../utils/timeline";
 import { TIMELINE_OFFSET_CANVAS_LEFT } from "../constants/constants";
 import { useTimelineOffsetX } from "../hooks/use-timeline-offset";
+
+// Use individual selectors to prevent unnecessary re-renders
+const selectPlayerRef = (state: ReturnType<typeof useStore.getState>) => state.playerRef;
+const selectFps = (state: ReturnType<typeof useStore.getState>) => state.fps;
+const selectScale = (state: ReturnType<typeof useStore.getState>) => state.scale;
+
 const Playhead = ({ scrollLeft }: { scrollLeft: number }) => {
   const playheadRef = useRef<HTMLDivElement>(null);
-  const { playerRef, fps, scale } = useStore();
+  // Use individual selectors to minimize re-renders
+  const playerRef = useStore(selectPlayerRef);
+  const fps = useStore(selectFps);
+  const scale = useStore(selectScale);
   const currentFrame = useCurrentPlayerFrame(playerRef);
   const position =
     timeMsToUnits((currentFrame / fps) * 1000, scale.zoom) - scrollLeft;
