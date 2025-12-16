@@ -5,14 +5,14 @@ import { motion } from "framer-motion";
 export function BackgroundEffects() {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
-      {/* Base dark gradient */}
-      <div className="absolute inset-0 bg-[#030303]" />
+      {/* Base warm dark gradient */}
+      <div className="absolute inset-0 bg-[#0d0907]" />
 
       {/* Radial gradient overlay for depth */}
       <div
         className="absolute inset-0"
         style={{
-          background: "radial-gradient(ellipse at 50% 50%, rgba(29, 29, 38, 1) 0%, rgba(21, 21, 21, 1) 70%)",
+          background: "radial-gradient(ellipse at 50% 50%, rgba(39, 30, 25, 1) 0%, rgba(24, 18, 15, 1) 70%)",
         }}
       />
 
@@ -22,7 +22,7 @@ export function BackgroundEffects() {
         style={{
           top: "-20%",
           left: "-10%",
-          background: "radial-gradient(circle, rgba(0, 216, 212, 0.23) 0%, rgba(0, 216, 212, 0.1) 40%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(251, 146, 60, 0.25) 0%, rgba(251, 146, 60, 0.1) 40%, transparent 70%)",
           filter: "blur(80px)",
         }}
       />
@@ -32,7 +32,7 @@ export function BackgroundEffects() {
         style={{
           top: "30%",
           right: "-20%",
-          background: "radial-gradient(circle, rgba(138, 92, 246, 0.3) 0%, rgba(138, 92, 246, 0.13) 40%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(244, 114, 182, 0.3) 0%, rgba(244, 114, 182, 0.13) 40%, transparent 70%)",
           filter: "blur(100px)",
         }}
       />
@@ -42,7 +42,7 @@ export function BackgroundEffects() {
         style={{
           bottom: "-10%",
           left: "20%",
-          background: "radial-gradient(circle, rgba(59,130,246,0.1) 0%, rgba(59,130,246,0.03) 40%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(251, 146, 60, 0.12) 0%, rgba(251, 146, 60, 0.04) 40%, transparent 70%)",
           filter: "blur(60px)",
         }}
       />
@@ -53,7 +53,7 @@ export function BackgroundEffects() {
         style={{
           top: "-50%",
           left: "30%",
-          background: "linear-gradient(to bottom, transparent, rgba(0,216,214,0.3), rgba(139,92,246,0.3), transparent)",
+          background: "linear-gradient(to bottom, transparent, rgba(251,146,60,0.3), rgba(244,114,182,0.3), transparent)",
           filter: "blur(4px)",
         }}
         animate={{
@@ -73,7 +73,7 @@ export function BackgroundEffects() {
         style={{
           top: "-50%",
           right: "25%",
-          background: "linear-gradient(to bottom, transparent, rgba(139,92,246,0.25), rgba(0,216,214,0.25), transparent)",
+          background: "linear-gradient(to bottom, transparent, rgba(244,114,182,0.25), rgba(251,146,60,0.25), transparent)",
           filter: "blur(6px)",
         }}
         animate={{
@@ -93,7 +93,7 @@ export function BackgroundEffects() {
       <div
         className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full animate-pulse-slow"
         style={{
-          background: "radial-gradient(circle, rgba(139,92,246,0.08) 0%, transparent 60%)",
+          background: "radial-gradient(circle, rgba(244,114,182,0.08) 0%, transparent 60%)",
           filter: "blur(40px)",
         }}
       />
@@ -143,7 +143,7 @@ export function BackgroundEffects() {
       <motion.div
         className="absolute bottom-0 left-0 right-0 h-px"
         style={{
-          background: "linear-gradient(90deg, transparent, rgba(0,216,214,0.5), rgba(139,92,246,0.5), transparent)",
+          background: "linear-gradient(90deg, transparent, rgba(251,146,60,0.5), rgba(244,114,182,0.5), transparent)",
           backgroundSize: "200% 100%",
         }}
         animate={{
