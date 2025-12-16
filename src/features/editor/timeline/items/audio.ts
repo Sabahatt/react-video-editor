@@ -21,6 +21,7 @@ interface AudioProps extends TrimmableProps {
   trim: ITrim;
   duration: number;
   src: string;
+  name?: string;
   metadata: Partial<IMetadata> & {
     previewUrl: string;
   };
@@ -37,6 +38,7 @@ class Audio extends Trimmable {
   private isDirty = true;
   declare playbackRate: number;
   public bars: any[] = [];
+  public displayName: string = "Audio";
 
   static createControls(): { controls: Record<string, Control> } {
     return { controls: createAudioControls() };
@@ -51,6 +53,7 @@ class Audio extends Trimmable {
     this.duration = props.duration;
     this.fill = "#1e1233"; // Dark purple base for audio tracks
     this.src = props.src;
+    this.displayName = props.name || "Audio";
     this.objectCaching = false;
     this.initOffscreenCanvas();
     this.initialize();
@@ -206,7 +209,7 @@ class Audio extends Trimmable {
     ctx.fillStyle = "#ffffff";
     ctx.textAlign = "left";
     ctx.clip();
-    ctx.fillText("Audio", 36, 14);
+    ctx.fillText(this.displayName, 36, 14);
     ctx.translate(8, 1);
     ctx.fillStyle = "#ffffff";
     ctx.fill(audioIconPath);

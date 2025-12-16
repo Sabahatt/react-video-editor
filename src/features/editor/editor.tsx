@@ -80,6 +80,7 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 	} = usePipelineStore();
 
 	const pipelineRanRef = useRef(false);
+	const designLoadedRef = useRef(false);
 
 	// Auto-save functionality - saves every 30 seconds
 	const { status: autoSaveStatus, saveNow } = useAutoSave({
@@ -162,9 +163,19 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 
 	useEffect(() => {
 		const loadDesignFromSource = async () => {
-			// If pipeline is active, don't load from other sources - pipeline will handle it
-			if (isGenerating) {
-				console.log("[Editor] Pipeline active, skipping design load from other sources");
+			// Prevent loading multiple times
+			if (designLoadedRef.current) {
+				console.log("[Editor] Design already loaded, skipping");
+				return;
+			}
+
+			// Read current state directly from store to avoid stale closures
+			const pipelineState = usePipelineStore.getState();
+
+			// If pipeline is active or just completed, don't load from other sources
+			// Pipeline will handle loading the design itself
+			if (pipelineState.isGenerating || pipelineState.isComplete) {
+				console.log("[Editor] Pipeline active or complete, skipping design load from other sources");
 				return;
 			}
 
@@ -206,6 +217,7 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 					sessionStorage.removeItem("generatedDesign");
 					sessionStorage.removeItem("generatedBrand");
 					sessionStorage.removeItem("generatedScript");
+					designLoadedRef.current = true;
 					console.log("Loaded generated design from sessionStorage");
 					return; // Successfully loaded from sessionStorage
 				} catch (error) {
@@ -247,6 +259,7 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 						const mediaUploads = extractMediaFromDesign(design);
 						syncMediaToUploads(mediaUploads);
 
+						designLoadedRef.current = true;
 						console.log("[Editor] Restored from autosave:", savedAt);
 					}
 				}
@@ -256,7 +269,7 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 		};
 
 		loadDesignFromSource();
-	}, [isGenerating]);
+	}, []); // Run once on mount - reads current state from store directly
 
 	useEffect(() => {
 		setCompactFonts(getCompactFontData(FONTS));
@@ -382,6 +395,7 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 
 				// Load the design into the editor
 				dispatch(DESIGN_LOAD, { payload: adResult.design });
+				designLoadedRef.current = true;
 
 				// Extract and sync media
 				const mediaUploads = extractMediaFromDesign(adResult.design);

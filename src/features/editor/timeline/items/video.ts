@@ -32,6 +32,7 @@ interface VideoProps extends TrimmableProps {
   trim: ITrim;
   duration: number;
   src: string;
+  name?: string;
   metadata: Partial<IMetadata> & {
     previewUrl: string;
   };
@@ -52,6 +53,7 @@ class Video extends Trimmable {
   public itemType = "video";
   public metadata?: Partial<IMetadata>;
   declare src: string;
+  public displayName: string = "Video";
 
   public aspectRatio = 1;
   public scrollLeft = 0;
@@ -97,6 +99,7 @@ class Video extends Trimmable {
     this.fill = "#1a1a2e"; // Will be overridden by thumbnail pattern
     this.borderOpacityWhenMoving = 1;
     this.metadata = props.metadata;
+    this.displayName = props.name || "Video";
 
     this.aspectRatio = props.aspectRatio;
 
@@ -208,24 +211,54 @@ class Video extends Trimmable {
   }
 
   // load fallback thumbnail, resize it and cache it
+  // Falls back to extracting a frame from the video if previewUrl fails
   private async loadFallbackThumbnail() {
     const fallbackThumbnail = this.previewUrl;
-    if (!fallbackThumbnail) return;
 
-    return new Promise<void>((resolve) => {
+    // Try loading the preview image first
+    if (fallbackThumbnail) {
+      try {
+        await this.loadImageAsThumbnail(fallbackThumbnail);
+        return;
+      } catch (e) {
+        console.warn("Failed to load preview image, extracting from video:", e);
+      }
+    }
+
+    // Fall back to extracting a frame from the video source
+    try {
+      await this.extractThumbnailFromVideo();
+    } catch (e) {
+      console.warn("Failed to extract thumbnail from video:", e);
+    }
+  }
+
+  private loadImageAsThumbnail(imageUrl: string): Promise<void> {
+    return new Promise((resolve, reject) => {
       const img = new Image();
-      img.crossOrigin = "anonymous";
-      img.src = `${fallbackThumbnail}?t=${Date.now()}`;
+
+      // Only set crossOrigin for external URLs
+      const isExternal =
+        imageUrl.startsWith("http") &&
+        !imageUrl.startsWith(window.location.origin);
+      if (isExternal) {
+        img.crossOrigin = "anonymous";
+      }
+
       img.onload = () => {
         // Create a temporary canvas to resize the image
         const canvas = document.createElement("canvas");
         const ctx = canvas.getContext("2d");
-        if (!ctx) return;
+        if (!ctx) {
+          reject(new Error("Could not get canvas context"));
+          return;
+        }
 
         // Calculate new width maintaining aspect ratio
         const aspectRatio = img.width / img.height;
         const targetHeight = 40;
         const targetWidth = Math.round(targetHeight * aspectRatio);
+
         // Set canvas size and draw resized image
         canvas.height = targetHeight;
         canvas.width = targetWidth;
@@ -234,12 +267,108 @@ class Video extends Trimmable {
         // Create new image from resized canvas
         const resizedImg = new Image();
         resizedImg.src = canvas.toDataURL();
+
         // Update aspect ratio and cache the resized image
         this.aspectRatio = aspectRatio;
         this.thumbnailWidth = targetWidth;
         this.thumbnailCache.setThumbnail("fallback", resizedImg);
         resolve();
       };
+
+      img.onerror = () => {
+        reject(new Error(`Failed to load image: ${imageUrl}`));
+      };
+
+      // Add cache buster for external URLs to avoid stale cache
+      img.src = isExternal ? `${imageUrl}?t=${Date.now()}` : imageUrl;
+    });
+  }
+
+  private extractThumbnailFromVideo(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      if (!this.src) {
+        reject(new Error("No video source"));
+        return;
+      }
+
+      const video = document.createElement("video");
+      video.muted = true;
+      video.playsInline = true;
+      video.preload = "metadata";
+
+      // Only set crossOrigin for external URLs
+      const isExternal =
+        this.src.startsWith("http") &&
+        !this.src.startsWith(window.location.origin);
+      if (isExternal) {
+        video.crossOrigin = "anonymous";
+      }
+
+      let captured = false;
+      const timeout = setTimeout(() => {
+        if (!captured) {
+          video.src = "";
+          reject(new Error("Timeout extracting video thumbnail"));
+        }
+      }, 10000);
+
+      const captureFrame = () => {
+        if (captured) return;
+
+        try {
+          const canvas = document.createElement("canvas");
+          const aspectRatio = video.videoWidth / video.videoHeight;
+          const targetHeight = 40;
+          const targetWidth = Math.round(targetHeight * aspectRatio);
+
+          canvas.width = targetWidth;
+          canvas.height = targetHeight;
+
+          const ctx = canvas.getContext("2d");
+          if (ctx && video.videoWidth > 0 && video.videoHeight > 0) {
+            ctx.drawImage(video, 0, 0, targetWidth, targetHeight);
+            const dataUrl = canvas.toDataURL("image/jpeg", 0.8);
+
+            // Verify we got actual content
+            if (dataUrl.length > 1000) {
+              captured = true;
+              clearTimeout(timeout);
+
+              const resizedImg = new Image();
+              resizedImg.src = dataUrl;
+
+              this.aspectRatio = aspectRatio;
+              this.thumbnailWidth = targetWidth;
+              this.thumbnailCache.setThumbnail("fallback", resizedImg);
+
+              video.pause();
+              video.src = "";
+              resolve();
+            }
+          }
+        } catch (e) {
+          // Canvas tainted - ignore and let timeout handle it
+        }
+      };
+
+      video.onloadedmetadata = () => {
+        video.currentTime = Math.min(1, video.duration * 0.25);
+      };
+
+      video.onseeked = () => {
+        video.play().catch(() => captureFrame());
+      };
+
+      video.ontimeupdate = () => {
+        captureFrame();
+      };
+
+      video.onerror = () => {
+        clearTimeout(timeout);
+        reject(new Error("Failed to load video"));
+      };
+
+      video.src = this.src;
     });
   }
 
@@ -496,7 +625,7 @@ class Video extends Trimmable {
     ctx.fillStyle = "#f4f4f5";
     ctx.textAlign = "left";
     ctx.clip();
-    ctx.fillText("Video", 36, 10);
+    ctx.fillText(this.displayName, 36, 10);
 
     ctx.translate(8, 1);
 

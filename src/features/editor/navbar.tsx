@@ -104,8 +104,12 @@ export default function Navbar({
       />
       <DownloadProgressModal />
 
-      <div className="flex items-center gap-2">
-        {/* Left section - empty now that undo/redo moved to timeline */}
+      <div className="flex items-center gap-2 pointer-events-auto">
+        <Link href="/" className="flex items-center">
+          <span className="text-xl font-bold tracking-tight uppercase bg-gradient-to-r from-[#fb923c] to-[#f472b6] bg-clip-text text-transparent hover:opacity-80 transition-opacity">
+            Adify
+          </span>
+        </Link>
       </div>
 
       <div className="flex h-11 items-center justify-center gap-2">

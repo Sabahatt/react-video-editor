@@ -30,3 +30,79 @@ export const getStreamFromUrl = async (url: string) => {
   const stream = file.stream();
   return stream;
 };
+
+/**
+ * Extracts a display name from a File object or URL.
+ * Returns filename without extension for cleaner display.
+ * Falls back to type + counter format if no filename available.
+ */
+export const getMediaDisplayName = (
+  file?: File | null,
+  url?: string | null,
+  fallbackType?: "Video" | "Image" | "Audio",
+  index?: number
+): string => {
+  // Try to get name from File object first
+  if (file?.name) {
+    return removeExtension(file.name);
+  }
+
+  // Try to extract from URL
+  if (url) {
+    const filename = extractFilenameFromUrl(url);
+    if (filename) {
+      return removeExtension(filename);
+    }
+  }
+
+  // Fallback to type + index
+  if (fallbackType) {
+    return index !== undefined ? `${fallbackType} ${index + 1}` : fallbackType;
+  }
+
+  return "Untitled";
+};
+
+/**
+ * Removes file extension from a filename
+ */
+const removeExtension = (filename: string): string => {
+  const lastDotIndex = filename.lastIndexOf(".");
+  if (lastDotIndex > 0) {
+    return filename.substring(0, lastDotIndex);
+  }
+  return filename;
+};
+
+/**
+ * Extracts filename from a URL path
+ */
+const extractFilenameFromUrl = (url: string): string | null => {
+  try {
+    // Handle blob URLs - they don't have meaningful filenames
+    if (url.startsWith("blob:")) {
+      return null;
+    }
+
+    const urlObj = new URL(url);
+    const pathname = urlObj.pathname;
+    const segments = pathname.split("/").filter(Boolean);
+    const lastSegment = segments[segments.length - 1];
+
+    // Check if it looks like a filename (has extension)
+    if (lastSegment && /\.\w+$/.test(lastSegment)) {
+      // Decode URI components for proper display
+      return decodeURIComponent(lastSegment);
+    }
+
+    return null;
+  } catch {
+    // If URL parsing fails, try simple string extraction
+    const segments = url.split("/").filter(Boolean);
+    const lastSegment = segments[segments.length - 1];
+    if (lastSegment && /\.\w+$/.test(lastSegment)) {
+      return lastSegment.split("?")[0]; // Remove query params
+    }
+    return null;
+  }
+};
