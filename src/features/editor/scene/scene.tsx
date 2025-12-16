@@ -51,7 +51,6 @@ const Scene = forwardRef<
         style={{
           width: size.width,
           height: size.height,
-          background: "#000000",
           transform: `scale(${zoom})`,
           position: "absolute"
         }}

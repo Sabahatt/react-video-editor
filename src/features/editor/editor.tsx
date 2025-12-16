@@ -4,6 +4,7 @@ import useStore from "./store/use-store";
 import Navbar from "./navbar";
 import useTimelineEvents from "./hooks/use-timeline-events";
 import useKeyboardShortcuts from "./hooks/use-keyboard-shortcuts";
+import usePlayheadSnap from "./hooks/use-playhead-snap";
 import Scene from "./scene";
 import { SceneRef } from "./scene/scene.types";
 import StateManager, { DESIGN_LOAD } from "@designcombo/state";
@@ -103,6 +104,7 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 
 	useTimelineEvents();
 	useKeyboardShortcuts();
+	usePlayheadSnap();
 
 	const { setCompactFonts, setFonts } = useDataState();
 

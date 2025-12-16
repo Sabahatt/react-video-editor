@@ -9,23 +9,18 @@ import {
   PLAYER_SEEK_BY,
   PLAYER_TOGGLE_PLAY
 } from "../constants/events";
-import { LAYER_PREFIX, LAYER_SELECTION } from "@designcombo/state";
 import { TIMELINE_SEEK, TIMELINE_PREFIX } from "@designcombo/timeline";
 import { getSafeCurrentFrame } from "../utils/time";
 
 // Use individual selectors to prevent unnecessary re-renders
 const selectPlayerRef = (state: ReturnType<typeof useStore.getState>) => state.playerRef;
 const selectFps = (state: ReturnType<typeof useStore.getState>) => state.fps;
-const selectTimeline = (state: ReturnType<typeof useStore.getState>) => state.timeline;
-const selectSetState = (state: ReturnType<typeof useStore.getState>) => state.setState;
 
 const useTimelineEvents = () => {
   const playerRef = useStore(selectPlayerRef);
   const fps = useStore(selectFps);
-  const timeline = useStore(selectTimeline);
-  const setState = useStore(selectSetState);
 
-  //handle player events
+  // Handle player and timeline events
   useEffect(() => {
     const playerEvents = subject.pipe(
       filter(({ key }) => key.startsWith(PLAYER_PREFIX))
@@ -42,6 +37,7 @@ const useTimelineEvents = () => {
         }
       }
     });
+
     const playerEventsSubscription = playerEvents.subscribe((obj) => {
       if (obj.key === PLAYER_SEEK) {
         const time = obj.value?.payload?.time;
@@ -72,22 +68,6 @@ const useTimelineEvents = () => {
       timelineEventsSubscription.unsubscribe();
     };
   }, [playerRef, fps]);
-
-  // handle selection events
-  useEffect(() => {
-    const selectionEvents = subject.pipe(
-      filter(({ key }) => key.startsWith(LAYER_PREFIX))
-    );
-
-    const selectionSubscription = selectionEvents.subscribe((obj) => {
-      if (obj.key === LAYER_SELECTION) {
-        setState({
-          activeIds: obj.value?.payload.activeIds
-        });
-      }
-    });
-    return () => selectionSubscription.unsubscribe();
-  }, [timeline]);
 };
 
 export default useTimelineEvents;
