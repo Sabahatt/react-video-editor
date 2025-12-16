@@ -182,6 +182,18 @@ export const Uploads = () => {
                           alt="Video thumbnail"
                           className="w-full h-full object-cover"
                         />
+                      ) : videoUrl ? (
+                        <video
+                          src={videoUrl}
+                          className="w-full h-full object-cover"
+                          muted
+                          preload="metadata"
+                          onLoadedData={(e) => {
+                            // Seek to 1 second to show a frame preview
+                            const video = e.currentTarget;
+                            video.currentTime = Math.min(1, video.duration || 1);
+                          }}
+                        />
                       ) : (
                         <VideoIcon className="w-8 h-8 text-muted-foreground" />
                       )}

@@ -1,8 +1,25 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useMemo } from "react";
+
+// Seeded random number generator for consistent values between server and client
+function seededRandom(seed: number): number {
+  const x = Math.sin(seed * 9999) * 10000;
+  return x - Math.floor(x);
+}
 
 export function BackgroundEffects() {
+  // Pre-generate particle positions with deterministic seeds
+  const particles = useMemo(() =>
+    [...Array(20)].map((_, i) => ({
+      left: seededRandom(i * 4 + 1) * 100,
+      top: seededRandom(i * 4 + 2) * 100,
+      size: seededRandom(i * 4 + 3) * 2 + 1,
+      duration: seededRandom(i * 4 + 4) * 3 + 2,
+      delay: seededRandom(i * 4 + 5) * 2,
+    })),
+  []);
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
       {/* Base warm dark gradient */}
@@ -99,24 +116,24 @@ export function BackgroundEffects() {
       />
 
       {/* Floating particles - reduced count for performance */}
-      {[...Array(20)].map((_, i) => (
+      {particles.map((particle, i) => (
         <motion.div
           key={i}
           className="absolute rounded-full bg-white"
           style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            width: Math.random() * 2 + 1,
-            height: Math.random() * 2 + 1,
+            left: `${particle.left}%`,
+            top: `${particle.top}%`,
+            width: particle.size,
+            height: particle.size,
           }}
           animate={{
             opacity: [0.6, 0.4, 0.2],
           }}
           transition={{
-            duration: Math.random() * 3 + 2,
+            duration: particle.duration,
             repeat: Infinity,
             ease: "easeInOut",
-            delay: Math.random() * 2,
+            delay: particle.delay,
           }}
         />
       ))}
