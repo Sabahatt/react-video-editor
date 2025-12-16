@@ -179,19 +179,23 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 					const mediaUploads = extractMediaFromDesign(design);
 					syncMediaToUploads(mediaUploads);
 
-					// Extract restaurant name for auto-save folder
+					// Extract restaurant name for auto-save folder and set brand in store
 					const storedBrand = sessionStorage.getItem("generatedBrand");
 					if (storedBrand) {
 						try {
 							const brand = JSON.parse(storedBrand);
-							if (brand.restaurantName) {
+							// Set brand in pipeline store for context-aware stock search
+							setDesign(design, brand);
+							if (brand.restaurantName || brand.name) {
+								const brandName = brand.restaurantName || brand.name;
 								// Convert to folder-safe name
-								const safeName = brand.restaurantName
+								const safeName = brandName
 									.toLowerCase()
 									.replace(/[^a-z0-9]+/g, '-')
 									.replace(/^-|-$/g, '');
 								setRestaurant(safeName || 'default');
-								setProjectName(brand.restaurantName + ' Ad');
+								setProjectName(brandName + ' Ad');
+								console.log("[Editor] Loaded brand from sessionStorage:", brand.mainDishType);
 							}
 						} catch (e) {
 							console.error("Failed to parse brand for restaurant name:", e);
@@ -225,6 +229,18 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 						}
 						if (savedRestaurant) {
 							setRestaurant(savedRestaurant);
+
+							// Also load brand data for this restaurant to enable context-aware stock search
+							try {
+								const brandRes = await fetch(`/api/poc-data/brand?restaurant=${savedRestaurant}`);
+								const brandResult = await brandRes.json();
+								if (brandResult.success && brandResult.brand) {
+									setDesign(design, brandResult.brand);
+									console.log("[Editor] Loaded brand for restaurant:", savedRestaurant, brandResult.brand?.mainDishType);
+								}
+							} catch (brandErr) {
+								console.log("[Editor] Could not load brand for restaurant:", savedRestaurant);
+							}
 						}
 
 						// Extract and sync media to uploads panel from autosave

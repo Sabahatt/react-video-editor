@@ -11,10 +11,24 @@ import { Button } from "@/components/ui/button";
 import { Search, Loader2 } from "lucide-react";
 import { usePexelsImages } from "@/hooks/use-pexels-images";
 import { ImageLoading } from "@/components/ui/image-loading";
+import { usePipelineStore } from "@/store/use-pipeline-store";
+
+// Map mainDishType to better Pexels search queries for images
+const getImageSearchQuery = (mainDishType: string | undefined): string => {
+  const searchQueries: Record<string, string> = {
+    pizza: "pizza",
+    doughnut: "donut",
+    donut: "donut",
+    salad: "salad"
+  };
+  return searchQueries[mainDishType?.toLowerCase() || ""] || "restaurant food";
+};
 
 export const Images = () => {
   const isDraggingOverTimeline = useIsDraggingOverTimeline();
   const [searchQuery, setSearchQuery] = useState("");
+  const brand = usePipelineStore((state) => state.brand);
+  const defaultSearchTerm = getImageSearchQuery(brand?.mainDishType);
 
   const {
     images: pexelsImages,
@@ -29,10 +43,11 @@ export const Images = () => {
     clearImages
   } = usePexelsImages();
 
-  // Load curated images on component mount
+  // Load images based on brand's mainDishType on component mount
   useEffect(() => {
-    loadCuratedImages();
-  }, [loadCuratedImages]);
+    console.log("[Images] Searching with term:", defaultSearchTerm, "| brand mainDishType:", brand?.mainDishType);
+    searchImages(defaultSearchTerm);
+  }, [defaultSearchTerm, searchImages]);
 
   const handleAddImage = (payload: Partial<IImage>) => {
     const id = generateId();
@@ -58,7 +73,7 @@ export const Images = () => {
 
   const handleSearch = async () => {
     if (!searchQuery.trim()) {
-      await loadCuratedImages();
+      await searchImages(defaultSearchTerm);
       return;
     }
 
@@ -79,7 +94,7 @@ export const Images = () => {
       if (searchQuery.trim()) {
         searchImagesAppend(searchQuery, currentPage + 1);
       } else {
-        loadCuratedImagesAppend(currentPage + 1);
+        searchImagesAppend(defaultSearchTerm, currentPage + 1);
       }
     }
   };
@@ -87,7 +102,7 @@ export const Images = () => {
   const handleClearSearch = () => {
     setSearchQuery("");
     clearImages();
-    loadCuratedImages();
+    searchImages(defaultSearchTerm);
   };
 
   // Use Pexels images if available, otherwise fall back to static images

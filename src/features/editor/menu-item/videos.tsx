@@ -11,10 +11,24 @@ import { Button } from "@/components/ui/button";
 import { Search, Loader2, PlusIcon } from "lucide-react";
 import { usePexelsVideos } from "@/hooks/use-pexels-videos";
 import { ImageLoading } from "@/components/ui/image-loading";
+import { usePipelineStore } from "@/store/use-pipeline-store";
+
+// Map mainDishType to better Pexels search queries for videos
+const getVideoSearchQuery = (mainDishType: string | undefined): string => {
+  const searchQueries: Record<string, string> = {
+    pizza: "pizza",
+    doughnut: "donut",
+    donut: "donut",
+    salad: "salad"
+  };
+  return searchQueries[mainDishType?.toLowerCase() || ""] || "restaurant food";
+};
 
 export const Videos = () => {
   const isDraggingOverTimeline = useIsDraggingOverTimeline();
   const [searchQuery, setSearchQuery] = useState("");
+  const brand = usePipelineStore((state) => state.brand);
+  const defaultSearchTerm = getVideoSearchQuery(brand?.mainDishType);
 
   const {
     videos: pexelsVideos,
@@ -29,10 +43,11 @@ export const Videos = () => {
     clearVideos
   } = usePexelsVideos();
 
-  // Load popular videos on component mount
+  // Load videos based on brand's mainDishType on component mount
   useEffect(() => {
-    loadPopularVideos();
-  }, [loadPopularVideos]);
+    console.log("[Videos] Searching with term:", defaultSearchTerm, "| brand mainDishType:", brand?.mainDishType);
+    searchVideos(defaultSearchTerm);
+  }, [defaultSearchTerm, searchVideos]);
 
   const handleAddVideo = (payload: Partial<IVideo>) => {
     dispatch(ADD_VIDEO, {
@@ -46,7 +61,7 @@ export const Videos = () => {
 
   const handleSearch = async () => {
     if (!searchQuery.trim()) {
-      await loadPopularVideos();
+      await searchVideos(defaultSearchTerm);
       return;
     }
 
@@ -67,7 +82,7 @@ export const Videos = () => {
       if (searchQuery.trim()) {
         searchVideosAppend(searchQuery, currentPage + 1);
       } else {
-        loadPopularVideosAppend(currentPage + 1);
+        searchVideosAppend(defaultSearchTerm, currentPage + 1);
       }
     }
   };
@@ -75,7 +90,7 @@ export const Videos = () => {
   const handleClearSearch = () => {
     setSearchQuery("");
     clearVideos();
-    loadPopularVideos();
+    searchVideos(defaultSearchTerm);
   };
 
   // Use Pexels videos if available, otherwise fall back to static videos
