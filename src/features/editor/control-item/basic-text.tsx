@@ -12,6 +12,8 @@ import { ICompactFont, IFont } from "../interfaces/editor";
 import { DEFAULT_FONT } from "../constants/font";
 import { PresetText } from "./common/preset-text";
 import { Animations } from "./common/animations";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 
 interface ITextControlProps {
   color: string;
@@ -354,7 +356,29 @@ const BasicText = ({
     });
   };
 
+  const handleTextContentChange = (text: string) => {
+    dispatch(EDIT_OBJECT, {
+      payload: {
+        [trackItem.id]: {
+          details: {
+            text: text
+          }
+        }
+      }
+    });
+  };
+
   const components = [
+    {
+      key: "textContent",
+      component: (
+        <TextContent
+          key={`text-content-${trackItem.id}`}
+          value={trackItem.details.text || ""}
+          onChange={handleTextContentChange}
+        />
+      )
+    },
     {
       key: "textPreset",
       component: <PresetText trackItem={trackItem} properties={properties} />
@@ -427,6 +451,53 @@ const BasicText = ({
             ))}
         </div>
       </ScrollArea>
+    </div>
+  );
+};
+
+const TextContent = ({
+  value,
+  onChange
+}: {
+  value: string;
+  onChange: (text: string) => void;
+}) => {
+  const [localValue, setLocalValue] = useState(value);
+
+  useEffect(() => {
+    setLocalValue(value);
+  }, [value]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setLocalValue(e.target.value);
+  };
+
+  const handleBlur = () => {
+    if (localValue !== value) {
+      onChange(localValue);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      if (localValue !== value) {
+        onChange(localValue);
+      }
+    }
+  };
+
+  return (
+    <div className="flex flex-col gap-2 py-4 border-b border-white/[0.06]">
+      <Label className="font-sans text-xs font-semibold">Text Content</Label>
+      <Textarea
+        className="min-h-[80px] resize-none bg-zinc-900/50 border-white/[0.08] focus:border-[#fb923c]/50 focus:ring-1 focus:ring-[#fb923c]/30"
+        placeholder="Enter text..."
+        value={localValue}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        onKeyDown={handleKeyDown}
+      />
     </div>
   );
 };

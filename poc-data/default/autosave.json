@@ -1,13 +1,13 @@
 {
   "projectName": "Untitled video",
   "restaurant": "default",
-  "savedAt": "2025-12-12T09:20:26.337Z",
+  "savedAt": "2025-12-16T22:44:07.487Z",
   "design": {
-    "id": "BLiiHvkgkfZXRnUS",
+    "id": "vEdJR8piTXvCwuh",
     "fps": 30,
     "tracks": [
       {
-        "id": "xC6rq4LCcBbbkYxrXaW3q",
+        "id": "1ks-CHKJytDOQ_Ht2xQge",
         "accepts": [
           "text",
           "image",
@@ -31,14 +31,13 @@
         ],
         "type": "audio",
         "items": [
-          "GQEQyk4ZE2cpqEiS",
-          "rEtK9vlfSMOAoi"
+          "mSWm36ualQvsTIl8"
         ],
         "magnetic": false,
         "static": false
       },
       {
-        "id": "tDdHCZPFxteKU_g9KnDOg",
+        "id": "8e9DOfIYp4VOP1RrICGFZ",
         "accepts": [
           "text",
           "image",
@@ -62,38 +61,10 @@
         ],
         "type": "audio",
         "items": [
-          "lHeIK3ZYRxDvNQD8"
+          "OmLY7jqslzPOXO"
         ],
         "magnetic": false,
         "static": false
-      },
-      {
-        "id": "U1LSVOGFvP7S8r2",
-        "accepts": [
-          "text",
-          "image",
-          "video",
-          "audio",
-          "composition",
-          "caption",
-          "template",
-          "customTrack",
-          "customTrack2",
-          "illustration",
-          "custom",
-          "main",
-          "shape",
-          "linealAudioBars",
-          "radialAudioBars",
-          "progressFrame",
-          "progressBar",
-          "rect",
-          "progressSquare"
-        ],
-        "type": "text",
-        "items": [
-          "mkJVHMhzmH3LydWc"
-        ]
       },
       {
         "id": "eeiYD7PrhOdc2",
@@ -121,18 +92,17 @@
         "type": "text",
         "items": [
           "y5MjRuir6IpwGEB3",
+          "kdznOku4UocuzQTT",
           "M7sSoWdZrPRQGG9Z",
-          "v6ZIqA1xEcye9Pf",
-          "U88gr8cW9F2Xza",
-          "kdznOku4UocuzQTT"
+          "v6ZIqA1xEcye9Pf"
         ],
         "magnetic": false,
         "static": false
       },
       {
-        "id": "V5zSGuDbEwwyjRl",
+        "id": "pbQ9xdNpbA4Mmh91",
         "items": [
-          "mElajGtPWL4BE2OZ"
+          "SHsfK7jRhfP3y58H"
         ],
         "type": "image",
         "accepts": [
@@ -158,9 +128,9 @@
         ]
       },
       {
-        "id": "XKySLnaRpPxEBxY6",
+        "id": "kJ9m5EAK2MPEhJsV",
         "items": [
-          "t8rTkzfOpIUXTdlW"
+          "c3mzhBoXB7ND"
         ],
         "type": "image",
         "accepts": [
@@ -186,31 +156,31 @@
         ]
       },
       {
-        "id": "XjcjRblGF2IqKVl4rA1js",
+        "id": "ppIHMIUMrpDz0wE",
         "items": [
-          "Ql2HfZDhW3RG2h6"
+          "l58RaJOqULptxejk"
         ],
-        "type": "video",
+        "type": "image",
         "accepts": [
           "text",
           "image",
           "video",
-          "progressSquare",
           "audio",
-          "rect",
           "composition",
-          "progressBar",
           "caption",
-          "progressFrame",
           "template",
-          "radialAudioBars",
           "customTrack",
-          "linealAudioBars",
           "customTrack2",
-          "shape",
           "illustration",
+          "custom",
           "main",
-          "custom"
+          "shape",
+          "linealAudioBars",
+          "radialAudioBars",
+          "progressFrame",
+          "progressBar",
+          "rect",
+          "progressSquare"
         ]
       },
       {
@@ -238,17 +208,32 @@
         "tempIndex": -3
       },
       {
-        "id": "XUPs50c2sflDY_DX2c006",
-        "items": [
-          "kORqq7ACxQElDeLo",
-          "hjGVRKEHQVA9nw"
+        "id": "roaodInOHR6JH4lb",
+        "accepts": [
+          "text",
+          "image",
+          "video",
+          "audio",
+          "composition",
+          "caption",
+          "template",
+          "customTrack",
+          "customTrack2",
+          "illustration",
+          "custom",
+          "main",
+          "shape",
+          "linealAudioBars",
+          "radialAudioBars",
+          "progressFrame",
+          "progressBar",
+          "rect",
+          "progressSquare"
         ],
         "type": "image",
-        "accepts": [
-          "image",
-          "video"
-        ],
-        "tempIndex": -1
+        "items": [
+          "euflPBIeCecbI2u"
+        ]
       },
       {
         "id": "TaGSaMRa5Ll4cHKh",
@@ -256,35 +241,45 @@
           "text",
           "image",
           "video",
-          "progressSquare",
-          "audio",
-          "rect",
-          "composition",
-          "progressBar",
-          "caption",
-          "progressFrame",
           "template",
+          "custom",
           "radialAudioBars",
-          "customTrack",
-          "linealAudioBars",
-          "customTrack2",
-          "shape",
-          "illustration",
+          "progressSquare",
+          "progressFrame",
           "main",
-          "custom"
+          "customTrack",
+          "audio",
+          "caption",
+          "illustration",
+          "linealAudioBars",
+          "rect",
+          "progressBar",
+          "shape",
+          "customTrack2",
+          "composition"
         ],
         "type": "video",
         "items": [
-          "YWs6eBQRLkFuT7Xl",
-          "N9Ykm32GzhTwmyMZ",
-          "XVZ6kBqhgnLr4r",
-          "lRJnpuKX4aaTiozO",
-          "vD1Z083FntJCYV",
-          "v3gjlVWrKdSnIvS"
+          "HggABC9V1mqknI2",
+          "cifjmPaj7zjJIDay",
+          "u86YHFpnHhIi1t95",
+          "kkq5NxymnRPV9Bir",
+          "rSpOFSyKv6UxUzF"
         ],
         "name": "Visuals",
         "static": false,
         "magnetic": false
+      },
+      {
+        "id": "Hl7agf1vKOyCf4yS",
+        "accepts": [
+          "image",
+          "video"
+        ],
+        "type": "image",
+        "items": [
+          "mq44VqEAUUj64mz"
+        ]
       }
     ],
     "size": {
@@ -292,62 +287,49 @@
       "height": 1080
     },
     "trackItemIds": [
-      "N9Ykm32GzhTwmyMZ",
-      "lRJnpuKX4aaTiozO",
-      "vD1Z083FntJCYV",
-      "XVZ6kBqhgnLr4r",
-      "YWs6eBQRLkFuT7Xl",
-      "v3gjlVWrKdSnIvS",
-      "hjGVRKEHQVA9nw",
-      "kORqq7ACxQElDeLo",
+      "mq44VqEAUUj64mz",
+      "rSpOFSyKv6UxUzF",
+      "kkq5NxymnRPV9Bir",
+      "u86YHFpnHhIi1t95",
+      "cifjmPaj7zjJIDay",
+      "HggABC9V1mqknI2",
+      "euflPBIeCecbI2u",
       "tspCJvB5ZR4MIxlU",
       "scsctwPyjxfZDpE",
-      "Ql2HfZDhW3RG2h6",
-      "t8rTkzfOpIUXTdlW",
-      "mElajGtPWL4BE2OZ",
+      "l58RaJOqULptxejk",
+      "c3mzhBoXB7ND",
+      "SHsfK7jRhfP3y58H",
       "v6ZIqA1xEcye9Pf",
       "M7sSoWdZrPRQGG9Z",
       "y5MjRuir6IpwGEB3",
-      "U88gr8cW9F2Xza",
       "kdznOku4UocuzQTT",
-      "mkJVHMhzmH3LydWc",
-      "lHeIK3ZYRxDvNQD8",
-      "GQEQyk4ZE2cpqEiS",
-      "rEtK9vlfSMOAoi"
+      "OmLY7jqslzPOXO",
+      "mSWm36ualQvsTIl8"
     ],
     "transitionsMap": {
-      "YWs6eBQRLkFuT7Xl-vD1Z083FntJCYV": {
-        "id": "YWs6eBQRLkFuT7Xl-vD1Z083FntJCYV",
+      "HggABC9V1mqknI2-cifjmPaj7zjJIDay": {
+        "id": "HggABC9V1mqknI2-cifjmPaj7zjJIDay",
         "duration": 1500,
-        "fromId": "YWs6eBQRLkFuT7Xl",
-        "toId": "vD1Z083FntJCYV",
+        "fromId": "HggABC9V1mqknI2",
+        "toId": "cifjmPaj7zjJIDay",
         "kind": "none",
         "trackId": "TaGSaMRa5Ll4cHKh",
         "type": "transition"
       },
-      "vD1Z083FntJCYV-v3gjlVWrKdSnIvS": {
-        "id": "vD1Z083FntJCYV-v3gjlVWrKdSnIvS",
+      "cifjmPaj7zjJIDay-u86YHFpnHhIi1t95": {
+        "id": "cifjmPaj7zjJIDay-u86YHFpnHhIi1t95",
         "duration": 1500,
-        "fromId": "vD1Z083FntJCYV",
-        "toId": "v3gjlVWrKdSnIvS",
+        "fromId": "cifjmPaj7zjJIDay",
+        "toId": "u86YHFpnHhIi1t95",
         "kind": "none",
         "trackId": "TaGSaMRa5Ll4cHKh",
         "type": "transition"
       },
-      "lRJnpuKX4aaTiozO-N9Ykm32GzhTwmyMZ": {
-        "id": "lRJnpuKX4aaTiozO-N9Ykm32GzhTwmyMZ",
+      "kkq5NxymnRPV9Bir-rSpOFSyKv6UxUzF": {
+        "id": "kkq5NxymnRPV9Bir-rSpOFSyKv6UxUzF",
         "duration": 1500,
-        "fromId": "lRJnpuKX4aaTiozO",
-        "toId": "N9Ykm32GzhTwmyMZ",
-        "kind": "none",
-        "trackId": "TaGSaMRa5Ll4cHKh",
-        "type": "transition"
-      },
-      "N9Ykm32GzhTwmyMZ-XVZ6kBqhgnLr4r": {
-        "id": "N9Ykm32GzhTwmyMZ-XVZ6kBqhgnLr4r",
-        "duration": 1500,
-        "fromId": "N9Ykm32GzhTwmyMZ",
-        "toId": "XVZ6kBqhgnLr4r",
+        "fromId": "kkq5NxymnRPV9Bir",
+        "toId": "rSpOFSyKv6UxUzF",
         "kind": "none",
         "trackId": "TaGSaMRa5Ll4cHKh",
         "type": "transition"
@@ -378,34 +360,58 @@
         "kind": "none",
         "trackId": "eeiYD7PrhOdc2",
         "type": "transition"
-      },
-      "v6ZIqA1xEcye9Pf-U88gr8cW9F2Xza": {
-        "id": "v6ZIqA1xEcye9Pf-U88gr8cW9F2Xza",
-        "duration": 1500,
-        "fromId": "v6ZIqA1xEcye9Pf",
-        "toId": "U88gr8cW9F2Xza",
-        "kind": "none",
-        "trackId": "eeiYD7PrhOdc2",
-        "type": "transition"
-      },
-      "GQEQyk4ZE2cpqEiS-rEtK9vlfSMOAoi": {
-        "id": "GQEQyk4ZE2cpqEiS-rEtK9vlfSMOAoi",
-        "duration": 1500,
-        "fromId": "GQEQyk4ZE2cpqEiS",
-        "toId": "rEtK9vlfSMOAoi",
-        "kind": "none",
-        "trackId": "xC6rq4LCcBbbkYxrXaW3q",
-        "type": "transition"
       }
     },
     "trackItemsMap": {
-      "YWs6eBQRLkFuT7Xl": {
-        "id": "YWs6eBQRLkFuT7Xl",
+      "mq44VqEAUUj64mz": {
+        "id": "mq44VqEAUUj64mz",
+        "type": "image",
+        "name": "image",
+        "display": {
+          "from": 0,
+          "to": 25681.684569263805
+        },
+        "playbackRate": 1,
         "details": {
-          "width": 2640,
-          "height": 1088,
+          "src": "https://images.pexels.com/photos/1939485/pexels-photo-1939485.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "width": 867,
+          "height": 1300,
           "opacity": 100,
-          "src": "/uploads/1765410508730-Image2Video_freshly_baked_pepperoni_.mp4",
+          "transform": "scale(2.27349, 2.27349)",
+          "border": "none",
+          "borderRadius": 0,
+          "boxShadow": {
+            "color": "#000000",
+            "x": 0,
+            "y": 0,
+            "blur": 0
+          },
+          "top": "295.233px",
+          "left": "519.373px",
+          "borderWidth": 0,
+          "borderColor": "#000000",
+          "blur": 3,
+          "brightness": 100,
+          "flipX": false,
+          "flipY": false,
+          "rotate": "0deg",
+          "visibility": "visible",
+          "crop": {
+            "x": 0,
+            "y": 406.15624999999994,
+            "width": 867,
+            "height": 487.68750000000006
+          }
+        },
+        "metadata": {}
+      },
+      "rSpOFSyKv6UxUzF": {
+        "id": "rSpOFSyKv6UxUzF",
+        "details": {
+          "width": 720,
+          "height": 720,
+          "opacity": 100,
+          "src": "/uploads/1765673578545-Image2Video_close-up_of_blackened_ch.mp4",
           "volume": 100,
           "borderRadius": 0,
           "borderWidth": 0,
@@ -416,9 +422,9 @@
             "y": 0,
             "blur": 0
           },
-          "top": "-4px",
-          "left": "-360px",
-          "transform": "scale(0.7272727272727273)",
+          "top": "180px",
+          "left": "600px",
+          "transform": "scale(1.5)",
           "blur": 0,
           "brightness": 100,
           "flipX": false,
@@ -430,106 +436,18 @@
           "previewUrl": "https://cdn.designcombo.dev/caption_previews/static_preset1.webp"
         },
         "trim": {
-          "from": 89.09574468085168,
-          "to": 4663.563829787232
+          "from": 3692.4188887545342,
+          "to": 5062.5
         },
         "type": "video",
         "name": "video",
-        "playbackRate": 1,
+        "playbackRate": 0.8,
         "display": {
-          "from": 0,
-          "to": 4574.468085106386
+          "from": 19973.013272407694,
+          "to": 25681.6845692638
         },
         "duration": 5062.5,
         "isMain": false,
-        "animations": {
-          "in": {
-            "name": "fadeIn",
-            "composition": [
-              {
-                "property": "opacity",
-                "from": 0,
-                "to": 1,
-                "durationInFrames": 15,
-                "previewUrl": "https://cdn.designcombo.dev/animations/FadeIn.webp",
-                "name": "Fade"
-              }
-            ]
-          }
-        }
-      },
-      "hjGVRKEHQVA9nw": {
-        "id": "hjGVRKEHQVA9nw",
-        "type": "image",
-        "name": "image",
-        "display": {
-          "from": 11622.340425531924,
-          "to": 18271.27659574469
-        },
-        "playbackRate": 1,
-        "details": {
-          "src": "/uploads/1765412069347-caprese-piz.png",
-          "width": 413,
-          "height": 232,
-          "opacity": 100,
-          "transform": "scale(2.35888, 2.35888)",
-          "border": "none",
-          "borderRadius": 0,
-          "boxShadow": {
-            "color": "#000000",
-            "x": 0,
-            "y": 0,
-            "blur": 0
-          },
-          "top": 157.952,
-          "left": 267.245,
-          "borderWidth": 0,
-          "borderColor": "#000000",
-          "blur": 0,
-          "brightness": 100,
-          "flipX": false,
-          "flipY": false,
-          "rotate": "0deg",
-          "visibility": "visible"
-        },
-        "metadata": {},
-        "animations": {}
-      },
-      "XVZ6kBqhgnLr4r": {
-        "id": "XVZ6kBqhgnLr4r",
-        "type": "image",
-        "name": "image",
-        "display": {
-          "from": 29538.56843112718,
-          "to": 38652.3502340426
-        },
-        "playbackRate": 1,
-        "details": {
-          "src": "https://static.wixstatic.com/media/4801ad_37d7ff93771a43e08d121e663dd0b7d9~mv2.jpg/v1/fill/w_413,h_232,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/4801ad_37d7ff93771a43e08d121e663dd0b7d9~mv2.jpg",
-          "width": 413,
-          "height": 232,
-          "opacity": 100,
-          "transform": "scale(4.648910411622276)",
-          "border": "none",
-          "borderRadius": 0,
-          "boxShadow": {
-            "color": "#000000",
-            "x": 0,
-            "y": 0,
-            "blur": 0
-          },
-          "top": "424px",
-          "left": "753.5px",
-          "borderWidth": 0,
-          "borderColor": "#000000",
-          "blur": 0,
-          "brightness": 100,
-          "flipX": false,
-          "flipY": false,
-          "rotate": "0deg",
-          "visibility": "visible"
-        },
-        "metadata": {},
         "animations": {
           "in": {
             "name": "scaleIn",
@@ -544,16 +462,15 @@
               }
             ]
           }
-        },
-        "isMain": false
+        }
       },
-      "vD1Z083FntJCYV": {
-        "id": "vD1Z083FntJCYV",
+      "kkq5NxymnRPV9Bir": {
+        "id": "kkq5NxymnRPV9Bir",
         "details": {
-          "width": 1908,
-          "height": 1080,
+          "width": 720,
+          "height": 720,
           "opacity": 100,
-          "src": "/uploads/1765511993793-Image2Video_Fresh_Italian_antipasto_.mp4",
+          "src": "/uploads/1765673392411-Image2Video_Crisp_leafy_kale_caesar_.mp4",
           "volume": 100,
           "borderRadius": 0,
           "borderWidth": 0,
@@ -564,9 +481,9 @@
             "y": 0,
             "blur": 0
           },
-          "top": "0px",
-          "left": "6px",
-          "transform": "scale(1)",
+          "top": "180px",
+          "left": "600px",
+          "transform": "scale(1.5)",
           "blur": 0,
           "brightness": 100,
           "flipX": false,
@@ -578,70 +495,26 @@
           "previewUrl": "https://cdn.designcombo.dev/caption_previews/static_preset1.webp"
         },
         "trim": {
-          "from": 1152.9255319148883,
+          "from": 80.38686819830785,
           "to": 5062.5
         },
         "type": "video",
         "name": "video",
         "playbackRate": 1,
         "display": {
-          "from": 4574.468085106386,
-          "to": 8484.042553191495
+          "from": 14990.900140606,
+          "to": 19973.01327240769
         },
         "duration": 5062.5,
         "isMain": false
       },
-      "lRJnpuKX4aaTiozO": {
-        "id": "lRJnpuKX4aaTiozO",
+      "u86YHFpnHhIi1t95": {
+        "id": "u86YHFpnHhIi1t95",
         "details": {
-          "width": 2160,
-          "height": 3840,
-          "opacity": 100,
-          "src": "/uploads/1765512492994-picking-up-pizza-slice.mp4",
-          "volume": 100,
-          "borderRadius": 0,
-          "borderWidth": 0,
-          "borderColor": "#000000",
-          "boxShadow": {
-            "color": "#000000",
-            "x": 0,
-            "y": 0,
-            "blur": 0
-          },
-          "top": "-1452.03px",
-          "left": "-119.436px",
-          "transform": "scale(0.880889, 0.880889)",
-          "blur": 0,
-          "brightness": 100,
-          "flipX": false,
-          "flipY": false,
-          "rotate": "0deg",
-          "visibility": "visible"
-        },
-        "metadata": {
-          "previewUrl": "https://cdn.designcombo.dev/caption_previews/static_preset1.webp"
-        },
-        "trim": {
-          "from": 0,
-          "to": 6204.79183538246
-        },
-        "type": "video",
-        "name": "video",
-        "playbackRate": 1,
-        "display": {
-          "from": 18271.27659574469,
-          "to": 24476.06843112715
-        },
-        "duration": 11160,
-        "isMain": false
-      },
-      "N9Ykm32GzhTwmyMZ": {
-        "id": "N9Ykm32GzhTwmyMZ",
-        "details": {
-          "width": 1908,
+          "width": 1080,
           "height": 1080,
           "opacity": 100,
-          "src": "/uploads/1765512708847-Image2Video_caramel-cheesecake.mp4",
+          "src": "/uploads/1765672494060-Image2Video_animate_this_image_of_a_.mp4",
           "volume": 100,
           "borderRadius": 0,
           "borderWidth": 0,
@@ -653,7 +526,7 @@
             "blur": 0
           },
           "top": "0px",
-          "left": "6px",
+          "left": "420px",
           "transform": "scale(1)",
           "blur": 0,
           "brightness": 100,
@@ -673,27 +546,115 @@
         "name": "video",
         "playbackRate": 1,
         "display": {
-          "from": 24476.068431127194,
-          "to": 29538.568431127194
+          "from": 8222.074468085115,
+          "to": 13284.574468085115
         },
         "duration": 5062.5,
         "isMain": false
       },
-      "kORqq7ACxQElDeLo": {
-        "id": "kORqq7ACxQElDeLo",
+      "cifjmPaj7zjJIDay": {
+        "id": "cifjmPaj7zjJIDay",
+        "details": {
+          "width": 720,
+          "height": 720,
+          "opacity": 100,
+          "src": "/uploads/1765671380394-Image2Video_close-up_of_blackened_ch__1_.mp4",
+          "volume": 100,
+          "borderRadius": 0,
+          "borderWidth": 0,
+          "borderColor": "#000000",
+          "boxShadow": {
+            "color": "#000000",
+            "x": 0,
+            "y": 0,
+            "blur": 0
+          },
+          "top": "180px",
+          "left": "600px",
+          "transform": "scale(1.5)",
+          "blur": 0,
+          "brightness": 100,
+          "flipX": false,
+          "flipY": false,
+          "rotate": "0deg",
+          "visibility": "visible"
+        },
+        "metadata": {
+          "previewUrl": "https://cdn.designcombo.dev/caption_previews/static_preset1.webp"
+        },
+        "trim": {
+          "from": 0,
+          "to": 3159.5744680851053
+        },
+        "type": "video",
+        "name": "video",
+        "playbackRate": 1,
+        "display": {
+          "from": 5062.500000000002,
+          "to": 8222.074468085111
+        },
+        "duration": 5062.5,
+        "isMain": false
+      },
+      "HggABC9V1mqknI2": {
+        "id": "HggABC9V1mqknI2",
+        "details": {
+          "width": 720,
+          "height": 720,
+          "opacity": 100,
+          "src": "/uploads/1765670292603-Image2Video_Shaved_parmesan_crisps_g.mp4",
+          "volume": 100,
+          "borderRadius": 0,
+          "borderWidth": 0,
+          "borderColor": "#000000",
+          "boxShadow": {
+            "color": "#000000",
+            "x": 0,
+            "y": 0,
+            "blur": 0
+          },
+          "top": "168.4px",
+          "left": "592.752px",
+          "transform": "scale(1.5)",
+          "blur": 0,
+          "brightness": 100,
+          "flipX": false,
+          "flipY": false,
+          "rotate": "0deg",
+          "visibility": "visible"
+        },
+        "metadata": {
+          "previewUrl": "https://cdn.designcombo.dev/caption_previews/static_preset1.webp"
+        },
+        "trim": {
+          "from": 0,
+          "to": 5062.5
+        },
+        "type": "video",
+        "name": "video",
+        "playbackRate": 1,
+        "display": {
+          "from": 0,
+          "to": 5062.5
+        },
+        "duration": 5062.5,
+        "isMain": false
+      },
+      "euflPBIeCecbI2u": {
+        "id": "euflPBIeCecbI2u",
         "type": "image",
         "name": "image",
         "display": {
-          "from": 29521.28119708461,
-          "to": 38635.063000000024
+          "from": 11622.34042553193,
+          "to": 17476.32335539892
         },
         "playbackRate": 1,
         "details": {
-          "src": "https://images.pexels.com/photos/695644/pexels-photo-695644.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "width": 1880,
-          "height": 1253,
-          "opacity": 57,
-          "transform": "scale(1.21169, 1.21169)",
+          "src": "/uploads/1765672792372-SG_Web_Image_Bowl_Crispy_Rice_Bowl.png",
+          "width": 600,
+          "height": 600,
+          "opacity": 100,
+          "transform": "scale(1.60044, 1.60044)",
           "border": "none",
           "borderRadius": 0,
           "boxShadow": {
@@ -702,8 +663,8 @@
             "y": 0,
             "blur": 0
           },
-          "top": "205.327px",
-          "left": "364.803px",
+          "top": "105.945px",
+          "left": "173.181px",
           "borderWidth": 0,
           "borderColor": "#000000",
           "blur": 0,
@@ -713,10 +674,10 @@
           "rotate": "0deg",
           "visibility": "visible",
           "crop": {
-            "x": 363.10860421316966,
-            "y": 50.42637843840116,
-            "width": 1191.3827915736608,
-            "height": 670.1528202601842
+            "x": 0,
+            "y": 131.25,
+            "width": 600,
+            "height": 337.49999999999994
           }
         },
         "metadata": {}
@@ -726,39 +687,39 @@
         "name": "text",
         "type": "text",
         "display": {
-          "from": 29521.281197084612,
-          "to": 38635.06300000002
+          "from": 19973.013272407698,
+          "to": 25681.6845692638
         },
         "details": {
-          "text": "\nORDER NOW\n111 Broadway Santa Monica\nSun-Thu: 12:00 PM - 10:00 PM\njoespizza.com",
-          "fontSize": 95,
-          "fontFamily": "MoisterScript",
-          "fontUrl": "/fonts/MoisterScript.ttf",
+          "text": "Over 200 locations nationwide. Download the app to find yours or visit sweetgreen.com",
+          "fontSize": 60,
+          "fontFamily": "ComicNeue-Regular",
+          "fontUrl": "https://fonts.gstatic.com/s/comicneue/v3/4UaHrEJDsxBrF37olUeDx63j5pN1MwI.ttf",
           "fontWeight": "bold",
           "fontStyle": "normal",
           "textAlign": "center",
           "color": "#FFFFFF",
-          "backgroundColor": "transparent",
+          "backgroundColor": "#00473ccc",
           "textDecoration": "none",
           "lineHeight": "1.5",
-          "letterSpacing": "2px",
+          "letterSpacing": 8,
           "wordSpacing": "normal",
           "border": "none",
           "opacity": 100,
           "wordWrap": "normal",
           "wordBreak": "normal",
-          "borderWidth": 15,
-          "borderColor": "#b60202",
+          "borderWidth": 10,
+          "borderColor": "#00473c",
           "boxShadow": {
             "color": "rgba(0,0,0,0.9)",
             "x": 2,
             "y": 4,
             "blur": 12
           },
-          "top": "415.313px",
-          "left": "160px",
-          "width": 1600,
-          "height": 300,
+          "top": "478.92600000000004px",
+          "left": "182.004px",
+          "width": 1555,
+          "height": 441,
           "textTransform": "uppercase",
           "transform": "none",
           "skewX": 0,
@@ -771,14 +732,231 @@
         "name": "text",
         "type": "text",
         "display": {
-          "from": 29521.28119708461,
-          "to": 38635.063000000024
+          "from": 19973.013272407698,
+          "to": 25681.6845692638
         },
         "details": {
-          "text": "JOE'S PIZZA",
+          "text": "sweet green",
           "fontSize": 100,
-          "fontFamily": "MoisterScript",
-          "fontUrl": "/fonts/MoisterScript.ttf",
+          "fontFamily": "ComicNeue-Regular",
+          "fontUrl": "https://fonts.gstatic.com/s/comicneue/v3/4UaHrEJDsxBrF37olUeDx63j5pN1MwI.ttf",
+          "fontWeight": "bold",
+          "fontStyle": "normal",
+          "textAlign": "center",
+          "color": "#FFFFFF",
+          "backgroundColor": "#00473ccc",
+          "textDecoration": "none",
+          "lineHeight": "1.5",
+          "letterSpacing": 8,
+          "wordSpacing": "normal",
+          "border": "none",
+          "opacity": 100,
+          "wordWrap": "normal",
+          "wordBreak": "normal",
+          "borderWidth": 10,
+          "borderColor": "#00473c",
+          "boxShadow": {
+            "color": "rgba(0,0,0,0.9)",
+            "x": 2,
+            "y": 4,
+            "blur": 12
+          },
+          "top": "329.44399999999996px",
+          "left": "182.358px",
+          "width": 1555,
+          "height": 150,
+          "textTransform": "uppercase",
+          "transform": "none",
+          "skewX": 0,
+          "skewY": 0
+        },
+        "metadata": {}
+      },
+      "l58RaJOqULptxejk": {
+        "id": "l58RaJOqULptxejk",
+        "type": "image",
+        "name": "image",
+        "display": {
+          "from": 10340.554369432419,
+          "to": 15530.255548392515
+        },
+        "playbackRate": 1,
+        "details": {
+          "src": "/uploads/1765671648070-ChickenCauliPlate.png",
+          "width": 600,
+          "height": 600,
+          "opacity": 100,
+          "transform": "scale(1.61854, 1.61854)",
+          "border": "none",
+          "borderRadius": 0,
+          "boxShadow": {
+            "color": "#000000",
+            "x": 0,
+            "y": 0,
+            "blur": 0
+          },
+          "top": "103.551px",
+          "left": "1135.06px",
+          "borderWidth": 0,
+          "borderColor": "#000000",
+          "blur": 0,
+          "brightness": 100,
+          "flipX": false,
+          "flipY": false,
+          "rotate": "0deg",
+          "visibility": "visible",
+          "crop": {
+            "x": 0,
+            "y": 131.25,
+            "width": 600,
+            "height": 337.49999999999994
+          }
+        },
+        "metadata": {}
+      },
+      "c3mzhBoXB7ND": {
+        "id": "c3mzhBoXB7ND",
+        "type": "image",
+        "name": "image",
+        "display": {
+          "from": 10989.265073989556,
+          "to": 16137.448643517972
+        },
+        "playbackRate": 1,
+        "details": {
+          "src": "/uploads/1765671648085-SG_Web_Image_Plate_Hot_Honey_Chicken.png",
+          "width": 600,
+          "height": 600,
+          "opacity": 100,
+          "transform": "scale(1.61694, 1.61694)",
+          "border": "none",
+          "borderRadius": 0,
+          "boxShadow": {
+            "color": "#000000",
+            "x": 0,
+            "y": 0,
+            "blur": 0
+          },
+          "top": 638.627,
+          "left": 188.981,
+          "borderWidth": 0,
+          "borderColor": "#000000",
+          "blur": 0,
+          "brightness": 100,
+          "flipX": false,
+          "flipY": false,
+          "rotate": "0deg",
+          "visibility": "visible",
+          "crop": {
+            "x": 0,
+            "y": 129.40387432391825,
+            "width": 600,
+            "height": 337.49999999999994
+          }
+        },
+        "metadata": {}
+      },
+      "SHsfK7jRhfP3y58H": {
+        "id": "SHsfK7jRhfP3y58H",
+        "type": "image",
+        "name": "image",
+        "display": {
+          "from": 12527.11109475079,
+          "to": 16856.17069954125
+        },
+        "playbackRate": 1,
+        "details": {
+          "src": "/uploads/1765671648083-SG_Web_Image_Plate_Caramelized_Garlic_Steak.png",
+          "width": 600,
+          "height": 600,
+          "opacity": 100,
+          "transform": "scale(1.62934, 1.62934)",
+          "border": "none",
+          "borderRadius": 0,
+          "boxShadow": {
+            "color": "#000000",
+            "x": 0,
+            "y": 0,
+            "blur": 0
+          },
+          "top": "644.986px",
+          "left": "1141.63px",
+          "borderWidth": 0,
+          "borderColor": "#000000",
+          "blur": 0,
+          "brightness": 100,
+          "flipX": false,
+          "flipY": false,
+          "rotate": "0deg",
+          "visibility": "visible",
+          "crop": {
+            "x": 0,
+            "y": 131.25,
+            "width": 600,
+            "height": 337.49999999999994
+          }
+        },
+        "metadata": {}
+      },
+      "v6ZIqA1xEcye9Pf": {
+        "id": "v6ZIqA1xEcye9Pf",
+        "name": "text",
+        "type": "text",
+        "display": {
+          "from": 2665.961127880443,
+          "to": 3415.961127880443
+        },
+        "details": {
+          "text": "earth friendly\n",
+          "fontSize": 100,
+          "fontFamily": "ComicNeue-Regular",
+          "fontUrl": "https://fonts.gstatic.com/s/comicneue/v3/4UaHrEJDsxBrF37olUeDx63j5pN1MwI.ttf",
+          "fontWeight": "bold",
+          "fontStyle": "normal",
+          "textAlign": "center",
+          "color": "#FFFFFF",
+          "backgroundColor": "transparent",
+          "textDecoration": "none",
+          "lineHeight": "1.5",
+          "letterSpacing": 8,
+          "wordSpacing": "normal",
+          "border": "none",
+          "opacity": 100,
+          "wordWrap": "normal",
+          "wordBreak": "normal",
+          "borderWidth": 10,
+          "borderColor": "#00473c",
+          "boxShadow": {
+            "color": "rgba(0,0,0,0.9)",
+            "x": 2,
+            "y": 4,
+            "blur": 12
+          },
+          "top": "453.909px",
+          "left": "485.721px",
+          "width": 985,
+          "height": 150,
+          "textTransform": "uppercase",
+          "transform": "none",
+          "skewX": 0,
+          "skewY": 0
+        },
+        "metadata": {},
+        "isMain": false
+      },
+      "M7sSoWdZrPRQGG9Z": {
+        "id": "M7sSoWdZrPRQGG9Z",
+        "name": "text",
+        "type": "text",
+        "display": {
+          "from": 1915.9611278804412,
+          "to": 2665.9611278804405
+        },
+        "details": {
+          "text": "plant-forward\n",
+          "fontSize": 100,
+          "fontFamily": "ComicNeue-Regular",
+          "fontUrl": "https://fonts.gstatic.com/s/comicneue/v3/4UaHrEJDsxBrF37olUeDx63j5pN1MwI.ttf",
           "fontWeight": "bold",
           "fontStyle": "normal",
           "textAlign": "center",
@@ -792,140 +970,71 @@
           "opacity": 100,
           "wordWrap": "normal",
           "wordBreak": "normal",
-          "borderWidth": 15,
-          "borderColor": "#b60202",
+          "borderWidth": 10,
+          "borderColor": "#00473c",
           "boxShadow": {
             "color": "rgba(0,0,0,0.9)",
             "x": 2,
             "y": 4,
             "blur": 12
           },
-          "top": "39.7702px",
-          "left": "-281px",
-          "width": 2482,
-          "height": 421,
+          "top": "463.995px",
+          "left": "577.306px",
+          "width": 786,
+          "height": 150,
           "textTransform": "uppercase",
           "transform": "none",
           "skewX": 0,
           "skewY": 0
         },
-        "metadata": {}
+        "metadata": {},
+        "isMain": false
       },
-      "Ql2HfZDhW3RG2h6": {
-        "id": "Ql2HfZDhW3RG2h6",
-        "type": "image",
-        "name": "image",
+      "y5MjRuir6IpwGEB3": {
+        "id": "y5MjRuir6IpwGEB3",
+        "name": "text",
+        "type": "text",
         "display": {
-          "from": 10340.554369432406,
-          "to": 18271.27659574469
+          "from": 1165.9611278804414,
+          "to": 1915.9611278804414
         },
-        "playbackRate": 1,
         "details": {
-          "src": "https://static.wixstatic.com/media/4801ad_ec296bae26c34d46860df871ab25bea4~mv2.jpg/v1/fill/w_413,h_232,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/4801ad_ec296bae26c34d46860df871ab25bea4~mv2.jpg",
-          "width": 413,
-          "height": 232,
-          "opacity": 100,
-          "transform": "scale(2.36427, 2.36427)",
+          "text": "fresh",
+          "fontSize": 100,
+          "fontFamily": "ComicNeue-Regular",
+          "fontUrl": "https://fonts.gstatic.com/s/comicneue/v3/4UaHrEJDsxBrF37olUeDx63j5pN1MwI.ttf",
+          "fontWeight": "bold",
+          "fontStyle": "normal",
+          "textAlign": "center",
+          "color": "#FFFFFF",
+          "backgroundColor": "transparent",
+          "textDecoration": "none",
+          "lineHeight": "1.5",
+          "letterSpacing": 8,
+          "wordSpacing": "normal",
           "border": "none",
-          "borderRadius": 0,
+          "opacity": 100,
+          "wordWrap": "normal",
+          "wordBreak": "normal",
+          "borderWidth": 10,
+          "borderColor": "#00473c",
           "boxShadow": {
-            "color": "#000000",
-            "x": 0,
-            "y": 0,
-            "blur": 0
+            "color": "rgba(0,0,0,0.9)",
+            "x": 2,
+            "y": 4,
+            "blur": 12
           },
-          "top": "158.041px",
-          "left": "1230.36px",
-          "borderWidth": 0,
-          "borderColor": "#000000",
-          "blur": 0,
-          "brightness": 100,
-          "flipX": false,
-          "flipY": false,
-          "rotate": "0deg",
-          "visibility": "visible",
-          "crop": {
-            "x": 2.5959963989257817,
-            "y": 0,
-            "width": 410.4040036010743,
-            "height": 232.00000000000003
-          }
+          "top": "454.343px",
+          "left": "776.7px",
+          "width": 391,
+          "height": 150,
+          "textTransform": "uppercase",
+          "transform": "none",
+          "skewX": 0,
+          "skewY": 0
         },
         "metadata": {},
-        "animations": {}
-      },
-      "t8rTkzfOpIUXTdlW": {
-        "id": "t8rTkzfOpIUXTdlW",
-        "type": "image",
-        "name": "image",
-        "display": {
-          "from": 10989.265073989556,
-          "to": 18271.27659574469
-        },
-        "playbackRate": 1,
-        "details": {
-          "src": "/uploads/1765412326388-white-piz.png",
-          "width": 413,
-          "height": 232,
-          "opacity": 100,
-          "transform": "scale(2.3165, 2.3165)",
-          "border": "none",
-          "borderRadius": 0,
-          "boxShadow": {
-            "color": "#000000",
-            "x": 0,
-            "y": 0,
-            "blur": 0
-          },
-          "top": "695.569px",
-          "left": "274.771px",
-          "borderWidth": 0,
-          "borderColor": "#000000",
-          "blur": 0,
-          "brightness": 100,
-          "flipX": false,
-          "flipY": false,
-          "rotate": "0deg",
-          "visibility": "visible"
-        },
-        "metadata": {},
-        "animations": {}
-      },
-      "mElajGtPWL4BE2OZ": {
-        "id": "mElajGtPWL4BE2OZ",
-        "type": "image",
-        "name": "image",
-        "display": {
-          "from": 12527.111094750791,
-          "to": 18271.27659574469
-        },
-        "playbackRate": 1,
-        "details": {
-          "src": "https://static.wixstatic.com/media/4801ad_91ee8244d63d48abaacd98db231e77e5~mv2.png/v1/fill/w_413,h_232,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/4801ad_91ee8244d63d48abaacd98db231e77e5~mv2.png",
-          "width": 413,
-          "height": 232,
-          "opacity": 100,
-          "transform": "scale(2.34891, 2.34891)",
-          "border": "none",
-          "borderRadius": 0,
-          "boxShadow": {
-            "color": "#000000",
-            "x": 0,
-            "y": 0,
-            "blur": 0
-          },
-          "top": "704.771px",
-          "left": "1233.16px",
-          "borderWidth": 0,
-          "borderColor": "#000000",
-          "blur": 0,
-          "brightness": 100,
-          "flipX": false,
-          "flipY": false,
-          "rotate": "0deg",
-          "visibility": "visible"
-        },
-        "metadata": {},
+        "isMain": false,
         "animations": {}
       },
       "kdznOku4UocuzQTT": {
@@ -937,10 +1046,10 @@
           "to": 1165.9611278804414
         },
         "details": {
-          "text": "joe's pizza\n",
+          "text": "sweet green\n",
           "fontSize": 130,
-          "fontFamily": "MoisterScript",
-          "fontUrl": "/fonts/MoisterScript.ttf",
+          "fontFamily": "ComicNeue-Regular",
+          "fontUrl": "https://fonts.gstatic.com/s/comicneue/v3/4UaHrEJDsxBrF37olUeDx63j5pN1MwI.ttf",
           "fontWeight": "bold",
           "fontStyle": "normal",
           "textAlign": "center",
@@ -948,24 +1057,24 @@
           "backgroundColor": "transparent",
           "textDecoration": "none",
           "lineHeight": "1.5",
-          "letterSpacing": "2px",
+          "letterSpacing": 8,
           "wordSpacing": "normal",
           "border": "none",
           "opacity": 100,
           "wordWrap": "normal",
           "wordBreak": "normal",
-          "borderWidth": 15,
-          "borderColor": "#b60202",
+          "borderWidth": 10,
+          "borderColor": "#00473c",
           "boxShadow": {
             "color": "rgba(0,0,0,0.9)",
             "x": 2,
             "y": 4,
             "blur": 12
           },
-          "top": "404.023px",
-          "left": "252.077px",
+          "top": "442.523px",
+          "left": "251.277px",
           "width": 1417,
-          "height": 202,
+          "height": 195,
           "textTransform": "uppercase",
           "transform": "none",
           "skewX": 0,
@@ -989,354 +1098,56 @@
           }
         }
       },
-      "U88gr8cW9F2Xza": {
-        "id": "U88gr8cW9F2Xza",
-        "name": "text",
-        "type": "text",
-        "display": {
-          "from": 4155.3228300081055,
-          "to": 4574.468085106386
-        },
-        "details": {
-          "text": "& Organic Salads\n",
-          "fontSize": 90,
-          "fontFamily": "MoisterScript",
-          "fontUrl": "/fonts/MoisterScript.ttf",
-          "fontWeight": "bold",
-          "fontStyle": "normal",
-          "textAlign": "center",
-          "color": "#FFFFFF",
-          "backgroundColor": "transparent",
-          "textDecoration": "none",
-          "lineHeight": "1.5",
-          "letterSpacing": "2px",
-          "wordSpacing": "normal",
-          "border": "none",
-          "opacity": 100,
-          "wordWrap": "normal",
-          "wordBreak": "normal",
-          "borderWidth": 15,
-          "borderColor": "#b60202",
-          "boxShadow": {
-            "color": "rgba(0,0,0,0.9)",
-            "x": 2,
-            "y": 4,
-            "blur": 12
-          },
-          "top": "284.968px",
-          "left": "160px",
-          "width": 1600,
-          "height": 473,
-          "textTransform": "uppercase",
-          "transform": "none",
-          "skewX": 0,
-          "skewY": 0
-        },
-        "metadata": {},
-        "isMain": false
-      },
-      "y5MjRuir6IpwGEB3": {
-        "id": "y5MjRuir6IpwGEB3",
-        "name": "text",
-        "type": "text",
-        "display": {
-          "from": 1165.9611278804414,
-          "to": 2655.322830008104
-        },
-        "details": {
-          "text": "award winning new york\n",
-          "fontSize": 90,
-          "fontFamily": "MoisterScript",
-          "fontUrl": "/fonts/MoisterScript.ttf",
-          "fontWeight": "bold",
-          "fontStyle": "normal",
-          "textAlign": "center",
-          "color": "#FFFFFF",
-          "backgroundColor": "transparent",
-          "textDecoration": "none",
-          "lineHeight": "1.5",
-          "letterSpacing": "2px",
-          "wordSpacing": "normal",
-          "border": "none",
-          "opacity": 100,
-          "wordWrap": "normal",
-          "wordBreak": "normal",
-          "borderWidth": 15,
-          "borderColor": "#b60202",
-          "boxShadow": {
-            "color": "rgba(0,0,0,0.9)",
-            "x": 2,
-            "y": 4,
-            "blur": 12
-          },
-          "top": "284.968px",
-          "left": "160px",
-          "width": 1600,
-          "height": 473,
-          "textTransform": "uppercase",
-          "transform": "none",
-          "skewX": 0,
-          "skewY": 0
-        },
-        "metadata": {},
-        "isMain": false,
-        "animations": {}
-      },
-      "M7sSoWdZrPRQGG9Z": {
-        "id": "M7sSoWdZrPRQGG9Z",
-        "name": "text",
-        "type": "text",
-        "display": {
-          "from": 2655.3228300081046,
-          "to": 3405.3228300081037
-        },
-        "details": {
-          "text": "pies\n",
-          "fontSize": 90,
-          "fontFamily": "MoisterScript",
-          "fontUrl": "/fonts/MoisterScript.ttf",
-          "fontWeight": "bold",
-          "fontStyle": "normal",
-          "textAlign": "center",
-          "color": "#FFFFFF",
-          "backgroundColor": "transparent",
-          "textDecoration": "none",
-          "lineHeight": "1.5",
-          "letterSpacing": "2px",
-          "wordSpacing": "normal",
-          "border": "none",
-          "opacity": 100,
-          "wordWrap": "normal",
-          "wordBreak": "normal",
-          "borderWidth": 15,
-          "borderColor": "#b60202",
-          "boxShadow": {
-            "color": "rgba(0,0,0,0.9)",
-            "x": 2,
-            "y": 4,
-            "blur": 12
-          },
-          "top": "436.723px",
-          "left": "148.261px",
-          "width": 1600,
-          "height": 207,
-          "textTransform": "uppercase",
-          "transform": "none",
-          "skewX": 0,
-          "skewY": 0
-        },
-        "metadata": {},
-        "isMain": false
-      },
-      "v6ZIqA1xEcye9Pf": {
-        "id": "v6ZIqA1xEcye9Pf",
-        "name": "text",
-        "type": "text",
-        "display": {
-          "from": 3405.3228300081037,
-          "to": 4155.322830008104
-        },
-        "details": {
-          "text": "slices\n",
-          "fontSize": 90,
-          "fontFamily": "MoisterScript",
-          "fontUrl": "/fonts/MoisterScript.ttf",
-          "fontWeight": "bold",
-          "fontStyle": "normal",
-          "textAlign": "center",
-          "color": "#FFFFFF",
-          "backgroundColor": "transparent",
-          "textDecoration": "none",
-          "lineHeight": "1.5",
-          "letterSpacing": "2px",
-          "wordSpacing": "normal",
-          "border": "none",
-          "opacity": 100,
-          "wordWrap": "normal",
-          "wordBreak": "normal",
-          "borderWidth": 15,
-          "borderColor": "#b60202",
-          "boxShadow": {
-            "color": "rgba(0,0,0,0.9)",
-            "x": 2,
-            "y": 4,
-            "blur": 12
-          },
-          "top": "443.198px",
-          "left": "154.13px",
-          "width": 1600,
-          "height": 193,
-          "textTransform": "uppercase",
-          "transform": "none",
-          "skewX": 0,
-          "skewY": 0
-        },
-        "metadata": {},
-        "isMain": false
-      },
-      "mkJVHMhzmH3LydWc": {
-        "id": "mkJVHMhzmH3LydWc",
-        "name": "text",
-        "type": "text",
-        "display": {
-          "from": 13271.276595744686,
-          "to": 18271.27659574469
-        },
-        "details": {
-          "text": "All Natural cheese \nno preservatives or artificial ingredients\n",
-          "fontSize": 100,
-          "fontFamily": "MoisterScript",
-          "fontUrl": "/fonts/MoisterScript.ttf",
-          "fontWeight": "bold",
-          "fontStyle": "normal",
-          "textAlign": "center",
-          "color": "#FFFFFF",
-          "backgroundColor": "#29272799",
-          "textDecoration": "none",
-          "lineHeight": "1.5",
-          "letterSpacing": "2px",
-          "wordSpacing": "normal",
-          "border": "none",
-          "opacity": 100,
-          "wordWrap": "normal",
-          "wordBreak": "normal",
-          "borderWidth": 15,
-          "borderColor": "#b60202",
-          "boxShadow": {
-            "color": "rgba(0,0,0,0.9)",
-            "x": 2,
-            "y": 4,
-            "blur": 12
-          },
-          "top": "441.297px",
-          "left": "0px",
-          "width": 1925,
-          "height": 331,
-          "textTransform": "uppercase",
-          "transform": "none",
-          "skewX": 0,
-          "skewY": 0
-        },
-        "metadata": {}
-      },
-      "lHeIK3ZYRxDvNQD8": {
-        "id": "lHeIK3ZYRxDvNQD8",
+      "OmLY7jqslzPOXO": {
+        "id": "OmLY7jqslzPOXO",
         "name": "audio",
         "type": "audio",
         "display": {
           "from": 0,
-          "to": 38635.063
+          "to": 24659.563000000006
         },
         "trim": {
           "from": 0,
-          "to": 38635.063
+          "to": 24659.563
         },
         "playbackRate": 1,
         "details": {
-          "src": "/uploads/1765500930389-joespiz-narration.mp3",
+          "src": "/uploads/1765670748717-sweetgreen-narration.mp3",
           "volume": 100
         },
         "metadata": {},
-        "duration": 38635.063,
+        "duration": 24659.563,
         "isMain": false
       },
-      "GQEQyk4ZE2cpqEiS": {
-        "id": "GQEQyk4ZE2cpqEiS",
+      "mSWm36ualQvsTIl8": {
+        "id": "mSWm36ualQvsTIl8",
         "name": "audio",
         "type": "audio",
         "display": {
           "from": 0,
-          "to": 17200
+          "to": 25700
         },
         "trim": {
           "from": 0,
-          "to": 17200
+          "to": 25700
         },
         "playbackRate": 1,
         "details": {
-          "src": "/uploads/1765513455550-ad-ads-background-music-269360.mp3",
-          "volume": 26
+          "src": "/uploads/1765674316468-ad-379101.mp3",
+          "volume": 21
         },
         "metadata": {},
-        "duration": 65645.68800000001,
-        "isMain": false
-      },
-      "v3gjlVWrKdSnIvS": {
-        "id": "v3gjlVWrKdSnIvS",
-        "details": {
-          "width": 1908,
-          "height": 1080,
-          "opacity": 100,
-          "src": "/uploads/1765530091287-Image2Video_freshly_baked_caprese_pi.mp4",
-          "volume": 100,
-          "borderRadius": 0,
-          "borderWidth": 0,
-          "borderColor": "#000000",
-          "boxShadow": {
-            "color": "#000000",
-            "x": 0,
-            "y": 0,
-            "blur": 0
-          },
-          "top": "0px",
-          "left": "6px",
-          "transform": "scale(1)",
-          "blur": 0,
-          "brightness": 100,
-          "flipX": false,
-          "flipY": false,
-          "rotate": "0deg",
-          "visibility": "visible"
-        },
-        "metadata": {
-          "previewUrl": "https://cdn.designcombo.dev/caption_previews/static_preset1.webp"
-        },
-        "trim": {
-          "from": 115.69148936169594,
-          "to": 4902.925531914891
-        },
-        "type": "video",
-        "name": "video",
-        "playbackRate": 1,
-        "display": {
-          "from": 8484.042553191495,
-          "to": 13271.276595744686
-        },
-        "duration": 5062.5,
-        "isMain": false
-      },
-      "rEtK9vlfSMOAoi": {
-        "id": "rEtK9vlfSMOAoi",
-        "name": "audio",
-        "type": "audio",
-        "display": {
-          "from": 17200,
-          "to": 38652.35023404259
-        },
-        "trim": {
-          "from": 17200,
-          "to": 38652.35023404259
-        },
-        "playbackRate": 1,
-        "details": {
-          "src": "/uploads/1765513455550-ad-ads-background-music-269360.mp3",
-          "volume": 26
-        },
-        "metadata": {},
-        "duration": 65645.68800000001,
+        "duration": 109035.094,
         "isMain": false
       }
     },
     "transitionIds": [
-      "YWs6eBQRLkFuT7Xl-vD1Z083FntJCYV",
-      "vD1Z083FntJCYV-v3gjlVWrKdSnIvS",
-      "lRJnpuKX4aaTiozO-N9Ykm32GzhTwmyMZ",
-      "N9Ykm32GzhTwmyMZ-XVZ6kBqhgnLr4r",
+      "HggABC9V1mqknI2-cifjmPaj7zjJIDay",
+      "cifjmPaj7zjJIDay-u86YHFpnHhIi1t95",
+      "kkq5NxymnRPV9Bir-rSpOFSyKv6UxUzF",
       "kdznOku4UocuzQTT-y5MjRuir6IpwGEB3",
       "y5MjRuir6IpwGEB3-M7sSoWdZrPRQGG9Z",
-      "M7sSoWdZrPRQGG9Z-v6ZIqA1xEcye9Pf",
-      "v6ZIqA1xEcye9Pf-U88gr8cW9F2Xza",
-      "GQEQyk4ZE2cpqEiS-rEtK9vlfSMOAoi"
+      "M7sSoWdZrPRQGG9Z-v6ZIqA1xEcye9Pf"
     ]
   }
 }

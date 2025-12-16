@@ -1,7 +1,7 @@
 import useStore from "../store/use-store";
 import { useEffect, useRef, useState } from "react";
 import { Droppable } from "@/components/ui/droppable";
-import { PlusIcon } from "lucide-react";
+import { PlusIcon, Loader2 } from "lucide-react";
 import { DroppableArea } from "./droppable";
 
 const SceneEmpty = () => {
@@ -68,8 +68,9 @@ const SceneEmpty = () => {
           </DroppableArea>
         </Droppable>
       ) : (
-        <div className="flex flex-1 items-center justify-center bg-background-subtle text-sm text-muted-foreground">
-          Loading...
+        <div className="flex flex-1 flex-col items-center justify-center gap-3">
+          <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+          <p className="text-sm text-muted-foreground">Loading...</p>
         </div>
       )}
     </div>

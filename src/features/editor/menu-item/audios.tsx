@@ -1,17 +1,38 @@
 import Draggable from "@/components/shared/draggable";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { HorizontalScroll } from "@/components/ui/horizontal-scroll";
 import { dispatch } from "@designcombo/events";
-import { ADD_AUDIO, ADD_ITEMS } from "@designcombo/state";
+import { ADD_AUDIO } from "@designcombo/state";
 import { IAudio } from "@designcombo/types";
-import { Music } from "lucide-react";
+import { Music, Search, Loader2 } from "lucide-react";
 import { useIsDraggingOverTimeline } from "../hooks/is-dragging-over-timeline";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { generateId } from "@designcombo/timeline";
-import { AUDIOS } from "../data/audio";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { useStockAudio } from "@/hooks/use-stock-audio";
+import { ImageLoading } from "@/components/ui/image-loading";
+
+const DEFAULT_SEARCH_TERM = "background music";
 
 export const Audios = () => {
   const isDraggingOverTimeline = useIsDraggingOverTimeline();
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const {
+    audios: stockAudio,
+    loading,
+    error,
+    currentPage,
+    hasNextPage,
+    searchAudio,
+    searchAudioAppend,
+    clearAudio
+  } = useStockAudio();
+
+  // Load default audio on component mount
+  useEffect(() => {
+    searchAudio(DEFAULT_SEARCH_TERM);
+  }, [searchAudio]);
 
   const handleAddAudio = (payload: Partial<IAudio>) => {
     payload.id = generateId();
@@ -21,25 +42,118 @@ export const Audios = () => {
     });
   };
 
-  // Main view
+  const handleSearch = async () => {
+    if (!searchQuery.trim()) {
+      await searchAudio(DEFAULT_SEARCH_TERM);
+      return;
+    }
+    await searchAudio(searchQuery);
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
+
+  const handleLoadMore = () => {
+    if (hasNextPage) {
+      if (searchQuery.trim()) {
+        searchAudioAppend(searchQuery, currentPage + 1);
+      } else {
+        searchAudioAppend(DEFAULT_SEARCH_TERM, currentPage + 1);
+      }
+    }
+  };
+
+  const handleClearSearch = () => {
+    setSearchQuery("");
+    clearAudio();
+    searchAudio(DEFAULT_SEARCH_TERM);
+  };
+
   return (
     <div className="flex flex-1 flex-col max-w-full">
       <div className="text-text-primary flex h-12 flex-none items-center px-4 text-sm font-medium">
         Audios
       </div>
+      <div className="flex items-center gap-2 px-4 pb-4">
+        <div className="relative flex-1">
+          <Input
+            placeholder="Search audio..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onKeyPress={handleKeyPress}
+            className="pr-10"
+          />
+          <Button
+            size="sm"
+            variant="ghost"
+            className="absolute right-1 top-1/2 h-6 w-6 -translate-y-1/2 p-0"
+            onClick={handleSearch}
+            disabled={loading}
+          >
+            {loading ? (
+              <Loader2 className="h-3 w-3 animate-spin" />
+            ) : (
+              <Search className="h-3 w-3" />
+            )}
+          </Button>
+        </div>
+        {searchQuery && (
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={handleClearSearch}
+            disabled={loading}
+          >
+            Clear
+          </Button>
+        )}
+      </div>
+
+      {error && (
+        <div className="px-4 pb-2">
+          <div className="text-sm text-red-500 bg-red-50 dark:bg-red-950/20 p-2 rounded">
+            {error}
+          </div>
+        </div>
+      )}
+
       <ScrollArea className="flex-1 h-[calc(100%-98px)] max-w-full">
         <div className="flex flex-col px-2">
-          {AUDIOS.map((audio, index) => {
+          {stockAudio.map((audio, index) => {
             return (
               <AudioItem
                 shouldDisplayPreview={!isDraggingOverTimeline}
                 handleAddAudio={handleAddAudio}
                 audio={audio}
-                key={index}
+                key={audio.id || index}
               />
             );
           })}
         </div>
+        {loading && <ImageLoading message="Searching for audio..." />}
+        {/* Pagination */}
+        {hasNextPage && (
+          <div className="flex items-center justify-center p-4">
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={handleLoadMore}
+              disabled={loading}
+            >
+              {loading ? (
+                <>
+                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                  Loading...
+                </>
+              ) : (
+                "Load More"
+              )}
+            </Button>
+          </div>
+        )}
       </ScrollArea>
     </div>
   );
@@ -51,7 +165,7 @@ const AudioItem = ({
   shouldDisplayPreview
 }: {
   handleAddAudio: (payload: Partial<IAudio>) => void;
-  audio: Partial<IAudio>;
+  audio: Partial<IAudio> & { metadata?: { author?: string; mood?: string; duration?: number } };
   shouldDisplayPreview: boolean;
 }) => {
   const style = React.useMemo(
@@ -64,6 +178,14 @@ const AudioItem = ({
     }),
     []
   );
+
+  // Format duration from seconds to mm:ss
+  const formatDuration = (seconds: number | undefined) => {
+    if (!seconds) return "";
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs.toString().padStart(2, "0")}`;
+  };
 
   return (
     <Draggable
@@ -83,11 +205,20 @@ const AudioItem = ({
         <div className="flex h-12 items-center justify-center bg-muted/50 rounded-lg border border-white/[0.06] group-hover:border-[#fb923c]/30 transition-all">
           <Music width={16} className="text-muted-foreground group-hover:text-[#fb923c] transition-colors" />
         </div>
-        <div className="flex flex-col justify-center">
-          <div className="text-zinc-200 group-hover:text-[#fb923c] transition-colors">{audio.name}</div>
-          <div className="text-zinc-400">{audio.metadata?.author}</div>
+        <div className="flex flex-col justify-center overflow-hidden">
+          <div className="text-zinc-200 group-hover:text-[#fb923c] transition-colors truncate">
+            {audio.name}
+          </div>
+          <div className="flex items-center gap-2 text-xs">
+            <span className="text-zinc-400 truncate">{audio.metadata?.author}</span>
+            {audio.metadata?.duration && (
+              <span className="text-zinc-500">
+                {formatDuration(audio.metadata.duration)}
+              </span>
+            )}
+          </div>
           {audio.metadata?.mood && (
-            <div className="text-xs text-zinc-500">{audio.metadata.mood}</div>
+            <div className="text-xs text-zinc-500 truncate">{audio.metadata.mood}</div>
           )}
         </div>
       </div>

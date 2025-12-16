@@ -59,9 +59,9 @@ const Container = ({ children }: { children: React.ReactNode }) => {
       <div className="relative flex-none" style={{ width: showControlItem ? 0 : 0 }}>
         <button
           onClick={() => setShowControlItem(!showControlItem)}
-          className="absolute right-0 top-4 z-20 p-1.5 rounded-l-md transition-all duration-200 hover:bg-white/10"
+          className="group absolute right-0 top-4 z-20 p-1.5 rounded-l-md transition-all duration-300 ease-out hover:scale-105"
           style={{
-            background: "rgba(10,10,10,0.95)",
+            background: "linear-gradient(135deg, rgba(10,10,10,0.95) 0%, rgba(15,15,15,0.98) 100%)",
             borderLeft: "1px solid rgba(255,255,255,0.08)",
             borderTop: "1px solid rgba(255,255,255,0.08)",
             borderBottom: "1px solid rgba(255,255,255,0.08)",
@@ -69,10 +69,31 @@ const Container = ({ children }: { children: React.ReactNode }) => {
           }}
           title={showControlItem ? "Hide properties panel" : "Show properties panel"}
         >
+          {/* Hover gradient overlay */}
+          <div
+            className="absolute inset-0 rounded-l-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            style={{
+              background: "linear-gradient(135deg, rgba(244,114,182,0.15) 0%, rgba(251,146,60,0.15) 100%)",
+            }}
+          />
+          {/* Hover glow effect */}
+          <div
+            className="absolute inset-0 rounded-l-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"
+            style={{
+              boxShadow: "-4px 0 16px rgba(244,114,182,0.2), 0 0 12px rgba(251,146,60,0.15)",
+            }}
+          />
+          {/* Accent border on hover */}
+          <div
+            className="absolute left-0 top-0 bottom-0 w-px opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            style={{
+              background: "linear-gradient(180deg, rgba(244,114,182,0.6) 0%, rgba(251,146,60,0.4) 100%)",
+            }}
+          />
           {showControlItem ? (
-            <PanelRightClose className="w-4 h-4 text-zinc-400" />
+            <PanelRightClose className="w-4 h-4 text-zinc-400 group-hover:text-zinc-200 transition-colors duration-300 relative z-10" />
           ) : (
-            <PanelRightOpen className="w-4 h-4 text-zinc-400" />
+            <PanelRightOpen className="w-4 h-4 text-zinc-400 group-hover:text-zinc-200 transition-colors duration-300 relative z-10" />
           )}
         </button>
       </div>

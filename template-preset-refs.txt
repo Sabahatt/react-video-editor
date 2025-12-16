@@ -1,0 +1,30 @@
+Template Presets Reference
+
+  Template 1 (Dynamic)
+
+  | Restaurant          | Voice  | Mode      | Tone      |
+  |---------------------|--------|-----------|-----------|
+  | Doughnut Vault (dv) | Female | Luxurious | Warm      |
+  | Joe's Pizza (jp)    | Female | Casual    | Friendly  |
+  | Sweetgreen (sg)     | Male   | Energetic | Confident |
+
+  Template 2 (Classic)
+
+  | Restaurant          | Voice  | Mode      | Tone      |
+  |---------------------|--------|-----------|-----------|
+  | Doughnut Vault (dv) | Male   | Luxurious | Warm      |
+  | Joe's Pizza (jp)    | Male   | Casual    | Friendly  |
+  | Sweetgreen (sg)     | Female | Energetic | Confident |
+
+  Brand Characteristics (from brand.json)
+
+  - Doughnut Vault: tone: "artisanal-warm" - Artisanal, handcrafted, old-fashioned style
+  - Joe's Pizza: tone: "classic-nyc" - NYC institution, classic New York-style
+  - Sweetgreen: tone: "fresh-modern" - Health-focused, sustainable, modern, clean aesthetic
+
+  Recommended Defaults
+
+  - Duration: ~30s
+  - Aspect Ratio: 16:9 (landscape)
+
+  ---

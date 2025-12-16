@@ -87,6 +87,20 @@ const removeExtension = (filename: string): string => {
 };
 
 /**
+ * Strips timestamp prefix from filename if present
+ * Handles patterns like: 1702835123456-filename.mp4 or thumb-1702835123456-filename.jpg
+ */
+const stripTimestampPrefix = (filename: string): string => {
+  // Pattern: optional "thumb-" prefix + 13-digit timestamp + hyphen + actual filename
+  const timestampPattern = /^(?:thumb-)?(\d{13})-(.+)$/;
+  const match = filename.match(timestampPattern);
+  if (match) {
+    return match[2]; // Return the part after the timestamp
+  }
+  return filename;
+};
+
+/**
  * Extracts filename from a URL path
  */
 const extractFilenameFromUrl = (url: string): string | null => {
@@ -104,7 +118,9 @@ const extractFilenameFromUrl = (url: string): string | null => {
     // Check if it looks like a filename (has extension)
     if (lastSegment && /\.\w+$/.test(lastSegment)) {
       // Decode URI components for proper display
-      return decodeURIComponent(lastSegment);
+      const decoded = decodeURIComponent(lastSegment);
+      // Strip timestamp prefix if present
+      return stripTimestampPrefix(decoded);
     }
 
     return null;
@@ -113,7 +129,9 @@ const extractFilenameFromUrl = (url: string): string | null => {
     const segments = url.split("/").filter(Boolean);
     const lastSegment = segments[segments.length - 1];
     if (lastSegment && /\.\w+$/.test(lastSegment)) {
-      return lastSegment.split("?")[0]; // Remove query params
+      const filename = lastSegment.split("?")[0]; // Remove query params
+      // Strip timestamp prefix if present
+      return stripTimestampPrefix(filename);
     }
     return null;
   }
