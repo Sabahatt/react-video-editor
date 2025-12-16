@@ -67,10 +67,10 @@ const useStore = create<ITimelineStore>((set) => ({
   duration: 1000,
   fps: 30,
   scale: {
-    // 1x distance (second 0 to second 5, 5 segments).
-    index: 7,
-    unit: 300,
-    zoom: 1 / 300,
+    // 1x distance (second 0 to second 30) - fits 35s timeline.
+    index: 6,
+    unit: 400,
+    zoom: 1 / 400,
     segments: 5
   },
   scroll: {
