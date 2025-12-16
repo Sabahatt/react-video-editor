@@ -43,6 +43,7 @@ export async function processFileUpload(
     // Construct upload data from uploadInfo
     // Use server-generated thumbnail URL instead of base64 to avoid localStorage quota issues
     const uploadData = {
+      id: `upload-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
       fileName: uploadInfo.fileName,
       filePath: uploadInfo.filePath,
       fileSize: file.size,

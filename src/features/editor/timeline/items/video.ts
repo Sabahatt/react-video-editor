@@ -64,7 +64,6 @@ class Video extends Trimmable {
   public offscreenSegments = 0;
   public thumbnailWidth = 0;
   public thumbnailHeight = 40;
-  public thumbnailsList: { url: string; ts: number }[] = [];
   public isFetchingThumbnails = false;
   public thumbnailCache = new ThumbnailCache();
 
@@ -213,15 +212,26 @@ class Video extends Trimmable {
   // load fallback thumbnail, resize it and cache it
   // Falls back to extracting a frame from the video if previewUrl fails
   private async loadFallbackThumbnail() {
-    const fallbackThumbnail = this.previewUrl;
+    // Try sources in order: previewUrl, derived thumbnail from filename, video extraction
+    const thumbnailSources: string[] = [];
 
-    // Try loading the preview image first
-    if (fallbackThumbnail) {
+    if (this.previewUrl) {
+      thumbnailSources.push(this.previewUrl);
+    }
+
+    // Derive thumbnail URL from video filename (FFmpeg format: thumb-{timestamp}-{name}.jpg)
+    if (this.src?.startsWith("/uploads/")) {
+      const derivedThumbnail = `/uploads/thumb-${this.src.replace("/uploads/", "").replace(/\.[^.]+$/, ".jpg")}`;
+      thumbnailSources.push(derivedThumbnail);
+    }
+
+    // Try each thumbnail source
+    for (const source of thumbnailSources) {
       try {
-        await this.loadImageAsThumbnail(fallbackThumbnail);
+        await this.loadImageAsThumbnail(source);
         return;
       } catch (e) {
-        console.warn("Failed to load preview image, extracting from video:", e);
+        // Continue to next source
       }
     }
 
@@ -294,7 +304,7 @@ class Video extends Trimmable {
       const video = document.createElement("video");
       video.muted = true;
       video.playsInline = true;
-      video.preload = "metadata";
+      video.preload = "auto";
 
       // Only set crossOrigin for external URLs
       const isExternal =
@@ -305,15 +315,22 @@ class Video extends Trimmable {
       }
 
       let captured = false;
+
+      const cleanup = () => {
+        video.pause();
+        video.src = "";
+        video.load();
+      };
+
       const timeout = setTimeout(() => {
         if (!captured) {
-          video.src = "";
+          cleanup();
           reject(new Error("Timeout extracting video thumbnail"));
         }
       }, 10000);
 
       const captureFrame = () => {
-        if (captured) return;
+        if (captured || video.videoWidth === 0 || video.videoHeight === 0) return;
 
         try {
           const canvas = document.createElement("canvas");
@@ -325,46 +342,48 @@ class Video extends Trimmable {
           canvas.height = targetHeight;
 
           const ctx = canvas.getContext("2d");
-          if (ctx && video.videoWidth > 0 && video.videoHeight > 0) {
-            ctx.drawImage(video, 0, 0, targetWidth, targetHeight);
-            const dataUrl = canvas.toDataURL("image/jpeg", 0.8);
+          if (!ctx) return;
 
-            // Verify we got actual content
-            if (dataUrl.length > 1000) {
-              captured = true;
-              clearTimeout(timeout);
+          ctx.drawImage(video, 0, 0, targetWidth, targetHeight);
+          const dataUrl = canvas.toDataURL("image/jpeg", 0.8);
 
-              const resizedImg = new Image();
-              resizedImg.src = dataUrl;
+          if (dataUrl.length > 1000) {
+            captured = true;
+            clearTimeout(timeout);
 
-              this.aspectRatio = aspectRatio;
-              this.thumbnailWidth = targetWidth;
-              this.thumbnailCache.setThumbnail("fallback", resizedImg);
+            const resizedImg = new Image();
+            resizedImg.src = dataUrl;
 
-              video.pause();
-              video.src = "";
-              resolve();
-            }
+            this.aspectRatio = aspectRatio;
+            this.thumbnailWidth = targetWidth;
+            this.thumbnailCache.setThumbnail("fallback", resizedImg);
+
+            cleanup();
+            resolve();
           }
-        } catch (e) {
-          // Canvas tainted - ignore and let timeout handle it
+        } catch {
+          // Canvas tainted - let timeout handle it
         }
       };
 
-      video.onloadedmetadata = () => {
-        video.currentTime = Math.min(1, video.duration * 0.25);
+      // Use canplay instead of loadeddata - ensures enough data for seeking
+      video.oncanplay = () => {
+        const seekTime = Math.min(1, video.duration * 0.25);
+        if (video.currentTime === seekTime) {
+          // Already at target time, capture directly
+          captureFrame();
+        } else {
+          video.currentTime = seekTime;
+        }
       };
 
       video.onseeked = () => {
-        video.play().catch(() => captureFrame());
-      };
-
-      video.ontimeupdate = () => {
         captureFrame();
       };
 
       video.onerror = () => {
         clearTimeout(timeout);
+        cleanup();
         reject(new Error("Failed to load video"));
       };
 
@@ -491,6 +510,15 @@ class Video extends Trimmable {
   }
 
   public _render(ctx: CanvasRenderingContext2D) {
+    // Check if fill pattern has valid dimensions before calling super._render
+    // to avoid InvalidStateError when createPattern is called with 0-dimension canvas
+    if (this.fill instanceof Pattern) {
+      const source = this.fill.source as HTMLCanvasElement | OffscreenCanvas;
+      if (source && (source.width === 0 || source.height === 0)) {
+        return;
+      }
+    }
+
     super._render(ctx);
 
     ctx.save();

@@ -575,7 +575,7 @@ input[type="number"]::-webkit-outer-spin-button {
   position: absolute;
   top: 0;
   right: 4px;
-  background: transparent;
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .ScrollAreaViewport {
@@ -592,12 +592,12 @@ input[type="number"]::-webkit-outer-spin-button {
   /* disable browser handling of all panning and zooming gestures on touch devices */
   touch-action: none;
   padding: 2px;
-  background: transparent;
+  background: rgba(255, 255, 255, 0.02);
   transition: background 160ms ease-out;
 }
 
 .ScrollAreaScrollbar:hover {
-  background: var(--zinc-800);
+  background: rgba(255, 255, 255, 0.06);
 }
 .ScrollAreaScrollbar[data-orientation="vertical"] {
   width: 10px;
@@ -609,9 +609,14 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .ScrollAreaThumb {
   flex: 1;
-  background: var(--zinc-700);
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 10px;
   position: relative;
+  transition: background 160ms ease-out;
+}
+
+.ScrollAreaThumb:hover {
+  background: rgba(255, 255, 255, 0.35);
 }
 /* increase target size for touch devices https://www.w3.org/WAI/WCAG21/Understanding/target-size.html */
 .ScrollAreaThumb::before {

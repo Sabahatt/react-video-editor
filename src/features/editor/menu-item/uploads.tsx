@@ -16,133 +16,122 @@ import ModalUpload from "@/components/modal-upload";
 import { useState, useEffect } from "react";
 import { getMediaDisplayName } from "../utils/file";
 
+// Simple thumbnail component - tries static image first, falls back to video extraction
+function VideoThumbnailWithFallback({
+  thumbnailUrl,
+  videoUrl,
+  className
+}: {
+  thumbnailUrl?: string | null;
+  videoUrl: string;
+  className?: string;
+}) {
+  const [imgFailed, setImgFailed] = useState(false);
+
+  // If we have a thumbnail URL and it hasn't failed, try to load it
+  if (thumbnailUrl && !imgFailed) {
+    return (
+      <img
+        src={thumbnailUrl}
+        alt="Video thumbnail"
+        className={className}
+        onError={() => setImgFailed(true)}
+      />
+    );
+  }
+
+  // Fallback to extracting frame from video
+  return <VideoThumbnail src={videoUrl} className={className} />;
+}
+
 // Component to extract and display a video frame as thumbnail
-// Industry standard approach: https://dev.to/rajeshroyal/video-thumbnails-generate-with-vanilla-js-reactjs-like-youtube-3ok8
 function VideoThumbnail({ src, className }: { src: string; className?: string }) {
   const [thumbnailUrl, setThumbnailUrl] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const [status, setStatus] = useState<"loading" | "success" | "error">("loading");
 
   useEffect(() => {
     if (!src) {
-      setLoading(false);
-      setError(true);
+      setStatus("error");
       return;
     }
 
-    setLoading(true);
-    setError(false);
+    let isMounted = true;
+    setStatus("loading");
     setThumbnailUrl(null);
 
     const video = document.createElement("video");
     video.muted = true;
     video.playsInline = true;
-    video.preload = "metadata";
+    video.preload = "auto";
 
-    // Only set crossOrigin for external URLs, not local files
+    // Only set crossOrigin for external URLs
     if (src.startsWith("http") && !src.startsWith(window.location.origin)) {
       video.crossOrigin = "anonymous";
     }
 
-    let captured = false;
-
-    const snapImage = () => {
-      if (captured) return;
+    const captureFrame = () => {
+      if (!isMounted || video.videoWidth === 0 || video.videoHeight === 0) return false;
 
       try {
         const canvas = document.createElement("canvas");
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
         const ctx = canvas.getContext("2d");
+        if (!ctx) return false;
 
-        if (ctx && video.videoWidth > 0 && video.videoHeight > 0) {
-          ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-          const dataUrl = canvas.toDataURL("image/jpeg", 0.8);
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        const dataUrl = canvas.toDataURL("image/jpeg", 0.8);
 
-          // Verify the image was actually captured (not blank)
-          if (dataUrl.length > 10000) {
-            captured = true;
-            setThumbnailUrl(dataUrl);
-            setLoading(false);
-            video.pause();
-            video.src = "";
-            video.load();
-          }
+        if (dataUrl.length > 1000 && isMounted) {
+          setThumbnailUrl(dataUrl);
+          setStatus("success");
+          return true;
         }
-      } catch (e) {
-        // Canvas tainted or other error - fall back to video icon
-        setError(true);
-        setLoading(false);
+      } catch {
+        // Canvas tainted
+      }
+      return false;
+    };
+
+    video.oncanplay = () => {
+      video.currentTime = Math.min(1, video.duration * 0.25);
+    };
+
+    video.onseeked = () => {
+      if (!captureFrame() && isMounted) {
+        setStatus("error");
       }
     };
 
-    const handleLoadedMetadata = () => {
-      // Seek to 1 second or 25% of duration, whichever is less
-      const seekTime = Math.min(1, video.duration * 0.25);
-      video.currentTime = seekTime;
+    video.onerror = () => {
+      if (isMounted) setStatus("error");
     };
 
-    const handleTimeUpdate = () => {
-      // timeupdate fires when seeking completes and frame is ready
-      snapImage();
-    };
-
-    const handleSeeked = () => {
-      // Some browsers need play() to render the frame
-      video.play().catch(() => {
-        // Autoplay blocked - try capturing anyway
-        snapImage();
-      });
-    };
-
-    const handleError = () => {
-      setError(true);
-      setLoading(false);
-    };
-
-    // Set up event listeners
-    video.addEventListener("loadedmetadata", handleLoadedMetadata);
-    video.addEventListener("seeked", handleSeeked);
-    video.addEventListener("timeupdate", handleTimeUpdate);
-    video.addEventListener("error", handleError);
-
-    // Start loading
     video.src = src;
 
-    // Timeout fallback - if nothing works after 5 seconds, show error
     const timeout = setTimeout(() => {
-      if (!captured) {
-        setError(true);
-        setLoading(false);
+      if (isMounted) {
+        setStatus((current) => current === "loading" ? "error" : current);
       }
-    }, 5000);
+    }, 8000);
 
     return () => {
+      isMounted = false;
       clearTimeout(timeout);
-      video.removeEventListener("loadedmetadata", handleLoadedMetadata);
-      video.removeEventListener("seeked", handleSeeked);
-      video.removeEventListener("timeupdate", handleTimeUpdate);
-      video.removeEventListener("error", handleError);
       video.pause();
       video.src = "";
     };
   }, [src]);
 
-  if (loading) {
+  if (status === "loading") {
     return <Loader2 className="w-6 h-6 text-muted-foreground animate-spin" />;
   }
 
-  if (error || !thumbnailUrl) {
+  if (status === "error" || !thumbnailUrl) {
     return <VideoIcon className="w-8 h-8 text-muted-foreground" />;
   }
 
-  return (
-    <img
-      src={thumbnailUrl}
-      alt="Video thumbnail"
-      className={className}
-    />
-  );
+  return <img src={thumbnailUrl} alt="Video thumbnail" className={className} />;
 }
 
 export const Uploads = () => {
@@ -176,8 +165,11 @@ export const Uploads = () => {
 
   const handleAddVideo = (video: any, index: number) => {
     const srcVideo = video.metadata?.uploadedUrl || video.url;
-    // Use the actual thumbnail from the upload, or fall back to extracting from video
-    const previewUrl = video.metadata?.thumbnail || video.metadata?.previewUrl || video.preview || srcVideo;
+    // Derive thumbnail URL from video filename (FFmpeg format: thumb-{timestamp}-{name}.jpg)
+    const derivedThumbnail = srcVideo?.startsWith("/uploads/")
+      ? `/uploads/thumb-${srcVideo.replace("/uploads/", "").replace(/\.[^.]+$/, ".jpg")}`
+      : null;
+    const previewUrl = video.metadata?.thumbnail || video.metadata?.previewUrl || derivedThumbnail || srcVideo;
     const displayName = getMediaDisplayName(video.file, srcVideo, "Video", index);
 
     dispatch(ADD_VIDEO, {
@@ -303,8 +295,15 @@ export const Uploads = () => {
             </div>
             <div className="grid grid-cols-3 gap-2">
               {videos.map((video, idx) => {
-                const previewUrl = video.metadata?.previewUrl || video.metadata?.thumbnail || video.preview;
-                const videoUrl = video.metadata?.uploadedUrl || video.url || video.filePath;
+                // Get video URL from any available source
+                const videoUrl = video.metadata?.uploadedUrl || video.url || video.filePath || video.metadata?.url;
+                // Derive thumbnail URL from video filename (FFmpeg format: thumb-{timestamp}-{name}.jpg)
+                const derivedThumbnail = videoUrl?.startsWith("/uploads/")
+                  ? `/uploads/thumb-${videoUrl.replace("/uploads/", "").replace(/\.[^.]+$/, ".jpg")}`
+                  : null;
+                // Priority: explicit thumbnail > derived thumbnail > fallback to video extraction
+                const previewUrl = video.metadata?.thumbnail || derivedThumbnail;
+
                 return (
                   <div
                     className="flex items-center gap-2 flex-col w-full group"
@@ -314,15 +313,11 @@ export const Uploads = () => {
                       className="w-16 h-16 flex items-center justify-center overflow-hidden relative cursor-pointer bg-muted/50 border-white/[0.06] hover:border-[#fb923c]/30 hover:shadow-[0_0_10px_rgba(251,146,60,0.1)] transition-all"
                       onClick={() => handleAddVideo(video, idx)}
                     >
-                      {previewUrl ? (
-                        <img
-                          src={previewUrl}
-                          alt="Video thumbnail"
-                          className="w-full h-full object-cover"
-                        />
-                      ) : videoUrl ? (
-                        <VideoThumbnail
-                          src={videoUrl}
+                      {videoUrl ? (
+                        <VideoThumbnailWithFallback
+                          key={`thumb-${videoUrl}`}
+                          thumbnailUrl={previewUrl}
+                          videoUrl={videoUrl}
                           className="w-full h-full object-cover"
                         />
                       ) : (
