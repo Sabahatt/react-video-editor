@@ -1,18 +1,19 @@
 import { ITrackItem } from "@designcombo/types";
 
 export type IMenuItem =
-  | "uploads"
+  | "media"
   | "templates"
-  | "videos"
-  | "images"
+  | "stock-video"
+  | "stock-image"
   | "shapes"
-  | "audios"
+  | "stock-audio"
   | "transitions"
   | "texts"
   | "captions"
   | "voiceOver"
   | "elements"
-  | "ai-voice";
+  | "ai-voice"
+  | "ai-video";
 export interface ILayoutState {
   cropTarget: ITrackItem | null;
   trackItem: ITrackItem | null;

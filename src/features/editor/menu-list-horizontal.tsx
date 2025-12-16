@@ -24,14 +24,9 @@ interface MenuItemData {
 // Menu items configuration
 const menuItems: MenuItemData[] = [
   {
-    id: "texts",
-    label: "Text",
-    icon: Icons.type
-  },
-  {
-    id: "videos",
-    label: "Video",
-    icon: Icons.video
+    id: "media",
+    label: "Media",
+    icon: Icons.upload
   },
   {
     id: "ai-video",
@@ -39,14 +34,29 @@ const menuItems: MenuItemData[] = [
     icon: Icons.smart
   },
   {
-    id: "images",
-    label: "Images",
+    id: "ai-voice",
+    label: "AI Voice",
+    icon: Icons.volume
+  },
+  {
+    id: "stock-video",
+    label: "Stock Video",
+    icon: Icons.video
+  },
+  {
+    id: "stock-image",
+    label: "Stock Image",
     icon: Icons.image
   },
   {
-    id: "audios",
-    label: "Audio",
+    id: "stock-audio",
+    label: "Stock Audio",
     icon: Icons.audio
+  },
+  {
+    id: "texts",
+    label: "Texts",
+    icon: Icons.type
   },
   {
     id: "transitions",

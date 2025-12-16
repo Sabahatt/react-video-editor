@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { dispatch } from "@designcombo/events";
 import {
   ACTIVE_SPLIT,
+  HISTORY_REDO,
+  HISTORY_UNDO,
   LAYER_CLONE,
   LAYER_DELETE,
   TIMELINE_SCALE_CHANGED
@@ -10,6 +12,7 @@ import { PLAYER_PAUSE, PLAYER_PLAY } from "../constants/events";
 import { frameToTimeString, getCurrentTime, timeToString } from "../utils/time";
 import useStore from "../store/use-store";
 import { SquareSplitHorizontal, Trash, ZoomIn, ZoomOut } from "lucide-react";
+import { Icons } from "@/components/shared/icons";
 import {
   getFitZoomLevel,
   getNextZoomLevel,
@@ -93,6 +96,14 @@ const Header = () => {
     dispatch(LAYER_DELETE);
   };
 
+  const handleUndo = () => {
+    dispatch(HISTORY_UNDO);
+  };
+
+  const handleRedo = () => {
+    dispatch(HISTORY_REDO);
+  };
+
   const doActiveSplit = () => {
     dispatch(ACTIVE_SPLIT, {
       payload: {},
@@ -166,6 +177,23 @@ const Header = () => {
           }}
         >
           <div className="flex px-2">
+            <Button
+              onClick={handleUndo}
+              variant={"ghost"}
+              size={"icon"}
+              className="h-7 w-7 text-muted-foreground hover:text-[#fb923c] hover:bg-[#fb923c]/10 transition-colors"
+            >
+              <Icons.undo width={16} />
+            </Button>
+            <Button
+              onClick={handleRedo}
+              variant={"ghost"}
+              size={"icon"}
+              className="h-7 w-7 text-muted-foreground hover:text-[#fb923c] hover:bg-[#fb923c]/10 transition-colors"
+            >
+              <Icons.redo width={16} />
+            </Button>
+            <div className="w-px h-5 bg-white/10 mx-1 self-center" />
             <Button
               disabled={!activeIds.length}
               onClick={doActiveDelete}

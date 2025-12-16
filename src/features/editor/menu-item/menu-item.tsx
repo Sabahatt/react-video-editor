@@ -23,31 +23,27 @@ const ActiveMenuItem = () => {
   if (activeMenuItem === "shapes") {
     return <Elements />;
   }
-  if (activeMenuItem === "videos") {
-    return <Videos />;
-  }
   if (activeMenuItem === "ai-video") {
     return <AiVideo />;
   }
-
-  if (activeMenuItem === "audios") {
-    return <Audios />;
+  if (activeMenuItem === "stock-video") {
+    return <Videos />;
   }
-
-  if (activeMenuItem === "images") {
+  if (activeMenuItem === "stock-image") {
     return <Images />;
   }
-
+  if (activeMenuItem === "stock-audio") {
+    return <Audios />;
+  }
   if (activeMenuItem === "voiceOver") {
     return <VoiceOver />;
   }
   if (activeMenuItem === "elements") {
     return <Elements />;
   }
-  if (activeMenuItem === "uploads") {
+  if (activeMenuItem === "media") {
     return <Uploads />;
   }
-
   if (activeMenuItem === "ai-voice") {
     return <AiVoice />;
   }

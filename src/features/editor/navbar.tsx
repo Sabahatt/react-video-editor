@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { dispatch } from "@designcombo/events";
-import { HISTORY_UNDO, HISTORY_REDO, DESIGN_RESIZE } from "@designcombo/state";
+import { DESIGN_RESIZE } from "@designcombo/state";
 import { Icons } from "@/components/shared/icons";
 import {
   Popover,
@@ -69,16 +69,6 @@ export default function Navbar({
   const isMediumScreen = useIsMediumScreen();
   const isSmallScreen = useIsSmallScreen();
 
-  const handleUndo = () => {
-    dispatch(HISTORY_UNDO);
-  };
-
-  const handleRedo = () => {
-    dispatch(HISTORY_REDO);
-  };
-
-  const handleCreateProject = async () => {};
-
   // Create a debounced function for setting the project name
   const debouncedSetProjectName = useCallback(
     debounce((name: string) => {
@@ -115,28 +105,7 @@ export default function Navbar({
       <DownloadProgressModal />
 
       <div className="flex items-center gap-2">
-        {/* <div className="pointer-events-auto flex h-11 w-11 items-center justify-center rounded-md text-zinc-200">
-          <LogoIcons.scenify />
-        </div> */}
-
-        <div className=" pointer-events-auto flex h-10 items-center px-1.5">
-          <Button
-            onClick={handleUndo}
-            className="text-muted-foreground hover:text-[#fb923c] hover:bg-[#fb923c]/10"
-            variant="ghost"
-            size="icon"
-          >
-            <Icons.undo width={20} />
-          </Button>
-          <Button
-            onClick={handleRedo}
-            className="text-muted-foreground hover:text-[#fb923c] hover:bg-[#fb923c]/10"
-            variant="ghost"
-            size="icon"
-          >
-            <Icons.redo width={20} />
-          </Button>
-        </div>
+        {/* Left section - empty now that undo/redo moved to timeline */}
       </div>
 
       <div className="flex h-11 items-center justify-center gap-2">

@@ -15,22 +15,10 @@ import { useIsLargeScreen } from "@/hooks/use-media-query";
 // Define menu items configuration for better maintainability
 const MENU_ITEMS = [
   {
-    id: "uploads",
+    id: "media",
     icon: Icons.upload,
-    label: "Uploads",
-    ariaLabel: "Add and manage uploads"
-  },
-  {
-    id: "texts",
-    icon: Icons.type,
-    label: "Texts",
-    ariaLabel: "Add and edit text elements"
-  },
-  {
-    id: "videos",
-    icon: Icons.video,
-    label: "Videos",
-    ariaLabel: "Add and manage video content"
+    label: "Media",
+    ariaLabel: "Add and manage media"
   },
   {
     id: "ai-video",
@@ -39,28 +27,40 @@ const MENU_ITEMS = [
     ariaLabel: "Generate video from image using AI"
   },
   {
-    id: "images",
-    icon: Icons.image,
-    label: "Images",
-    ariaLabel: "Add and manage images"
-  },
-  {
-    id: "audios",
-    icon: Icons.audio,
-    label: "Audio",
-    ariaLabel: "Add and manage audio content"
-  },
-  {
-    id: "transitions",
-    icon: Icons.transition, // Custom SVG for transitions
-    label: "Transitions",
-    ariaLabel: "Add transition effects"
-  },
-  {
     id: "ai-voice",
     icon: Icons.volume,
     label: "AI Voice",
     ariaLabel: "Generate AI voice from text"
+  },
+  {
+    id: "stock-video",
+    icon: Icons.video,
+    label: "Stock Video",
+    ariaLabel: "Add stock videos"
+  },
+  {
+    id: "stock-image",
+    icon: Icons.image,
+    label: "Stock Image",
+    ariaLabel: "Add stock images"
+  },
+  {
+    id: "stock-audio",
+    icon: Icons.audio,
+    label: "Stock Audio",
+    ariaLabel: "Add stock audio"
+  },
+  {
+    id: "texts",
+    icon: Icons.type,
+    label: "Texts",
+    ariaLabel: "Add and edit text elements"
+  },
+  {
+    id: "transitions",
+    icon: Icons.transition,
+    label: "Transitions",
+    ariaLabel: "Add transition effects"
   }
 ] as const;
 
