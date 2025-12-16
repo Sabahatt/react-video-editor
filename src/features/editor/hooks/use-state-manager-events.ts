@@ -1,8 +1,38 @@
 import { useEffect, useCallback, useRef } from "react";
 import StateManager from "@designcombo/state";
 import useStore from "../store/use-store";
-import { IAudio, ITrackItem, IVideo } from "@designcombo/types";
+import { IAudio, ITrack, ITrackItem, IVideo } from "@designcombo/types";
 import { audioDataManager } from "../player/lib/audio-data";
+
+// Track type priority - lower number = higher position (top of timeline)
+const TRACK_TYPE_PRIORITY: Record<string, number> = {
+  text: 1,
+  caption: 2,
+  image: 3,
+  video: 4,
+  main: 5,
+  template: 6,
+  composition: 7,
+  helper: 8,
+  illustration: 9,
+  shape: 10,
+  rect: 11,
+  progressBar: 12,
+  progressSquare: 13,
+  progressFrame: 14,
+  audio: 100, // Audio at the bottom
+  radialAudioBars: 101,
+  linealAudioBars: 102,
+};
+
+// Sort tracks so video/image appear above audio
+const sortTracksByType = (tracks: ITrack[]): ITrack[] => {
+  return [...tracks].sort((a, b) => {
+    const priorityA = TRACK_TYPE_PRIORITY[a.type] ?? 50;
+    const priorityB = TRACK_TYPE_PRIORITY[b.type] ?? 50;
+    return priorityA - priorityB;
+  });
+};
 
 // Global registry to prevent duplicate subscriptions
 const subscriptionRegistry = new WeakMap<StateManager, Set<string>>();
@@ -10,6 +40,16 @@ const subscriptionRegistry = new WeakMap<StateManager, Set<string>>();
 export const useStateManagerEvents = (stateManager: StateManager) => {
   const { setState } = useStore();
   const isSubscribedRef = useRef(false);
+
+  // Helper to get timeline and sort tracks
+  const sortTimelineTracks = useCallback(() => {
+    const timeline = useStore.getState().timeline;
+    if (timeline && 'sortTracksByType' in timeline) {
+      setTimeout(() => {
+        (timeline as any).sortTracksByType();
+      }, 0);
+    }
+  }, []);
 
   // Handle track item updates
   const handleTrackItemUpdate = useCallback(() => {
@@ -44,12 +84,19 @@ export const useStateManagerEvents = (stateManager: StateManager) => {
     audioDataManager.validateUpdateItems(
       filterTrakcItems as (ITrackItem & (IVideo | IAudio))[]
     );
+
+    // Sort tracks so video appears above audio
+    const sortedTracks = sortTracksByType(currentState.tracks);
+
     setState({
       trackItemsMap: currentState.trackItemsMap,
       trackItemIds: currentState.trackItemIds,
-      tracks: currentState.tracks
+      tracks: sortedTracks
     });
-  }, [stateManager, setState]);
+
+    // Sort tracks in the timeline canvas as well
+    sortTimelineTracks();
+  }, [stateManager, setState, sortTimelineTracks]);
 
   const handleUpdateItemDetails = useCallback(() => {
     const currentState = stateManager.getState();
@@ -92,6 +139,8 @@ export const useStateManagerEvents = (stateManager: StateManager) => {
     // Subscribe to general state changes
     const tracksSubscription = stateManager.subscribeToState((newState) => {
       setState(newState);
+      // Sort tracks when state changes (e.g., on initial load)
+      sortTimelineTracks();
     });
 
     // Subscribe to duration changes

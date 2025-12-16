@@ -3,7 +3,30 @@ import Video from "./video";
 import { throttle } from "lodash";
 import Audio from "./audio";
 import { TimelineOptions } from "@designcombo/timeline";
-import { ITimelineScaleState } from "@designcombo/types";
+import { ITimelineScaleState, ITrack } from "@designcombo/types";
+
+// Track type priority - lower number = higher position (top of timeline)
+const TRACK_TYPE_PRIORITY: Record<string, number> = {
+  text: 1,
+  caption: 2,
+  image: 3,
+  video: 4,
+  main: 5,
+  template: 6,
+  composition: 7,
+  helper: 8,
+  illustration: 9,
+  shape: 10,
+  rect: 11,
+  progressBar: 12,
+  progressSquare: 13,
+  progressFrame: 14,
+  audio: 100, // Audio at the bottom
+  radialAudioBars: 101,
+  linealAudioBars: 102,
+  waveAudioBars: 103,
+  hillAudioBars: 104,
+};
 
 class Timeline extends TimelineBase {
   public isShiftKey: boolean = false;
@@ -100,6 +123,18 @@ class Timeline extends TimelineBase {
       this.onScrollChange();
       this.requestRenderAll();
     }
+  }
+
+  // Sort tracks so video/image appear above audio
+  public sortTracksByType(): void {
+    this.tracks.sort((a: ITrack, b: ITrack) => {
+      const priorityA = TRACK_TYPE_PRIORITY[a.type] ?? 50;
+      const priorityB = TRACK_TYPE_PRIORITY[b.type] ?? 50;
+      return priorityA - priorityB;
+    });
+    this.renderTracks();
+    this.refreshTrackLayout();
+    this.alignItemsToTrack();
   }
 }
 
