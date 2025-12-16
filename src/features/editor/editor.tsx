@@ -315,6 +315,14 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 	useEffect(() => {
 		const onResize = () => handleTimelineResize();
 		window.addEventListener("resize", onResize);
+
+		// Trigger initial resize when timeline becomes available to fix scroll visibility
+		if (timeline) {
+			requestAnimationFrame(() => {
+				handleTimelineResize();
+			});
+		}
+
 		return () => window.removeEventListener("resize", onResize);
 	}, [timeline]);
 

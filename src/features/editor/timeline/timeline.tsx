@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Header from "./header";
 import Ruler from "./ruler";
 import { timeMsToUnits, unitsToTimeMs } from "@designcombo/timeline";
@@ -125,7 +125,7 @@ const Timeline = ({ stateManager }: { stateManager: StateManager }) => {
     });
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const canvasEl = canvasElRef.current;
     const timelineContainerEl = timelineContainerRef.current;
 
@@ -138,7 +138,7 @@ const Timeline = ({ stateManager }: { stateManager: StateManager }) => {
       height: containerHeight,
       bounding: {
         width: containerWidth,
-        height: 0
+        height: containerHeight
       },
       selectionColor: "rgba(251, 146, 60, 0.1)",
       selectionBorderColor: "rgba(251, 146, 60, 1.0)",
@@ -202,11 +202,28 @@ const Timeline = ({ stateManager }: { stateManager: StateManager }) => {
     setCanvasSize({ width: containerWidth, height: containerHeight });
     setSize({
       width: containerWidth,
-      height: 0
+      height: containerHeight
     });
     setTimeline(canvas);
 
+    // Use ResizeObserver to detect when container gets proper dimensions
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const { width, height } = entry.contentRect;
+        if (width > 0 && height > 0) {
+          const newWidth = width - 40;
+          const newHeight = height - 90;
+          canvas.resize(
+            { width: newWidth, height: newHeight },
+            { force: true }
+          );
+        }
+      }
+    });
+    resizeObserver.observe(timelineContainerEl);
+
     return () => {
+      resizeObserver.disconnect();
       canvas.purge();
     };
   }, []);
