@@ -463,7 +463,6 @@ const CaptionWords = ({
   }
 
   const selectAnimation = (animation: string) => {
-    console.log("animation", animation);
     const payload = captionItemIds.reduce((acc, id) => {
       return {
         ...acc,

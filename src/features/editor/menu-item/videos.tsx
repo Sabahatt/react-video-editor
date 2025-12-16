@@ -45,7 +45,6 @@ export const Videos = () => {
 
   // Load videos based on brand's mainDishType on component mount
   useEffect(() => {
-    console.log("[Videos] Searching with term:", defaultSearchTerm, "| brand mainDishType:", brand?.mainDishType);
     searchVideos(defaultSearchTerm);
   }, [defaultSearchTerm, searchVideos]);
 

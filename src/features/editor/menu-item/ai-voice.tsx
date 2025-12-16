@@ -202,7 +202,6 @@ export const AiVoice = () => {
 
       if (data.agent?.url || data.url) {
         const audioUrl = data.agent?.url || data.url;
-        console.log("Generated audio URL:", audioUrl);
 
         // If there's an existing AI voice track, update it instead of creating new
         if (existingAiVoice) {

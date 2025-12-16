@@ -80,7 +80,6 @@ export default function Navbar({
   // Create a debounced function for setting the project name
   const debouncedSetProjectName = useCallback(
     debounce((name: string) => {
-      console.log("Debounced setProjectName:", name);
       setProjectName(name);
     }, 2000), // 2 seconds delay
     []
@@ -173,7 +172,6 @@ const DownloadPopover = ({ stateManager }: { stateManager: StateManager }) => {
       ...stateManager.toJSON()
     };
 
-    console.log({ data });
 
     // Handle JSON export - direct download
     if (exportType === "json") {

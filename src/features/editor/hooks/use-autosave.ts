@@ -46,7 +46,6 @@ export function useAutoSave({
       // Prevent saving empty states - check if there's actual content
       const hasContent = design.trackItemIds && design.trackItemIds.length > 0;
       if (!hasContent) {
-        console.log('[Auto-Save] Skipped - no content to save');
         return;
       }
 
@@ -78,7 +77,6 @@ export function useAutoSave({
           saving: false,
           error: null,
         });
-        console.log(`[Auto-Save] Saved at ${result.savedAt}`);
       } else {
         throw new Error(result.error || 'Save failed');
       }
@@ -136,7 +134,6 @@ export function useAutoSave({
         // Don't save empty states on unload
         const hasContent = design.trackItemIds && design.trackItemIds.length > 0;
         if (!hasContent) {
-          console.log('[Auto-Save] Skipped beforeunload - no content');
           return;
         }
 

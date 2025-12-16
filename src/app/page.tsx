@@ -42,7 +42,6 @@ export default function Home() {
     const template = options.style === "classic" ? "template-2" : "template-1";
 
     // Log selected options (for future use)
-    console.log("[Generation] Options:", options);
 
     // Start the pipeline in the store (this will be picked up by the editor)
     startPipeline(url, restaurant, template, options);

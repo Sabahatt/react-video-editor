@@ -45,7 +45,6 @@ export const Images = () => {
 
   // Load images based on brand's mainDishType on component mount
   useEffect(() => {
-    console.log("[Images] Searching with term:", defaultSearchTerm, "| brand mainDishType:", brand?.mainDishType);
     searchImages(defaultSearchTerm);
   }, [defaultSearchTerm, searchImages]);
 

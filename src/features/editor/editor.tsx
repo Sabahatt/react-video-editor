@@ -156,7 +156,6 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 			const newUploads = mediaUploads.filter((u) => !existingUrls.has(u.url));
 			if (newUploads.length > 0) {
 				setUploads([...existingUploads, ...newUploads]);
-				console.log(`[Editor] Synced ${newUploads.length} media items to uploads`);
 			}
 		}
 	};
@@ -165,7 +164,6 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 		const loadDesignFromSource = async () => {
 			// Prevent loading multiple times
 			if (designLoadedRef.current) {
-				console.log("[Editor] Design already loaded, skipping");
 				return;
 			}
 
@@ -175,7 +173,6 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 			// If pipeline is active or just completed, don't load from other sources
 			// Pipeline will handle loading the design itself
 			if (pipelineState.isGenerating || pipelineState.isComplete) {
-				console.log("[Editor] Pipeline active or complete, skipping design load from other sources");
 				return;
 			}
 
@@ -206,7 +203,6 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 									.replace(/^-|-$/g, '');
 								setRestaurant(safeName || 'default');
 								setProjectName(brandName + ' Ad');
-								console.log("[Editor] Loaded brand from sessionStorage:", brand.mainDishType);
 							}
 						} catch (e) {
 							console.error("Failed to parse brand for restaurant name:", e);
@@ -218,7 +214,6 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 					sessionStorage.removeItem("generatedBrand");
 					sessionStorage.removeItem("generatedScript");
 					designLoadedRef.current = true;
-					console.log("Loaded generated design from sessionStorage");
 					return; // Successfully loaded from sessionStorage
 				} catch (error) {
 					console.error("Failed to parse stored design:", error);
@@ -248,10 +243,8 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 								const brandResult = await brandRes.json();
 								if (brandResult.success && brandResult.brand) {
 									setDesign(design, brandResult.brand);
-									console.log("[Editor] Loaded brand for restaurant:", savedRestaurant, brandResult.brand?.mainDishType);
 								}
 							} catch (brandErr) {
-								console.log("[Editor] Could not load brand for restaurant:", savedRestaurant);
 							}
 						}
 
@@ -260,11 +253,9 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 						syncMediaToUploads(mediaUploads);
 
 						designLoadedRef.current = true;
-						console.log("[Editor] Restored from autosave:", savedAt);
 					}
 				}
 			} catch (error) {
-				console.log("[Editor] No autosave to restore or fetch failed:", error);
 			}
 		};
 
@@ -333,7 +324,7 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 			if (trackItem) {
 				setTrackItem(trackItem);
 				setLayoutTrackItem(trackItem);
-			} else console.log(transitionsMap[id]);
+			}
 		} else {
 			setTrackItem(null);
 			setLayoutTrackItem(null);
@@ -359,7 +350,6 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 			}
 
 			pipelineRanRef.current = true;
-			console.log("[Pipeline] Starting simulation for", pipelineRestaurant, pipelineTemplate);
 
 			try {
 				// Step 1: Analyzing website
@@ -421,7 +411,6 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 
 				// Complete the pipeline
 				completePipeline();
-				console.log("[Pipeline] Complete!");
 
 			} catch (err) {
 				console.error("[Pipeline] Error:", err);

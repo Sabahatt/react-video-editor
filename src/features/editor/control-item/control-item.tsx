@@ -35,7 +35,7 @@ const Container = ({ children }: { children: React.ReactNode }) => {
         setTrackItems([]);
         // Auto-open panel when element is selected
         setShowControlItem(true);
-      } else console.log(transitionsMap[id]);
+      }
     } else if (activeIds.length > 1) {
       // Multiple items selected
       const items = activeIds
