@@ -1,5 +1,5 @@
 {
-  "id": "KgUQBexkjaQqqJcj",
+  "id": "N3utHqYOaApwUYwF",
   "fps": 30,
   "tracks": [
     {
@@ -156,34 +156,6 @@
       "name": "Visuals",
       "static": false,
       "magnetic": false
-    },
-    {
-      "id": "dtf1ZkXR19taIa9o",
-      "items": [
-        "dEBAyAwBc1yyee7n"
-      ],
-      "type": "image",
-      "accepts": [
-        "text",
-        "image",
-        "video",
-        "audio",
-        "composition",
-        "caption",
-        "template",
-        "customTrack",
-        "customTrack2",
-        "illustration",
-        "custom",
-        "main",
-        "shape",
-        "linealAudioBars",
-        "radialAudioBars",
-        "progressFrame",
-        "progressBar",
-        "rect",
-        "progressSquare"
-      ]
     }
   ],
   "size": {
@@ -191,7 +163,6 @@
     "height": 1080
   },
   "trackItemIds": [
-    "dEBAyAwBc1yyee7n",
     "hslO2vtWMuee5bmC",
     "pmEFGbjEEu99uD20",
     "HYRHZQjSo7MkOMX",
@@ -293,42 +264,6 @@
     }
   },
   "trackItemsMap": {
-    "dEBAyAwBc1yyee7n": {
-      "id": "dEBAyAwBc1yyee7n",
-      "type": "image",
-      "name": "image",
-      "display": {
-        "from": 62.50000000000121,
-        "to": 32248.120194655075
-      },
-      "playbackRate": 1,
-      "details": {
-        "src": "/uploads/1765684122215-jp-bg.png",
-        "width": 370,
-        "height": 201,
-        "opacity": 100,
-        "transform": "scale(5.36695, 5.36695)",
-        "border": "none",
-        "borderRadius": 0,
-        "boxShadow": {
-          "color": "#000000",
-          "x": 0,
-          "y": 0,
-          "blur": 0
-        },
-        "top": 440.276,
-        "left": 776.432,
-        "borderWidth": 0,
-        "borderColor": "#000000",
-        "blur": 0,
-        "brightness": 100,
-        "flipX": false,
-        "flipY": false,
-        "rotate": "0deg",
-        "visibility": "visible"
-      },
-      "metadata": {}
-    },
     "hslO2vtWMuee5bmC": {
       "id": "hslO2vtWMuee5bmC",
       "details": {
