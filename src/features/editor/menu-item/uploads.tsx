@@ -170,7 +170,8 @@ export const Uploads = () => {
       ? `/uploads/thumb-${srcVideo.replace("/uploads/", "").replace(/\.[^.]+$/, ".jpg")}`
       : null;
     const previewUrl = video.metadata?.thumbnail || video.metadata?.previewUrl || derivedThumbnail || srcVideo;
-    const displayName = getMediaDisplayName(video.file, srcVideo, "Video", index);
+    // Use stored fileName (original name) as first priority
+    const displayName = getMediaDisplayName(video.fileName, video.file, srcVideo, "Video", index);
 
     dispatch(ADD_VIDEO, {
       payload: {
@@ -192,7 +193,7 @@ export const Uploads = () => {
 
   const handleAddImage = (image: any, index: number) => {
     const srcImage = image.metadata?.uploadedUrl || image.url;
-    const displayName = getMediaDisplayName(image.file, srcImage, "Image", index);
+    const displayName = getMediaDisplayName(image.fileName, image.file, srcImage, "Image", index);
 
     dispatch(ADD_IMAGE, {
       payload: {
@@ -214,7 +215,7 @@ export const Uploads = () => {
 
   const handleAddAudio = (audio: any, index: number) => {
     const srcAudio = audio.metadata?.uploadedUrl || audio.url;
-    const displayName = getMediaDisplayName(audio.file, srcAudio, "Audio", index);
+    const displayName = getMediaDisplayName(audio.fileName, audio.file, srcAudio, "Audio", index);
 
     dispatch(ADD_AUDIO, {
       payload: {
@@ -334,7 +335,7 @@ export const Uploads = () => {
                       </button>
                     </Card>
                     <div className="text-xs text-muted-foreground truncate w-full text-center">
-                      {getMediaDisplayName(video.file, videoUrl, "Video", idx)}
+                      {getMediaDisplayName(video.fileName, video.file, videoUrl, "Video", idx)}
                     </div>
                   </div>
                 );
@@ -382,7 +383,7 @@ export const Uploads = () => {
                       </button>
                     </Card>
                     <div className="text-xs text-muted-foreground truncate w-full text-center">
-                      {getMediaDisplayName(image.file, imageUrl, "Image", idx)}
+                      {getMediaDisplayName(image.fileName, image.file, imageUrl, "Image", idx)}
                     </div>
                   </div>
                 );
@@ -422,7 +423,7 @@ export const Uploads = () => {
                       </button>
                     </Card>
                     <div className="text-xs text-muted-foreground truncate w-full text-center">
-                      {getMediaDisplayName(audio.file, audioUrl, "Audio", idx)}
+                      {getMediaDisplayName(audio.fileName, audio.file, audioUrl, "Audio", idx)}
                     </div>
                   </div>
                 );

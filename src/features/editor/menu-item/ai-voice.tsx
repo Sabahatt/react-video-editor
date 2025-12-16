@@ -24,9 +24,11 @@ import { dispatch } from "@designcombo/events";
 import { ADD_AUDIO, EDIT_OBJECT } from "@designcombo/state";
 import { generateId } from "@designcombo/timeline";
 import useStore from "../store/use-store";
+import { usePipelineStore } from "@/store/use-pipeline-store";
 
 export const AiVoice = () => {
   const { trackItemsMap } = useStore();
+  const { script: templateScript } = usePipelineStore();
   const [text, setText] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
   const [voices, setVoices] = useState<Voice[]>([]);
@@ -53,11 +55,16 @@ export const AiVoice = () => {
   }, [trackItemsMap]);
 
   // Populate text field with existing narration when component loads or track changes
+  // Priority: 1) Existing AI voice track text, 2) Template script from JSON
   useEffect(() => {
-    if (existingAiVoice?.metadata?.generatedText && !text) {
-      setText(existingAiVoice.metadata.generatedText);
+    if (!text) {
+      if (existingAiVoice?.metadata?.generatedText) {
+        setText(existingAiVoice.metadata.generatedText);
+      } else if (templateScript) {
+        setText(templateScript);
+      }
     }
-  }, [existingAiVoice?.id]);
+  }, [existingAiVoice?.id, templateScript]);
 
   // Also set the voice if we have an existing track
   useEffect(() => {

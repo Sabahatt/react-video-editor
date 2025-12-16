@@ -1,6 +1,7 @@
 "use client";
 
 import { create } from "zustand";
+import useUploadStore from "@/features/editor/store/use-upload-store";
 
 export interface PipelineStep {
   name: string;
@@ -25,11 +26,13 @@ interface PipelineState {
   // Design data (loaded during pipeline)
   design: any | null;
   brand: any | null;
+  script: string | null;
 
   // Actions
   startPipeline: (url: string, restaurant: string, template: string, options: Record<string, string>) => void;
   updateStep: (index: number, status: PipelineStep["status"]) => void;
   setDesign: (design: any, brand?: any) => void;
+  setScript: (script: string | null) => void;
   setError: (error: string) => void;
   completePipeline: () => void;
   resetPipeline: () => void;
@@ -55,9 +58,13 @@ export const usePipelineStore = create<PipelineState>((set, get) => ({
   url: null,
   design: null,
   brand: null,
+  script: null,
 
   // Actions
   startPipeline: (url, restaurant, template, options) => {
+    // Clear uploads from previous session
+    useUploadStore.getState().clearUploads();
+
     set({
       isGenerating: true,
       isComplete: false,
@@ -68,6 +75,7 @@ export const usePipelineStore = create<PipelineState>((set, get) => ({
       options,
       design: null,
       brand: null,
+      script: null,
       steps: INITIAL_STEPS.map(s => ({ ...s, status: "pending" as const })),
     });
   },
@@ -81,7 +89,13 @@ export const usePipelineStore = create<PipelineState>((set, get) => ({
   },
 
   setDesign: (design, brand) => {
-    set({ design, brand: brand || null });
+    // Extract script from design if available
+    const script = design?.script || null;
+    set({ design, brand: brand || null, script });
+  },
+
+  setScript: (script) => {
+    set({ script });
   },
 
   setError: (error) => {
@@ -115,6 +129,7 @@ export const usePipelineStore = create<PipelineState>((set, get) => ({
       url: null,
       design: null,
       brand: null,
+      script: null,
     });
   },
 }));

@@ -32,17 +32,29 @@ export const getStreamFromUrl = async (url: string) => {
 };
 
 /**
- * Extracts a display name from a File object or URL.
+ * Extracts a display name from a File object, original filename, or URL.
  * Returns filename without extension for cleaner display.
  * Falls back to type + counter format if no filename available.
+ *
+ * @param originalFileName - The original filename stored during upload (highest priority)
+ * @param file - File object (for active uploads)
+ * @param url - URL to extract filename from (lowest priority)
+ * @param fallbackType - Type for fallback naming
+ * @param index - Index for fallback naming
  */
 export const getMediaDisplayName = (
+  originalFileName?: string | null,
   file?: File | null,
   url?: string | null,
   fallbackType?: "Video" | "Image" | "Audio",
   index?: number
 ): string => {
-  // Try to get name from File object first
+  // Try stored original filename first (from upload data)
+  if (originalFileName) {
+    return removeExtension(originalFileName);
+  }
+
+  // Try to get name from File object (for active uploads)
   if (file?.name) {
     return removeExtension(file.name);
   }

@@ -41,7 +41,8 @@ import {
 } from "@/hooks/use-media-query";
 
 import { LogoIcons } from "@/components/shared/logos";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
+import useUploadStore from "./store/use-upload-store";
 
 interface AutoSaveStatus {
   lastSaved: Date | null;
@@ -68,6 +69,13 @@ export default function Navbar({
   const isLargeScreen = useIsLargeScreen();
   const isMediumScreen = useIsMediumScreen();
   const isSmallScreen = useIsSmallScreen();
+  const router = useRouter();
+  const clearUploads = useUploadStore((state) => state.clearUploads);
+
+  const handleLogoClick = () => {
+    clearUploads();
+    router.push("/");
+  };
 
   // Create a debounced function for setting the project name
   const debouncedSetProjectName = useCallback(
@@ -105,11 +113,11 @@ export default function Navbar({
       <DownloadProgressModal />
 
       <div className="flex items-center gap-2 pointer-events-auto">
-        <Link href="/" className="flex items-center">
+        <button onClick={handleLogoClick} className="flex items-center">
           <span className="text-xl font-bold tracking-tight uppercase bg-gradient-to-r from-[#fb923c] to-[#f472b6] bg-clip-text text-transparent hover:opacity-80 transition-opacity">
             Adify
           </span>
-        </Link>
+        </button>
       </div>
 
       <div className="flex h-11 items-center justify-center gap-2">
