@@ -58,7 +58,7 @@ export default function FontFamilyPicker() {
       <div className="handle flex cursor-grab justify-between px-3 py-4 border-b border-white/[0.04]">
         <p className="text-sm font-bold text-gradient">Fonts</p>
         <div className="h-4 w-4" onClick={() => setFloatingControl("")}>
-          <X className="h-4 w-4 cursor-pointer font-extrabold text-muted-foreground hover:text-[#00d8d6] transition-colors" />
+          <X className="h-4 w-4 cursor-pointer font-extrabold text-muted-foreground hover:text-[#fb923c] transition-colors" />
         </div>
       </div>
       <div className="flex items-center px-3 py-2 border-b border-white/[0.04]">
@@ -81,7 +81,7 @@ export default function FontFamilyPicker() {
                   onChangeFontFamily(font, trackItem);
                 }
               }}
-              className="cursor-pointer px-2 py-1 hover:bg-[#00d8d6]/10 transition-colors"
+              className="cursor-pointer px-2 py-1 hover:bg-[#fb923c]/10 transition-colors"
             >
               <img
                 style={{ filter: "invert(100%)" }}

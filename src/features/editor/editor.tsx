@@ -404,29 +404,29 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 		<div className="flex h-screen w-screen flex-col overflow-hidden relative">
 			{/* Ambient gradient background - matching landing page */}
 			<div className="absolute inset-0 overflow-hidden pointer-events-none">
-				{/* Primary teal glow - top right */}
+				{/* Primary coral glow - top right */}
 				<div
 					className="absolute w-[600px] h-[600px] rounded-full opacity-[0.15] blur-[120px] animate-float-slow"
 					style={{
-						background: "radial-gradient(circle, #00d8d6 0%, transparent 70%)",
+						background: "radial-gradient(circle, #fb923c 0%, transparent 70%)",
 						top: "-10%",
 						right: "10%",
 					}}
 				/>
-				{/* Secondary purple glow - bottom left */}
+				{/* Secondary pink glow - bottom left */}
 				<div
 					className="absolute w-[500px] h-[500px] rounded-full opacity-[0.12] blur-[100px] animate-float-slower"
 					style={{
-						background: "radial-gradient(circle, #8b5cf6 0%, transparent 70%)",
+						background: "radial-gradient(circle, #f472b6 0%, transparent 70%)",
 						bottom: "0%",
 						left: "-5%",
 					}}
 				/>
-				{/* Accent blue glow - center */}
+				{/* Accent warm glow - center */}
 				<div
 					className="absolute w-[400px] h-[400px] rounded-full opacity-[0.08] blur-[80px] animate-float-medium"
 					style={{
-						background: "radial-gradient(circle, #3b82f6 0%, transparent 70%)",
+						background: "radial-gradient(circle, #fbbf24 0%, transparent 70%)",
 						top: "40%",
 						left: "30%",
 					}}

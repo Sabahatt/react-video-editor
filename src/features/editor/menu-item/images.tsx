@@ -216,7 +216,7 @@ const ImageItem = ({
         }
         className="flex w-full items-center justify-center overflow-hidden bg-background pb-2 cursor-pointer group"
       >
-        <div className="rounded-lg overflow-hidden border border-white/[0.06] group-hover:border-[#00d8d6]/30 group-hover:shadow-[0_0_10px_rgba(0,216,214,0.1)] transition-all">
+        <div className="rounded-lg overflow-hidden border border-white/[0.06] group-hover:border-[#fb923c]/30 group-hover:shadow-[0_0_10px_rgba(251,146,60,0.1)] transition-all">
           <img
             draggable={false}
             src={image.preview}

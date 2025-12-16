@@ -79,7 +79,7 @@ function Shadow({
                       setOpen(false);
                     }}
                   >
-                    <X className="h-4 w-4 cursor-pointer font-extrabold text-muted-foreground hover:text-[#00d8d6] transition-colors" />
+                    <X className="h-4 w-4 cursor-pointer font-extrabold text-muted-foreground hover:text-[#fb923c] transition-colors" />
                   </div>
                 </div>
                 <ColorPicker

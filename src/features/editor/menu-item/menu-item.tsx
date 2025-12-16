@@ -60,20 +60,20 @@ export const MenuItem = () => {
 
   return (
     <div
-      className={`${isLargeScreen ? "w-[300px]" : "w-full"} flex-1 flex border-r border-white/[0.04] bg-gradient-to-b from-[#8b5cf6]/[0.02] via-transparent to-[#00d8d6]/[0.02] relative`}
+      className={`${isLargeScreen ? "w-[300px]" : "w-full"} flex-1 flex border-r border-white/[0.04] bg-gradient-to-b from-[#f472b6]/[0.02] via-transparent to-[#fb923c]/[0.02] relative`}
     >
       {/* Subtle gradient accent on right border */}
       <div
         className="absolute right-0 top-0 bottom-0 w-px pointer-events-none"
         style={{
-          background: "linear-gradient(180deg, rgba(0,216,214,0.3) 0%, rgba(139,92,246,0.15) 50%, rgba(0,216,214,0.3) 100%)"
+          background: "linear-gradient(180deg, rgba(251,146,60,0.3) 0%, rgba(244,114,182,0.15) 50%, rgba(251,146,60,0.3) 100%)"
         }}
       />
       {/* Bottom corner glow */}
       <div
         className="absolute bottom-0 right-0 w-32 h-32 pointer-events-none opacity-25"
         style={{
-          background: "radial-gradient(circle at bottom right, rgba(0,216,214,0.12) 0%, transparent 70%)"
+          background: "radial-gradient(circle at bottom right, rgba(251,146,60,0.12) 0%, transparent 70%)"
         }}
       />
       <ActiveMenuItem />

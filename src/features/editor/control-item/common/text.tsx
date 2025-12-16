@@ -149,7 +149,7 @@ const FontBackground = ({
                     setOpen(false);
                   }}
                 >
-                  <X className="h-4 w-4 cursor-pointer font-extrabold text-muted-foreground hover:text-[#00d8d6] transition-colors" />
+                  <X className="h-4 w-4 cursor-pointer font-extrabold text-muted-foreground hover:text-[#fb923c] transition-colors" />
                 </div>
               </div>
               <ColorPicker
@@ -245,7 +245,7 @@ const FontColor = ({
                     setOpen(false);
                   }}
                 >
-                  <X className="h-4 w-4 cursor-pointer font-extrabold text-muted-foreground hover:text-[#00d8d6] transition-colors" />
+                  <X className="h-4 w-4 cursor-pointer font-extrabold text-muted-foreground hover:text-[#fb923c] transition-colors" />
                 </div>
               </div>
               <ColorPicker
@@ -446,7 +446,7 @@ const FontFamily = ({
             </PopoverTrigger>
 
             <PopoverContent className="z-[300] w-full p-0 -ml-4 bg-[#0a0a0a]/95 backdrop-blur-xl border-white/[0.08]">
-              <div className="relative flex items-center rounded-md border border-white/[0.06] focus-within:ring-1 focus-within:ring-[#00d8d6]/50 pl-2">
+              <div className="relative flex items-center rounded-md border border-white/[0.06] focus-within:ring-1 focus-within:ring-[#fb923c]/50 pl-2">
                 <Search className="h-5 w-5 text-muted-foreground" />
                 <Input
                   type="email"
@@ -466,7 +466,7 @@ const FontFamily = ({
                           onChangeFontFamily(font, trackItem);
                         }
                       }}
-                      className="cursor-pointer px-2 py-1 hover:bg-[#00d8d6]/10 transition-colors"
+                      className="cursor-pointer px-2 py-1 hover:bg-[#fb923c]/10 transition-colors"
                     >
                       <img
                         style={{ filter: "invert(100%)" }}
@@ -522,7 +522,7 @@ const FontStyle = ({
                 .replace("Italic", " Italic");
               return (
                 <div
-                  className="flex h-6 cursor-pointer items-center px-2 py-3.5 text-sm text-zinc-300 hover:bg-[#00d8d6]/10 hover:text-[#00d8d6] transition-colors"
+                  className="flex h-6 cursor-pointer items-center px-2 py-3.5 text-sm text-zinc-300 hover:bg-[#fb923c]/10 hover:text-[#fb923c] transition-colors"
                   key={index}
                   onClick={() => handleChangeFontStyle(style)}
                 >
@@ -646,7 +646,7 @@ const Alignment = ({
                       setLocalValue(option.value);
                       onChange(option.value);
                     }}
-                    className="flex h-8 cursor-pointer items-center px-4 text-sm text-zinc-200 hover:bg-[#00d8d6]/10 hover:text-[#00d8d6] transition-colors"
+                    className="flex h-8 cursor-pointer items-center px-4 text-sm text-zinc-200 hover:bg-[#fb923c]/10 hover:text-[#fb923c] transition-colors"
                     key={index}
                   >
                     {option.label}
@@ -706,7 +706,7 @@ const FontCase = ({ id }: { id: string }) => {
                 return (
                   <div
                     onClick={() => onChangeFontCase(option.value)}
-                    className="flex h-8 cursor-pointer items-center px-4 text-sm text-zinc-200 hover:bg-[#00d8d6]/10 hover:text-[#00d8d6] transition-colors"
+                    className="flex h-8 cursor-pointer items-center px-4 text-sm text-zinc-200 hover:bg-[#fb923c]/10 hover:text-[#fb923c] transition-colors"
                     key={index}
                   >
                     {option.label}

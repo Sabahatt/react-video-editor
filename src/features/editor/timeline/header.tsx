@@ -143,7 +143,7 @@ const Header = () => {
         height: "50px",
         flex: "none"
       }}
-      className="border-b border-white/[0.06] bg-gradient-to-r from-[#8b5cf6]/[0.02] via-transparent to-[#00d8d6]/[0.02]"
+      className="border-b border-white/[0.06] bg-gradient-to-r from-[#f472b6]/[0.02] via-transparent to-[#fb923c]/[0.02]"
     >
       <div
         style={{
@@ -171,7 +171,7 @@ const Header = () => {
               onClick={doActiveDelete}
               variant={"ghost"}
               size={isLargeScreen ? "sm" : "icon"}
-              className="flex items-center gap-1 px-2 text-muted-foreground hover:text-[#00d8d6] hover:bg-[#00d8d6]/10 transition-colors"
+              className="flex items-center gap-1 px-2 text-muted-foreground hover:text-[#fb923c] hover:bg-[#fb923c]/10 transition-colors"
             >
               <Trash size={14} />{" "}
               <span className="hidden lg:block">Delete</span>
@@ -182,7 +182,7 @@ const Header = () => {
               onClick={doActiveSplit}
               variant={"ghost"}
               size={isLargeScreen ? "sm" : "icon"}
-              className="flex items-center gap-1 px-2 text-muted-foreground hover:text-[#00d8d6] hover:bg-[#00d8d6]/10 transition-colors"
+              className="flex items-center gap-1 px-2 text-muted-foreground hover:text-[#fb923c] hover:bg-[#fb923c]/10 transition-colors"
             >
               <SquareSplitHorizontal size={15} />{" "}
               <span className="hidden lg:block">Split</span>
@@ -194,7 +194,7 @@ const Header = () => {
               }}
               variant={"ghost"}
               size={isLargeScreen ? "sm" : "icon"}
-              className="flex items-center gap-1 px-2 text-muted-foreground hover:text-[#00d8d6] hover:bg-[#00d8d6]/10 transition-colors"
+              className="flex items-center gap-1 px-2 text-muted-foreground hover:text-[#fb923c] hover:bg-[#fb923c]/10 transition-colors"
             >
               <SquareSplitHorizontal size={15} />{" "}
               <span className="hidden lg:block">Clone</span>
@@ -202,7 +202,7 @@ const Header = () => {
           </div>
           <div className="flex items-center justify-center gap-2">
             <Button
-              className="hidden lg:inline-flex h-7 w-7 text-muted-foreground hover:text-[#00d8d6] hover:bg-[#00d8d6]/10 transition-colors"
+              className="hidden lg:inline-flex h-7 w-7 text-muted-foreground hover:text-[#fb923c] hover:bg-[#fb923c]/10 transition-colors"
               onClick={doActiveDelete}
               variant={"ghost"}
               size={"icon"}
@@ -220,8 +220,8 @@ const Header = () => {
               size={"icon"}
               className={`h-7 w-7 transition-all duration-200 ${
                 playing
-                  ? "text-[#00d8d6] bg-[#00d8d6]/15"
-                  : "text-muted-foreground hover:text-[#00d8d6] hover:bg-[#00d8d6]/10"
+                  ? "text-[#fb923c] bg-[#fb923c]/15"
+                  : "text-muted-foreground hover:text-[#fb923c] hover:bg-[#fb923c]/10"
               }`}
             >
               {playing ? (
@@ -231,7 +231,7 @@ const Header = () => {
               )}
             </Button>
             <Button
-              className="hidden lg:inline-flex h-7 w-7 text-muted-foreground hover:text-[#00d8d6] hover:bg-[#00d8d6]/10 transition-colors"
+              className="hidden lg:inline-flex h-7 w-7 text-muted-foreground hover:text-[#fb923c] hover:bg-[#fb923c]/10 transition-colors"
               onClick={doActiveSplit}
               variant={"ghost"}
               size={"icon"}
@@ -240,7 +240,7 @@ const Header = () => {
             </Button>
             <div className="text-xs flex items-center gap-1 ml-1">
               <span
-                className="font-medium text-[#00d8d6]"
+                className="font-medium text-[#fb923c]"
                 data-current-time={currentFrame / fps}
                 id="video-current-time"
               >
@@ -297,7 +297,7 @@ const ZoomControl = ({
 
   return (
     <div className="flex items-center justify-end gap-1 pr-2">
-      <Button size={"icon"} variant={"ghost"} onClick={onZoomOutClick} className="h-7 w-7 text-muted-foreground hover:text-[#00d8d6] hover:bg-[#00d8d6]/10 transition-colors">
+      <Button size={"icon"} variant={"ghost"} onClick={onZoomOutClick} className="h-7 w-7 text-muted-foreground hover:text-[#fb923c] hover:bg-[#fb923c]/10 transition-colors">
         <ZoomOut size={14} />
       </Button>
       <Slider
@@ -314,10 +314,10 @@ const ZoomControl = ({
           onChangeTimelineScale(zoom);
         }}
       />
-      <Button size={"icon"} variant={"ghost"} onClick={onZoomInClick} className="h-7 w-7 text-muted-foreground hover:text-[#00d8d6] hover:bg-[#00d8d6]/10 transition-colors">
+      <Button size={"icon"} variant={"ghost"} onClick={onZoomInClick} className="h-7 w-7 text-muted-foreground hover:text-[#fb923c] hover:bg-[#fb923c]/10 transition-colors">
         <ZoomIn size={14} />
       </Button>
-      <Button onClick={onZoomFitClick} variant={"ghost"} size={"icon"} className="h-7 w-7 text-muted-foreground hover:text-[#8b5cf6] hover:bg-[#8b5cf6]/10 transition-colors">
+      <Button onClick={onZoomFitClick} variant={"ghost"} size={"icon"} className="h-7 w-7 text-muted-foreground hover:text-[#f472b6] hover:bg-[#f472b6]/10 transition-colors">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="14"

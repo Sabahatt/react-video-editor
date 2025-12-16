@@ -205,41 +205,41 @@
 }
 
 .dark {
-  /* Adify Dark Theme - Glassmorphism */
-  /* Base: #030303, Accent Teal: #00d8d6, Accent Purple: #8b5cf6 */
+  /* Adify Dark Theme - Sunset Studio */
+  /* Warm coral and peach tones on warm dark. Creative, inviting, artistic. */
 
-  --background: #030303;
-  --foreground: #fafafa;
-  --card: #0a0a0a;
-  --card-foreground: #fafafa;
-  --popover: #0a0a0a;
-  --popover-foreground: #e4e4e7;
-  --primary: #00d8d6;
-  --primary-foreground: #030303;
-  --secondary: #18181b;
-  --secondary-foreground: #fafafa;
-  --muted: #0a0a0a;
-  --muted-foreground: #71717a;
-  --accent: #00d8d6;
-  --accent-foreground: #030303;
+  --background: #18120f;
+  --foreground: #fff7ed;
+  --card: #271e19;
+  --card-foreground: #fff7ed;
+  --popover: #271e19;
+  --popover-foreground: #fff7ed;
+  --primary: #fb923c;
+  --primary-foreground: #18120f;
+  --secondary: #3d2f26;
+  --secondary-foreground: #fff7ed;
+  --muted: #271e19;
+  --muted-foreground: #d6d3d1;
+  --accent: #f472b6;
+  --accent-foreground: #18120f;
   --destructive: #dc2626;
-  --border: #27272a;
-  --input: #18181b;
-  --ring: #00d8d6;
-  --chart-1: #00d8d6;
-  --chart-2: #8b5cf6;
-  --chart-3: #3b82f6;
-  --chart-4: #f59e0b;
-  --chart-5: #10b981;
-  --sidebar: #030303;
-  --sidebar-foreground: #a1a1aa;
-  --sidebar-primary: #00d8d6;
-  --sidebar-primary-foreground: #030303;
-  --sidebar-accent: #18181b;
-  --sidebar-accent-foreground: #fafafa;
-  --sidebar-border: #27272a;
-  --sidebar-ring: #00d8d6;
-  --destructive-foreground: #fafafa;
+  --border: #5c4a3d;
+  --input: #3d2f26;
+  --ring: #fb923c;
+  --chart-1: #fb923c;
+  --chart-2: #f472b6;
+  --chart-3: #fbbf24;
+  --chart-4: #f87171;
+  --chart-5: #a78bfa;
+  --sidebar: #18120f;
+  --sidebar-foreground: #d6d3d1;
+  --sidebar-primary: #fb923c;
+  --sidebar-primary-foreground: #18120f;
+  --sidebar-accent: #3d2f26;
+  --sidebar-accent-foreground: #fff7ed;
+  --sidebar-border: #5c4a3d;
+  --sidebar-ring: #fb923c;
+  --destructive-foreground: #fff7ed;
   --radius: 0.5rem;
   --font-sans: Outfit, sans-serif;
   --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
@@ -286,8 +286,8 @@
 }
 
 .selecto-selection {
-  background: rgba(0, 216, 214, 0.1) !important;
-  border: 1px solid rgba(0, 216, 214, 1) !important;
+  background: rgba(251, 146, 60, 0.1) !important;
+  border: 1px solid rgba(251, 146, 60, 1) !important;
 }
 
 @layer utilities {
@@ -319,35 +319,35 @@
     animation: pulse-slow 8s ease-in-out infinite;
   }
 
-  /* Premium Glassmorphism Panels */
+  /* Premium Glassmorphism Panels - Sunset Studio */
   .glass-panel {
-    background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+    background: linear-gradient(135deg, rgba(61,47,38,0.4) 0%, rgba(39,30,25,0.6) 100%);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255,255,255,0.06);
+    border: 1px solid rgba(251,146,60,0.08);
     box-shadow:
       0 8px 32px rgba(0,0,0,0.3),
-      inset 0 1px 0 rgba(255,255,255,0.05);
+      inset 0 1px 0 rgba(255,247,237,0.05);
   }
 
   .glass-panel-darker {
-    background: linear-gradient(135deg, rgba(10,10,10,0.95) 0%, rgba(5,5,5,0.98) 100%);
+    background: linear-gradient(135deg, rgba(39,30,25,0.95) 0%, rgba(24,18,15,0.98) 100%);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
-    border: 1px solid rgba(255,255,255,0.04);
+    border: 1px solid rgba(251,146,60,0.06);
     box-shadow:
       0 8px 32px rgba(0,0,0,0.4),
-      inset 0 1px 0 rgba(255,255,255,0.03);
+      inset 0 1px 0 rgba(255,247,237,0.03);
   }
 
   .glass-panel-glow {
-    background: linear-gradient(135deg, rgba(10,10,10,0.9) 0%, rgba(5,5,5,0.95) 100%);
+    background: linear-gradient(135deg, rgba(39,30,25,0.9) 0%, rgba(24,18,15,0.95) 100%);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(0,216,214,0.15);
+    border: 1px solid rgba(251,146,60,0.15);
     box-shadow:
       0 8px 32px rgba(0,0,0,0.4),
-      0 0 40px rgba(0,216,214,0.05),
+      0 0 40px rgba(251,146,60,0.05),
       inset 0 1px 0 rgba(255,255,255,0.03);
   }
 
@@ -362,7 +362,7 @@
     inset: 0;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(135deg, rgba(0,216,214,0.3) 0%, rgba(139,92,246,0.3) 100%);
+    background: linear-gradient(135deg, rgba(251,146,60,0.3) 0%, rgba(244,114,182,0.3) 100%);
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
@@ -371,31 +371,31 @@
   }
 
   /* Gradient Glow Effects */
-  .glow-teal {
-    box-shadow: 0 0 20px rgba(0,216,214,0.15), 0 0 40px rgba(0,216,214,0.05);
+  .glow-primary {
+    box-shadow: 0 0 20px rgba(251,146,60,0.15), 0 0 40px rgba(251,146,60,0.05);
   }
 
-  .glow-purple {
-    box-shadow: 0 0 20px rgba(139,92,246,0.15), 0 0 40px rgba(139,92,246,0.05);
+  .glow-accent {
+    box-shadow: 0 0 20px rgba(244,114,182,0.15), 0 0 40px rgba(244,114,182,0.05);
   }
 
   .glow-mixed {
     box-shadow:
-      0 0 20px rgba(0,216,214,0.1),
-      0 0 40px rgba(139,92,246,0.08);
+      0 0 20px rgba(251,146,60,0.1),
+      0 0 40px rgba(244,114,182,0.08);
   }
 
   /* Gradient Backgrounds */
   .gradient-bg-subtle {
-    background: linear-gradient(135deg, rgba(0,216,214,0.03) 0%, rgba(139,92,246,0.03) 100%);
+    background: linear-gradient(135deg, rgba(251,146,60,0.03) 0%, rgba(244,114,182,0.03) 100%);
   }
 
   .gradient-accent {
-    background: linear-gradient(135deg, #00d8d6 0%, #8b5cf6 100%);
+    background: linear-gradient(135deg, #fb923c 0%, #f472b6 100%);
   }
 
   .gradient-accent-hover:hover {
-    background: linear-gradient(135deg, #00e5e3 0%, #9d6eff 100%);
+    background: linear-gradient(135deg, #fdba74 0%, #f9a8d4 100%);
   }
 
   /* Animated gradient border */
@@ -406,7 +406,7 @@
 
   .animated-gradient-border {
     position: relative;
-    background: rgba(10,10,10,0.95);
+    background: rgba(39,30,25,0.95);
     border-radius: inherit;
   }
 
@@ -415,7 +415,7 @@
     position: absolute;
     inset: -1px;
     border-radius: inherit;
-    background: conic-gradient(from var(--gradient-angle, 0deg), #00d8d6, #8b5cf6, #00d8d6);
+    background: conic-gradient(from var(--gradient-angle, 0deg), #fb923c, #f472b6, #fb923c);
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
@@ -432,21 +432,21 @@
   }
 
   .panel-hover:hover {
-    border-color: rgba(0,216,214,0.2);
+    border-color: rgba(251,146,60,0.2);
     box-shadow:
       0 8px 32px rgba(0,0,0,0.4),
-      0 0 20px rgba(0,216,214,0.08);
+      0 0 20px rgba(251,146,60,0.08);
   }
 
   /* Section dividers with gradient */
   .divider-gradient {
     height: 1px;
-    background: linear-gradient(90deg, transparent 0%, rgba(0,216,214,0.3) 50%, transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, rgba(251,146,60,0.3) 50%, transparent 100%);
   }
 
   /* Text gradients */
   .text-gradient {
-    background: linear-gradient(135deg, #00d8d6 0%, #8b5cf6 100%);
+    background: linear-gradient(135deg, #fb923c 0%, #f472b6 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -459,13 +459,13 @@
 
 .moveable-line.moveable-guideline.moveable-horizontal {
   height: 1px !important;
-  background: #00d8d6 !important;
+  background: #fb923c !important;
   opacity: 0.8 !important;
 }
 
 .moveable-line.moveable-guideline.moveable-vertical {
   width: 1px !important;
-  background: #00d8d6 !important;
+  background: #fb923c !important;
   opacity: 0.8 !important;
 }
 
@@ -543,13 +543,13 @@
 
 .moveable-line.moveable-guideline.moveable-horizontal {
   height: 1px !important;
-  background: #00d8d6 !important;
+  background: #fb923c !important;
   opacity: 0.8 !important;
 }
 
 .moveable-line.moveable-guideline.moveable-vertical {
   width: 1px !important;
-  background: #00d8d6 !important;
+  background: #fb923c !important;
   opacity: 0.8 !important;
 }
 

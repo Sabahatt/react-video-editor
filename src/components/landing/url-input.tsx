@@ -6,11 +6,10 @@ import { Globe, ChevronDown, Sparkles, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 /*
- * Color Palette:
- * --accent-teal: #00d8d6
- * --accent-purple: #8b5cf6
- * --accent-blue: #3b82f6
- * --text-primary: #fafafa
+ * Color Palette - Sunset Studio:
+ * --accent-primary: #fb923c (coral orange)
+ * --accent-secondary: #f472b6 (pink)
+ * --text-primary: #fff7ed
  * --text-muted: white/50
  * --bg-glass: white/[0.03]
  * --border-glass: white/[0.08]
@@ -127,8 +126,8 @@ function OptionDropdown({
           "text-xs transition-all duration-200",
           "disabled:opacity-50 disabled:cursor-not-allowed",
           isOpen
-            ? "text-[#00d8d6] bg-[#00d8d6]/10"
-            : "text-white/50 hover:text-[#00d8d6] hover:bg-[#00d8d6]/5"
+            ? "text-[#fb923c] bg-[#fb923c]/10"
+            : "text-white/50 hover:text-[#fb923c] hover:bg-[#fb923c]/5"
         )}
       >
         <span className="text-white/30">{config.label}:</span>
@@ -151,9 +150,9 @@ function OptionDropdown({
             className={cn(
               "absolute top-full left-1/2 -translate-x-1/2 mt-2 z-30",
               "min-w-[100px] p-1 rounded-xl",
-              "bg-[#0a0a0a]/95 backdrop-blur-xl",
-              "border border-[#00d8d6]/20",
-              "shadow-[0_8px_32px_rgba(0,0,0,0.5),0_0_20px_rgba(0,216,214,0.1)]"
+              "bg-[#271e19]/95 backdrop-blur-xl",
+              "border border-[#fb923c]/20",
+              "shadow-[0_8px_32px_rgba(0,0,0,0.5),0_0_20px_rgba(251,146,60,0.1)]"
             )}
           >
             {config.options.map((option) => (
@@ -167,8 +166,8 @@ function OptionDropdown({
                   "w-full px-3 py-1.5 text-left text-xs rounded-lg",
                   "transition-all duration-150",
                   value === option.id
-                    ? "bg-[#00d8d6]/15 text-[#00d8d6]"
-                    : "text-white/60 hover:bg-[#00d8d6]/10 hover:text-[#00d8d6]"
+                    ? "bg-[#fb923c]/15 text-[#fb923c]"
+                    : "text-white/60 hover:bg-[#fb923c]/10 hover:text-[#fb923c]"
                 )}
               >
                 {option.name}
@@ -222,7 +221,7 @@ export function UrlInput({ onGenerate, isGenerating }: UrlInputProps) {
           className="absolute -inset-0.5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-lg"
           style={{
             background:
-              "linear-gradient(90deg, rgba(0,216,214,0.12), rgba(139,92,246,0.12), rgba(0,216,214,0.12))",
+              "linear-gradient(90deg, rgba(251,146,60,0.12), rgba(244,114,182,0.12), rgba(251,146,60,0.12))",
             backgroundSize: "200% 100%",
           }}
           animate={{
@@ -243,7 +242,7 @@ export function UrlInput({ onGenerate, isGenerating }: UrlInputProps) {
             "border border-white/[0.08]",
             "shadow-[0_8px_32px_rgba(0,0,0,0.4)]",
             "transition-all duration-300",
-            isFocused && "border-[#00d8d6]/30 bg-white/[0.05]"
+            isFocused && "border-[#fb923c]/30 bg-white/[0.05]"
           )}
         >
           {/* Inner highlight line at top */}
@@ -255,7 +254,7 @@ export function UrlInput({ onGenerate, isGenerating }: UrlInputProps) {
               <Globe
                 className={cn(
                   "w-5 h-5 flex-shrink-0 transition-colors duration-200",
-                  isFocused ? "text-[#00d8d6]" : "text-white/40"
+                  isFocused ? "text-[#fb923c]" : "text-white/40"
                 )}
               />
               <input
@@ -284,10 +283,10 @@ export function UrlInput({ onGenerate, isGenerating }: UrlInputProps) {
               className={cn(
                 "relative flex items-center gap-2 px-5 py-2.5 rounded-xl",
                 "font-medium text-sm text-white",
-                "bg-gradient-to-r from-[#00d8d6] to-[#8b5cf6]",
-                "shadow-lg shadow-[#8b5cf6]/20",
+                "bg-gradient-to-r from-[#fb923c] to-[#f472b6]",
+                "shadow-lg shadow-[#f472b6]/20",
                 "transition-all duration-300",
-                "hover:shadow-[0_0_25px_rgba(0,216,214,0.3)]",
+                "hover:shadow-[0_0_25px_rgba(251,146,60,0.3)]",
                 "disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:shadow-lg disabled:hover:scale-100"
               )}
             >

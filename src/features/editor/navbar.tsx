@@ -103,13 +103,13 @@ export default function Navbar({
         display: "grid",
         gridTemplateColumns: isLargeScreen ? "320px 1fr 320px" : "1fr 1fr 1fr"
       }}
-      className="glass-panel-darker pointer-events-none flex h-11 items-center px-2 relative bg-gradient-to-r from-[#8b5cf6]/[0.03] via-transparent to-[#00d8d6]/[0.03]"
+      className="glass-panel-darker pointer-events-none flex h-11 items-center px-2 relative bg-gradient-to-r from-[#f472b6]/[0.03] via-transparent to-[#fb923c]/[0.03]"
     >
       {/* Subtle gradient line at bottom */}
       <div
         className="absolute bottom-0 left-0 right-0 h-px"
         style={{
-          background: "linear-gradient(90deg, transparent 0%, rgba(139,92,246,0.3) 30%, rgba(0,216,214,0.3) 70%, transparent 100%)"
+          background: "linear-gradient(90deg, transparent 0%, rgba(244,114,182,0.3) 30%, rgba(251,146,60,0.3) 70%, transparent 100%)"
         }}
       />
       <DownloadProgressModal />
@@ -122,7 +122,7 @@ export default function Navbar({
         <div className=" pointer-events-auto flex h-10 items-center px-1.5">
           <Button
             onClick={handleUndo}
-            className="text-muted-foreground hover:text-[#00d8d6] hover:bg-[#00d8d6]/10"
+            className="text-muted-foreground hover:text-[#fb923c] hover:bg-[#fb923c]/10"
             variant="ghost"
             size="icon"
           >
@@ -130,7 +130,7 @@ export default function Navbar({
           </Button>
           <Button
             onClick={handleRedo}
-            className="text-muted-foreground hover:text-[#00d8d6] hover:bg-[#00d8d6]/10"
+            className="text-muted-foreground hover:text-[#fb923c] hover:bg-[#fb923c]/10"
             variant="ghost"
             size="icon"
           >
@@ -159,13 +159,13 @@ export default function Navbar({
       <div className="flex h-11 items-center justify-end gap-2">
         <div className=" pointer-events-auto flex h-10 items-center gap-2 rounded-md px-2.5">
           {/* <Link href="https://discord.gg/Jmxsd5f2jp" target="_blank">
-            <Button className="h-7 rounded-lg border-white/[0.08] hover:border-[#00d8d6]/30 hover:bg-[#00d8d6]/10 hover:text-[#00d8d6]" variant={"outline"}>
+            <Button className="h-7 rounded-lg border-white/[0.08] hover:border-[#fb923c]/30 hover:bg-[#fb923c]/10 hover:text-[#fb923c]" variant={"outline"}>
               <LogoIcons.discord className="w-6 h-6" />
               <span className="hidden md:block">Join Us</span>
             </Button>
           </Link> */}
           {/* <Button
-            className="flex h-7 gap-1 border-white/[0.08] hover:border-[#00d8d6]/30 hover:bg-[#00d8d6]/10 hover:text-[#00d8d6]"
+            className="flex h-7 gap-1 border-white/[0.08] hover:border-[#fb923c]/30 hover:bg-[#fb923c]/10 hover:text-[#fb923c]"
             variant="outline"
             size={isMediumScreen ? "sm" : "icon"}
           >
@@ -219,7 +219,7 @@ const DownloadPopover = ({ stateManager }: { stateManager: StateManager }) => {
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button
-          className="flex h-7 gap-1 bg-gradient-to-r from-[#00d8d6] to-[#8b5cf6] text-white hover:shadow-[0_0_20px_rgba(0,216,214,0.3)] transition-all duration-300"
+          className="flex h-7 gap-1 bg-gradient-to-r from-[#fb923c] to-[#f472b6] text-white hover:shadow-[0_0_20px_rgba(251,146,60,0.3)] transition-all duration-300"
           size={isMediumScreen ? "sm" : "icon"}
         >
           <Download width={18} />{" "}
@@ -235,7 +235,7 @@ const DownloadPopover = ({ stateManager }: { stateManager: StateManager }) => {
 
         <Popover open={isExportTypeOpen} onOpenChange={setIsExportTypeOpen}>
           <PopoverTrigger asChild>
-            <button className="w-full flex items-center justify-between h-9 px-3 rounded-lg text-sm bg-white/[0.03] border border-white/[0.08] hover:border-[#00d8d6]/30 hover:bg-[#00d8d6]/5 transition-colors">
+            <button className="w-full flex items-center justify-between h-9 px-3 rounded-lg text-sm bg-white/[0.03] border border-white/[0.08] hover:border-[#fb923c]/30 hover:bg-[#fb923c]/5 transition-colors">
               <span>{exportType.toUpperCase()}</span>
               <ChevronDown width={14} className="text-muted-foreground" />
             </button>
@@ -243,10 +243,10 @@ const DownloadPopover = ({ stateManager }: { stateManager: StateManager }) => {
           <PopoverContent
             align="start"
             sideOffset={4}
-            className="z-[251] w-[var(--radix-popover-trigger-width)] min-w-full p-1 bg-[#0a0a0a]/95 backdrop-blur-xl border border-[#00d8d6]/20 shadow-[0_8px_32px_rgba(0,0,0,0.5),0_0_20px_rgba(0,216,214,0.1)]"
+            className="z-[251] w-[var(--radix-popover-trigger-width)] min-w-full p-1 bg-[#271e19]/95 backdrop-blur-xl border border-[#fb923c]/20 shadow-[0_8px_32px_rgba(0,0,0,0.5),0_0_20px_rgba(251,146,60,0.1)]"
           >
             <div
-              className={`flex h-8 items-center rounded-lg px-3 text-sm cursor-pointer transition-all duration-150 ${exportType === "mp4" ? "bg-[#00d8d6]/15 text-[#00d8d6]" : "text-white/60 hover:bg-[#00d8d6]/10 hover:text-[#00d8d6]"}`}
+              className={`flex h-8 items-center rounded-lg px-3 text-sm cursor-pointer transition-all duration-150 ${exportType === "mp4" ? "bg-[#fb923c]/15 text-[#fb923c]" : "text-white/60 hover:bg-[#fb923c]/10 hover:text-[#fb923c]"}`}
               onClick={() => {
                 actions.setExportType("mp4");
                 setIsExportTypeOpen(false);
@@ -255,7 +255,7 @@ const DownloadPopover = ({ stateManager }: { stateManager: StateManager }) => {
               MP4
             </div>
             <div
-              className={`flex h-8 items-center rounded-lg px-3 text-sm cursor-pointer transition-all duration-150 ${exportType === "json" ? "bg-[#00d8d6]/15 text-[#00d8d6]" : "text-white/60 hover:bg-[#00d8d6]/10 hover:text-[#00d8d6]"}`}
+              className={`flex h-8 items-center rounded-lg px-3 text-sm cursor-pointer transition-all duration-150 ${exportType === "json" ? "bg-[#fb923c]/15 text-[#fb923c]" : "text-white/60 hover:bg-[#fb923c]/10 hover:text-[#fb923c]"}`}
               onClick={() => {
                 actions.setExportType("json");
                 setIsExportTypeOpen(false);
@@ -266,7 +266,7 @@ const DownloadPopover = ({ stateManager }: { stateManager: StateManager }) => {
           </PopoverContent>
         </Popover>
 
-        <Button onClick={handleExport} className="w-full bg-gradient-to-r from-[#00d8d6] to-[#8b5cf6] text-white hover:shadow-[0_0_15px_rgba(0,216,214,0.3)] h-9">
+        <Button onClick={handleExport} className="w-full bg-gradient-to-r from-[#fb923c] to-[#f472b6] text-white hover:shadow-[0_0_15px_rgba(251,146,60,0.3)] h-9">
           Export
         </Button>
       </PopoverContent>
@@ -365,7 +365,7 @@ const ResizeOption = ({
   return (
     <div
       onClick={() => handleResize(value)}
-      className="flex cursor-pointer items-center rounded-md p-2 hover:bg-[#00d8d6]/10 hover:text-[#00d8d6] transition-colors"
+      className="flex cursor-pointer items-center rounded-md p-2 hover:bg-[#fb923c]/10 hover:text-[#fb923c] transition-colors"
     >
       <div className="w-8 text-muted-foreground">
         <Icon size={20} />
@@ -402,7 +402,7 @@ const AutoSaveIndicator = ({
           <Button
             variant="ghost"
             size="sm"
-            className="h-6 gap-1 px-2 text-xs text-muted-foreground hover:text-[#00d8d6] hover:bg-[#00d8d6]/10"
+            className="h-6 gap-1 px-2 text-xs text-muted-foreground hover:text-[#fb923c] hover:bg-[#fb923c]/10"
             onClick={onManualSave}
           >
             {status.saving ? (
@@ -417,7 +417,7 @@ const AutoSaveIndicator = ({
               </>
             ) : status.lastSaved ? (
               <>
-                <CheckCircle2 className="h-3 w-3 text-[#00d8d6]" />
+                <CheckCircle2 className="h-3 w-3 text-[#fb923c]" />
                 <span className="hidden sm:inline">{formatTime(status.lastSaved)}</span>
               </>
             ) : (

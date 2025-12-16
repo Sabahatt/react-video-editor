@@ -199,7 +199,7 @@ export const AiVideo = () => {
               onClick={() => fileInputRef.current?.click()}
               onDrop={handleDrop}
               onDragOver={handleDragOver}
-              className="flex flex-col items-center justify-center gap-2 h-36 rounded-lg border border-dashed border-white/[0.15] bg-white/[0.02] hover:border-[#00d8d6]/40 hover:bg-[#00d8d6]/5 transition-colors cursor-pointer"
+              className="flex flex-col items-center justify-center gap-2 h-36 rounded-lg border border-dashed border-white/[0.15] bg-white/[0.02] hover:border-[#fb923c]/40 hover:bg-[#fb923c]/5 transition-colors cursor-pointer"
             >
               <div className="p-3 rounded-full bg-white/[0.05]">
                 <Upload className="h-5 w-5 text-muted-foreground" />
@@ -230,7 +230,7 @@ export const AiVideo = () => {
                 <button
                   key={item.id}
                   onClick={() => selectTimelineImage(item)}
-                  className="flex-shrink-0 w-16 h-16 rounded-md overflow-hidden border border-white/[0.08] hover:border-[#00d8d6]/40 transition-colors"
+                  className="flex-shrink-0 w-16 h-16 rounded-md overflow-hidden border border-white/[0.08] hover:border-[#fb923c]/40 transition-colors"
                 >
                   <img
                     src={item.details.src}
@@ -268,7 +268,7 @@ export const AiVideo = () => {
         <Button
           onClick={handleGenerate}
           disabled={!selectedImage || !prompt.trim() || isGenerating}
-          className="flex items-center gap-2 w-full bg-gradient-to-r from-[#00d8d6] to-[#8b5cf6] text-white hover:shadow-[0_0_20px_rgba(0,216,214,0.3)] transition-all duration-300 disabled:opacity-50"
+          className="flex items-center gap-2 w-full bg-gradient-to-r from-[#fb923c] to-[#f472b6] text-white hover:shadow-[0_0_20px_rgba(251,146,60,0.3)] transition-all duration-300 disabled:opacity-50"
           size="sm"
         >
           {isGenerating ? (

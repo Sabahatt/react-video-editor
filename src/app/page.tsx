@@ -77,7 +77,7 @@ export default function Home() {
             className="mb-6"
           >
             <h1 className="text-7xl font-bold tracking-tight uppercase">
-              <span className="bg-gradient-to-r from-[#00d8d6] to-[#8b5cf6] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#fb923c] to-[#f472b6] bg-clip-text text-transparent">
                 Adify
               </span>
             </h1>
@@ -88,11 +88,11 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#fafafa] mb-4 leading-tight"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#fff7ed] mb-4 leading-tight"
           >
             Turn any website into a
             <br />
-            <span className="bg-gradient-to-r from-[#00d8d6] via-[#8b5cf6] to-[#00d8d6] bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
+            <span className="bg-gradient-to-r from-[#fb923c] via-[#f472b6] to-[#fb923c] bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
               stunning video ad
             </span>
           </motion.h2>
@@ -129,7 +129,7 @@ export default function Home() {
               <p className="text-sm text-red-400">{error}</p>
               <button
                 onClick={handleReset}
-                className="mt-2 text-sm text-white/50 hover:text-[#00d8d6] underline underline-offset-4 transition-colors"
+                className="mt-2 text-sm text-white/50 hover:text-[#fb923c] underline underline-offset-4 transition-colors"
               >
                 Try again
               </button>

@@ -31,7 +31,7 @@ function PopoverContent({
         sideOffset={sideOffset}
         className={cn(
           "text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 z-50 w-72 origin-(--radix-popover-content-transform-origin) rounded-xl p-4 outline-hidden",
-          "bg-[#0a0a0a]/95 backdrop-blur-xl border border-[#00d8d6]/20 shadow-[0_8px_32px_rgba(0,0,0,0.5),0_0_20px_rgba(0,216,214,0.1)]",
+          "bg-[#271e19]/95 backdrop-blur-xl border border-[#fb923c]/20 shadow-[0_8px_32px_rgba(0,0,0,0.5),0_0_20px_rgba(251,146,60,0.1)]",
           className
         )}
         {...props}

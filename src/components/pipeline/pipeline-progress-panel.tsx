@@ -36,10 +36,10 @@ export function PipelineProgressPanel({ onRetry }: PipelineProgressPanelProps) {
             className="absolute -inset-2 rounded-2xl blur-2xl"
             style={{
               background: isComplete
-                ? "linear-gradient(135deg, rgba(0,216,214,0.25), rgba(139,92,246,0.2))"
+                ? "linear-gradient(135deg, rgba(251,146,60,0.25), rgba(244,114,182,0.2))"
                 : error
-                ? "linear-gradient(135deg, rgba(239,68,68,0.2), rgba(139,92,246,0.15))"
-                : "linear-gradient(135deg, rgba(139,92,246,0.3), rgba(0,216,214,0.2))",
+                ? "linear-gradient(135deg, rgba(239,68,68,0.2), rgba(244,114,182,0.15))"
+                : "linear-gradient(135deg, rgba(244,114,182,0.3), rgba(251,146,60,0.2))",
             }}
             animate={{
               opacity: [0.5, 0.7, 0.5],
@@ -61,15 +61,15 @@ export function PipelineProgressPanel({ onRetry }: PipelineProgressPanelProps) {
             )}
           >
             {/* Inner highlight line at top */}
-            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#8b5cf6]/30 to-transparent rounded-t-2xl" />
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#f472b6]/30 to-transparent rounded-t-2xl" />
 
             {/* Close button - only show when complete or error */}
             {(isComplete || error) && (
               <button
                 onClick={handleClose}
-                className="absolute top-3 right-3 p-1.5 rounded-lg bg-white/[0.05] hover:bg-[#00d8d6]/10 border border-white/[0.08] transition-colors"
+                className="absolute top-3 right-3 p-1.5 rounded-lg bg-white/[0.05] hover:bg-[#fb923c]/10 border border-white/[0.08] transition-colors"
               >
-                <X className="w-4 h-4 text-white/60 hover:text-[#00d8d6]" />
+                <X className="w-4 h-4 text-white/60 hover:text-[#fb923c]" />
               </button>
             )}
 
@@ -82,7 +82,7 @@ export function PipelineProgressPanel({ onRetry }: PipelineProgressPanelProps) {
                     <motion.div
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
-                      className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#8b5cf6] to-[#00d8d6] flex items-center justify-center"
+                      className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#fb923c] to-[#f472b6] flex items-center justify-center"
                     >
                       <Check className="w-5 h-5 text-white" />
                     </motion.div>
@@ -92,12 +92,12 @@ export function PipelineProgressPanel({ onRetry }: PipelineProgressPanelProps) {
                     </div>
                   ) : (
                     <motion.div
-                      className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#8b5cf6] to-[#00d8d6] flex items-center justify-center"
+                      className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#fb923c] to-[#f472b6] flex items-center justify-center"
                       animate={{
                         boxShadow: [
-                          "0 0 20px rgba(139, 92, 246, 0.4)",
-                          "0 0 25px rgba(0, 216, 214, 0.3)",
-                          "0 0 20px rgba(139, 92, 246, 0.4)",
+                          "0 0 20px rgba(251, 146, 60, 0.4)",
+                          "0 0 25px rgba(244, 114, 182, 0.3)",
+                          "0 0 20px rgba(251, 146, 60, 0.4)",
                         ],
                       }}
                       transition={{ duration: 2, repeat: Infinity }}
@@ -128,7 +128,7 @@ export function PipelineProgressPanel({ onRetry }: PipelineProgressPanelProps) {
               {!isComplete && !error && (
                 <div className="relative h-1 bg-white/[0.06] rounded-full overflow-hidden">
                   <motion.div
-                    className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#8b5cf6] via-[#a78bfa] to-[#00d8d6] rounded-full"
+                    className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#fb923c] via-[#f97316] to-[#f472b6] rounded-full"
                     initial={{ width: "0%" }}
                     animate={{
                       width: `${(steps.filter(s => s.status === "complete").length / steps.length) * 100}%`,
@@ -160,21 +160,21 @@ export function PipelineProgressPanel({ onRetry }: PipelineProgressPanelProps) {
                         <motion.div
                           initial={{ scale: 0 }}
                           animate={{ scale: 1 }}
-                          className="w-5 h-5 rounded-full bg-[#8b5cf6]/20 border border-[#8b5cf6]/40 flex items-center justify-center"
+                          className="w-5 h-5 rounded-full bg-[#fb923c]/20 border border-[#fb923c]/40 flex items-center justify-center"
                         >
-                          <Check className="w-3 h-3 text-[#a78bfa]" />
+                          <Check className="w-3 h-3 text-[#fdba74]" />
                         </motion.div>
                       )}
                       {step.status === "active" && (
                         <motion.div
                           animate={{
                             boxShadow: [
-                              "0 0 0 0 rgba(139, 92, 246, 0.5)",
-                              "0 0 0 6px rgba(139, 92, 246, 0)",
+                              "0 0 0 0 rgba(251, 146, 60, 0.5)",
+                              "0 0 0 6px rgba(251, 146, 60, 0)",
                             ],
                           }}
                           transition={{ duration: 1.2, repeat: Infinity }}
-                          className="w-5 h-5 rounded-full bg-gradient-to-r from-[#8b5cf6] to-[#00d8d6] flex items-center justify-center"
+                          className="w-5 h-5 rounded-full bg-gradient-to-r from-[#fb923c] to-[#f472b6] flex items-center justify-center"
                         >
                           <motion.div
                             animate={{ scale: [1, 0.7, 1] }}
@@ -197,7 +197,7 @@ export function PipelineProgressPanel({ onRetry }: PipelineProgressPanelProps) {
                     <span
                       className={cn(
                         "text-sm transition-colors",
-                        step.status === "complete" && "text-[#a78bfa]",
+                        step.status === "complete" && "text-[#fdba74]",
                         step.status === "active" && "text-white",
                         step.status === "pending" && "text-white/30",
                         step.status === "error" && "text-red-400"
@@ -231,7 +231,7 @@ export function PipelineProgressPanel({ onRetry }: PipelineProgressPanelProps) {
                   {onRetry && (
                     <button
                       onClick={onRetry}
-                      className="mt-2 text-xs text-white/50 hover:text-[#00d8d6] underline underline-offset-2 transition-colors"
+                      className="mt-2 text-xs text-white/50 hover:text-[#fb923c] underline underline-offset-2 transition-colors"
                     >
                       Return to homepage
                     </button>
@@ -244,9 +244,9 @@ export function PipelineProgressPanel({ onRetry }: PipelineProgressPanelProps) {
                 <motion.div
                   initial={{ opacity: 0, y: 5 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="p-3 rounded-xl bg-[#8b5cf6]/10 border border-[#8b5cf6]/20"
+                  className="p-3 rounded-xl bg-[#fb923c]/10 border border-[#fb923c]/20"
                 >
-                  <p className="text-xs text-[#c4b5fd]">
+                  <p className="text-xs text-[#fdba74]">
                     Your video is loaded and ready to edit!
                   </p>
                 </motion.div>

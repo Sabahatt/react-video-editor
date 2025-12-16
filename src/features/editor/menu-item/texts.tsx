@@ -34,7 +34,7 @@ export const Texts = () => {
         >
           <div
             onClick={handleAddText}
-            className="cursor-pointer w-full py-2.5 px-4 rounded-xl text-sm font-medium text-white bg-gradient-to-r from-[#00d8d6] to-[#8b5cf6] hover:shadow-[0_0_20px_rgba(0,216,214,0.3)] transition-all duration-300 text-center"
+            className="cursor-pointer w-full py-2.5 px-4 rounded-xl text-sm font-medium text-white bg-gradient-to-r from-[#fb923c] to-[#f472b6] hover:shadow-[0_0_20px_rgba(251,146,60,0.3)] transition-all duration-300 text-center"
           >
             Add text
           </div>

@@ -306,11 +306,11 @@ export const AiVoice = () => {
                           )
                             return;
                         }}
-                        className="w-full flex items-center justify-between h-9 px-3 rounded-lg text-sm bg-white/[0.03] border border-white/[0.08] hover:border-[#00d8d6]/30 hover:bg-[#00d8d6]/5 transition-colors"
+                        className="w-full flex items-center justify-between h-9 px-3 rounded-lg text-sm bg-white/[0.03] border border-white/[0.08] hover:border-[#fb923c]/30 hover:bg-[#fb923c]/5 transition-colors"
                       >
                         <div className="flex items-center gap-2 flex-1 min-w-0">
                           <span
-                            className="h-5 w-5 flex-shrink-0 flex items-center justify-center hover:text-[#00d8d6] voice-preview-btn cursor-pointer"
+                            className="h-5 w-5 flex-shrink-0 flex items-center justify-center hover:text-[#fb923c] voice-preview-btn cursor-pointer"
                             onClick={(e) => {
                               e.stopPropagation();
                               handlePlayPause(
@@ -332,7 +332,7 @@ export const AiVoice = () => {
                     );
                   })()
                 ) : (
-                  <button className="w-full flex items-center justify-between h-9 px-3 rounded-lg text-sm bg-white/[0.03] border border-white/[0.08] hover:border-[#00d8d6]/30 hover:bg-[#00d8d6]/5 transition-colors">
+                  <button className="w-full flex items-center justify-between h-9 px-3 rounded-lg text-sm bg-white/[0.03] border border-white/[0.08] hover:border-[#fb923c]/30 hover:bg-[#fb923c]/5 transition-colors">
                     <span className="truncate text-muted-foreground">Select voice</span>
                     <ChevronDown className="h-4 w-4 flex-shrink-0 text-muted-foreground" />
                   </button>
@@ -340,7 +340,7 @@ export const AiVoice = () => {
               </PopoverTrigger>
               <PopoverContent
                 side="bottom"
-                className="w-[420px] max-h-[500px] overflow-hidden p-0 bg-[#0a0a0a]/95 backdrop-blur-xl border border-[#00d8d6]/20 shadow-[0_8px_32px_rgba(0,0,0,0.5),0_0_20px_rgba(0,216,214,0.1)]"
+                className="w-[420px] max-h-[500px] overflow-hidden p-0 bg-[#0a0a0a]/95 backdrop-blur-xl border border-[#fb923c]/20 shadow-[0_8px_32px_rgba(0,0,0,0.5),0_0_20px_rgba(251,146,60,0.1)]"
                 align="start"
               >
                 <div className="space-y-4">
@@ -398,7 +398,7 @@ export const AiVoice = () => {
                         return (
                           <div
                             key={voice.id}
-                            className={`flex items-center px-2 rounded-lg py-2 cursor-pointer transition-colors ${isRowSelected ? "bg-[#00d8d6]/20 text-[#00d8d6] border border-[#00d8d6]/30" : "hover:bg-[#00d8d6]/10 text-white/90 border border-transparent"}`}
+                            className={`flex items-center px-2 rounded-lg py-2 cursor-pointer transition-colors ${isRowSelected ? "bg-[#fb923c]/20 text-[#fb923c] border border-[#fb923c]/30" : "hover:bg-[#fb923c]/10 text-white/90 border border-transparent"}`}
                             onClick={() => {
                               setSelectedVoice(voice);
                               setIsPopoverOpen(false);
@@ -409,7 +409,7 @@ export const AiVoice = () => {
                                 <Button
                                   size="icon"
                                   variant="ghost"
-                                  className={`flex-shrink-0 ${isRowSelected ? "bg-[#00d8d6]/20 text-[#00d8d6]" : "text-white/60 hover:text-[#00d8d6] hover:bg-[#00d8d6]/10"}`}
+                                  className={`flex-shrink-0 ${isRowSelected ? "bg-[#fb923c]/20 text-[#fb923c]" : "text-white/60 hover:text-[#fb923c] hover:bg-[#fb923c]/10"}`}
                                   onClick={(e) => {
                                     e.stopPropagation();
                                     handlePlayPause(voice.id, voice.previewUrl);
@@ -492,7 +492,7 @@ export const AiVoice = () => {
           <Button
             onClick={handleGenerate}
             disabled={!text.trim() || !selectedVoice || isGenerating}
-            className="flex items-center gap-2 w-full bg-gradient-to-r from-[#00d8d6] to-[#8b5cf6] text-white hover:shadow-[0_0_20px_rgba(0,216,214,0.3)] transition-all duration-300"
+            className="flex items-center gap-2 w-full bg-gradient-to-r from-[#fb923c] to-[#f472b6] text-white hover:shadow-[0_0_20px_rgba(251,146,60,0.3)] transition-all duration-300"
             size={"sm"}
           >
             {isGenerating ? (

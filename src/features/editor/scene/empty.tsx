@@ -47,8 +47,8 @@ const SceneEmpty = () => {
             onDragStateChange={setIsDraggingOver}
             className={`absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 transform items-center justify-center rounded-xl text-center transition-all duration-300 ease-in-out ${
               isDraggingOver
-                ? "border-2 border-[#00d8d6] bg-[#00d8d6]/10 shadow-[0_0_30px_rgba(0,216,214,0.2)]"
-                : "border border-dashed border-white/20 hover:border-[#00d8d6]/40 hover:shadow-[0_0_20px_rgba(0,216,214,0.1)]"
+                ? "border-2 border-[#fb923c] bg-[#fb923c]/10 shadow-[0_0_30px_rgba(251,146,60,0.2)]"
+                : "border border-dashed border-white/20 hover:border-[#fb923c]/40 hover:shadow-[0_0_20px_rgba(251,146,60,0.1)]"
             }`}
             style={{
               width: desiredSize.width,
@@ -56,7 +56,7 @@ const SceneEmpty = () => {
             }}
           >
             <div className="flex flex-col items-center justify-center gap-4 pb-12">
-              <div className="cursor-pointer rounded-xl p-3 bg-gradient-to-r from-[#00d8d6] to-[#8b5cf6] text-white shadow-[0_0_20px_rgba(0,216,214,0.3)] hover:shadow-[0_0_30px_rgba(0,216,214,0.4)] transition-all duration-300">
+              <div className="cursor-pointer rounded-xl p-3 bg-gradient-to-r from-[#fb923c] to-[#f472b6] text-white shadow-[0_0_20px_rgba(251,146,60,0.3)] hover:shadow-[0_0_30px_rgba(251,146,60,0.4)] transition-all duration-300">
                 <PlusIcon className="h-6 w-6" aria-hidden="true" />
               </div>
               <div className="flex flex-col gap-1">

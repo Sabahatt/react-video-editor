@@ -28,7 +28,7 @@ export function GenerationProgress({ steps, error }: GenerationProgressProps) {
         <motion.div
           className="absolute -inset-1 rounded-2xl blur-xl"
           style={{
-            background: "linear-gradient(90deg, rgba(0,216,214,0.2), rgba(139,92,246,0.2))",
+            background: "linear-gradient(90deg, rgba(251,146,60,0.2), rgba(244,114,182,0.2))",
           }}
           animate={{
             opacity: [0.3, 0.5, 0.3],
@@ -57,12 +57,12 @@ export function GenerationProgress({ steps, error }: GenerationProgressProps) {
             <div className="flex items-center gap-4 mb-6">
               <div className="relative">
                 <motion.div
-                  className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#00d8d6] to-[#8b5cf6] flex items-center justify-center"
+                  className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#fb923c] to-[#f472b6] flex items-center justify-center"
                   animate={{
                     boxShadow: [
-                      "0 0 20px rgba(0, 216, 214, 0.3)",
-                      "0 0 40px rgba(139, 92, 246, 0.4)",
-                      "0 0 20px rgba(0, 216, 214, 0.3)",
+                      "0 0 20px rgba(251, 146, 60, 0.3)",
+                      "0 0 40px rgba(244, 114, 182, 0.4)",
+                      "0 0 20px rgba(251, 146, 60, 0.3)",
                     ],
                   }}
                   transition={{ duration: 2, repeat: Infinity }}
@@ -97,21 +97,21 @@ export function GenerationProgress({ steps, error }: GenerationProgressProps) {
                         <motion.div
                           initial={{ scale: 0 }}
                           animate={{ scale: 1 }}
-                          className="w-7 h-7 rounded-full bg-[#00d8d6]/20 border border-[#00d8d6]/30 flex items-center justify-center"
+                          className="w-7 h-7 rounded-full bg-[#fb923c]/20 border border-[#fb923c]/30 flex items-center justify-center"
                         >
-                          <Check className="w-4 h-4 text-[#00d8d6]" />
+                          <Check className="w-4 h-4 text-[#fb923c]" />
                         </motion.div>
                       )}
                       {step.status === "active" && (
                         <motion.div
                           animate={{
                             boxShadow: [
-                              "0 0 0 0 rgba(139, 92, 246, 0.4)",
-                              "0 0 0 10px rgba(139, 92, 246, 0)",
+                              "0 0 0 0 rgba(244, 114, 182, 0.4)",
+                              "0 0 0 10px rgba(244, 114, 182, 0)",
                             ],
                           }}
                           transition={{ duration: 1.2, repeat: Infinity }}
-                          className="w-7 h-7 rounded-full bg-gradient-to-r from-[#00d8d6] to-[#8b5cf6] flex items-center justify-center"
+                          className="w-7 h-7 rounded-full bg-gradient-to-r from-[#fb923c] to-[#f472b6] flex items-center justify-center"
                         >
                           <motion.div
                             animate={{ scale: [1, 0.8, 1] }}
@@ -134,7 +134,7 @@ export function GenerationProgress({ steps, error }: GenerationProgressProps) {
                     <span
                       className={cn(
                         "text-sm transition-colors",
-                        step.status === "complete" && "text-[#00d8d6]",
+                        step.status === "complete" && "text-[#fb923c]",
                         step.status === "active" && "text-white",
                         step.status === "pending" && "text-white/30",
                         step.status === "error" && "text-red-400"

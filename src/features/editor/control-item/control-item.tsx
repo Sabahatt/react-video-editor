@@ -64,14 +64,14 @@ const Container = ({ children }: { children: React.ReactNode }) => {
       <div
         className="absolute left-0 top-0 bottom-0 w-px pointer-events-none"
         style={{
-          background: "linear-gradient(180deg, rgba(139,92,246,0.4) 0%, rgba(0,216,214,0.2) 50%, rgba(139,92,246,0.4) 100%)"
+          background: "linear-gradient(180deg, rgba(244,114,182,0.4) 0%, rgba(251,146,60,0.2) 50%, rgba(244,114,182,0.4) 100%)"
         }}
       />
       {/* Top corner glow */}
       <div
         className="absolute top-0 left-0 w-32 h-32 pointer-events-none opacity-30"
         style={{
-          background: "radial-gradient(circle at top left, rgba(139,92,246,0.15) 0%, transparent 70%)"
+          background: "radial-gradient(circle at top left, rgba(244,114,182,0.15) 0%, transparent 70%)"
         }}
       />
       {React.cloneElement(children as React.ReactElement<any>, {
@@ -98,8 +98,8 @@ const ActiveControlItem = ({
   if (!trackItem) {
     return (
       <div className="pb-32 flex flex-1 flex-col items-center justify-center gap-4 text-muted-foreground h-[calc(100vh-58px)] px-6">
-        <div className="p-4 rounded-2xl bg-gradient-to-br from-[#00d8d6]/10 to-[#8b5cf6]/10 border border-white/[0.06]">
-          <LassoSelect className="w-6 h-6 text-[#00d8d6]/60" />
+        <div className="p-4 rounded-2xl bg-gradient-to-br from-[#fb923c]/10 to-[#f472b6]/10 border border-white/[0.06]">
+          <LassoSelect className="w-6 h-6 text-[#fb923c]/60" />
         </div>
         <div className="text-center">
           <span className="text-zinc-400 text-sm">No item selected</span>

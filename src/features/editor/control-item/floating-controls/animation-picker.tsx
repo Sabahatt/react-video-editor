@@ -51,7 +51,7 @@ export const createNoneButton = (
     const animations = currentItem?.animations;
     const hasAnimation = animations?.[type]?.name;
     if (!hasAnimation) {
-      borderColor = "border-[#00d8d6]/50";
+      borderColor = "border-[#fb923c]/50";
     }
   }
 
@@ -113,7 +113,7 @@ export const createPresetButtons = (
         );
 
         if (isSelected) {
-          borderColor = "border-[#00d8d6]/50";
+          borderColor = "border-[#fb923c]/50";
         }
       }
 
@@ -245,7 +245,7 @@ export default function AnimationPicker({
       <div className="handle flex cursor-grab items-center justify-between px-4 py-3 border-b border-white/[0.04]">
         <p className="text-sm font-bold text-gradient">Animations</p>
         <div className="h-4 w-4" onClick={() => setFloatingControl("")}>
-          <X className="h-3 w-3 cursor-pointer font-extrabold text-muted-foreground hover:text-[#00d8d6] transition-colors" />
+          <X className="h-3 w-3 cursor-pointer font-extrabold text-muted-foreground hover:text-[#fb923c] transition-colors" />
         </div>
       </div>
 

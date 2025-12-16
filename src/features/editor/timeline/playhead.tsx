@@ -97,13 +97,13 @@ const Playhead = ({ scrollLeft }: { scrollLeft: number }) => {
           borderRadius: "0 0 6px 6px",
           boxShadow: "0 0 12px rgba(173, 0, 216, 0.25), 0 0 24px rgba(180, 0, 216, 0.23)"
         }}
-        className="absolute top-0 h-5 w-3 -translate-x-1/2 transform bg-gradient-to-b from-[#00d8d6] to-[#00b8b6] text-xs font-semibold"
+        className="absolute top-0 h-5 w-3 -translate-x-1/2 transform bg-gradient-to-b from-[#fb923c] to-[#f97316] text-xs font-semibold"
       />
       <div className="relative h-full">
         <div className="absolute top-0 h-full w-4 -translate-x-1/2 transform" />
         {/* Main playhead line with glow */}
         <div
-          className="absolute top-0 h-full w-0.5 -translate-x-1/2 transform bg-[#00d8d6]"
+          className="absolute top-0 h-full w-0.5 -translate-x-1/2 transform bg-[#fb923c]"
           style={{
             boxShadow: "0 0 8px rgba(209, 0, 216, 0.35), 0 0 16px rgba(216, 0, 187, 0.3)"
           }}

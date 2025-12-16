@@ -71,8 +71,8 @@ function MenuButton({ item, isActive, onClick }: MenuButtonProps) {
       className={cn(
         "transition-all duration-200",
         isActive
-          ? "bg-[#00d8d6]/15 text-[#00d8d6] border border-[#00d8d6]/30"
-          : "text-muted-foreground hover:text-[#00d8d6] hover:bg-[#00d8d6]/10"
+          ? "bg-[#fb923c]/15 text-[#fb923c] border border-[#fb923c]/30"
+          : "text-muted-foreground hover:text-[#fb923c] hover:bg-[#fb923c]/10"
       )}
     >
       {item.label}
