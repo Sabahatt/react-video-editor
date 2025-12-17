@@ -68,17 +68,17 @@ const DROPDOWN_OPTIONS: DropdownConfig[] = [
     id: "duration",
     label: "Duration",
     options: [
-      { id: "10s", name: "10s" },
-      { id: "15s", name: "15s" },
-      { id: "30s", name: "30s" },
+      { id: "30s", name: "~30s" },
+      { id: "15s", name: "~15s" },
+      { id: "10s", name: "~10s" },
     ],
   },
   {
     id: "ratio",
     label: "Ratio",
     options: [
-      { id: "9:16", name: "9:16" },
       { id: "16:9", name: "16:9" },
+      { id: "9:16", name: "9:16" },
       { id: "1:1", name: "1:1" },
     ],
   },
@@ -122,7 +122,7 @@ function OptionDropdown({
         onClick={() => !disabled && setIsOpen(!isOpen)}
         disabled={disabled}
         className={cn(
-          "flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg",
+          "flex items-center justify-between gap-1.5 px-2.5 py-1.5 rounded-lg min-w-[95px]",
           "text-xs transition-all duration-200",
           "disabled:opacity-50 disabled:cursor-not-allowed",
           isOpen
@@ -212,7 +212,7 @@ export function UrlInput({ onGenerate, isGenerating }: UrlInputProps) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.3 }}
-      className="w-full max-w-3xl mx-auto"
+      className="w-full max-w-4xl mx-auto"
     >
       {/* Outer glow container */}
       <div className="relative group">
@@ -241,7 +241,7 @@ export function UrlInput({ onGenerate, isGenerating }: UrlInputProps) {
             "bg-white/[0.03] backdrop-blur-xl",
             "border border-white/[0.08]",
             "shadow-[0_8px_32px_rgba(0,0,0,0.4)]",
-            "transition-all duration-300",
+            "transition-all duration-300" ,
             isFocused && "border-[#fb923c]/30 bg-white/[0.05]"
           )}
         >

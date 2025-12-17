@@ -115,7 +115,7 @@ export default function Navbar({
 
       <div className="flex items-center gap-2 pointer-events-auto">
         <button onClick={handleLogoClick} className="flex items-center">
-          <span className="text-xl font-bold tracking-tight uppercase bg-gradient-to-r from-[#fb923c] to-[#f472b6] bg-clip-text text-transparent hover:opacity-80 transition-opacity">
+          <span className="text-xl font-bold tracking-tight uppercase bg-gradient-to-r from-[#fb923c] to-[#f472b6] bg-clip-text text-transparent hover:opacity-80 transition-opacity cursor-pointer">
             Adify
           </span>
         </button>
