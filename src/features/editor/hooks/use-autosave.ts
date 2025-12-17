@@ -8,6 +8,7 @@ interface UseAutoSaveOptions {
   restaurant?: string;
   projectName?: string;
   brand?: any; // Brand data for context-aware stock search
+  script?: string | null; // AI script for voice generation
   intervalMs?: number; // Default: 30 seconds
   enabled?: boolean;
 }
@@ -23,6 +24,7 @@ export function useAutoSave({
   restaurant = 'default',
   projectName = 'Untitled video',
   brand = null,
+  script = null,
   intervalMs = 30000, // 30 seconds default
   enabled = true,
 }: UseAutoSaveOptions) {
@@ -40,13 +42,20 @@ export function useAutoSave({
   const restaurantRef = useRef(restaurant);
   const projectNameRef = useRef(projectName);
   const brandRef = useRef(brand);
+  const scriptRef = useRef(script);
 
   // Keep refs in sync with props
   useEffect(() => {
     restaurantRef.current = restaurant;
     projectNameRef.current = projectName;
     brandRef.current = brand;
-  }, [restaurant, projectName, brand]);
+    scriptRef.current = script;
+
+    // Store last used restaurant in localStorage for loading on refresh
+    if (restaurant && restaurant !== 'default') {
+      localStorage.setItem('lastAutosaveRestaurant', restaurant);
+    }
+  }, [restaurant, projectName, brand, script]);
 
   const saveNow = useCallback(async (force = false) => {
     if (!stateManager) return;
@@ -81,6 +90,7 @@ export function useAutoSave({
           projectName: projectNameRef.current,
           design,
           brand: brandRef.current,
+          script: scriptRef.current,
         }),
       });
 
@@ -160,6 +170,7 @@ export function useAutoSave({
             projectName: projectNameRef.current,
             design,
             brand: brandRef.current,
+            script: scriptRef.current,
           })
         );
       }

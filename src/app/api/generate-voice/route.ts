@@ -67,6 +67,17 @@ export async function POST(request: NextRequest) {
     if (!ttsResponse.ok) {
       const errorText = await ttsResponse.text();
       console.error('[Generate Voice] ElevenLabs error:', errorText);
+
+      // Check for specific ElevenLabs errors
+      if (ttsResponse.status === 401) {
+        if (errorText.includes('unusual_activity') || errorText.includes('Free Tier')) {
+          throw new Error('ElevenLabs Free Tier has been disabled due to unusual activity. Please upgrade to a paid plan at elevenlabs.io or use a different API key.');
+        }
+        throw new Error('ElevenLabs API key is invalid or expired. Please check your ELEVENLABS_API_KEY in .env.local');
+      }
+      if (ttsResponse.status === 429) {
+        throw new Error('ElevenLabs rate limit exceeded. Please wait a moment and try again.');
+      }
       throw new Error(`ElevenLabs API error: ${ttsResponse.status} - ${errorText}`);
     }
 

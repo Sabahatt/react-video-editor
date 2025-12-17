@@ -195,6 +195,10 @@ export const AiVoice = () => {
 
       if (!response.ok) {
         const errorData = await response.json();
+        // Check for ElevenLabs specific errors
+        if (errorData.error?.includes("401") || errorData.error?.includes("unusual_activity") || errorData.error?.includes("Free Tier")) {
+          throw new Error("ElevenLabs Free Tier disabled. Please upgrade to a paid plan or check your API key.");
+        }
         throw new Error(errorData.error || `HTTP ${response.status}`);
       }
 

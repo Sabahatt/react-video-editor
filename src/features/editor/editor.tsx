@@ -73,6 +73,8 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 		setFloatingControl,
 		setLabelControlItem,
 		setTypeControlItem,
+		setShowToolboxItem,
+		setActiveToolboxItem,
 	} = useLayoutStore();
 	const isLargeScreen = useIsLargeScreen();
 
@@ -84,8 +86,10 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 		restaurant: pipelineRestaurant,
 		template: pipelineTemplate,
 		brand: pipelineBrand,
+		script: pipelineScript,
 		updateStep,
 		setDesign,
+		setScript,
 		setError: setPipelineError,
 		completePipeline,
 		resetPipeline,
@@ -100,6 +104,7 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 		restaurant,
 		projectName,
 		brand: pipelineBrand,
+		script: pipelineScript,
 		intervalMs: 30000, // 30 seconds
 		enabled: true,
 	});
@@ -235,12 +240,15 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 			}
 
 			// No sessionStorage design - try to load from autosave
+			// Use localStorage to get the last used restaurant, fallback to 'default'
+			const lastRestaurant = localStorage.getItem('lastAutosaveRestaurant') || 'default';
+
 			try {
-				const response = await fetch('/api/autosave?restaurant=default');
+				const response = await fetch(`/api/autosave?restaurant=${lastRestaurant}`);
 				const result = await response.json();
 
 				if (result.success && result.data?.design) {
-					const { design, projectName: savedProjectName, restaurant: savedRestaurant, brand: savedBrand } = result.data;
+					const { design, projectName: savedProjectName, restaurant: savedRestaurant, brand: savedBrand, script: savedScript } = result.data;
 					// Check if the autosave has actual content
 					const hasContent = design.trackItemIds && design.trackItemIds.length > 0;
 					if (hasContent) {
@@ -254,9 +262,15 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 
 						// Load brand data: prefer saved brand from autosave, fallback to API
 						let brandToUse = savedBrand;
-						if (!brandToUse && savedRestaurant && savedRestaurant !== 'default') {
+						// Try to fetch brand from API if not in autosave
+						// Use savedRestaurant from autosave, or lastRestaurant from localStorage as fallback
+						const restaurantForBrand = (savedRestaurant && savedRestaurant !== 'default')
+							? savedRestaurant
+							: (lastRestaurant !== 'default' ? lastRestaurant : null);
+
+						if (!brandToUse && restaurantForBrand) {
 							try {
-								const brandRes = await fetch(`/api/poc-data/brand?restaurant=${savedRestaurant}`);
+								const brandRes = await fetch(`/api/poc-data/brand?restaurant=${restaurantForBrand}`);
 								const brandResult = await brandRes.json();
 								if (brandResult.success && brandResult.brand) {
 									brandToUse = brandResult.brand;
@@ -267,6 +281,11 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 						}
 						if (brandToUse) {
 							setDesign(design, brandToUse);
+						}
+
+						// Restore script from autosave to pipeline store
+						if (savedScript) {
+							setScript(savedScript);
 						}
 
 						// Extract and sync media to uploads panel from autosave
@@ -349,6 +368,9 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 		} else {
 			setTrackItem(null);
 			setLayoutTrackItem(null);
+			// Reset toolbox when nothing is selected
+			setShowToolboxItem(false);
+			setActiveToolboxItem(null);
 		}
 	}, [activeIds, trackItemsMap]);
 

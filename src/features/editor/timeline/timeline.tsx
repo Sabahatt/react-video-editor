@@ -221,6 +221,11 @@ const Timeline = ({ stateManager }: { stateManager: StateManager }) => {
     });
     setTimeline(canvas);
 
+    // Force initial render after canvas is ready - handles case where design was loaded before timeline mounted
+    setTimeout(() => {
+      canvas.requestRenderAll();
+    }, 100);
+
     // Use ResizeObserver to detect when container gets proper dimensions
     const resizeObserver = new ResizeObserver((entries) => {
       for (const entry of entries) {

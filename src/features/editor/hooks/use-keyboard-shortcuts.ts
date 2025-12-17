@@ -13,6 +13,7 @@ const selectActiveIds = (state: ReturnType<typeof useStore.getState>) => state.a
 const selectTrackItemsMap = (state: ReturnType<typeof useStore.getState>) => state.trackItemsMap;
 const selectPlayerRef = (state: ReturnType<typeof useStore.getState>) => state.playerRef;
 const selectFps = (state: ReturnType<typeof useStore.getState>) => state.fps;
+const selectTimeline = (state: ReturnType<typeof useStore.getState>) => state.timeline;
 
 /**
  * Hook to handle keyboard shortcuts for the editor
@@ -32,6 +33,7 @@ const useKeyboardShortcuts = () => {
   const trackItemsMap = useStore(selectTrackItemsMap);
   const playerRef = useStore(selectPlayerRef);
   const fps = useStore(selectFps);
+  const timeline = useStore(selectTimeline);
   const copiedIdsRef = useRef<string[]>([]);
 
   // Get the start time (minimum from) of selected items
@@ -84,6 +86,7 @@ const useKeyboardShortcuts = () => {
 
       // Undo: Ctrl/Cmd + Z (without Shift)
       if (ctrlKey && event.key.toLowerCase() === "z" && !event.shiftKey) {
+        if (!timeline) return; // Guard: ensure timeline is initialized
         event.preventDefault();
         dispatch(HISTORY_UNDO);
         return;
@@ -94,6 +97,7 @@ const useKeyboardShortcuts = () => {
         (ctrlKey && event.key.toLowerCase() === "y") ||
         (ctrlKey && event.key.toLowerCase() === "z" && event.shiftKey)
       ) {
+        if (!timeline) return; // Guard: ensure timeline is initialized
         event.preventDefault();
         dispatch(HISTORY_REDO);
         return;
@@ -101,7 +105,7 @@ const useKeyboardShortcuts = () => {
 
       // Delete: Delete or Backspace key
       if (event.key === "Delete" || event.key === "Backspace") {
-        if (activeIds.length > 0) {
+        if (activeIds.length > 0 && timeline) {
           event.preventDefault();
           dispatch(LAYER_DELETE);
         }
@@ -110,7 +114,7 @@ const useKeyboardShortcuts = () => {
 
       // Duplicate/Clone: Ctrl/Cmd + D
       if (ctrlKey && event.key.toLowerCase() === "d") {
-        if (activeIds.length > 0) {
+        if (activeIds.length > 0 && timeline) {
           event.preventDefault();
           dispatch(LAYER_CLONE);
         }
@@ -128,7 +132,7 @@ const useKeyboardShortcuts = () => {
 
       // Paste: Ctrl/Cmd + V
       if (ctrlKey && event.key.toLowerCase() === "v") {
-        if (copiedIdsRef.current.length > 0) {
+        if (copiedIdsRef.current.length > 0 && timeline) {
           event.preventDefault();
           // Clone the previously copied items
           dispatch(LAYER_CLONE);
@@ -162,7 +166,7 @@ const useKeyboardShortcuts = () => {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [activeIds, getSelectionStartTime, getSelectionEndTime, seekToTime]);
+  }, [activeIds, timeline, getSelectionStartTime, getSelectionEndTime, seekToTime]);
 };
 
 export default useKeyboardShortcuts;

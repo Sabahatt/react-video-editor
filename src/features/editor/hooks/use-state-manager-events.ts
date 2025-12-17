@@ -41,12 +41,19 @@ export const useStateManagerEvents = (stateManager: StateManager) => {
   const { setState } = useStore();
   const isSubscribedRef = useRef(false);
 
-  // Helper to get timeline and sort tracks
+  // Helper to get timeline, sort tracks, and trigger re-render
   const sortTimelineTracks = useCallback(() => {
     const timeline = useStore.getState().timeline;
-    if (timeline && 'sortTracksByType' in timeline) {
+    if (timeline) {
       setTimeout(() => {
-        (timeline as any).sortTracksByType();
+        // Sort tracks if method exists
+        if ('sortTracksByType' in timeline) {
+          (timeline as any).sortTracksByType();
+        }
+        // Force re-render of canvas timeline
+        if ('requestRenderAll' in timeline) {
+          (timeline as any).requestRenderAll();
+        }
       }, 0);
     }
   }, []);
@@ -161,6 +168,21 @@ export const useStateManagerEvents = (stateManager: StateManager) => {
     // Subscribe to item details updates
     const updateItemDetailsSubscription =
       stateManager.subscribeToUpdateItemDetails(handleUpdateItemDetails);
+
+    // Sync current state immediately after subscriptions are set up
+    // This handles the case where DESIGN_LOAD was dispatched before subscriptions were ready
+    const currentState = stateManager.getState();
+    if (currentState.trackItemIds && currentState.trackItemIds.length > 0) {
+      const sortedTracks = sortTracksByType(currentState.tracks || []);
+      setState({
+        ...currentState,
+        tracks: sortedTracks
+      });
+      // Trigger re-render after a short delay to ensure timeline is ready
+      setTimeout(() => {
+        sortTimelineTracks();
+      }, 150);
+    }
 
     // Cleanup function to unsubscribe from all events
     return () => {
