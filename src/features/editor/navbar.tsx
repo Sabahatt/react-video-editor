@@ -56,7 +56,8 @@ export default function Navbar({
   setProjectName,
   projectName,
   autoSaveStatus,
-  onManualSave
+  onManualSave,
+  isReady = true
 }: {
   user: any | null;
   stateManager: StateManager;
@@ -64,6 +65,7 @@ export default function Navbar({
   projectName: string;
   autoSaveStatus?: AutoSaveStatus;
   onManualSave?: () => void;
+  isReady?: boolean;
 }) {
   const [title, setTitle] = useState(projectName);
   const isLargeScreen = useIsLargeScreen();
@@ -153,14 +155,14 @@ export default function Navbar({
             <span className="hidden md:block">Share</span>
           </Button> */}
 
-          <DownloadPopover stateManager={stateManager} />
+          <DownloadPopover stateManager={stateManager} isReady={isReady} />
         </div>
       </div>
     </div>
   );
 }
 
-const DownloadPopover = ({ stateManager }: { stateManager: StateManager }) => {
+const DownloadPopover = ({ stateManager, isReady }: { stateManager: StateManager; isReady: boolean }) => {
   const isMediumScreen = useIsMediumScreen();
   const { actions, exportType } = useDownloadState();
   const [isExportTypeOpen, setIsExportTypeOpen] = useState(false);
@@ -193,6 +195,11 @@ const DownloadPopover = ({ stateManager }: { stateManager: StateManager }) => {
     actions.setState({ payload: data });
     actions.startExport();
   };
+
+  // Don't render the button until the editor is ready
+  if (!isReady) {
+    return null;
+  }
 
   return (
     <Popover open={open} onOpenChange={setOpen}>

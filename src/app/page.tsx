@@ -101,7 +101,7 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg text-[#71717a] max-w-xl mx-auto"
+            className="text-lg text-[#fb923c] max-w-xl mx-auto"
           >
             AI-powered video generation at your fingertips.
           </motion.p>

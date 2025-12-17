@@ -67,12 +67,46 @@ const SceneEmpty = () => {
             </div>
           </DroppableArea>
         </Droppable>
-      ) : (
-        <div className="flex flex-1 flex-col items-center justify-center gap-3">
-          <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
-          <p className="text-sm text-muted-foreground">Loading...</p>
+     ) : (
+        <div className="flex flex-1 flex-col items-center justify-center gap-3 bg-background relative overflow-hidden">
+          {/* Ambient gradient background - matching editor */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            {/* Primary coral glow */}
+            <div
+              className="absolute w-[400px] h-[400px] rounded-full opacity-[0.15] blur-[100px] animate-float-slow"
+              style={{
+                background: "radial-gradient(circle, #fb923c 0%, transparent 70%)",
+                top: "10%",
+                right: "20%",
+              }}
+            />
+            {/* Secondary pink glow */}
+            <div
+              className="absolute w-[350px] h-[350px] rounded-full opacity-[0.12] blur-[80px] animate-float-slower"
+              style={{
+                background: "radial-gradient(circle, #f472b6 0%, transparent 70%)",
+                bottom: "10%",
+                left: "15%",
+              }}
+            />
+            {/* Accent warm glow */}
+            <div
+              className="absolute w-[300px] h-[300px] rounded-full opacity-[0.08] blur-[60px] animate-float-medium"
+              style={{
+                background: "radial-gradient(circle, #fbbf24 0%, transparent 70%)",
+                top: "50%",
+                left: "40%",
+              }}
+            />
+          </div>
+          {/* Loading spinner with gradient */}
+          <div className="relative z-10 flex flex-col items-center gap-3">
+            <Loader2 className="h-8 w-8 animate-spin text-[#fb923c]" />
+            <p className="text-sm text-muted-foreground">Loading...</p>
+          </div>
         </div>
       )}
+      
     </div>
   );
 };

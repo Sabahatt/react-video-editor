@@ -485,6 +485,7 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 				setProjectName={setProjectName}
 				autoSaveStatus={autoSaveStatus}
 				onManualSave={saveNow}
+				isReady={loaded}
 			/>
 			<div className="flex flex-1 overflow-hidden">
 				{isLargeScreen && (
