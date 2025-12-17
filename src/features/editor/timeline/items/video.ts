@@ -463,28 +463,33 @@ class Video extends Trimmable {
     // Generate required timestamps
     const timestamps = this.generateTimestamps(startTime, thumbnailsCount);
 
-    // Match and prepare thumbnails
-    const thumbnailsArr = await this.clip.thumbnailsList(this.thumbnailWidth, {
-      timestamps: timestamps.map((timestamp) => timestamp * 1e6)
-    });
+    try {
+      // Match and prepare thumbnails
+      const thumbnailsArr = await this.clip.thumbnailsList(this.thumbnailWidth, {
+        timestamps: timestamps.map((timestamp) => timestamp * 1e6)
+      });
 
-    const updatedThumbnails = thumbnailsArr.map(
-      (thumbnail: { ts: number; img: Blob }) => {
-        return {
-          ts: Math.round(thumbnail.ts / 1e6),
-          img: thumbnail.img
-        };
-      }
-    );
+      const updatedThumbnails = thumbnailsArr.map(
+        (thumbnail: { ts: number; img: Blob }) => {
+          return {
+            ts: Math.round(thumbnail.ts / 1e6),
+            img: thumbnail.img
+          };
+        }
+      );
 
-    // Load all thumbnails in parallel
-    await this.loadThumbnailBatch(updatedThumbnails);
+      // Load all thumbnails in parallel
+      await this.loadThumbnailBatch(updatedThumbnails);
 
-    this.isDirty = true; // Mark as dirty after preparing new thumbnails
-    // this.isFallbackDirty = true;
-    this.isFetchingThumbnails = false;
-
-    this.currentFilmstrip = { ...this.loadingFilmstrip };
+      this.isDirty = true; // Mark as dirty after preparing new thumbnails
+      this.currentFilmstrip = { ...this.loadingFilmstrip };
+    } catch (error) {
+      // Handle MP4Clip timeout errors gracefully - fall back to using fallback thumbnails
+      console.warn("Failed to generate thumbnails, using fallback:", error);
+      this.isDirty = true;
+    } finally {
+      this.isFetchingThumbnails = false;
+    }
 
     requestAnimationFrame(() => {
       this.canvas?.requestRenderAll();
