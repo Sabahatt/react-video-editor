@@ -15,13 +15,33 @@ import { usePipelineStore } from "@/store/use-pipeline-store";
 
 // Map mainDishType to better Pexels search queries for videos
 const getVideoSearchQuery = (mainDishType: string | undefined): string => {
-  const searchQueries: Record<string, string> = {
-    pizza: "pizza",
-    doughnut: "donut",
-    donut: "donut",
-    salad: "salad"
-  };
-  return searchQueries[mainDishType?.toLowerCase() || ""] || "restaurant food";
+  const searchKeywords: Array<{ keywords: string[]; query: string }> = [
+    { keywords: ["pizza"], query: "pizza" },
+    { keywords: ["doughnut", "donut"], query: "donut" },
+    { keywords: ["salad"], query: "salad" },
+    { keywords: ["burger", "hamburger"], query: "burger" },
+    { keywords: ["taco", "mexican"], query: "taco" },
+    { keywords: ["sushi", "japanese"], query: "sushi" },
+    { keywords: ["pasta", "italian"], query: "pasta" },
+    { keywords: ["coffee", "cafe"], query: "coffee" },
+    { keywords: ["ice cream", "icecream", "gelato"], query: "ice cream" },
+    { keywords: ["sandwich", "sub"], query: "sandwich" },
+    { keywords: ["chicken", "wings"], query: "fried chicken" },
+    { keywords: ["steak", "beef"], query: "steak" },
+    { keywords: ["seafood", "fish", "shrimp"], query: "seafood" },
+    { keywords: ["bakery", "bread", "pastry"], query: "bakery" },
+    { keywords: ["bbq", "barbecue", "grill"], query: "barbecue" },
+  ];
+
+  const lowerType = mainDishType?.toLowerCase() || "";
+
+  for (const { keywords, query } of searchKeywords) {
+    if (keywords.some(keyword => lowerType.includes(keyword))) {
+      return query;
+    }
+  }
+
+  return "restaurant food";
 };
 
 export const Videos = () => {
