@@ -39,4 +39,5 @@ export interface ILayoutState {
   setControItemDrawerOpen: (controItemDrawerOpen: boolean) => void;
   setTypeControlItem: (typeControlItem: string) => void;
   setLabelControlItem: (labelControlItem: string) => void;
+  resetLayout: () => void;
 }

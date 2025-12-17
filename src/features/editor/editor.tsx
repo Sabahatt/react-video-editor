@@ -75,6 +75,7 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 		setTypeControlItem,
 		setShowToolboxItem,
 		setActiveToolboxItem,
+		resetLayout,
 	} = useLayoutStore();
 	const isLargeScreen = useIsLargeScreen();
 
@@ -200,6 +201,8 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 			if (storedDesign) {
 				try {
 					const design = JSON.parse(storedDesign);
+					// Reset layout state for new generation
+					resetLayout();
 					dispatch(DESIGN_LOAD, { payload: design });
 
 					// Extract and sync media to uploads panel
@@ -401,6 +404,9 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 			}
 
 			pipelineRanRef.current = true;
+
+			// Reset layout state for new generation
+			resetLayout();
 
 			try {
 				// Step 1: Analyzing website
