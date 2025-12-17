@@ -10,7 +10,7 @@ interface PipelineProgressPanelProps {
 }
 
 export function PipelineProgressPanel({ onRetry }: PipelineProgressPanelProps) {
-  const { isGenerating, isComplete, error, steps, resetPipeline } = usePipelineStore();
+  const { isGenerating, isComplete, error, steps, dismissPanel } = usePipelineStore();
 
   // Don't render if not generating and not complete (and no error)
   if (!isGenerating && !isComplete && !error) {
@@ -18,7 +18,9 @@ export function PipelineProgressPanel({ onRetry }: PipelineProgressPanelProps) {
   }
 
   const handleClose = () => {
-    resetPipeline();
+    // Use dismissPanel to hide the panel but keep brand/script data
+    // This allows the images/videos search and AI voice to keep working
+    dismissPanel();
   };
 
   return (

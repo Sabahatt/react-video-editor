@@ -35,6 +35,7 @@ interface PipelineState {
   setScript: (script: string | null) => void;
   setError: (error: string) => void;
   completePipeline: () => void;
+  dismissPanel: () => void; // Dismiss UI without clearing data
   resetPipeline: () => void;
 }
 
@@ -114,6 +115,18 @@ export const usePipelineStore = create<PipelineState>((set, get) => ({
     set({
       isGenerating: false,
       isComplete: true,
+    });
+  },
+
+  // Dismiss the panel UI without clearing brand/script data
+  // Use this when user closes the panel after completion
+  dismissPanel: () => {
+    set({
+      isGenerating: false,
+      isComplete: false,
+      error: null,
+      steps: INITIAL_STEPS.map(s => ({ ...s })),
+      // Keep design, brand, script, restaurant, template, url, options
     });
   },
 

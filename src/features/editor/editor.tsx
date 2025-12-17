@@ -208,6 +208,8 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 
 					// Extract restaurant name for auto-save folder and set brand in store
 					const storedBrand = sessionStorage.getItem("generatedBrand");
+					const storedScript = sessionStorage.getItem("generatedScript");
+
 					if (storedBrand) {
 						try {
 							const brand = JSON.parse(storedBrand);
@@ -226,6 +228,11 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 						} catch (e) {
 							console.error("Failed to parse brand for restaurant name:", e);
 						}
+					}
+
+					// Load script from sessionStorage for AI voice
+					if (storedScript) {
+						setScript(storedScript);
 					}
 
 					// Clear sessionStorage after loading
@@ -279,14 +286,15 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 								// Ignore brand fetch errors
 							}
 						}
-						if (brandToUse) {
-							setDesign(design, brandToUse);
-						}
+
+						// Always set brand in pipeline store (even if null) to ensure state is correct
+						// This is important for Images/Videos pre-search feature
+						setDesign(design, brandToUse);
 
 						// Restore script from autosave to pipeline store
-						if (savedScript) {
-							setScript(savedScript);
-						}
+						// Always set script (even if null) to ensure state is correct
+						// This is called AFTER setDesign to override the null script from design?.script
+						setScript(savedScript || null);
 
 						// Extract and sync media to uploads panel from autosave
 						const mediaUploads = extractMediaFromDesign(design);
