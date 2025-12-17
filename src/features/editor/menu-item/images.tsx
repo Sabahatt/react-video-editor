@@ -3,7 +3,7 @@ import { dispatch } from "@designcombo/events";
 import { generateId } from "@designcombo/timeline";
 import Draggable from "@/components/shared/draggable";
 import { IImage } from "@designcombo/types";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useIsDraggingOverTimeline } from "../hooks/is-dragging-over-timeline";
 import { ADD_ITEMS } from "@designcombo/state";
 import { Input } from "@/components/ui/input";
@@ -26,9 +26,11 @@ const getImageSearchQuery = (mainDishType: string | undefined): string => {
 
 export const Images = () => {
   const isDraggingOverTimeline = useIsDraggingOverTimeline();
-  const [searchQuery, setSearchQuery] = useState("");
   const brand = usePipelineStore((state) => state.brand);
   const defaultSearchTerm = getImageSearchQuery(brand?.mainDishType);
+  const [searchQuery, setSearchQuery] = useState(defaultSearchTerm);
+  const hasUserSearchedRef = useRef(false);
+  const prevDefaultSearchTermRef = useRef(defaultSearchTerm);
 
   const {
     images: pexelsImages,
@@ -43,9 +45,21 @@ export const Images = () => {
     clearImages
   } = usePexelsImages();
 
-  // Load images based on brand's mainDishType on component mount
+  // Sync searchQuery with defaultSearchTerm when brand changes (if user hasn't manually searched)
   useEffect(() => {
-    searchImages(defaultSearchTerm);
+    if (defaultSearchTerm !== prevDefaultSearchTermRef.current) {
+      prevDefaultSearchTermRef.current = defaultSearchTerm;
+      if (!hasUserSearchedRef.current) {
+        setSearchQuery(defaultSearchTerm);
+      }
+    }
+  }, [defaultSearchTerm]);
+
+  // Load images based on brand's mainDishType on component mount or when default changes
+  useEffect(() => {
+    if (!hasUserSearchedRef.current) {
+      searchImages(defaultSearchTerm);
+    }
   }, [defaultSearchTerm, searchImages]);
 
   const handleAddImage = (payload: Partial<IImage>) => {
@@ -72,10 +86,13 @@ export const Images = () => {
 
   const handleSearch = async () => {
     if (!searchQuery.trim()) {
+      hasUserSearchedRef.current = false;
+      setSearchQuery(defaultSearchTerm);
       await searchImages(defaultSearchTerm);
       return;
     }
 
+    hasUserSearchedRef.current = true;
     try {
       await searchImages(searchQuery);
     } finally {
@@ -99,7 +116,8 @@ export const Images = () => {
   };
 
   const handleClearSearch = () => {
-    setSearchQuery("");
+    hasUserSearchedRef.current = false;
+    setSearchQuery(defaultSearchTerm);
     clearImages();
     searchImages(defaultSearchTerm);
   };
@@ -135,7 +153,7 @@ export const Images = () => {
             )}
           </Button>
         </div>
-        {searchQuery && (
+        {searchQuery !== defaultSearchTerm && (
           <Button
             size="sm"
             variant="outline"

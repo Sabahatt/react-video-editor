@@ -83,6 +83,7 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 		error: pipelineError,
 		restaurant: pipelineRestaurant,
 		template: pipelineTemplate,
+		brand: pipelineBrand,
 		updateStep,
 		setDesign,
 		setError: setPipelineError,
@@ -98,6 +99,7 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 		stateManager,
 		restaurant,
 		projectName,
+		brand: pipelineBrand,
 		intervalMs: 30000, // 30 seconds
 		enabled: true,
 	});
@@ -238,7 +240,7 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 				const result = await response.json();
 
 				if (result.success && result.data?.design) {
-					const { design, projectName: savedProjectName, restaurant: savedRestaurant, savedAt } = result.data;
+					const { design, projectName: savedProjectName, restaurant: savedRestaurant, brand: savedBrand } = result.data;
 					// Check if the autosave has actual content
 					const hasContent = design.trackItemIds && design.trackItemIds.length > 0;
 					if (hasContent) {
@@ -248,16 +250,23 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 						}
 						if (savedRestaurant) {
 							setRestaurant(savedRestaurant);
+						}
 
-							// Also load brand data for this restaurant to enable context-aware stock search
+						// Load brand data: prefer saved brand from autosave, fallback to API
+						let brandToUse = savedBrand;
+						if (!brandToUse && savedRestaurant && savedRestaurant !== 'default') {
 							try {
 								const brandRes = await fetch(`/api/poc-data/brand?restaurant=${savedRestaurant}`);
 								const brandResult = await brandRes.json();
 								if (brandResult.success && brandResult.brand) {
-									setDesign(design, brandResult.brand);
+									brandToUse = brandResult.brand;
 								}
 							} catch (brandErr) {
+								// Ignore brand fetch errors
 							}
+						}
+						if (brandToUse) {
+							setDesign(design, brandToUse);
 						}
 
 						// Extract and sync media to uploads panel from autosave
@@ -423,6 +432,9 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 
 				// Complete the pipeline
 				completePipeline();
+
+				// Immediate save to persist brand data
+				setTimeout(() => saveNow(), 500);
 
 			} catch (err) {
 				console.error("[Pipeline] Error:", err);

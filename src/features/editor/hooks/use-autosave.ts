@@ -7,6 +7,7 @@ interface UseAutoSaveOptions {
   stateManager: StateManager;
   restaurant?: string;
   projectName?: string;
+  brand?: any; // Brand data for context-aware stock search
   intervalMs?: number; // Default: 30 seconds
   enabled?: boolean;
 }
@@ -21,6 +22,7 @@ export function useAutoSave({
   stateManager,
   restaurant = 'default',
   projectName = 'Untitled video',
+  brand = null,
   intervalMs = 30000, // 30 seconds default
   enabled = true,
 }: UseAutoSaveOptions) {
@@ -33,6 +35,18 @@ export function useAutoSave({
   const lastSavedJsonRef = useRef<string>('');
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const designIdRef = useRef<string>(generateId()); // Stable ID - generated once
+
+  // Use refs to always get latest values in callbacks
+  const restaurantRef = useRef(restaurant);
+  const projectNameRef = useRef(projectName);
+  const brandRef = useRef(brand);
+
+  // Keep refs in sync with props
+  useEffect(() => {
+    restaurantRef.current = restaurant;
+    projectNameRef.current = projectName;
+    brandRef.current = brand;
+  }, [restaurant, projectName, brand]);
 
   const saveNow = useCallback(async (force = false) => {
     if (!stateManager) return;
@@ -58,13 +72,15 @@ export function useAutoSave({
 
       setStatus(prev => ({ ...prev, saving: true, error: null }));
 
+      // Use refs to get latest values
       const response = await fetch('/api/autosave', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          restaurant,
-          projectName,
+          restaurant: restaurantRef.current,
+          projectName: projectNameRef.current,
           design,
+          brand: brandRef.current,
         }),
       });
 
@@ -89,7 +105,7 @@ export function useAutoSave({
       }));
       console.error('[Auto-Save] Error:', error);
     }
-  }, [stateManager, restaurant, projectName]);
+  }, [stateManager]);
 
   // Set up auto-save interval
   useEffect(() => {
@@ -140,9 +156,10 @@ export function useAutoSave({
         navigator.sendBeacon(
           '/api/autosave',
           JSON.stringify({
-            restaurant,
-            projectName,
+            restaurant: restaurantRef.current,
+            projectName: projectNameRef.current,
             design,
+            brand: brandRef.current,
           })
         );
       }
@@ -150,7 +167,7 @@ export function useAutoSave({
 
     window.addEventListener('beforeunload', handleBeforeUnload);
     return () => window.removeEventListener('beforeunload', handleBeforeUnload);
-  }, [enabled, stateManager, restaurant, projectName]);
+  }, [enabled, stateManager]);
 
   return {
     status,

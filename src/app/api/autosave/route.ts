@@ -10,7 +10,7 @@ import path from 'path';
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { restaurant, design, projectName } = body;
+    const { restaurant, design, projectName, brand } = body;
 
     if (!design) {
       return NextResponse.json(
@@ -26,12 +26,13 @@ export async function POST(request: NextRequest) {
     const outputDir = path.join(process.cwd(), 'poc-data', folderName);
     await fs.mkdir(outputDir, { recursive: true });
 
-    // Save data with metadata
+    // Save data with metadata (including brand for context-aware stock search)
     const saveData = {
       projectName: projectName || 'Untitled video',
       restaurant: folderName,
       savedAt: new Date().toISOString(),
       design,
+      brand: brand || null,
     };
 
     // Save to single file (always overwritten)

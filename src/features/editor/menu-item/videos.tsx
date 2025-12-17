@@ -4,7 +4,7 @@ import { dispatch } from "@designcombo/events";
 import { ADD_VIDEO } from "@designcombo/state";
 import { generateId } from "@designcombo/timeline";
 import { IVideo } from "@designcombo/types";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useIsDraggingOverTimeline } from "../hooks/is-dragging-over-timeline";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -26,9 +26,11 @@ const getVideoSearchQuery = (mainDishType: string | undefined): string => {
 
 export const Videos = () => {
   const isDraggingOverTimeline = useIsDraggingOverTimeline();
-  const [searchQuery, setSearchQuery] = useState("");
   const brand = usePipelineStore((state) => state.brand);
   const defaultSearchTerm = getVideoSearchQuery(brand?.mainDishType);
+  const [searchQuery, setSearchQuery] = useState(defaultSearchTerm);
+  const hasUserSearchedRef = useRef(false);
+  const prevDefaultSearchTermRef = useRef(defaultSearchTerm);
 
   const {
     videos: pexelsVideos,
@@ -43,9 +45,21 @@ export const Videos = () => {
     clearVideos
   } = usePexelsVideos();
 
-  // Load videos based on brand's mainDishType on component mount
+  // Sync searchQuery with defaultSearchTerm when brand changes (if user hasn't manually searched)
   useEffect(() => {
-    searchVideos(defaultSearchTerm);
+    if (defaultSearchTerm !== prevDefaultSearchTermRef.current) {
+      prevDefaultSearchTermRef.current = defaultSearchTerm;
+      if (!hasUserSearchedRef.current) {
+        setSearchQuery(defaultSearchTerm);
+      }
+    }
+  }, [defaultSearchTerm]);
+
+  // Load videos based on brand's mainDishType on component mount or when default changes
+  useEffect(() => {
+    if (!hasUserSearchedRef.current) {
+      searchVideos(defaultSearchTerm);
+    }
   }, [defaultSearchTerm, searchVideos]);
 
   const handleAddVideo = (payload: Partial<IVideo>) => {
@@ -60,10 +74,13 @@ export const Videos = () => {
 
   const handleSearch = async () => {
     if (!searchQuery.trim()) {
+      hasUserSearchedRef.current = false;
+      setSearchQuery(defaultSearchTerm);
       await searchVideos(defaultSearchTerm);
       return;
     }
 
+    hasUserSearchedRef.current = true;
     try {
       await searchVideos(searchQuery);
     } finally {
@@ -87,7 +104,8 @@ export const Videos = () => {
   };
 
   const handleClearSearch = () => {
-    setSearchQuery("");
+    hasUserSearchedRef.current = false;
+    setSearchQuery(defaultSearchTerm);
     clearVideos();
     searchVideos(defaultSearchTerm);
   };
@@ -123,7 +141,7 @@ export const Videos = () => {
             )}
           </Button>
         </div>
-        {searchQuery && (
+        {searchQuery !== defaultSearchTerm && (
           <Button
             size="sm"
             variant="outline"
