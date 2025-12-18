@@ -45,16 +45,6 @@ const DROPDOWN_OPTIONS: DropdownConfig[] = [
     ],
   },
   {
-    id: "mode",
-    label: "Mode",
-    options: [
-      { id: "professional", name: "Professional" },
-      { id: "casual", name: "Casual" },
-      { id: "energetic", name: "Energetic" },
-      { id: "luxurious", name: "Luxurious" },
-    ],
-  },
-  {
     id: "tone",
     label: "Tone",
     options: [

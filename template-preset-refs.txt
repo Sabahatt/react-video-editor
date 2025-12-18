@@ -2,19 +2,19 @@ Template Presets Reference
 
   Template 1 (Dynamic)
 
-  | Restaurant          | Voice  | Mode      | Tone      |
-  |---------------------|--------|-----------|-----------|
-  | Doughnut Vault (dv) | Female | Luxurious | Warm      |
-  | Joe's Pizza (jp)    | Female | Casual    | Friendly  |
-  | Sweetgreen (sg)     | Male   | Energetic | Confident |
+  | Restaurant          | Voice  | Tone      |
+  |---------------------|--------|-----------|
+  | Doughnut Vault (dv) | Female | Warm      |
+  | Joe's Pizza (jp)    | Female | Friendly  |
+  | Sweetgreen (sg)     | Male   | Warm      |
 
   Template 2 (Classic)
 
-  | Restaurant          | Voice  | Mode      | Tone      |
-  |---------------------|--------|-----------|-----------|
-  | Doughnut Vault (dv) | Male   | Luxurious | Warm      |
-  | Joe's Pizza (jp)    | Male   | Casual    | Friendly  |
-  | Sweetgreen (sg)     | Female | Energetic | Confident |
+  | Restaurant          | Voice  | Tone      |
+  |---------------------|--------|-----------|
+  | Doughnut Vault (dv) | Male   | Playful   |
+  | Joe's Pizza (jp)    | Male   | Confident |
+  | Sweetgreen (sg)     | Female | Friendly  |
 
   Brand Characteristics (from brand.json)
 
