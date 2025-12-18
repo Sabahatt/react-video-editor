@@ -3,7 +3,7 @@ import { create } from "zustand";
 
 const useLayoutStore = create<ILayoutState>((set) => ({
   activeMenuItem: "media",
-  showMenuItem: false,
+  showMenuItem: true,
   cropTarget: null,
   showControlItem: false,
   showToolboxItem: false,

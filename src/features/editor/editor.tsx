@@ -409,24 +409,24 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 			resetLayout();
 
 			try {
-				// Step 1: Analyzing website
+				// Step 1: Analyzing website (web scraping and initial analysis)
 				updateStep(0, "active");
-				await simulateDelay(1000);
+				await simulateDelay(2800);
 				updateStep(0, "complete");
 
-				// Step 2: Extracting brand data
+				// Step 2: Extracting brand data (brand colors, logo, tone analysis)
 				updateStep(1, "active");
-				await simulateDelay(1400);
+				await simulateDelay(3500);
 				updateStep(1, "complete");
 
-				// Step 3: Generating AI script
+				// Step 3: Generating AI script (LLM generation takes time)
 				updateStep(2, "active");
-				await simulateDelay(1800);
+				await simulateDelay(5500);
 				updateStep(2, "complete");
 
 				// Step 4: Building timeline (fetch the pre-made ad)
 				updateStep(3, "active");
-				await simulateDelay(1000);
+				await simulateDelay(2500);
 
 				const adRes = await fetch(`/api/poc-data/ads?restaurant=${pipelineRestaurant}&template=${pipelineTemplate}`);
 				const adResult = await adRes.json();
@@ -437,16 +437,16 @@ const Editor = ({ tempId, id }: { tempId?: string; id?: string }) => {
 
 				updateStep(3, "complete");
 
-				// Step 5: Finalizing
+				// Step 5: Finalizing (asset optimization, encoding)
 				updateStep(4, "active");
-				await simulateDelay(800);
+				await simulateDelay(2200);
 				updateStep(4, "complete");
 
 				// Store the design data
 				setDesign(adResult.design, adResult.brand);
 
 				// Small delay for visual feedback
-				await simulateDelay(500);
+				await simulateDelay(800);
 
 				// Load the design into the editor
 				dispatch(DESIGN_LOAD, { payload: adResult.design });

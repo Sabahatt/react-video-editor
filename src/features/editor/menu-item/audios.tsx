@@ -3,9 +3,9 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { dispatch } from "@designcombo/events";
 import { ADD_AUDIO } from "@designcombo/state";
 import { IAudio } from "@designcombo/types";
-import { Music, Search, Loader2 } from "lucide-react";
+import { Music, Search, Loader2, Play, Pause, Plus } from "lucide-react";
 import { useIsDraggingOverTimeline } from "../hooks/is-dragging-over-timeline";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { generateId } from "@designcombo/timeline";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -17,6 +17,8 @@ const DEFAULT_SEARCH_TERM = "background music";
 export const Audios = () => {
   const isDraggingOverTimeline = useIsDraggingOverTimeline();
   const [searchQuery, setSearchQuery] = useState("");
+  const [currentlyPlayingId, setCurrentlyPlayingId] = useState<string | null>(null);
+  const audioElementRef = useRef<HTMLAudioElement | null>(null);
 
   const {
     audios: stockAudio,
@@ -29,12 +31,50 @@ export const Audios = () => {
     clearAudio
   } = useStockAudio();
 
+  const stopPreview = useCallback(() => {
+    if (audioElementRef.current) {
+      audioElementRef.current.pause();
+      audioElementRef.current = null;
+    }
+    setCurrentlyPlayingId(null);
+  }, []);
+
+  const handlePlayPause = useCallback((audioId: string, audioSrc: string) => {
+    if (currentlyPlayingId === audioId) {
+      stopPreview();
+      return;
+    }
+
+    stopPreview();
+
+    const newAudio = new Audio(audioSrc);
+    newAudio.addEventListener("ended", () => {
+      setCurrentlyPlayingId(null);
+      audioElementRef.current = null;
+    });
+
+    newAudio.play();
+    setCurrentlyPlayingId(audioId);
+    audioElementRef.current = newAudio;
+  }, [currentlyPlayingId, stopPreview]);
+
+  // Cleanup audio on unmount
+  useEffect(() => {
+    return () => {
+      if (audioElementRef.current) {
+        audioElementRef.current.pause();
+        audioElementRef.current = null;
+      }
+    };
+  }, []);
+
   // Load default audio on component mount
   useEffect(() => {
     searchAudio(DEFAULT_SEARCH_TERM);
   }, [searchAudio]);
 
   const handleAddAudio = (payload: Partial<IAudio>) => {
+    stopPreview();
     payload.id = generateId();
     dispatch(ADD_AUDIO, {
       payload,
@@ -127,6 +167,8 @@ export const Audios = () => {
               <AudioItem
                 shouldDisplayPreview={!isDraggingOverTimeline}
                 handleAddAudio={handleAddAudio}
+                handlePlayPause={handlePlayPause}
+                isPlaying={currentlyPlayingId === audio.id}
                 audio={audio}
                 key={audio.id || index}
               />
@@ -161,10 +203,14 @@ export const Audios = () => {
 
 const AudioItem = ({
   handleAddAudio,
+  handlePlayPause,
+  isPlaying,
   audio,
   shouldDisplayPreview
 }: {
   handleAddAudio: (payload: Partial<IAudio>) => void;
+  handlePlayPause: (audioId: string, audioSrc: string) => void;
+  isPlaying: boolean;
   audio: Partial<IAudio> & { metadata?: { author?: string; mood?: string; duration?: number } };
   shouldDisplayPreview: boolean;
 }) => {
@@ -187,6 +233,18 @@ const AudioItem = ({
     return `${mins}:${secs.toString().padStart(2, "0")}`;
   };
 
+  const onPlayPauseClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (audio.id && audio.details?.src) {
+      handlePlayPause(audio.id, audio.details.src);
+    }
+  };
+
+  const onAddClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    handleAddAudio(audio);
+  };
+
   return (
     <Draggable
       data={audio}
@@ -195,18 +253,24 @@ const AudioItem = ({
     >
       <div
         draggable={false}
-        onClick={() => handleAddAudio(audio)}
         style={{
           display: "grid",
-          gridTemplateColumns: "48px 1fr"
+          gridTemplateColumns: "48px 1fr auto"
         }}
-        className="flex cursor-pointer gap-4 py-1 text-sm rounded-lg hover:bg-[#fb923c]/10 transition-colors group"
+        className="flex gap-4 py-1 text-sm rounded-lg hover:bg-[#fb923c]/10 transition-colors group"
       >
-        <div className="flex h-12 items-center justify-center bg-muted/50 rounded-lg border border-white/[0.06] group-hover:border-[#fb923c]/30 transition-all">
-          <Music width={16} className="text-muted-foreground group-hover:text-[#fb923c] transition-colors" />
-        </div>
+        <button
+          onClick={onPlayPauseClick}
+          className="flex h-12 items-center justify-center bg-muted/50 rounded-lg border border-white/[0.06] hover:border-[#fb923c]/50 hover:bg-[#fb923c]/20 transition-all cursor-pointer"
+        >
+          {isPlaying ? (
+            <Pause width={16} className="text-[#fb923c]" />
+          ) : (
+            <Play width={16} className="text-muted-foreground group-hover:text-[#fb923c] transition-colors" />
+          )}
+        </button>
         <div className="flex flex-col justify-center overflow-hidden">
-          <div className="text-zinc-200 group-hover:text-[#fb923c] transition-colors truncate">
+          <div className={`transition-colors truncate ${isPlaying ? "text-[#fb923c]" : "text-zinc-200 group-hover:text-[#fb923c]"}`}>
             {audio.name}
           </div>
           <div className="flex items-center gap-2 text-xs">
@@ -221,6 +285,13 @@ const AudioItem = ({
             <div className="text-xs text-zinc-500 truncate">{audio.metadata.mood}</div>
           )}
         </div>
+        <button
+          onClick={onAddClick}
+          className="flex h-12 w-8 items-center justify-center opacity-0 group-hover:opacity-100 hover:text-[#fb923c] transition-all cursor-pointer"
+          title="Add to timeline"
+        >
+          <Plus width={16} className="text-zinc-400 hover:text-[#fb923c]" />
+        </button>
       </div>
     </Draggable>
   );
