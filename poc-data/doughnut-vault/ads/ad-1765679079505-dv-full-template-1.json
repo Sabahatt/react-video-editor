@@ -4,6 +4,99 @@
   "script": "Doughnut Vault! Artisanal doughnuts, handcrafted daily using old world recipes. These aren't just sweets—these are fluffy, dreamy doughnuts worth waking up for. Each bite is a journey back to the taste of tradition, perfectly light and rich. Each variety crafted with love in small batches, guaranteeing big, unforgettable flavor. Available daily—until sold out. Doughnut Vault. visit us today and savor the sweetness.",
   "tracks": [
     {
+      "id": "eeiYD7PrhOdc2",
+      "accepts": [
+        "text",
+        "image",
+        "video",
+        "audio",
+        "composition",
+        "caption",
+        "template",
+        "customTrack",
+        "customTrack2",
+        "illustration",
+        "custom",
+        "main",
+        "shape",
+        "linealAudioBars",
+        "radialAudioBars",
+        "progressFrame",
+        "progressBar",
+        "rect",
+        "progressSquare"
+      ],
+      "type": "text",
+      "items": [
+        "kdznOku4UocuzQTT",
+        "y5MjRuir6IpwGEB3",
+        "M7sSoWdZrPRQGG9Z",
+        "v6ZIqA1xEcye9Pf"
+      ],
+      "magnetic": false,
+      "static": false
+    },
+    {
+      "id": "9n35SnLMKDA2CJ3fNwAzu",
+      "items": [
+        "scsctwPyjxfZDpE"
+      ],
+      "type": "text",
+      "accepts": [
+        "text",
+        "caption"
+      ],
+      "tempIndex": -5
+    },
+    {
+      "id": "y8sSmEgKh4-lZFdlyiWIf",
+      "accepts": [
+        "text",
+        "caption"
+      ],
+      "type": "text",
+      "items": [
+        "tspCJvB5ZR4MIxlU"
+      ],
+      "tempIndex": -3
+    },
+    {
+      "id": "TaGSaMRa5Ll4cHKh",
+      "items": [
+        "t83gpZxXxYQLoXE",
+        "LlPqCM82SnYS78IR",
+        "I690Bn9PF1gIZcUc",
+        "qY0pGnThJkDhAlin",
+        "DFEweIEKdVFKxcOg",
+        "xA3AIOqdfSNhOQ2C"
+      ],
+      "type": "video",
+      "accepts": [
+        "text",
+        "image",
+        "video",
+        "composition",
+        "template",
+        "customTrack2",
+        "custom",
+        "shape",
+        "radialAudioBars",
+        "progressBar",
+        "progressSquare",
+        "rect",
+        "progressFrame",
+        "linealAudioBars",
+        "main",
+        "illustration",
+        "customTrack",
+        "caption",
+        "audio"
+      ],
+      "name": "Visuals",
+      "static": false,
+      "magnetic": false
+    },
+    {
       "id": "egQQeKAsryvtx5JfX4rZw",
       "accepts": [
         "text",
@@ -62,222 +155,6 @@
       ],
       "magnetic": false,
       "static": false
-    },
-    {
-      "id": "eeiYD7PrhOdc2",
-      "accepts": [
-        "text",
-        "image",
-        "video",
-        "audio",
-        "composition",
-        "caption",
-        "template",
-        "customTrack",
-        "customTrack2",
-        "illustration",
-        "custom",
-        "main",
-        "shape",
-        "linealAudioBars",
-        "radialAudioBars",
-        "progressFrame",
-        "progressBar",
-        "rect",
-        "progressSquare"
-      ],
-      "type": "text",
-      "items": [
-        "kdznOku4UocuzQTT",
-        "y5MjRuir6IpwGEB3",
-        "M7sSoWdZrPRQGG9Z",
-        "v6ZIqA1xEcye9Pf"
-      ],
-      "magnetic": false,
-      "static": false
-    },
-    {
-      "id": "zsgsstRrAPSmrNqn",
-      "items": [
-        "gcpmOMHYBAdLwjyt"
-      ],
-      "type": "image",
-      "accepts": [
-        "text",
-        "image",
-        "video",
-        "audio",
-        "composition",
-        "caption",
-        "template",
-        "customTrack",
-        "customTrack2",
-        "illustration",
-        "custom",
-        "main",
-        "shape",
-        "linealAudioBars",
-        "radialAudioBars",
-        "progressFrame",
-        "progressBar",
-        "rect",
-        "progressSquare"
-      ]
-    },
-    {
-      "id": "OnnnudhZMUhKEGDx",
-      "items": [
-        "hz7JwWsywAqzmfD0"
-      ],
-      "type": "image",
-      "accepts": [
-        "text",
-        "image",
-        "video",
-        "audio",
-        "composition",
-        "caption",
-        "template",
-        "customTrack",
-        "customTrack2",
-        "illustration",
-        "custom",
-        "main",
-        "shape",
-        "linealAudioBars",
-        "radialAudioBars",
-        "progressFrame",
-        "progressBar",
-        "rect",
-        "progressSquare"
-      ]
-    },
-    {
-      "id": "PT2eBztzUz14x9L",
-      "items": [
-        "fEdPgkF6QmAJE96c"
-      ],
-      "type": "image",
-      "accepts": [
-        "text",
-        "image",
-        "video",
-        "audio",
-        "composition",
-        "caption",
-        "template",
-        "customTrack",
-        "customTrack2",
-        "illustration",
-        "custom",
-        "main",
-        "shape",
-        "linealAudioBars",
-        "radialAudioBars",
-        "progressFrame",
-        "progressBar",
-        "rect",
-        "progressSquare"
-      ]
-    },
-    {
-      "id": "9n35SnLMKDA2CJ3fNwAzu",
-      "items": [
-        "scsctwPyjxfZDpE"
-      ],
-      "type": "text",
-      "accepts": [
-        "text",
-        "caption"
-      ],
-      "tempIndex": -5
-    },
-    {
-      "id": "y8sSmEgKh4-lZFdlyiWIf",
-      "accepts": [
-        "text",
-        "caption"
-      ],
-      "type": "text",
-      "items": [
-        "tspCJvB5ZR4MIxlU"
-      ],
-      "tempIndex": -3
-    },
-    {
-      "id": "xp9Hai5HxpQhuFo",
-      "items": [
-        "V88w24qdhviF6OAl"
-      ],
-      "type": "image",
-      "accepts": [
-        "text",
-        "image",
-        "video",
-        "audio",
-        "composition",
-        "caption",
-        "template",
-        "customTrack",
-        "customTrack2",
-        "illustration",
-        "custom",
-        "main",
-        "shape",
-        "linealAudioBars",
-        "radialAudioBars",
-        "progressFrame",
-        "progressBar",
-        "rect",
-        "progressSquare"
-      ]
-    },
-    {
-      "id": "TaGSaMRa5Ll4cHKh",
-      "accepts": [
-        "text",
-        "image",
-        "video",
-        "composition",
-        "template",
-        "customTrack2",
-        "custom",
-        "shape",
-        "radialAudioBars",
-        "progressBar",
-        "progressSquare",
-        "rect",
-        "progressFrame",
-        "linealAudioBars",
-        "main",
-        "illustration",
-        "customTrack",
-        "caption",
-        "audio"
-      ],
-      "type": "video",
-      "items": [
-        "t83gpZxXxYQLoXE",
-        "LlPqCM82SnYS78IR",
-        "qY0pGnThJkDhAlin",
-        "xA3AIOqdfSNhOQ2C",
-        "DFEweIEKdVFKxcOg",
-        "I690Bn9PF1gIZcUc"
-      ],
-      "magnetic": false,
-      "static": false,
-      "name": "Visuals"
-    },
-    {
-      "id": "Hl7agf1vKOyCf4yS",
-      "accepts": [
-        "image",
-        "video"
-      ],
-      "type": "image",
-      "items": [
-        "mq44VqEAUUj64mz"
-      ]
     }
   ],
   "size": {
@@ -285,25 +162,20 @@
     "height": 1080
   },
   "trackItemIds": [
-    "mq44VqEAUUj64mz",
-    "DFEweIEKdVFKxcOg",
-    "I690Bn9PF1gIZcUc",
-    "xA3AIOqdfSNhOQ2C",
-    "t83gpZxXxYQLoXE",
-    "LlPqCM82SnYS78IR",
+    "ItMkRP69bv14miU9",
+    "PvXzOTG7f0m3YSZx",
     "qY0pGnThJkDhAlin",
-    "V88w24qdhviF6OAl",
+    "LlPqCM82SnYS78IR",
+    "t83gpZxXxYQLoXE",
+    "xA3AIOqdfSNhOQ2C",
+    "I690Bn9PF1gIZcUc",
+    "DFEweIEKdVFKxcOg",
     "tspCJvB5ZR4MIxlU",
     "scsctwPyjxfZDpE",
-    "fEdPgkF6QmAJE96c",
-    "hz7JwWsywAqzmfD0",
-    "gcpmOMHYBAdLwjyt",
-    "v6ZIqA1xEcye9Pf",
-    "M7sSoWdZrPRQGG9Z",
-    "y5MjRuir6IpwGEB3",
     "kdznOku4UocuzQTT",
-    "ItMkRP69bv14miU9",
-    "PvXzOTG7f0m3YSZx"
+    "y5MjRuir6IpwGEB3",
+    "M7sSoWdZrPRQGG9Z",
+    "v6ZIqA1xEcye9Pf"
   ],
   "transitionsMap": {
     "LlPqCM82SnYS78IR-qY0pGnThJkDhAlin": {
@@ -329,24 +201,6 @@
       "duration": 1500,
       "fromId": "t83gpZxXxYQLoXE",
       "toId": "xA3AIOqdfSNhOQ2C",
-      "kind": "none",
-      "trackId": "TaGSaMRa5Ll4cHKh",
-      "type": "transition"
-    },
-    "xA3AIOqdfSNhOQ2C-DFEweIEKdVFKxcOg": {
-      "id": "xA3AIOqdfSNhOQ2C-DFEweIEKdVFKxcOg",
-      "duration": 1500,
-      "fromId": "xA3AIOqdfSNhOQ2C",
-      "toId": "DFEweIEKdVFKxcOg",
-      "kind": "none",
-      "trackId": "TaGSaMRa5Ll4cHKh",
-      "type": "transition"
-    },
-    "DFEweIEKdVFKxcOg-I690Bn9PF1gIZcUc": {
-      "id": "DFEweIEKdVFKxcOg-I690Bn9PF1gIZcUc",
-      "duration": 1500,
-      "fromId": "DFEweIEKdVFKxcOg",
-      "toId": "I690Bn9PF1gIZcUc",
       "kind": "none",
       "trackId": "TaGSaMRa5Ll4cHKh",
       "type": "transition"
@@ -377,51 +231,27 @@
       "kind": "none",
       "trackId": "eeiYD7PrhOdc2",
       "type": "transition"
+    },
+    "DFEweIEKdVFKxcOg-I690Bn9PF1gIZcUc": {
+      "id": "DFEweIEKdVFKxcOg-I690Bn9PF1gIZcUc",
+      "duration": 1500,
+      "fromId": "DFEweIEKdVFKxcOg",
+      "toId": "I690Bn9PF1gIZcUc",
+      "kind": "none",
+      "trackId": "TaGSaMRa5Ll4cHKh",
+      "type": "transition"
+    },
+    "xA3AIOqdfSNhOQ2C-DFEweIEKdVFKxcOg": {
+      "id": "xA3AIOqdfSNhOQ2C-DFEweIEKdVFKxcOg",
+      "duration": 1500,
+      "fromId": "xA3AIOqdfSNhOQ2C",
+      "toId": "DFEweIEKdVFKxcOg",
+      "kind": "none",
+      "trackId": "TaGSaMRa5Ll4cHKh",
+      "type": "transition"
     }
   },
   "trackItemsMap": {
-    "mq44VqEAUUj64mz": {
-      "id": "mq44VqEAUUj64mz",
-      "type": "image",
-      "name": "image",
-      "display": {
-        "from": 0,
-        "to": 25681.684569263805
-      },
-      "playbackRate": 1,
-      "details": {
-        "src": "https://images.pexels.com/photos/1939485/pexels-photo-1939485.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-        "width": 867,
-        "height": 1300,
-        "opacity": 0,
-        "transform": "scale(2.27349, 2.27349)",
-        "border": "none",
-        "borderRadius": 0,
-        "boxShadow": {
-          "color": "#000000",
-          "x": 0,
-          "y": 0,
-          "blur": 0
-        },
-        "top": "295.233px",
-        "left": "519.373px",
-        "borderWidth": 0,
-        "borderColor": "#000000",
-        "blur": 3,
-        "brightness": 100,
-        "flipX": false,
-        "flipY": false,
-        "rotate": "0deg",
-        "visibility": "visible",
-        "crop": {
-          "x": 0,
-          "y": 406.15624999999994,
-          "width": 867,
-          "height": 487.68750000000006
-        }
-      },
-      "metadata": {}
-    },
     "DFEweIEKdVFKxcOg": {
       "id": "DFEweIEKdVFKxcOg",
       "details": {
@@ -548,7 +378,7 @@
       "name": "video",
       "playbackRate": 0.7,
       "display": {
-        "from": 15187.500000000002,
+        "from": 15187.500000000004,
         "to": 22419.642857142855
       },
       "duration": 5062.5,
@@ -701,42 +531,6 @@
       "duration": 5062.5,
       "isMain": false
     },
-    "V88w24qdhviF6OAl": {
-      "id": "V88w24qdhviF6OAl",
-      "type": "image",
-      "name": "image",
-      "display": {
-        "from": 11784.833993696793,
-        "to": 17481.64250433509
-      },
-      "playbackRate": 1,
-      "details": {
-        "src": "/uploads/1765677175577-Doughnuts-07-vanilla-cake.webp",
-        "width": 500,
-        "height": 405,
-        "opacity": 100,
-        "transform": "scale(1.41776, 1.41776)",
-        "border": "none",
-        "borderRadius": 0,
-        "boxShadow": {
-          "color": "#000000",
-          "x": 0,
-          "y": 0,
-          "blur": 0
-        },
-        "top": "49.021px",
-        "left": "81.424px",
-        "borderWidth": 0,
-        "borderColor": "#000000",
-        "blur": 0,
-        "brightness": 100,
-        "flipX": false,
-        "flipY": false,
-        "rotate": "0deg",
-        "visibility": "visible"
-      },
-      "metadata": {}
-    },
     "tspCJvB5ZR4MIxlU": {
       "id": "tspCJvB5ZR4MIxlU",
       "name": "text",
@@ -788,7 +582,7 @@
       "type": "text",
       "display": {
         "from": 27482.142857142866,
-        "to": 32748.100303951374
+        "to": 32064.43993461529
       },
       "details": {
         "text": "doughnut vault",
@@ -824,114 +618,6 @@
         "transform": "none",
         "skewX": 0,
         "skewY": 0
-      },
-      "metadata": {}
-    },
-    "fEdPgkF6QmAJE96c": {
-      "id": "fEdPgkF6QmAJE96c",
-      "type": "image",
-      "name": "image",
-      "display": {
-        "from": 10340.554369432419,
-        "to": 15530.255548392517
-      },
-      "playbackRate": 1,
-      "details": {
-        "src": "/uploads/1765677175587-Doughnuts-10-glazed.webp",
-        "width": 500,
-        "height": 405,
-        "opacity": 100,
-        "transform": "scale(1.50541, 1.50541)",
-        "border": "none",
-        "borderRadius": 0,
-        "boxShadow": {
-          "color": "#000000",
-          "x": 0,
-          "y": 0,
-          "blur": 0
-        },
-        "top": "85.8595px",
-        "left": "1301.66px",
-        "borderWidth": 0,
-        "borderColor": "#000000",
-        "blur": 0,
-        "brightness": 100,
-        "flipX": false,
-        "flipY": false,
-        "rotate": "0deg",
-        "visibility": "visible"
-      },
-      "metadata": {}
-    },
-    "hz7JwWsywAqzmfD0": {
-      "id": "hz7JwWsywAqzmfD0",
-      "type": "image",
-      "name": "image",
-      "display": {
-        "from": 11142.767792454142,
-        "to": 16142.767792454142
-      },
-      "playbackRate": 1,
-      "details": {
-        "src": "/uploads/1765677175586-Doughnuts-11-gingerbreak-stack.webp",
-        "width": 500,
-        "height": 405,
-        "opacity": 100,
-        "transform": "scale(1.55445, 1.55445)",
-        "border": "none",
-        "borderRadius": 0,
-        "boxShadow": {
-          "color": "#000000",
-          "x": 0,
-          "y": 0,
-          "blur": 0
-        },
-        "top": 586.663,
-        "left": 52.5363,
-        "borderWidth": 0,
-        "borderColor": "#000000",
-        "blur": 0,
-        "brightness": 100,
-        "flipX": false,
-        "flipY": false,
-        "rotate": "0deg",
-        "visibility": "visible"
-      },
-      "metadata": {}
-    },
-    "gcpmOMHYBAdLwjyt": {
-      "id": "gcpmOMHYBAdLwjyt",
-      "type": "image",
-      "name": "image",
-      "display": {
-        "from": 12527.111094750791,
-        "to": 16861.489848477428
-      },
-      "playbackRate": 1,
-      "details": {
-        "src": "/uploads/1765677175588-Doughnuts-08-classic-oldfashioned.webp",
-        "width": 500,
-        "height": 405,
-        "opacity": 100,
-        "transform": "scale(1.578, 1.578)",
-        "border": "none",
-        "borderRadius": 0,
-        "boxShadow": {
-          "color": "#000000",
-          "x": 0,
-          "y": 0,
-          "blur": 0
-        },
-        "top": "618.038px",
-        "left": "1295.82px",
-        "borderWidth": 0,
-        "borderColor": "#000000",
-        "blur": 0,
-        "brightness": 100,
-        "flipX": false,
-        "flipY": false,
-        "rotate": "0deg",
-        "visibility": "visible"
       },
       "metadata": {}
     },

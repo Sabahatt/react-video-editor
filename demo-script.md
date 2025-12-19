@@ -1,37 +1,74 @@
-# Adify Demo Video Script
+# Demo Video Script
 
 ## OPENING (0:00 - 0:15)
-**[Screen: Adify landing page/editor interface]**
+**[Screen: Landing page with hero section]**
 
 **Voiceover:**
-"Creating professional video ads traditionally means choosing between instant generation with limited control, or powerful editing with tedious multi-step wizards. Adify gives you the best of both worlds."
+"Most video ad generators make you choose between instant generation with limited control, or powerful editing through tedious multi-step wizards. This tool gives you the best of both worlds."
 
 ---
 
-## PART 1: ONE-CLICK GENERATION (0:15 - 0:45)
-**[Screen: Show URL input field]**
+## PART 1: LANDING PAGE & SETUP (0:15 - 0:45)
+**[Screen: Show landing page with URL input field]**
 
 **Voiceover:**
-"Let's create a video ad for local restaurants and cafes. Simply paste in your business URL..."
+"For this demo, we've selected restaurants and cafes as they typically have rich visual content on their websites - perfect for showcasing how we transform static images into dynamic video. In the final version, this will be optimized for every industry, from retail to real estate to professional services. Let's create a video ad for a local cafe. Simply paste in your business URL..."
 
-**[Action: Paste a restaurant URL, press generate]**
+**[Action: Type/paste a restaurant URL into the input field]**
+
+**[Screen: Show the dropdown options appearing below the URL input]**
+
+**Voiceover:**
+"Then customize your ad preferences. Choose your style - dynamic or classic. Select a voice - male, female, or neutral. Pick the tone that fits your brand - friendly, playful, confident, or warm."
+
+**[Action: Hover over and adjust dropdowns - Style: Dynamic, Voice: Female, Tone: Friendly]**
+
+**Voiceover:**
+"Set your desired duration and aspect ratio."
+
+**[Action: Select Duration: 30s, Ratio: 9:16]**
+
+**Voiceover:**
+"And hit generate."
+
+**[Action: Click the Generate button with sparkles icon]**
+
+---
+
+## PART 2: VIDEO GENERATION (0:45 - 1:15)
+**[Screen: Show generation progress/transition to editor]**
 **[Screen: Show generation in progress, then completed video preview]**
 
 **Voiceover:**
-"...and just like that, you have a complete, brand-authentic video ad. No multi-step wizards. No configuration before you see results. Just instant, professional output using your brand's actual content."
+"And just like that, you have a complete, brand-authentic video ad. No multi-step wizards. No configuration fatigue. Just instant, professional output."
 
 **[Screen: Play the generated video preview]**
 
 **Voiceover:**
-"Notice how it uses real video footage from the website, not generic AI avatars or static slideshows. This is your starting point, ready to customize."
+"Notice the dynamic video content. Unlike other tools that use generic AI avatars or static slideshows, we transform the brand's actual images into engaging video footage using AI. This is your starting point, ready to customize."
+
+**[Action: Pause video, open brand website in new tab]**
+**[Screen: Show website with static images]**
+
+**Voiceover:**
+"Here's the original website with static images."
+
+**[Action: Click on one of the images to show it in full]**
+**[Screen: Show static image from website]**
+
+**Voiceover:**
+"And here's one of those static images - now watch the same image as dynamic video in our generated ad."
+
+**[Action: Return to editor, play that section of the video]**
+**[Screen: Show the animated version of that image playing]**
 
 ---
 
-## PART 2: PROFESSIONAL TIMELINE EDITOR (0:45 - 1:30)
+## PART 3: PROFESSIONAL TIMELINE EDITOR (1:15 - 2:00)
 **[Screen: Zoom into timeline view]**
 
 **Voiceover:**
-"Now here's where Adify stands apart - a full professional timeline editor, integrated seamlessly into the generation workflow."
+"Now here's what sets this apart from other video ad generators - a full professional timeline editor, integrated seamlessly into the generation workflow."
 
 **[Action: Demonstrate timeline features]**
 - **Show multi-track layout** (video, audio, text, captions)
@@ -49,7 +86,7 @@
 
 ---
 
-## PART 3: MEDIA PANELS - STOCK LIBRARIES (1:30 - 2:15)
+## PART 4: MEDIA PANELS - STOCK LIBRARIES (2:00 - 2:45)
 **[Screen: Show left sidebar with panel icons]**
 
 **Voiceover:**
@@ -84,13 +121,13 @@
 
 ---
 
-## PART 4: AI FEATURES THAT ENHANCE (2:15 - 3:15)
+## PART 5: AI FEATURES THAT ENHANCE (2:45 - 3:30)
 **[Screen: Highlight AI panels in sidebar]**
 
 **Voiceover:**
-"AI is powerful when it enhances your content, not when it dominates it. Let's see how Adify uses AI intelligently."
+"AI is powerful when it enhances your content, not when it dominates it. Let's see how this uses AI intelligently."
 
-### AI Voice (2:15 - 2:40)
+### AI Voice (2:45 - 3:10)
 **[Action: Click AI Voice panel]**
 **[Screen: Show voice generation interface]**
 
@@ -103,7 +140,7 @@
 **Voiceover:**
 "Your voiceover appears on the audio track, ready to sync with your visuals."
 
-### AI Video - Image to Video (2:40 - 3:00)
+### AI Video - Image to Video (3:10 - 3:30)
 **[Action: Click AI Video panel]**
 **[Screen: Show image-to-video interface]**
 
@@ -120,7 +157,7 @@
 
 ---
 
-## PART 5: TEXT & TYPOGRAPHY (3:00 - 3:35)
+## PART 6: TEXT & TYPOGRAPHY (3:30 - 4:05)
 **[Action: Click Texts panel]**
 **[Screen: Show text panel]**
 
@@ -142,7 +179,7 @@
 
 **[Action: Apply text outline and shadow]**
 
-### Text Animations (3:20 - 3:35)
+### Text Animations (3:50 - 4:05)
 **[Action: Scroll to animation section in properties panel]**
 **[Screen: Show animation presets]**
 
@@ -158,7 +195,7 @@
 
 ---
 
-## PART 6: TRANSITIONS (3:35 - 4:00)
+## PART 7: TRANSITIONS (4:05 - 4:30)
 **[Action: Click Transitions panel]**
 **[Screen: Show transitions library]**
 
@@ -180,7 +217,7 @@
 
 ---
 
-## PART 7: VISUAL EFFECTS & CONTROLS (4:00 - 4:35)
+## PART 8: VISUAL EFFECTS & CONTROLS (4:30 - 5:05)
 **[Action: Select a video clip on timeline]**
 **[Screen: Show properties panel with effects]**
 
@@ -216,12 +253,12 @@
 
 ---
 
-## PART 8: SHOWING THE GENERATED AD (4:35 - 4:50)
+## PART 9: SHOWING THE GENERATED AD (5:05 - 5:20)
 **[Action: Click play on the canvas/player]**
 **[Screen: Show the complete generated video ad playing in full]**
 
 **Voiceover:**
-"Let's see the complete video ad we've created. Watch how all the elements come together - the brand's original video footage, the stock media we added, our AI-generated voiceover, custom text with animations, smooth transitions, and visual effects."
+"Let's see the complete video ad we've created. Watch how all the elements come together - the brand's images transformed into dynamic video, the stock media we added, our AI-generated voiceover, custom text with animations, smooth transitions, and visual effects."
 
 **[Screen: Continue playing the ad to completion]**
 
@@ -230,7 +267,7 @@
 
 ---
 
-## PART 9: EXPORT & RENDERING (4:50 - 5:15)
+## PART 10: EXPORT & RENDERING (5:20 - 5:45)
 **[Action: Click Export/Render button]**
 **[Screen: Show export options modal]**
 
@@ -254,16 +291,16 @@
 
 ---
 
-## CLOSING - VALUE PROPOSITION (5:15 - 5:40)
-**[Screen: Split screen showing competitor interfaces vs Adify]**
+## CLOSING - VALUE PROPOSITION (5:45 - 6:10)
+**[Screen: Split screen showing competitor interfaces]**
 
 **Voiceover:**
-"Here's what makes Adify different. Other tools make you choose - instant generation with no control, or powerful editing through tedious multi-step wizards."
+"Here's what makes this different from other video ad creation software. Most existing tools make you choose - instant generation with no control, or powerful editing through tedious multi-step wizards."
 
-**[Screen: Show Adify workflow - URL to video to editing]**
+**[Screen: Show workflow - URL to video to editing]**
 
 **Voiceover:**
-"Adify gives you instant, one-click generation from any URL, then hands you a complete professional timeline editor. No AI avatars. No static slideshows. No configuration fatigue."
+"This gives you instant, one-click generation from any URL, transforming brand images into dynamic video content, then hands you a complete professional timeline editor. No AI avatars. No static slideshows. No configuration fatigue."
 
 **[Screen: Show final rendered video playing]**
 
@@ -272,8 +309,8 @@
 
 ---
 
-## CALL TO ACTION (5:40 - 5:50)
-**[Screen: Adify logo and website URL]**
+## CALL TO ACTION (6:10 - 6:20)
+**[Screen: Logo and website URL]**
 
 **Voiceover:**
 "Start creating professional video ads today. The power of professional editing, with the speed of AI generation."
@@ -285,7 +322,7 @@
 ## PRODUCTION NOTES
 
 ### Timing Guidelines
-- **Total duration:** 5:45 - 5:50
+- **Total duration:** 6:15 - 6:20
 - **Pace:** Medium tempo, clear enunciation
 - **Music:** Subtle, modern background track at -20dB
 - **Transitions:** Quick cuts between sections (0.5s max)
@@ -298,13 +335,19 @@
 
 ### UI Preparation Before Recording
 1. Clear any test projects
-2. Prepare restaurant/cafe URLs for demo
+2. Prepare restaurant/cafe URLs for demo (e.g., The Doughnut Vault, Joe's Pizza, Sweetgreen)
 3. Pre-load stock media searches to avoid loading delays
 4. Disable browser extensions and notifications
 5. Set timeline zoom to comfortable viewing level
 
 ### Demo Content Suggestions
 - **Restaurant URL:** Choose one with good imagery and video
+- **Landing Page Options:**
+  - Style: Dynamic (show selecting this)
+  - Voice: Female
+  - Tone: Friendly
+  - Duration: ~30s
+  - Ratio: 9:16 (portrait for social media)
 - **Search terms:** "coffee pouring", "cafe ambiance", "food preparation"
 - **Music genre:** "Upbeat", "Corporate", or "Ambient"
 - **Text examples:** "Grand Opening", "50% Off Today", "Visit Us"
@@ -330,15 +373,19 @@
 
 ## NARRATION SCRIPT (PARAGRAPH FORMAT)
 
-Creating professional video ads traditionally means choosing between instant generation with limited control, or powerful editing with tedious multi-step wizards. Adify gives you the best of both worlds.
+Most video ad generators make you choose between instant generation with limited control, or powerful editing through tedious multi-step wizards. This tool gives you the best of both worlds.
 
-Let's create a video ad for local restaurants and cafes. Simply paste in your business URL, and just like that, you have a complete, brand-authentic video ad. No multi-step wizards. No configuration before you see results. Just instant, professional output using your brand's actual content. Notice how it uses real video footage from the website, not generic AI avatars or static slideshows. This is your starting point, ready to customize.
+For this demo, we've selected restaurants and cafes as they typically have rich visual content on their websites - perfect for showcasing how we transform static images into dynamic video. In the final version, this will be optimized for every industry, from retail to real estate to professional services.
 
-Now here's where Adify stands apart - a full professional timeline editor, integrated seamlessly into the generation workflow. Frame-accurate editing with multi-track support. Drag and drop to rearrange. Zoom for precision. Every track is organized and accessible. This isn't just a basic trimmer - it's a complete video editing suite. Trim clips with pixel-perfect precision. Adjust start and end points. Layer elements across tracks for sophisticated compositions.
+Let's create a video ad for a cafe. Simply paste in your business URL. Then customize your ad preferences. Choose your style - dynamic or classic. Select a voice - male, female, or neutral. Pick the tone that fits your brand - friendly, playful, confident, or warm. Set your desired duration and aspect ratio. And hit generate.
+
+Just like that, you have a complete, brand-authentic video ad. No multi-step wizards. No configuration fatigue. Just instant, professional output. Notice the dynamic video content. Unlike other tools that use generic AI avatars or static slideshows, we transform the brand's actual images into engaging video footage using AI. Here's the original website with static images. And here's one of those static images - now watch the same image as dynamic video in our generated ad. This is your starting point, ready to customize.
+
+Now here's what sets this apart from other video ad generators - a full professional timeline editor, integrated seamlessly into the generation workflow. Frame-accurate editing with multi-track support. Drag and drop to rearrange. Zoom for precision. Every track is organized and accessible. This isn't just a basic trimmer - it's a complete video editing suite. Trim clips with pixel-perfect precision. Adjust start and end points. Layer elements across tracks for sophisticated compositions.
 
 Let's explore the editor panels. First up - media sources. Upload your own media directly, or tap into our integrated stock libraries. Browse millions of free stock videos from Pexels. Notice how it's already searched for relevant content based on your brand. Smart suggestions save you time. Same for stock images - pre-searched with relevant content, curated collections at multiple resolutions. And background music from Jamendo, categorized by mood and genre. Listen before you add.
 
-AI is powerful when it enhances your content, not when it dominates it. Let's see how Adify uses AI intelligently. AI Voice powered by ElevenLabs. Over 20 voices in 28 languages. Preview each voice, filter by gender or language, then generate. Your voiceover appears on the audio track, ready to sync with your visuals. Turn static images into dynamic video with our Akool-powered AI Video feature. Select an image from your timeline or upload one. Add motion prompts, and generate animated clips.
+AI is powerful when it enhances your content, not when it dominates it. Let's see how this uses AI intelligently. AI Voice powered by ElevenLabs. Over 20 voices in 28 languages. Preview each voice, filter by gender or language, then generate. Your voiceover appears on the audio track, ready to sync with your visuals. Turn static images into dynamic video with our Akool-powered AI Video feature. Select an image from your timeline or upload one. Add motion prompts, and generate animated clips.
 
 Add text elements. Choose from over 100 Google Fonts. Adjust sizing from 8 to 200+ pixels. Apply solid colors or gradients. Fine-tune alignment, letter spacing, line height. Add outlines with custom widths and colors. Add shadows for depth. Bring text to life with animations. Typewriter effects for entrances. Background fades. Sound waves. Exit animations like typewriter out. And loop animations - vintage effects, pulse, rotating fonts.
 
@@ -346,11 +393,11 @@ Smooth scene transitions connect your story. Fade and cross-fade. Slide in all d
 
 Every element in your timeline has professional-grade controls. Apply blur with intensity control for focus effects. Adjust brightness. Flip horizontal or vertical. Add outlines and shadows with custom colors, blur radius, and offset. Transform with rotation and scale controls. Adjust opacity for transparency. Control playback speed from half-speed to double-speed. And per-track volume control for perfect audio mixing.
 
-Let's see the complete video ad we've created. Watch how all the elements come together - the brand's original video footage, the stock media we added, our AI-generated voiceover, custom text with animations, smooth transitions, and visual effects. A professional, brand-authentic video ad, ready to capture attention and drive results.
+Let's see the complete video ad we've created. Watch how all the elements come together - the brand's images transformed into dynamic video, the stock media we added, our AI-generated voiceover, custom text with animations, smooth transitions, and visual effects. A professional, brand-authentic video ad, ready to capture attention and drive results.
 
 Ready to export? Real-time progress tracking keeps you informed. And with auto-save, your work is always protected - never lose progress.
 
-Here's what makes Adify different. Other tools make you choose - instant generation with no control, or powerful editing through tedious multi-step wizards. Adify gives you instant, one-click generation from any URL, then hands you a complete professional timeline editor. No AI avatars. No static slideshows. No configuration fatigue. Brand-authentic video ads, generated in seconds, customized to perfection. The best of both worlds.
+Here's what makes this different from other video ad creation software. Most existing tools make you choose - instant generation with no control, or powerful editing through tedious multi-step wizards. This gives you instant, one-click generation from any URL, transforming brand images into dynamic video content, then hands you a complete professional timeline editor. No AI avatars. No static slideshows. No configuration fatigue. Brand-authentic video ads, generated in seconds, customized to perfection. The best of both worlds.
 
 Start creating professional video ads today. The power of professional editing, with the speed of AI generation.
 
@@ -377,7 +424,7 @@ Start creating professional video ads today. The power of professional editing, 
 
 2. **Add Background Music:**
    - Find a subtle, modern corporate/tech track
-   - Ensure it's 5:50+ in length
+   - Ensure it's 6:20+ in length
    - Mix music at -20dB to -25dB below narration
    - Use a gentle fade-in (0-3 seconds) and fade-out (last 5 seconds)
 
@@ -390,16 +437,17 @@ Start creating professional video ads today. The power of professional editing, 
    - If you mess up, just restart that segment
 
 2. **Recommended Segments:**
-   - **Segment 1:** Opening + URL Generation (Parts 1)
-   - **Segment 2:** Timeline Editing (Part 2)
-   - **Segment 3:** Stock Libraries (Part 3)
-   - **Segment 4:** AI Features (Part 4)
-   - **Segment 5:** Text & Typography (Part 5)
-   - **Segment 6:** Transitions (Part 6)
-   - **Segment 7:** Visual Effects (Part 7)
-   - **Segment 8:** Showing Final Ad (Part 8)
-   - **Segment 9:** Export (Part 9)
-   - **Segment 10:** Closing (Closing + CTA)
+   - **Segment 1:** Opening + Landing Page Setup (Opening + Part 1)
+   - **Segment 2:** Video Generation & Website Comparison (Part 2)
+   - **Segment 3:** Timeline Editing (Part 3)
+   - **Segment 4:** Stock Libraries (Part 4)
+   - **Segment 5:** AI Features (Part 5)
+   - **Segment 6:** Text & Typography (Part 6)
+   - **Segment 7:** Transitions (Part 7)
+   - **Segment 8:** Visual Effects (Part 8)
+   - **Segment 9:** Showing Final Ad (Part 9)
+   - **Segment 10:** Export (Part 10)
+   - **Segment 11:** Closing (Closing + CTA)
 
 3. **Recording Tips:**
    - Use OBS Studio or similar (free, high quality)
