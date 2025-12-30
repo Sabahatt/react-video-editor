@@ -9,11 +9,23 @@ import { ADD_VIDEO } from "@designcombo/state";
 import { generateId } from "@designcombo/timeline";
 import useStore from "../store/use-store";
 import { ITrackItem } from "@designcombo/types";
+import { usePipelineStore } from "@/store/use-pipeline-store";
+
+// Default images for demo projects when no timeline images exist
+const DEFAULT_PROJECT_IMAGES: Record<string, { url: string; name: string }[]> = {
+  "doughnut-vault": [
+    { url: "/uploads/1765677175577-Doughnuts-07-vanilla-cake.webp", name: "Vanilla Cake" },
+    { url: "/uploads/1765677175586-Doughnuts-11-gingerbreak-stack.webp", name: "Gingerbread Stack" },
+    { url: "/uploads/1765677175587-Doughnuts-10-glazed.webp", name: "Glazed" },
+    { url: "/uploads/1765677175588-Doughnuts-08-classic-oldfashioned.webp", name: "Classic Old Fashioned" },
+  ],
+};
 
 const MAX_PROMPT_LENGTH = 2000;
 
 export const AiVideo = () => {
   const { trackItemsMap } = useStore();
+  const { restaurant } = usePipelineStore();
   const [prompt, setPrompt] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
   const [selectedImage, setSelectedImage] = useState<{
@@ -29,6 +41,12 @@ export const AiVideo = () => {
       (item: ITrackItem) => item.type === "image"
     ) as ITrackItem[];
   }, [trackItemsMap]);
+
+  // Get default images for the current project if no timeline images
+  const defaultImages = useMemo(() => {
+    if (timelineImages.length > 0) return [];
+    return restaurant ? (DEFAULT_PROJECT_IMAGES[restaurant] || []) : [];
+  }, [timelineImages.length, restaurant]);
 
   const handleFileSelect = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -70,6 +88,13 @@ export const AiVideo = () => {
     setSelectedImage({
       url: item.details.src,
       name: item.name || "Timeline Image"
+    });
+  }, []);
+
+  const selectDefaultImage = useCallback((image: { url: string; name: string }) => {
+    setSelectedImage({
+      url: image.url,
+      name: image.name
     });
   }, []);
 
@@ -235,6 +260,30 @@ export const AiVideo = () => {
                   <img
                     src={item.details.src}
                     alt={item.name}
+                    className="w-full h-full object-cover"
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Default Project Images Quick Select */}
+        {defaultImages.length > 0 && !selectedImage && (
+          <div className="space-y-2">
+            <Label className="font-sans text-xs font-semibold text-muted-foreground">
+              Or select from brand assets
+            </Label>
+            <div className="flex gap-2 overflow-x-auto pb-1">
+              {defaultImages.map((image, index) => (
+                <button
+                  key={index}
+                  onClick={() => selectDefaultImage(image)}
+                  className="flex-shrink-0 w-16 h-16 rounded-md overflow-hidden border border-white/[0.08] hover:border-[#fb923c]/40 transition-colors"
+                >
+                  <img
+                    src={image.url}
+                    alt={image.name}
                     className="w-full h-full object-cover"
                   />
                 </button>
