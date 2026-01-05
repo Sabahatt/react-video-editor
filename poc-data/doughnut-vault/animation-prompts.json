@@ -1,0 +1,38 @@
+{
+  "prompts": [
+    {
+      "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/1e99fa65-6881-4de6-9e3c-023b6cc28bcf/DV-doughnutillustrations-24.png",
+      "productName": "Buttermilk Old Fashioned",
+      "caption": "a painting of a coffee cup and donuts.",
+      "animationPrompt": "animate this image of a coffee cup and donuts with slight steam rising"
+    },
+    {
+      "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/c851d12f-4ca3-4247-8ccb-2deced925e74/Doughnuts-10.png",
+      "productName": "Triple Chocolate Doughnut",
+      "caption": "a glazed donut with a glaze on top.",
+      "animationPrompt": "animate this image of a glazed donut with glaze slowly dripping"
+    },
+    {
+      "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/729e0b61-9618-4c80-b4dc-1609b65a5abe/Doughnuts-07.png",
+      "productName": "Lemon Poppyseed Doughnut",
+      "caption": "a doughnut with sprinkles on it",
+      "animationPrompt": "animate this image of a doughnut with sprinkles slowly rotating"
+    },
+    {
+      "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/629f629d-fd80-4f1b-8289-b1f336d7468d/DV-Catering_Hero.png",
+      "productName": "Doughnut Catering Box",
+      "caption": "a stack of donuts on a gold plate.",
+      "animationPrompt": "animate this image of a stack of donuts on a gold plate slowly rotating"
+    },
+    {
+      "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/998a91a9-2b13-493d-9b1b-0bd779509614/4X5A9291.jpg",
+      "productName": "Doughnut Selection",
+      "caption": "a person holding a doughnut in front of a box of doughnuts.",
+      "animationPrompt": "animate this image of a person holding a doughnut slowly extending forward"
+    }
+  ],
+  "metadata": {
+    "total": 5,
+    "model": "gemini-2.0-flash"
+  }
+}

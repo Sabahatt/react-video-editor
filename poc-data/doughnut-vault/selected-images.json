@@ -1,0 +1,110 @@
+{
+  "images": [
+    {
+      "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/1e99fa65-6881-4de6-9e3c-023b6cc28bcf/DV-doughnutillustrations-24.png",
+      "productName": "Buttermilk Old Fashioned",
+      "productDescription": "Classic buttermilk old fashioned doughnut",
+      "foodType": "doughnut",
+      "dimensions": {
+        "width": 480,
+        "height": 546
+      },
+      "caption": "a painting of a coffee cup and donuts.",
+      "selection": {
+        "reasoning": "The Buttermilk Old Fashioned is a signature item, and the image captures the old-fashioned aesthetic well. The composition, with the coffee cup, suggests a warm, inviting morning experience.",
+        "scores": {
+          "brandRelevance": 10,
+          "videoSuitability": 7,
+          "visualQuality": 8,
+          "composite": 8.45
+        }
+      }
+    },
+    {
+      "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/c851d12f-4ca3-4247-8ccb-2deced925e74/Doughnuts-10.png",
+      "productName": "Triple Chocolate Doughnut",
+      "productDescription": "Rich triple chocolate doughnut",
+      "foodType": "doughnut",
+      "dimensions": {
+        "width": 480,
+        "height": 388
+      },
+      "caption": "a glazed donut with a glaze on top.",
+      "selection": {
+        "reasoning": "The Triple Chocolate Doughnut offers visual richness and contrast. A close-up shot highlights the doughnut's texture and glaze, allowing for potentially interesting animations around the chocolate elements.",
+        "scores": {
+          "brandRelevance": 8,
+          "videoSuitability": 9,
+          "visualQuality": 7,
+          "composite": 8.1
+        }
+      }
+    },
+    {
+      "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/729e0b61-9618-4c80-b4dc-1609b65a5abe/Doughnuts-07.png",
+      "productName": "Lemon Poppyseed Doughnut",
+      "productDescription": "Fresh lemon poppyseed doughnut",
+      "foodType": "doughnut",
+      "dimensions": {
+        "width": 480,
+        "height": 388
+      },
+      "caption": "a doughnut with sprinkles on it",
+      "selection": {
+        "reasoning": "The Pistachio Doughnut is another signature item and provides a pop of color. The stacked donuts give the image visual depth, making it suitable for animation with elements appearing/disappearing.",
+        "scores": {
+          "brandRelevance": 9,
+          "videoSuitability": 8,
+          "visualQuality": 7,
+          "composite": 8.15
+        }
+      }
+    },
+    {
+      "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/629f629d-fd80-4f1b-8289-b1f336d7468d/DV-Catering_Hero.png",
+      "productName": "Doughnut Catering Box",
+      "productDescription": "Assorted doughnuts for catering",
+      "foodType": "doughnut",
+      "dimensions": {
+        "width": 811,
+        "height": 540
+      },
+      "caption": "a stack of donuts on a gold plate.",
+      "selection": {
+        "reasoning": "The Fresh Doughnuts Display shows a larger quantity of product and conveys the 'freshly made' aspect of the brand. It can be animated to show the donuts being arranged or a hand reaching for one.",
+        "scores": {
+          "brandRelevance": 9,
+          "videoSuitability": 7,
+          "visualQuality": 8,
+          "composite": 8.05
+        }
+      }
+    },
+    {
+      "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/998a91a9-2b13-493d-9b1b-0bd779509614/4X5A9291.jpg",
+      "productName": "Doughnut Selection",
+      "productDescription": "A variety of fresh artisanal doughnuts",
+      "foodType": "doughnut",
+      "dimensions": {
+        "width": 1909,
+        "height": 995
+      },
+      "caption": "a person holding a doughnut in front of a box of doughnuts.",
+      "selection": {
+        "reasoning": "The Doughnut Selection showcases the variety that Doughnut Vault offers. The hand holding the donut can provide a point of interest for animation, guiding the viewer's eye to other donuts in the box.",
+        "scores": {
+          "brandRelevance": 9,
+          "videoSuitability": 8,
+          "visualQuality": 9,
+          "composite": 8.65
+        }
+      }
+    }
+  ],
+  "diversityNotes": "The selected images provide diversity through different donut types (Buttermilk Old Fashioned, Triple Chocolate, Pistachio, assortment), different settings (close-up of single donut, display, hand holding donut in front of box), and different color palettes. This ensures a dynamic and engaging visual sequence in the video ad.",
+  "metadata": {
+    "totalAnalyzed": 11,
+    "selected": 5,
+    "model": "gemini-2.0-flash"
+  }
+}

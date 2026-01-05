@@ -1,0 +1,122 @@
+[
+  {
+    "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/45fae570-8794-4029-a44a-e2e842b6eada/donut.png",
+    "productName": "Old Fashioned Doughnut",
+    "foodType": "doughnut",
+    "dimensions": {
+      "width": 800,
+      "height": 753
+    },
+    "caption": "a picture of a pastry in a room."
+  },
+  {
+    "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/998a91a9-2b13-493d-9b1b-0bd779509614/4X5A9291.jpg",
+    "productName": "Doughnut Selection",
+    "productDescription": "A variety of fresh artisanal doughnuts",
+    "foodType": "doughnut",
+    "dimensions": {
+      "width": 1909,
+      "height": 995
+    },
+    "caption": "a person holding a doughnut in front of a box of doughnuts."
+  },
+  {
+    "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/1e99fa65-6881-4de6-9e3c-023b6cc28bcf/DV-doughnutillustrations-24.png",
+    "productName": "Buttermilk Old Fashioned",
+    "productDescription": "Classic buttermilk old fashioned doughnut",
+    "foodType": "doughnut",
+    "dimensions": {
+      "width": 480,
+      "height": 546
+    },
+    "caption": "a painting of a coffee cup and donuts."
+  },
+  {
+    "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/bf64fa48-bd27-4b0b-bc55-30612dc6ddfc/Doughnuts-08.png",
+    "productName": "Glazed Doughnut",
+    "productDescription": "Classic glazed doughnut with glossy finish",
+    "foodType": "doughnut",
+    "dimensions": {
+      "width": 480,
+      "height": 388
+    },
+    "caption": "a close up of a doughnut on a black background"
+  },
+  {
+    "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/c851d12f-4ca3-4247-8ccb-2deced925e74/Doughnuts-10.png",
+    "productName": "Triple Chocolate Doughnut",
+    "productDescription": "Rich triple chocolate doughnut",
+    "foodType": "doughnut",
+    "dimensions": {
+      "width": 480,
+      "height": 388
+    },
+    "caption": "a glazed donut with a glaze on top."
+  },
+  {
+    "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/cf35d8b9-68f6-4bce-948e-fd6982bb97b7/Doughnuts-11.png",
+    "productName": "Pistachio Doughnut",
+    "productDescription": "Artisanal pistachio glazed doughnut",
+    "foodType": "doughnut",
+    "dimensions": {
+      "width": 480,
+      "height": 388
+    },
+    "caption": "three donuts stacked on top of each other."
+  },
+  {
+    "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/729e0b61-9618-4c80-b4dc-1609b65a5abe/Doughnuts-07.png",
+    "productName": "Lemon Poppyseed Doughnut",
+    "productDescription": "Fresh lemon poppyseed doughnut",
+    "foodType": "doughnut",
+    "dimensions": {
+      "width": 480,
+      "height": 388
+    },
+    "caption": "a doughnut with sprinkles on it"
+  },
+  {
+    "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/13defee5-e993-4272-a672-f87e5d6982d4/Doughnuts-12.png",
+    "productName": "Almond Doughnut",
+    "productDescription": "Almond topped artisanal doughnut",
+    "foodType": "doughnut",
+    "dimensions": {
+      "width": 480,
+      "height": 388
+    },
+    "caption": "a close up of a bunch of glazed walnuts"
+  },
+  {
+    "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/c3d5a2db-4f61-4d85-af30-f094a121ba4b/Doughnuts-09.png",
+    "productName": "Stack Doughnut",
+    "productDescription": "Signature stack variety doughnut",
+    "foodType": "doughnut",
+    "dimensions": {
+      "width": 480,
+      "height": 388
+    },
+    "caption": "a close up of two chocolate covered balls with sprinkles"
+  },
+  {
+    "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/8b1b07c7-ebb7-49fb-bdf8-61f8f39ed76b/4X5A9325.jpg",
+    "productName": "Fresh Doughnuts Display",
+    "productDescription": "Freshly made artisanal doughnuts",
+    "foodType": "doughnut",
+    "dimensions": {
+      "width": 810,
+      "height": 540
+    },
+    "caption": "a woman holding up a stack of doughnuts"
+  },
+  {
+    "url": "https://images.squarespace-cdn.com/content/v1/66675789efc1680422bf043f/629f629d-fd80-4f1b-8289-b1f336d7468d/DV-Catering_Hero.png",
+    "productName": "Doughnut Catering Box",
+    "productDescription": "Assorted doughnuts for catering",
+    "foodType": "doughnut",
+    "dimensions": {
+      "width": 811,
+      "height": 540
+    },
+    "caption": "a stack of donuts on a gold plate."
+  }
+]
